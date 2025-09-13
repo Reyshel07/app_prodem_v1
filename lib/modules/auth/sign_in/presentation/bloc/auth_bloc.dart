@@ -8,7 +8,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   SignInResponseRepository repository;
   AuthBloc(this.repository) : super(AuthInitial()) {
-    on<AuthEvent>((event, emit) {});
+    on<SignInEvent>(signIn);
   }
 
   Future<void> signIn(SignInEvent event, Emitter<AuthState> emit) async {

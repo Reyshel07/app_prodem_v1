@@ -1,4 +1,4 @@
-import 'package:app_prodem_v1/presentation/screen/Register/account_settings_screen.dart';
+/*import 'package:app_prodem_v1/presentation/screen/Register/account_settings_screen.dart';
 import 'package:app_prodem_v1/presentation/screen/Register/configuration%20steps/configuration_steps_screen.dart';
 import 'package:app_prodem_v1/presentation/screen/Register/regtister_screen.dart';
 import 'package:app_prodem_v1/presentation/screen/home/home_screen.dart';
@@ -47,3 +47,4 @@ final appRouter = GoRouter(
     ),
   ],
 );
+*/

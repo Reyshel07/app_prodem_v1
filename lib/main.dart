@@ -1,14 +1,18 @@
+import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
-import 'package:app_prodem_v1/presentation/bloc/theme_provider.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  InjectorContainer.setupGetIt();
+
   runApp(
-    MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => ThemeProvider())],
-      child: MainApp(),
-    ),
+    MainApp(),
+    //MultiProvider(
+    //  providers: [ChangeNotifierProvider(create: (context) => ThemeProvider())],
+    //  child: MainApp(),
+    //),
   );
 }
 
@@ -17,11 +21,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final providerTheme = Provider.of<ThemeProvider>(context);
+    final appRouter = InjectorContainer.getIt<AppRouter>();
+    //final providerTheme = Provider.of<ThemeProvider>(context);
     return MaterialApp.router(
       title: 'Prodem',
-      theme: providerTheme.currentTheme,
-      routerConfig: appRouter,
+      // theme: providerTheme.currentTheme,
+      routerConfig: appRouter.config(),
     );
   }
 }

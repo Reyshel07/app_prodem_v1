@@ -32,7 +32,7 @@ class UserSignInResponseModel extends UserSignResponseEntity {
         role: json["role"],
         token: json["token"],
         error: json["error"],
-        aditionalItems: List<AditionalItem>.from(
+        aditionalItems: List<AditionalItemEntity>.from(
           json["aditionalItems"].map((x) => AditionalItem.fromJson(x)),
         ),
       );

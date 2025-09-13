@@ -12,7 +12,7 @@ class SignInResponseRepositoryImpl extends SignInResponseRepository {
     String username,
     String password,
     int chanel,
-    List aditionalItems,
+    List<AditionalItemEntity> aditionalItems,
   ) async {
     return await datasource.signIn(username, password, chanel, aditionalItems);
   }

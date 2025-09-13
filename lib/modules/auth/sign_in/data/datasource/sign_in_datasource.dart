@@ -12,17 +12,21 @@ class SignInDatasource {
     String username,
     String password,
     int chanel,
-    List aditionalItems,
+    List<AditionalItemEntity> aditionalItems,
   ) async {
     final response = await _dio.post(
-      '$baseUrl/api/auth/signin',
+      '$baseUrl/auth/token',
       data: {
         "username": username,
         "password": password,
         "chanel": chanel,
-        "aditionalItems": aditionalItems,
+        "aditionalItems": [
+          {"Key": "IP", "Value": "192.168.162.12"},
+          {"Key": "SmartphoneIMEI", "Value": "45165sdwe45we46"},
+        ],
       },
     );
+    print(response.data);
     return SignInResponseModel.fromJson(response.data);
   }
 }
