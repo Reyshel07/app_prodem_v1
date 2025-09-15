@@ -1,7 +1,6 @@
-import 'package:app_prodem_v1/modules/auth/sign_in/domain/entities/entities.dart';
-import 'package:app_prodem_v1/modules/auth/sign_in/domain/repositories/sign_in_response_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../domain/entities/entities.dart';
+import '../../domain/repositories/repositories.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
