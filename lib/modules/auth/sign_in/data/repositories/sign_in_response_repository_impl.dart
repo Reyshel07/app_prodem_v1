@@ -1,7 +1,6 @@
-import 'package:app_prodem_v1/modules/auth/sign_in/data/datasource/sign_in_datasource.dart';
-import 'package:app_prodem_v1/modules/auth/sign_in/domain/repositories/sign_in_response_repository.dart';
-
 import '../../domain/entities/entities.dart';
+import '../../domain/repositories/repositories.dart';
+import '../datasource/datasource.dart';
 
 class SignInResponseRepositoryImpl extends SignInResponseRepository {
   SignInDatasource datasource;

@@ -24,6 +24,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   get_it: ^8.2.0
   auto_route: ^10.1.2
+  dotenv: ^4.2.0
 
 dev_dependencies:
   flutter_test:

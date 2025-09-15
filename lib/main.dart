@@ -1,8 +1,7 @@
 import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
-import 'package:app_prodem_v1/injector.container.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'modules/auth/sign_in/injector.container.dart';
 
 void main() async {
   InjectorContainer.setupGetIt();
