@@ -18,7 +18,7 @@ class SessionInfoBloc extends Bloc<SessionInfoEvent, SessionInfoState> {
     emit(SessionInfoLoading());
     try {
       await userSessionInfoRepository.userSession();
-      emit(SessionInfoSuccess('No se logro recuperar los dato'));
+      emit(SessionInfoSuccess('exitoso'));
     } catch (e) {
       emit(SessionInfoError('error'));
     }

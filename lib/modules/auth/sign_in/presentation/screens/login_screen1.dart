@@ -6,7 +6,7 @@ import 'package:app_prodem_v1/modules/auth/sign_in/injector.container.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../../../../../config/router/router.dart';
 import '../../../../../utils/text.dart';
-import '../../domain/entities/entities.dart';
+import '../../../../home/UserSessionInfo/presentation/bloc/bloc.dart';
 import '../bloc/bloc.dart';
 
 @RoutePage()
@@ -17,6 +17,7 @@ class LoginScreen1 extends StatelessWidget {
   Widget build(BuildContext context) {
     //final authBloc = AuthBloc(SignInResponseRepositoryImpl());
     return BlocProvider(
+      //create: (context) => InjectorContainer.getIt<AuthBloc>(),
       create: (context) => InjectorContainer.getIt<AuthBloc>(),
       //create: (context) => AuthBloc(SignInResponseRepositoryImpl()),
       child: Scaffold(body: Body()),
@@ -112,7 +113,7 @@ class _BodyState extends State<Body> {
                     ),
                   ),
                 ),
-                SizedBox(
+                /*SizedBox(
                   width: screenSize.width * 0.5,
                   child: Card(
                     elevation: smallSpacing * 0.5,
@@ -139,6 +140,22 @@ class _BodyState extends State<Body> {
                             aditionalItems: aditionalItems,
                           ),
                         );
+                        //context.pushRoute(PruebaRoute());
+                        /*InjectorContainer.getIt<AppRouter>().push(
+                            PruebaRoute(text: 'hola'),
+                          );*/
+                      },
+                      lblTextField: 'INGRESAR',
+                    ),
+                  ),
+                ),*/
+                SizedBox(
+                  width: screenSize.width * 0.5,
+                  child: Card(
+                    elevation: smallSpacing * 0.5,
+                    child: Butoon1(
+                      onTap: () {
+                        context.read<SessionInfoBloc>().add(SessionInfEvent());
                         //context.pushRoute(PruebaRoute());
                         /*InjectorContainer.getIt<AppRouter>().push(
                             PruebaRoute(text: 'hola'),
