@@ -6,13 +6,7 @@ import 'modules/auth/sign_in/injector.container.dart';
 void main() async {
   InjectorContainer.setupGetIt();
 
-  runApp(
-    MainApp(),
-    //MultiProvider(
-    //  providers: [ChangeNotifierProvider(create: (context) => ThemeProvider())],
-    //  child: MainApp(),
-    //),
-  );
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
