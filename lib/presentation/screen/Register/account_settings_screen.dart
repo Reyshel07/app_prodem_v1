@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class AccountSettingsScreen extends StatefulWidget {
-  static const path = '/AccountSettingsScreen';
-  static const name = 'AccountSettingsScreen';
   const AccountSettingsScreen({super.key});
 
   @override

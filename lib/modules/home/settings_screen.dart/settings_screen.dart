@@ -1,6 +1,6 @@
 import 'package:app_prodem_v1/config/theme/extension_theme.dart';
 import 'package:app_prodem_v1/presentation/bloc/theme_provider.dart';
-import 'package:app_prodem_v1/presentation/screen/settings_screen.dart/virtuelles%20Ticket/virtuelles_ticket_screen.dart';
+import 'package:app_prodem_v1/modules/home/settings_screen.dart/virtuelles%20Ticket/virtuelles_ticket_screen.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/container02_widget.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
@@ -9,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatelessWidget {
-  static const path = '/SettingsScreen';
-  static const name = 'SettingsScreen';
   const SettingsScreen({super.key});
 
   @override

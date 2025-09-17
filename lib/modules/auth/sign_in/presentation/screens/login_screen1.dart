@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:app_prodem_v1/modules/auth/sign_in/injector.container.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../../../../../config/router/router.dart';
 import '../../../../../utils/text.dart';
-import '../../../../home/UserSessionInfo/presentation/bloc/bloc.dart';
+import '../../domain/entities/entities.dart';
 import '../bloc/bloc.dart';
 
 @RoutePage()
@@ -20,7 +21,17 @@ class LoginScreen1 extends StatelessWidget {
       //create: (context) => InjectorContainer.getIt<AuthBloc>(),
       create: (context) => InjectorContainer.getIt<AuthBloc>(),
       //create: (context) => AuthBloc(SignInResponseRepositoryImpl()),
-      child: Scaffold(body: Body()),
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Theme.of(context).colorScheme.green,
+          title: Text(
+            'Bienvenido a Banco Prodem S.A.',
+            style: AppTextStyles.mainStyleWhite18Bold(context),
+          ),
+        ),
+        body: Body(),
+      ),
     );
   }
 }
@@ -43,17 +54,17 @@ class _BodyState extends State<Body> {
     final screenSize = MediaQuery.of(context).size;
     final double smallSpacing = screenSize.height * 0.02;
     //final double letterSize = screenSize.height;
-    final double topPadding = screenSize.height * 0.2;
+    //final double topPadding = screenSize.height * 0.2;
     //final double containerSize = screenSize.height * 0.3;
     //final double imgSize = screenSize.width * 0.4;
-    String text;
+    //String text;
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
-            if (state is AuthLoading) {
+            /*if (state is AuthLoading) {
               text = 'Cargando';
-            }
+            }*/
           },
           child: Center(
             child: Column(
@@ -105,7 +116,7 @@ class _BodyState extends State<Body> {
                           ),
                           hintText: "Usuario",
                           hintStyle: AppTextStyles.mainStyleGreen16(context),
-                          filled: true,
+                          filled: false,
                           isDense: false,
                           contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                         ),
@@ -113,7 +124,7 @@ class _BodyState extends State<Body> {
                     ),
                   ),
                 ),
-                /*SizedBox(
+                SizedBox(
                   width: screenSize.width * 0.5,
                   child: Card(
                     elevation: smallSpacing * 0.5,
@@ -141,15 +152,13 @@ class _BodyState extends State<Body> {
                           ),
                         );
                         //context.pushRoute(PruebaRoute());
-                        /*InjectorContainer.getIt<AppRouter>().push(
-                            PruebaRoute(text: 'hola'),
-                          );*/
+                        InjectorContainer.getIt<AppRouter>().push(HomeRoute());
                       },
                       lblTextField: 'INGRESAR',
                     ),
                   ),
-                ),*/
-                SizedBox(
+                ),
+                /*/SizedBox(
                   width: screenSize.width * 0.5,
                   child: Card(
                     elevation: smallSpacing * 0.5,
@@ -164,7 +173,7 @@ class _BodyState extends State<Body> {
                       lblTextField: 'INGRESAR',
                     ),
                   ),
-                ),
+                ),*/
               ],
             ),
           ),
