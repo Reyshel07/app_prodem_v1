@@ -21,7 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
       emit(AuthSuccess("Inicio de sesión exitoso"));
     } catch (e) {
-      emit(AuthError('An unexpected error occurred'));
+      emit(AuthError('error'));
     }
   }
 }

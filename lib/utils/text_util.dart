@@ -10,6 +10,25 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
   );
 
+  static TextStyle mainStyleGreen22Bold(BuildContext context) =>
+      GoogleFonts.exo(
+        color: Theme.of(context).colorScheme.green,
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      );
+  static TextStyle mainStyleGreen12Bold(BuildContext context) =>
+      GoogleFonts.exo(
+        color: Theme.of(context).colorScheme.green,
+        fontSize: 12,
+        fontWeight: FontWeight.bold,
+      );
+  static TextStyle mainStyleGreen20Bold(BuildContext context) =>
+      GoogleFonts.exo(
+        color: Theme.of(context).colorScheme.green,
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      );
+
   ///titles in bold green
   static TextStyle mainStyleGreen25Bold(BuildContext context) =>
       GoogleFonts.exo(
@@ -64,10 +83,37 @@ class AppTextStyles {
         fontSize: 16,
         fontWeight: FontWeight.bold,
       );
+  static TextStyle mainStyle16Bold(BuildContext context) => GoogleFonts.exo(
+    //color: Theme.of(context).colorScheme.white,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
   static TextStyle mainStyleWhite14Bold(BuildContext context) =>
       GoogleFonts.exo(
         color: Theme.of(context).colorScheme.white,
         fontSize: 14,
+        fontWeight: FontWeight.bold,
+      );
+  static TextStyle mainStyleWhite14(BuildContext context) => GoogleFonts.exo(
+    color: Theme.of(context).colorScheme.white,
+    fontSize: 14,
+    //fontWeight: FontWeight.bold,
+  );
+  static TextStyle mainStyleWhite12(BuildContext context) => GoogleFonts.exo(
+    color: Theme.of(context).colorScheme.white,
+    fontSize: 12,
+    //fontWeight: FontWeight.bold,
+  );
+  static TextStyle mainStyleWhite12Bold(BuildContext context) =>
+      GoogleFonts.exo(
+        color: Theme.of(context).colorScheme.white,
+        fontSize: 12,
+        fontWeight: FontWeight.bold,
+      );
+  static TextStyle mainStyleWhite10Bold(BuildContext context) =>
+      GoogleFonts.exo(
+        color: Theme.of(context).colorScheme.white,
+        fontSize: 10,
         fontWeight: FontWeight.bold,
       );
 
@@ -85,6 +131,16 @@ class AppTextStyles {
         fontSize: 25,
         fontWeight: FontWeight.bold,
       );
+
+  ///header text
+  static TextStyle mainStyle20Bold(BuildContext context) =>
+      GoogleFonts.exo(fontSize: 20, fontWeight: FontWeight.bold);
+  static TextStyle mainStyleWhite20Bold(BuildContext context) =>
+      GoogleFonts.exo(
+        color: Theme.of(context).colorScheme.white,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      );
   static TextStyle mainStyleWhite18(BuildContext context) => GoogleFonts.exo(
     color: Theme.of(context).colorScheme.white,
     fontSize: 18,
@@ -96,4 +152,57 @@ class AppTextStyles {
         fontSize: 18,
         fontWeight: FontWeight.bold,
       );
+  static TextStyle mainStyleGrey14(BuildContext context) => GoogleFonts.exo(
+    color: Theme.of(context).colorScheme.grey,
+    fontSize: 14,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle mainStyleGrey12(BuildContext context) => GoogleFonts.exo(
+    color: Theme.of(context).colorScheme.grey,
+    fontSize: 12,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle mainStyleGrey14Bold(BuildContext context) => GoogleFonts.exo(
+    color: Theme.of(context).colorScheme.grey,
+    fontSize: 14,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle mainStyleGrey12Bold(BuildContext context) => GoogleFonts.exo(
+    color: Theme.of(context).colorScheme.grey,
+    fontSize: 12,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle mainStyle12Bold(BuildContext context) => GoogleFonts.exo(
+    //color: Theme.of(context).colorScheme.grey,
+    fontSize: 12,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle mainStyle12(BuildContext context) => GoogleFonts.exo(
+    //color: Theme.of(context).colorScheme.grey,
+    fontSize: 12,
+    fontStyle: FontStyle.normal,
+  );
+  static TextStyle mainStyle11Bold(BuildContext context) => GoogleFonts.exo(
+    //color: Theme.of(context).colorScheme.grey,
+    fontSize: 11,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle mainStyle10Bold(BuildContext context) => GoogleFonts.exo(
+    //color: Theme.of(context).colorScheme.grey,
+    fontSize: 10,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle mainStyle14Bold(BuildContext context) => GoogleFonts.exo(
+    //color: Theme.of(context).colorScheme.grey,
+    fontSize: 14,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
 }

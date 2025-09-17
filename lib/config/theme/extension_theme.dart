@@ -10,4 +10,6 @@ extension ExtensionsLinghTheme on ColorScheme {
   Color get transparente => Colors.transparent;
   Color get alpa => Color.fromARGB(136, 102, 100, 100);
   Color get leadBajito => Color.fromARGB(255, 189, 189, 197).withOpacity(0.5);
+  Color get blackBajo => Colors.black.withOpacity(0.2);
+  Color get grey => Colors.grey;
 }

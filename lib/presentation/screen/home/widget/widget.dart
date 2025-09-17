@@ -75,6 +75,11 @@ class ImgVerde extends StatelessWidget {
                           Icons.sticky_note_2_outlined,
                           color: Theme.of(context).colorScheme.white,
                         ),
+                        SizedBox(height: smallSpacing * 0.8),
+                        Icon(
+                          Icons.remove_red_eye,
+                          color: Theme.of(context).colorScheme.white,
+                        ),
                       ],
                     ),
                   ],
