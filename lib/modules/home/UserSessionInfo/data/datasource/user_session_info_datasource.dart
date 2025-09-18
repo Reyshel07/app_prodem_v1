@@ -6,13 +6,19 @@ class UserSessionInfoDataSouce {
   final _dio = Dio();
   final String baseUrl = 'https://apidev.prodem.bo:9200';
 
-  Future<UserSessionInfoResponseEntity> userSession() async {
+  Future<UserSessionInfoResponseEntity> userSession(
+    String? vIdWebClient,
+    String? vToken,
+  ) async {
     final response = await _dio.post(
       '$baseUrl/Mobile/UserSessionInfo',
-      data: {"IdWebClient": "1129150143954615", "deviceIdentifier": ""},
+      data: {
+        "IdWebClient": vIdWebClient, // "1129150143954615",
+        "deviceIdentifier": "",
+      },
       options: Options(
         headers: {
-          'Authorization': 'Bearer  ',
+          'Authorization': 'Bearer $vToken',
           'Content-Type': 'application/json',
         },
       ),

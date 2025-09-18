@@ -7,7 +7,10 @@ class UserSessionInfoRepositoryImpl extends UserSessionInfoRepository {
   UserSessionInfoRepositoryImpl({required this.dataSouce});
 
   @override
-  Future<UserSessionInfoResponseEntity> userSession() async {
-    return await dataSouce.userSession();
+  Future<UserSessionInfoResponseEntity> userSession(
+    String? vIdWebClient,
+    String? vToken,
+  ) async {
+    return await dataSouce.userSession(vIdWebClient, vToken);
   }
 }

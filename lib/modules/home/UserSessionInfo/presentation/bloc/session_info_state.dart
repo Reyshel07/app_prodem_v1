@@ -13,5 +13,7 @@ final class SessionInfoError extends SessionInfoState {
 
 final class SessionInfoSuccess extends SessionInfoState {
   final String mesage;
-  SessionInfoSuccess(this.mesage);
+  final String? token;
+  final UserSessionInfoResponseEntity? response;
+  SessionInfoSuccess(this.mesage, {this.token, this.response});
 }
