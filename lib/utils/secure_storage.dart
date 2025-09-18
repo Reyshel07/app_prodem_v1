@@ -14,7 +14,13 @@ class SecureStorageHelper {
   static Future<Uint8List> getOrCreateKey() async {
     final existing = await _storage.read(key: _keyName);
     if (existing != null) {
-      return Uint8List.fromList(base64Decode(existing));
+      try {
+        return Uint8List.fromList(base64Decode(existing));
+      } on FormatException catch (_) {
+        // Stored value is not valid base64 (maybe it was saved in a wrong format).
+        // Remove it and continue to generate a new key.
+        await _storage.delete(key: _keyName);
+      }
     }
 
     final keyList = Hive.generateSecureKey();

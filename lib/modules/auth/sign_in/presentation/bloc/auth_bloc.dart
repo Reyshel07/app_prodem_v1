@@ -21,7 +21,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         event.aditionalItems,
       );
 
-      // Guardar token en Hive cifrado si viene en la respuesta
       final token = response.data.token;
       if (token.isNotEmpty) {
         await SecureHive.writeToken(token);

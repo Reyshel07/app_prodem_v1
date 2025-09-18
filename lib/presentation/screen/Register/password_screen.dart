@@ -120,15 +120,7 @@ class _PasswordScreenProdemState extends State<PasswordScreenProdem> {
                 width: screenSize.width * 0.5,
                 child: Card(
                   elevation: smallSpacing * 0.5,
-                  child: Butoon1(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                      );
-                    },
-                    lblTextField: 'INGRESAR',
-                  ),
+                  child: Butoon1(onTap: () {}, lblTextField: 'INGRESAR'),
                 ),
               ),
             ],

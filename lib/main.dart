@@ -3,11 +3,26 @@ import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'injector.container.dart';
+import 'package:app_prodem_v1/modules/home/UserSessionInfo/domain/repositories/user_session_info_repository.dart';
+import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'utils/secure_hive.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
   InjectorContainer.setupGetIt();
+  // Diagnostics: print whether important types are registered
+  try {
+    print(
+      'DI: UserSessionInfoRepository registered: '
+      '${InjectorContainer.getIt.isRegistered<UserSessionInfoRepository>()}',
+    );
+    print(
+      'DI: SessionInfoBloc registered: '
+      '${InjectorContainer.getIt.isRegistered<SessionInfoBloc>()}',
+    );
+  } catch (e) {
+    print('DI diagnostic failed: $e');
+  }
   // Initialize Hive with AES encryption using SecureHive helper
   await SecureHive.init();
   runApp(MainApp());
