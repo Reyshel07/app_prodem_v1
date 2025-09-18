@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../domain/entities/entities.dart';
 import '../models/models.dart';
 
 class SignInDatasource {
-  final _dio = Dio();
-  final String baseUrl = 'https://apidev.prodem.bo:9200';
-  //dotenv.env['url'] ?? ''; //
+  final _dio = Dio(BaseOptions(baseUrl: dotenv.env['BASE_URL'] ?? ''));
 
   Future<SignInResponseEntity> signIn(
     String user,
@@ -14,7 +13,7 @@ class SignInDatasource {
     List<AditionalItemEntity> aditionalItems,
   ) async {
     final response = await _dio.post(
-      '$baseUrl/auth/token',
+      'auth/token',
       data: {
         "user": user,
         "password": password,

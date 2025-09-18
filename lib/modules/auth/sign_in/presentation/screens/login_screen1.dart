@@ -3,7 +3,7 @@ import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:app_prodem_v1/modules/auth/sign_in/injector.container.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../../../../../config/router/router.dart';
 import '../../../../../utils/text.dart';

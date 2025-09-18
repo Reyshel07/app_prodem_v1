@@ -1,6 +1,6 @@
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
-import 'package:app_prodem_v1/modules/auth/sign_in/injector.container.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/credit_products/credit_products_screen.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/savings_products/savings_products_screen.dart';

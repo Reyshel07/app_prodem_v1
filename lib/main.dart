@@ -1,11 +1,15 @@
 import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:flutter/material.dart';
-import 'modules/auth/sign_in/injector.container.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'injector.container.dart';
+import 'utils/secure_hive.dart';
 
 void main() async {
+  await dotenv.load(fileName: '.env');
   InjectorContainer.setupGetIt();
-
+  // Initialize Hive with AES encryption using SecureHive helper
+  await SecureHive.init();
   runApp(MainApp());
 }
 
