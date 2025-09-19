@@ -1,19 +1,32 @@
 part of 'session_info_bloc.dart';
 
-sealed class SessionInfoState {}
+enum SessionInfoStatus { initial, loading, success, error }
 
-final class SessionInfoInitial extends SessionInfoState {}
+class SessionInfoState {
+  final UserInfoResponseEnttity? userSessionInfo;
+  final SessionInfoStatus status;
 
-final class SessionInfoLoading extends SessionInfoState {}
+  const SessionInfoState({
+    this.userSessionInfo,
+    this.status = SessionInfoStatus.initial,
+  });
 
-final class SessionInfoError extends SessionInfoState {
-  final String message;
-  SessionInfoError(this.message);
+  factory SessionInfoState.initialState() => const SessionInfoState();
+
+  SessionInfoState copyWith({
+    UserInfoResponseEnttity? userSessionInfo,
+    SessionInfoStatus? status,
+  }) {
+    return SessionInfoState(
+      userSessionInfo: userSessionInfo ?? this.userSessionInfo,
+      status: status ?? this.status,
+    );
+  }
 }
 
-final class SessionInfoSuccess extends SessionInfoState {
-  final String mesage;
-  final String? token;
-  final UserSessionInfoResponseEntity? response;
-  SessionInfoSuccess(this.mesage, {this.token, this.response});
+extension SessionInfoStateX on SessionInfoState {
+  bool get isLoading => status == SessionInfoStatus.loading;
+  bool get isSuccess => status == SessionInfoStatus.success;
+  bool get isError => status == SessionInfoStatus.error;
+  bool get hasData => userSessionInfo != null;
 }

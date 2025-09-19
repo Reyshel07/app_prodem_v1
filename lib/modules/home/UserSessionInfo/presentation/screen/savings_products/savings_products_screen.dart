@@ -1,4 +1,7 @@
+import 'package:app_prodem_v1/config/router/app_router.dart';
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +41,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                       title: 'Transacciones',
                     ),
                     Gesture(
-                      onTap: () {},
+                      onTap: () {
+                        InjectorContainer.getIt<AppRouter>().push(
+                          AccountInquiryRoute(),
+                        );
+                      },
                       topPadding: topPadding,
                       letterSize: letterSize,
                       small: smallSpacing,

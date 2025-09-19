@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/home/SavingsAccountExtractDataTransactionable/data/repositories/saving_account_extrac_repository_impl.dart';

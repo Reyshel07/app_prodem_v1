@@ -1,6 +1,6 @@
+import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension_theme.dart';
 import 'package:app_prodem_v1/presentation/bloc/theme_provider.dart';
-import 'package:app_prodem_v1/modules/home/settings_screen/virtuelles%20Ticket/virtuelles_ticket_screen.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/container02_widget.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
@@ -8,6 +8,7 @@ import 'package:app_prodem_v1/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+@RoutePage()
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
@@ -89,14 +90,7 @@ class SettingsScreen extends StatelessWidget {
                       child: Card(
                         elevation: smallSpacing * 0.5,
                         child: Butoon1(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => VirtuellesTicketScreen(),
-                              ),
-                            );
-                          },
+                          onTap: () {},
                           lblTextField: 'Solicitar ticket',
                         ),
                       ),
