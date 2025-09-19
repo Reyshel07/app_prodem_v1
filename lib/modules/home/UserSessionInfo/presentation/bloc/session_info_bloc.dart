@@ -2,39 +2,36 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import '../../domain/repositories/repositori.dart';
 import '../../domain/entities/entity.dart';
+
 part 'session_info_event.dart';
 part 'session_info_state.dart';
 
 class SessionInfoBloc extends Bloc<SessionInfoEvent, SessionInfoState> {
-  UserSessionInfoRepository userSessionInfoRepository;
-  SessionInfoBloc(this.userSessionInfoRepository)
-    : super(SessionInfoInitial()) {
-    on<SessionInfEvent>(sessionInfo);
+  final UserSessionInfoRepository repository;
+
+  SessionInfoBloc(this.repository) : super(SessionInfoState.initialState()) {
+    on<SessionInfEvent>(_onLoadSessionInfo);
   }
 
-  Future<void> sessionInfo(
+  Future<void> _onLoadSessionInfo(
     SessionInfEvent event,
     Emitter<SessionInfoState> emit,
   ) async {
-    emit(SessionInfoLoading());
+    emit(state.copyWith(status: SessionInfoStatus.loading));
+
     try {
-      String? token;
-      try {
-        token = SecureHive.readToken();
-      } catch (_) {
-        token = null;
-      }
-
+      final token = SecureHive.readToken();
       final idWebClient = event.idWebClient ?? '1129150143954615';
+      final response = await repository.userSession(idWebClient, token);
 
-      final response = await userSessionInfoRepository.userSession(
-        idWebClient,
-        token,
+      emit(
+        state.copyWith(
+          userSessionInfo: response.data,
+          status: SessionInfoStatus.success,
+        ),
       );
-
-      emit(SessionInfoSuccess('exitoso', response: response));
     } catch (e) {
-      emit(SessionInfoError('error'));
+      emit(state.copyWith(status: SessionInfoStatus.error));
     }
   }
 }
