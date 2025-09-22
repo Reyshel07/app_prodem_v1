@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/entity.dart';
@@ -9,7 +10,7 @@ class SavingAccountExtracBloc
     extends Bloc<SavingAccountExtracEvent, SavingAccountExtracState> {
   SavingAccountExtracRespository savingAccountExtracRespository;
   SavingAccountExtracBloc(this.savingAccountExtracRespository)
-    : super(SavingAccountExtracState()) {
+    : super(SavingAccountExtracInitial()) {
     on<SavingAccountExEnevet>((savingAccountEx));
   }
 
@@ -17,20 +18,25 @@ class SavingAccountExtracBloc
     SavingAccountExEnevet event,
     Emitter<SavingAccountExtracState> emit,
   ) async {
-    emit(state.copyWith(status: SavingAccountExtracStatus.loading));
+    emit(SavingAccountExtracLoading());
     try {
       final token = SecureHive.readToken();
-      String idPerson = '';
-      String idUser = '';
-      await savingAccountExtracRespository.savingAccountExtrac(
+      String idPerson = '17000000000003984';
+      String idUser = '350880';
+      final response = await savingAccountExtracRespository.savingAccountExtrac(
         event.codeSavingsAccount,
         idPerson,
         idUser,
         token,
       );
-      emit(state.copyWith(status: SavingAccountExtracStatus.success));
-    } catch (e) {
-      emit(state.copyWith(status: SavingAccountExtracStatus.error));
+      emit(SavingAccountExtracSuccess(response.data));
+    } on BaseApiException catch (error) {
+      switch (error.key) {
+        case "api_logic_error":
+          emit(SavingAccountExtracError(error.message));
+        case "dio_unexpected":
+          emit(SavingAccountExtracError("Ocurrio un error, no tiene internet"));
+      }
     }
   }
 }

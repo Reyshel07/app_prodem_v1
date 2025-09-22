@@ -6,5 +6,7 @@ abstract class SavingAccountDataRepository {
     String codeSavingAccount,
     int idMoneyOperation,
     String amountOperation,
+    String idPerson,
+    String? vToken,
   );
 }

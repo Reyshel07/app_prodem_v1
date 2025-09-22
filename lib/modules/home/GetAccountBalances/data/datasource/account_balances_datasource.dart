@@ -1,19 +1,20 @@
+import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:dio/dio.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
 
 class AccountBalancesDatasource {
-  final _dio = Dio();
-  final String baseUrl = 'https://apidev.prodem.bo:9200';
-  //dotenv.env['url'] ?? ''; //
+  final ApiClient _apiClient;
+  AccountBalancesDatasource(this._apiClient);
+
   Future<GetAccountBalancesResponseEntity> accountBalances(
     String codeSavingsAccount,
     String idPErson,
     String idUsert,
     String? vToken,
   ) async {
-    final response = await _dio.post(
-      '$baseUrl/Mobile/GetAccountBalances',
+    final response = await _apiClient.post(
+      'Mobile/GetAccountBalances',
       data: {
         "CodeSavingsAccount": codeSavingsAccount,
         "IdPerson": idPErson,
@@ -28,7 +29,8 @@ class AccountBalancesDatasource {
           'Content-Type': 'application/json',
         },
       ),
+      operationName: 'final balance inquiry',
     );
-    return GetAccountBalancesResponseModel.fromJson(response.data);
+    return GetAccountBalancesResponseModel.fromJson(response);
   }
 }

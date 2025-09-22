@@ -8,20 +8,6 @@ import 'utils/secure_hive.dart';
 void main() async {
   await dotenv.load(fileName: '.env');
   InjectorContainer.setupGetIt();
-  /*// Diagnostics: print whether important types are registered
-  try {
-    print(
-      'DI: UserSessionInfoRepository registered: '
-      '${InjectorContainer.getIt.isRegistered<UserSessionInfoRepository>()}',
-    );
-    print(
-      'DI: SessionInfoBloc registered: '
-      '${InjectorContainer.getIt.isRegistered<SessionInfoBloc>()}',
-    );
-  } catch (e) {
-    print('DI diagnostic failed: $e');
-  }
-  // Initialize Hive with AES encryption using SecureHive helper*/
   await SecureHive.init();
   runApp(MainApp());
 }

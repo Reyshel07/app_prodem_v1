@@ -54,10 +54,16 @@ class ApiClient extends BaseApiClient {
     required String operationName,
     required Map<String, dynamic> data,
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? headers,
+    Options? options,
   }) async {
     final response = await network(
-      request: (request) =>
-          request.post(path, data: data, queryParameters: queryParameters),
+      request: (request) => request.post(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+      ),
       handleSuccess: (startedAt, response) async {
         return await _handleSuccess(
           startedAt: startedAt,

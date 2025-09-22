@@ -64,7 +64,7 @@ class ColDetailsMovemmentEntity {
   final String descriptionOperation;
   final String officeTransaction;
   final double deposit;
-  final int withdrawal;
+  final double withdrawal;
   final double amountBalance;
 
   ColDetailsMovemmentEntity({

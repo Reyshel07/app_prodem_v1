@@ -223,3 +223,72 @@ class DrowpButoon1 extends StatelessWidget {
     );
   }
 }
+
+class DrowpButoon2 extends StatelessWidget {
+  const DrowpButoon2({
+    super.key,
+    required this.screenSize,
+    required this.smallSpacing,
+  });
+
+  final Size screenSize;
+  final double smallSpacing;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Card(
+        elevation: smallSpacing * 0.5,
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Theme.of(context).colorScheme.green),
+            borderRadius: BorderRadius.all(radiusCircular(11)),
+          ),
+          child: DropdownButtonFormField<String>(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Theme.of(context).colorScheme.transparente,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 11,
+                //vertical: 1,
+              ),
+            ),
+            value: null,
+            hint: Text(
+              'Selecciona una opción',
+              style: AppTextStyles.mainStyleGreen14(context),
+            ),
+            items: [
+              DropdownMenuItem(
+                value: 'opcion1',
+                child: Text(
+                  'Opción 1',
+                  style: AppTextStyles.mainStyleGreen14(context),
+                ),
+              ),
+              DropdownMenuItem(
+                value: 'opcion2',
+                child: Text(
+                  'Opción 2',
+                  style: AppTextStyles.mainStyleGreen14(context),
+                ),
+              ),
+              DropdownMenuItem(
+                value: 'opcion3',
+                child: Text(
+                  'Opción 3',
+                  style: AppTextStyles.mainStyleGreen14(context),
+                ),
+              ),
+            ],
+            onChanged: (value) {},
+          ),
+        ),
+      ),
+    );
+  }
+}

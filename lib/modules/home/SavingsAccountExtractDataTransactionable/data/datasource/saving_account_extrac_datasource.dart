@@ -1,10 +1,11 @@
+import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:dio/dio.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
 
 class SavingAccountExtracDatasource {
-  final _dio = Dio();
-  final String baseUrl = 'https://apidev.prodem.bo:9200';
+  final ApiClient _apiClient;
+  SavingAccountExtracDatasource(this._apiClient);
   Future<SavingsAccountExtractDataTransactionableResponseEntity>
   savingAccountExtrac(
     String codeSavingsAccount,
@@ -12,8 +13,8 @@ class SavingAccountExtracDatasource {
     String idUser,
     String? vToken,
   ) async {
-    final response = await _dio.post(
-      '$baseUrl/Mobile/SavingsAccountExtractDataTransactionable',
+    final response = await _apiClient.post(
+      'Mobile/SavingsAccountExtractDataTransactionable',
       data: {
         "CodeSavingsAccount": codeSavingsAccount,
         "IdPerson": idPerson,
@@ -28,10 +29,9 @@ class SavingAccountExtracDatasource {
           'Content-Type': 'application/json',
         },
       ),
+      operationName: 'latest movements ',
     );
-    return SavingsAccountExtractDataTransactionableResponse.fromJson(
-      response.data,
-    );
+    return SavingsAccountExtractDataTransactionableResponse.fromJson(response);
   }
 }
 //cajas de ahorro- uñtimos movimientos 

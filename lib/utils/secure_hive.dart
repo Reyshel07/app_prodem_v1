@@ -1,5 +1,4 @@
 import 'package:hive_flutter/adapters.dart';
-import 'package:hive/hive.dart';
 import 'secure_storage.dart';
 
 class SecureHive {

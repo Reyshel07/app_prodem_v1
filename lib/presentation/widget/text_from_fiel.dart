@@ -66,3 +66,65 @@ class TextFromFiel01 extends StatelessWidget {
     );
   }
 }
+
+class TextFromFiel02 extends StatelessWidget {
+  const TextFromFiel02({
+    super.key,
+    required this.screenSize,
+    required this.smallSpacing,
+    required this.userController,
+    required this.lbText,
+  });
+
+  final Size screenSize;
+  final double smallSpacing;
+  final TextEditingController userController;
+  final String lbText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        child: Card(
+          elevation: smallSpacing * 0.5,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Theme.of(context).colorScheme.green),
+              borderRadius: BorderRadius.all(radiusCircular(11)),
+            ),
+            child: TextField(
+              keyboardType: TextInputType.text,
+              controller: userController,
+              textAlign: TextAlign.start,
+              maxLines: 1,
+              style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontStyle: FontStyle.normal,
+                fontSize: 14,
+              ),
+              decoration: InputDecoration(
+                disabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                  borderSide: BorderSide(color: Colors.transparent, width: 1),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                  borderSide: BorderSide(color: Colors.transparent, width: 1),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                  borderSide: BorderSide(color: Colors.transparent, width: 1),
+                ),
+                hintText: lbText,
+                hintStyle: AppTextStyles.mainStyleGreen14(context),
+                filled: false,
+                isDense: false,
+                contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
