@@ -1,10 +1,10 @@
-import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:app_prodem_v1/core/networking/http_services.dart';
 import '../../domain/entities/entities.dart';
 import '../models/models.dart';
 
 class SignInDatasource {
-  final _dio = Dio(BaseOptions(baseUrl: dotenv.env['BASE_URL'] ?? ''));
+  final ApiClient _apiClient;
+  SignInDatasource(this._apiClient);
 
   Future<SignInResponseEntity> signIn(
     String user,
@@ -12,7 +12,7 @@ class SignInDatasource {
     int channel,
     List<AditionalItemEntity> aditionalItems,
   ) async {
-    final response = await _dio.post(
+    final response = await _apiClient.post(
       'auth/token',
       data: {
         "user": user,
@@ -23,6 +23,7 @@ class SignInDatasource {
           {"Key": "SmartphoneIMEI", "Value": "bd818720bb7f1ec1"},
         ],
       },
+      operationName: 'Login',
     );
     return SignInResponseModel.fromJson(response.data);
   }

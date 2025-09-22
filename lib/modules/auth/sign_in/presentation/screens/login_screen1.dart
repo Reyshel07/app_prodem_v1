@@ -62,9 +62,17 @@ class _BodyState extends State<Body> {
       builder: (context, state) {
         return BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
-            /*if (state is AuthLoading) {
-              text = 'Cargando';
-            }*/
+            if (state is AuthError) {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(title: Text(state.message));
+                },
+              );
+            }
+            if (state is AuthSuccess) {
+              InjectorContainer.getIt<AppRouter>().push(HomeRoute());
+            }
           },
           child: Center(
             child: Column(
@@ -151,8 +159,6 @@ class _BodyState extends State<Body> {
                             aditionalItems: aditionalItems,
                           ),
                         );
-                        //context.pushRoute(PruebaRoute());
-                        InjectorContainer.getIt<AppRouter>().push(HomeRoute());
                       },
                       lblTextField: 'INGRESAR',
                     ),

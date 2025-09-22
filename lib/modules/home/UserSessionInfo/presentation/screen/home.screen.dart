@@ -93,11 +93,6 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-
-          if (state.isError) {
-            return const Center(child: Text('Error loading '));
-          }
-
           final userSessionInfo = state.userSessionInfo;
           final listCodeSavingsAccount =
               userSessionInfo?.listCodeSavingsAccount ?? [];
@@ -116,7 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ];
           //final UserInfoResponseEnttity list;
-
           return Scaffold(
             key: scaffoldKey,
             appBar: PreferredSize(

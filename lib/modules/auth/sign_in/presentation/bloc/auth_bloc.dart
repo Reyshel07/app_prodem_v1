@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/entities.dart';
 import '../../domain/repositories/repositories.dart';
@@ -21,14 +22,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         event.aditionalItems,
       );
 
-      final token = response.data.token;
+      final token = response.data!.token;
       if (token.isNotEmpty) {
         await SecureHive.writeToken(token);
       }
 
       emit(AuthSuccess("Inicio de sesión exitoso"));
-    } catch (e) {
-      emit(AuthError('error'));
+    } on BaseApiException catch (error) {
+      switch (error.key) {
+        case "api_logic_error":
+          emit(AuthError(error.message));
+        case "dio_unexpected":
+          emit(AuthError("Ocurrio un error, no tiene internet"));
+      }
     }
   }
 }
