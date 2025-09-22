@@ -44,7 +44,7 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
         body: BlocBuilder<AccountBalanceBloc, AccountBalanceState>(
           builder: (context, state) {
             if (state is AccountBalanceSuccess) {
-              final res = state.getAccountBalancesResponseEntity.data;
+              final res = state.accountDataEntity;
               return Padding(
                 padding: EdgeInsets.all(topPadding * 0.05),
                 child: Column(
@@ -165,7 +165,7 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                         Text(
-                                          "${res.productName}",
+                                          res.productName,
                                           style: AppTextStyles.mainStyleGreen12(
                                             context,
                                           ),
@@ -192,7 +192,54 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
                 ),
               );
             }
-            return Text("error");
+            return Column(
+              children: [
+                Text(
+                  'CONSULTA DE SALDOS DE CUENTAS DE AHORRO',
+                  style: AppTextStyles.mainStyleGreen18Bold(context),
+                ),
+                SizedBox(height: smallSpacing * 0.5),
+                Card(
+                  elevation: smallSpacing * 0.5,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: DropdownButton<String>(
+                      padding: EdgeInsetsGeometry.all(topPadding * 0.05),
+                      hint: const Text("Seleccione una opción"),
+                      value: _selectedValue,
+                      items: _options.map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          _selectedValue = newValue;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: screenSize.width * 0.3,
+                  child: Card(
+                    elevation: smallSpacing * 0.5,
+                    child: Butoon1(
+                      onTap: () {
+                        String codeSavingsAccount1 = '117-2-1-17515-8';
+                        context.read<AccountBalanceBloc>().add(
+                          AccountBalEvent(
+                            codeSavingsAccount: codeSavingsAccount1,
+                          ),
+                        );
+                      },
+                      lblTextField: 'CONSULTAR',
+                    ),
+                  ),
+                ),
+              ],
+            );
           },
         ),
       ),

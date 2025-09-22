@@ -29,15 +29,14 @@ class AccountBalanceBloc
         idUser1,
         token,
       );
-      emit(
-        AccountBalanceSuccess(response),
-        /* state.copyWith(
-          accountBalances: response.data,
-          status: AccountBalancesStatus.success,
-        ),*/
-      );
+      emit(AccountBalanceSuccess(response.data));
     } on BaseApiException catch (error) {
-      emit(AccountBalanceError("error"));
+      switch (error.key) {
+        case "api_logic_error":
+          emit(AccountBalanceError(error.message));
+        case "dio_unexpected":
+          emit(AccountBalanceError("Ocurrio un error, no tiene internet"));
+      }
     }
   }
 }

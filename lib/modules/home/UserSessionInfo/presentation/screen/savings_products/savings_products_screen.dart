@@ -53,7 +53,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                       title: 'Consulta Cuenta',
                     ),
                     Gesture(
-                      onTap: () {},
+                      onTap: () {
+                        InjectorContainer.getIt<AppRouter>().push(
+                          SavingAccountExtractDataTranSacreen(),
+                        );
+                      },
                       topPadding: topPadding,
                       letterSize: letterSize,
                       small: smallSpacing,
@@ -61,7 +65,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                       title: 'Consulta de ultimos movimientos',
                     ),
                     Gesture(
-                      onTap: () {},
+                      onTap: () {
+                        InjectorContainer.getIt<AppRouter>().push(
+                          SavingAccountDataRoute(),
+                        );
+                      },
                       topPadding: topPadding,
                       letterSize: letterSize,
                       small: smallSpacing,

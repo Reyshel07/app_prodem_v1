@@ -25,6 +25,6 @@ class SignInDatasource {
       },
       operationName: 'Login',
     );
-    return SignInResponseModel.fromJson(response.data);
+    return SignInResponseModel.fromJson(response);
   }
 }

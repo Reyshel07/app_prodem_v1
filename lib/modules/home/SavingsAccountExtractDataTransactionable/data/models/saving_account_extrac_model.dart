@@ -99,7 +99,7 @@ class ColDetailsMovemmentModel extends ColDetailsMovemmentEntity {
         descriptionOperation: json["descriptionOperation"],
         officeTransaction: json["officeTransaction"],
         deposit: json["deposit"]?.toDouble(),
-        withdrawal: json["withdrawal"],
+        withdrawal: json["withdrawal"]?.toDouble(),
         amountBalance: json["amountBalance"]?.toDouble(),
       );
 }
