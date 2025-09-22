@@ -1,13 +1,9 @@
 class SignInResponseEntity {
-  final UserSignResponseEntity data;
+  final UserSignResponseEntity? data;
   final int state;
   final String message;
 
-  SignInResponseEntity({
-    required this.data,
-    required this.state,
-    required this.message,
-  });
+  SignInResponseEntity({this.data, required this.state, required this.message});
 }
 
 class UserSignResponseEntity {

@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/domain/repositories/acount_balances_repository.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +10,7 @@ class AccountBalanceBloc
     extends Bloc<AccountBalanceEvent, AccountBalanceState> {
   AccountBalancesRespositoriy accountBalancesRespositoriy;
   AccountBalanceBloc(this.accountBalancesRespositoriy)
-    : super(AccountBalanceState()) {
+    : super(AccountBalanceInitial()) {
     on<AccountBalEvent>(accountBalance);
   }
 
@@ -17,7 +18,7 @@ class AccountBalanceBloc
     AccountBalEvent event,
     Emitter<AccountBalanceState> emit,
   ) async {
-    emit(state.copyWith(status: AccountBalancesStatus.loading));
+    emit(AccountBalanceLoading());
     try {
       String idPerson1 = "17000000000003984";
       String idUser1 = "350880";
@@ -29,13 +30,14 @@ class AccountBalanceBloc
         token,
       );
       emit(
-        state.copyWith(
-          accountBal: response.data,
+        AccountBalanceSuccess(response),
+        /* state.copyWith(
+          accountBalances: response.data,
           status: AccountBalancesStatus.success,
-        ),
+        ),*/
       );
-    } catch (e) {
-      emit(state.copyWith(status: AccountBalancesStatus.error));
+    } on BaseApiException catch (error) {
+      emit(AccountBalanceError("error"));
     }
   }
 }
