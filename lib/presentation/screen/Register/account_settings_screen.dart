@@ -224,68 +224,56 @@ class DrowpButoon1 extends StatelessWidget {
   }
 }
 
-class DrowpButoon2 extends StatelessWidget {
-  const DrowpButoon2({
+class DrowpButoon2 extends StatefulWidget {
+  DrowpButoon2({
     super.key,
     required this.screenSize,
     required this.smallSpacing,
+    required this.selectedValue,
+    required this.list,
+    required this.text,
   });
 
   final Size screenSize;
   final double smallSpacing;
+  String? selectedValue;
+  List<String> list;
+  String text;
 
+  @override
+  State<DrowpButoon2> createState() => _DrowpButoon2State();
+}
+
+class _DrowpButoon2State extends State<DrowpButoon2> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: Card(
-        elevation: smallSpacing * 0.5,
+        elevation: widget.smallSpacing * 0.5,
         child: Container(
+          width: double.infinity,
+          height: widget.smallSpacing * 3,
           decoration: BoxDecoration(
             border: Border.all(color: Theme.of(context).colorScheme.green),
             borderRadius: BorderRadius.all(radiusCircular(11)),
           ),
-          child: DropdownButtonFormField<String>(
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Theme.of(context).colorScheme.transparente,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide.none,
-              ),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 11,
-                //vertical: 1,
-              ),
-            ),
-            value: null,
+          child: DropdownButton<String>(
+            isExpanded: true,
+            underline: const SizedBox(),
+            padding: EdgeInsetsGeometry.all(widget.smallSpacing * 0.5),
             hint: Text(
-              'Selecciona una opción',
-              style: AppTextStyles.mainStyleGreen14(context),
+              widget.text,
+              style: AppTextStyles.mainStyleGreen14Bold(context),
             ),
-            items: [
-              DropdownMenuItem(
-                value: 'opcion1',
-                child: Text(
-                  'Opción 1',
-                  style: AppTextStyles.mainStyleGreen14(context),
-                ),
-              ),
-              DropdownMenuItem(
-                value: 'opcion2',
-                child: Text(
-                  'Opción 2',
-                  style: AppTextStyles.mainStyleGreen14(context),
-                ),
-              ),
-              DropdownMenuItem(
-                value: 'opcion3',
-                child: Text(
-                  'Opción 3',
-                  style: AppTextStyles.mainStyleGreen14(context),
-                ),
-              ),
-            ],
-            onChanged: (value) {},
+            value: widget.selectedValue,
+            items: widget.list.map((String value) {
+              return DropdownMenuItem<String>(value: value, child: Text(value));
+            }).toList(),
+            onChanged: (newValue) {
+              setState(() {
+                widget.selectedValue = newValue;
+              });
+            },
           ),
         ),
       ),

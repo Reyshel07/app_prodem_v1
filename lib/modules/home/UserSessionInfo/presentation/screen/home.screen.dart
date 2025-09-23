@@ -157,9 +157,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Stack(
                                   children: [
                                     Card(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.transparente,
                                       elevation: smallSpacing * 0.5,
                                       child: CarouselSlider(
                                         options: CarouselOptions(
