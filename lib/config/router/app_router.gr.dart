@@ -10,24 +10,38 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:app_prodem_v1/modules/auth/sign_in/presentation/screens/login_screen1.dart'
     as _i3;
+import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/bloc.dart'
+    as _i9;
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/screen/account_balances_screen.dart'
     as _i1;
 import 'package:app_prodem_v1/modules/home/SavingsAccountExtractDataTransactionable/presentation/screen/saving_account_extrac_data_tran_screen.dart'
     as _i5;
 import 'package:app_prodem_v1/modules/home/settings_screen/settings_screen.dart'
     as _i6;
+import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart'
+    as _i10;
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/home.screen.dart'
     as _i2;
 import 'package:app_prodem_v1/modules/transfer%20between%20accounts/GetSavingAccountData/presentation/screen/saving_account_data_screen.dart'
     as _i4;
 import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 
 /// generated route for
 /// [_i1.AccountInquiryScreen]
-class AccountInquiryRoute extends _i7.PageRouteInfo<void> {
-  const AccountInquiryRoute({List<_i7.PageRouteInfo>? children})
-      : super(
+class AccountInquiryRoute extends _i7.PageRouteInfo<AccountInquiryRouteArgs> {
+  AccountInquiryRoute({
+    _i8.Key? key,
+    required _i9.AccountBalanceBloc bloc,
+    required _i10.SessionInfoBloc sessionBloc,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
           AccountInquiryRoute.name,
+          args: AccountInquiryRouteArgs(
+            key: key,
+            bloc: bloc,
+            sessionBloc: sessionBloc,
+          ),
           initialChildren: children,
         );
 
@@ -36,9 +50,33 @@ class AccountInquiryRoute extends _i7.PageRouteInfo<void> {
   static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i1.AccountInquiryScreen();
+      final args = data.argsAs<AccountInquiryRouteArgs>();
+      return _i1.AccountInquiryScreen(
+        key: args.key,
+        bloc: args.bloc,
+        sessionBloc: args.sessionBloc,
+      );
     },
   );
+}
+
+class AccountInquiryRouteArgs {
+  const AccountInquiryRouteArgs({
+    this.key,
+    required this.bloc,
+    required this.sessionBloc,
+  });
+
+  final _i8.Key? key;
+
+  final _i9.AccountBalanceBloc bloc;
+
+  final _i10.SessionInfoBloc sessionBloc;
+
+  @override
+  String toString() {
+    return 'AccountInquiryRouteArgs{key: $key, bloc: $bloc, sessionBloc: $sessionBloc}';
+  }
 }
 
 /// generated route for

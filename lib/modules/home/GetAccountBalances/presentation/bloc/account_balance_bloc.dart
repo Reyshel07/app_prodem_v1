@@ -31,7 +31,7 @@ class AccountBalanceBloc
       );
       emit(AccountBalanceSuccess(response.data));
     } on BaseApiException catch (error) {
-      switch (error.key) {
+      switch (error.message) {
         case "api_logic_error":
           emit(AccountBalanceError(error.message));
         case "dio_unexpected":

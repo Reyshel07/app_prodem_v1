@@ -2,8 +2,11 @@ import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/account_balance_bloc.dart';
+import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/bloc.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SavingsProductsScreen extends StatefulWidget {
   const SavingsProductsScreen({super.key});
@@ -19,230 +22,242 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
     final double smallSpacing = screenSize.height * 0.02;
     final double letterSize = screenSize.height;
     final double topPadding = screenSize.height * 0.2;
-    return Scaffold(
-      body: ListView(
-        children: [
-          Column(
-            children: [
-              ListTitlePrueba(
-                topPadding: topPadding,
-                smallSpacing: smallSpacing,
-                letterSize: letterSize,
-                title: 'Caja de Ahorro',
-                icon: Icons.savings,
-                column: Column(
+    return BlocProvider(
+      create: (context) => InjectorContainer.getIt<AccountBalanceBloc>(),
+      child: Scaffold(
+        body: Builder(
+          builder: (newContext) {
+            return ListView(
+              children: [
+                Column(
                   children: [
-                    Gesture(
+                    ListTitlePrueba(
+                      topPadding: topPadding,
+                      smallSpacing: smallSpacing,
+                      letterSize: letterSize,
+                      title: 'Caja de Ahorro',
+                      icon: Icons.savings,
+                      column: Column(
+                        children: [
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.compare_arrows,
+                            title: 'Transacciones',
+                          ),
+                          Gesture(
+                            onTap: () {
+                              final sessionBloc = context
+                                  .read<SessionInfoBloc>();
+                              InjectorContainer.getIt<AppRouter>().push(
+                                AccountInquiryRoute(
+                                  bloc: newContext.read<AccountBalanceBloc>(),
+                                  sessionBloc: sessionBloc,
+                                ),
+                              );
+                            },
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.account_balance,
+                            title: 'Consulta Cuenta',
+                          ),
+                          Gesture(
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                SavingAccountExtractDataTranSacreen(),
+                              );
+                            },
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.receipt_long,
+                            title: 'Consulta de ultimos movimientos',
+                          ),
+                          Gesture(
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                SavingAccountDataRoute(),
+                              );
+                            },
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.compare_arrows,
+                            title: 'Transferencia entre cuentas propias',
+                          ),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.send,
+                            title: 'Transferencia a cuenta de terceros',
+                          ),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.compare_arrows,
+                            title: 'Transferencia a otros bancos',
+                          ),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.confirmation_num,
+                            title: 'Tickets de Campaña',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
                       onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.compare_arrows,
-                      title: 'Transacciones',
+                      child: ListTitlePrueba(
+                        topPadding: topPadding,
+                        smallSpacing: smallSpacing,
+                        letterSize: letterSize,
+                        title: 'Deposito de otras entidades',
+                        icon: Icons.broadcast_on_home,
+                        column: Column(),
+                      ),
                     ),
-                    Gesture(
-                      onTap: () {
-                        InjectorContainer.getIt<AppRouter>().push(
-                          AccountInquiryRoute(),
-                        );
-                      },
+                    ListTitlePrueba(
                       topPadding: topPadding,
+                      smallSpacing: smallSpacing,
                       letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.account_balance,
-                      title: 'Consulta Cuenta',
+                      title: 'Giro relampago',
+                      icon: Icons.broadcast_on_home,
+                      column: Column(
+                        children: [
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Solicitud de Giro Relampago',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Detalles de solicitudes de Giro Relampago',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                        ],
+                      ),
                     ),
-                    Gesture(
-                      onTap: () {
-                        InjectorContainer.getIt<AppRouter>().push(
-                          SavingAccountExtractDataTranSacreen(),
-                        );
-                      },
+                    ListTitlePrueba(
                       topPadding: topPadding,
+                      smallSpacing: smallSpacing,
                       letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.receipt_long,
-                      title: 'Consulta de ultimos movimientos',
+                      title: 'QR Prodem Cobro/Pago',
+                      icon: Icons.broadcast_on_home,
+                      column: Column(
+                        children: [
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Cobro QR Prodem',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Pago QR Prodem',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Movimientos',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                        ],
+                      ),
                     ),
-                    Gesture(
-                      onTap: () {
-                        InjectorContainer.getIt<AppRouter>().push(
-                          SavingAccountDataRoute(),
-                        );
-                      },
+                    ListTitlePrueba(
                       topPadding: topPadding,
+                      smallSpacing: smallSpacing,
                       letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.compare_arrows,
-                      title: 'Transferencia entre cuentas propias',
+                      title: 'DPF',
+                      icon: Icons.broadcast_on_home,
+                      column: Column(
+                        children: [
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Solicitud DPF Empleado Prodem',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Solicitud DPF en linea',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Bandeja de solicitudes ',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Administracion DPF',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                        ],
+                      ),
                     ),
-                    Gesture(
+                    GestureDetector(
                       onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.send,
-                      title: 'Transferencia a cuenta de terceros',
+                      child: ListTitlePrueba(
+                        topPadding: topPadding,
+                        smallSpacing: smallSpacing,
+                        letterSize: letterSize,
+                        title: 'Retiro qr ATM',
+                        icon: Icons.broadcast_on_home,
+                        column: Column(),
+                      ),
                     ),
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.compare_arrows,
-                      title: 'Transferencia a otros bancos',
-                    ),
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.confirmation_num,
-                      title: 'Tickets de Campaña',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
                   ],
                 ),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: ListTitlePrueba(
-                  topPadding: topPadding,
-                  smallSpacing: smallSpacing,
-                  letterSize: letterSize,
-                  title: 'Deposito de otras entidades',
-                  icon: Icons.broadcast_on_home,
-                  column: Column(),
-                ),
-              ),
-              ListTitlePrueba(
-                topPadding: topPadding,
-                smallSpacing: smallSpacing,
-                letterSize: letterSize,
-                title: 'Giro relampago',
-                icon: Icons.broadcast_on_home,
-                column: Column(
-                  children: [
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.abc_outlined,
-                      title: 'Solicitud de Giro Relampago',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.abc_outlined,
-                      title: 'Detalles de solicitudes de Giro Relampago',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
-                  ],
-                ),
-              ),
-              ListTitlePrueba(
-                topPadding: topPadding,
-                smallSpacing: smallSpacing,
-                letterSize: letterSize,
-                title: 'QR Prodem Cobro/Pago',
-                icon: Icons.broadcast_on_home,
-                column: Column(
-                  children: [
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.abc_outlined,
-                      title: 'Cobro QR Prodem',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.abc_outlined,
-                      title: 'Pago QR Prodem',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.abc_outlined,
-                      title: 'Movimientos',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
-                  ],
-                ),
-              ),
-              ListTitlePrueba(
-                topPadding: topPadding,
-                smallSpacing: smallSpacing,
-                letterSize: letterSize,
-                title: 'DPF',
-                icon: Icons.broadcast_on_home,
-                column: Column(
-                  children: [
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.abc_outlined,
-                      title: 'Solicitud DPF Empleado Prodem',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.abc_outlined,
-                      title: 'Solicitud DPF en linea',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.abc_outlined,
-                      title: 'Bandeja de solicitudes ',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
-                    Gesture(
-                      onTap: () {},
-                      topPadding: topPadding,
-                      letterSize: letterSize,
-                      small: smallSpacing,
-                      icon: Icons.abc_outlined,
-                      title: 'Administracion DPF',
-                    ),
-                    SizedBox(height: smallSpacing * 1),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: ListTitlePrueba(
-                  topPadding: topPadding,
-                  smallSpacing: smallSpacing,
-                  letterSize: letterSize,
-                  title: 'Retiro qr ATM',
-                  icon: Icons.broadcast_on_home,
-                  column: Column(),
-                ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            );
+          },
+        ),
       ),
     );
   }

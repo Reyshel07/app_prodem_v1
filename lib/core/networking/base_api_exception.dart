@@ -26,7 +26,7 @@ class BaseApiException implements Exception {
     switch (dioError.type) {
       case DioExceptionType.cancel:
         return BaseApiException(
-          key: DioExceptionKey.cancelRequest,
+          key: DioExceptionKey.apiLogicError,
           message: "La peticion a la Api fue cancelada",
         );
       case DioExceptionType.connectionTimeout:

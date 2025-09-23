@@ -23,12 +23,10 @@ class SavingAccountDatasource {
         "AmountOperation": amountOperation, //100,
         "IdPerson": idPerson,
       },
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $vToken',
-          'Content-Type': 'application/json',
-        },
-      ),
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
       operationName: 'transfer fees',
     );
     return GetSavingAccountDataResponseModel.fromJson(response);

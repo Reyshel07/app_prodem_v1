@@ -23,12 +23,10 @@ class AccountBalancesDatasource {
         "location": "",
         "IpAddress": "192.168.162.12",
       },
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $vToken',
-          'Content-Type': 'application/json',
-        },
-      ),
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
       operationName: 'final balance inquiry',
     );
     return GetAccountBalancesResponseModel.fromJson(response);
