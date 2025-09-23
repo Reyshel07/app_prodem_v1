@@ -17,12 +17,10 @@ class UserSessionInfoDataSouce {
         "IdWebClient": vIdWebClient, // "1129150143954615",
         "deviceIdentifier": "",
       },
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $vToken',
-          'Content-Type': 'application/json',
-        },
-      ),
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
       operationName: 'user information',
     );
     return UserSessionInfoResponseModel.fromJson(response);
