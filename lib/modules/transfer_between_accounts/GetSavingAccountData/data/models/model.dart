@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/data/models/saving_account_data_model.dart';

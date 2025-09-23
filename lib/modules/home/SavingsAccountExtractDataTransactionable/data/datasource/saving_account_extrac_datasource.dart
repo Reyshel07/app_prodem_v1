@@ -1,5 +1,4 @@
 import 'package:app_prodem_v1/core/networking/http_services.dart';
-import 'package:dio/dio.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
 

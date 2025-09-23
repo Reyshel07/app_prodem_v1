@@ -8,6 +8,9 @@ import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../transfer_between_accounts/GetSavingAccountData/presentation/bloc/bloc.dart';
+import '../../../../SavingsAccountExtractDataTransactionable/presentation/bloc/bloc.dart';
+
 class SavingsProductsScreen extends StatefulWidget {
   const SavingsProductsScreen({super.key});
 
@@ -22,11 +25,23 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
     final double smallSpacing = screenSize.height * 0.02;
     final double letterSize = screenSize.height;
     final double topPadding = screenSize.height * 0.2;
-    return BlocProvider(
-      create: (context) => InjectorContainer.getIt<AccountBalanceBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => InjectorContainer.getIt<AccountBalanceBloc>(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<SavingAccountExtracBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => InjectorContainer.getIt<SavingAccountDataBloc>(),
+        ),
+      ],
       child: Scaffold(
         body: Builder(
           builder: (newContext) {
+            final sessionBloc = context.read<SessionInfoBloc>();
             return ListView(
               children: [
                 Column(
@@ -49,8 +64,6 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           ),
                           Gesture(
                             onTap: () {
-                              final sessionBloc = context
-                                  .read<SessionInfoBloc>();
                               InjectorContainer.getIt<AppRouter>().push(
                                 AccountInquiryRoute(
                                   bloc: newContext.read<AccountBalanceBloc>(),
@@ -67,7 +80,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           Gesture(
                             onTap: () {
                               InjectorContainer.getIt<AppRouter>().push(
-                                SavingAccountExtractDataTranSacreen(),
+                                SavingAccountExtractDataTranSacreen(
+                                  bloc: newContext
+                                      .read<SavingAccountExtracBloc>(),
+                                  sessionBloc: sessionBloc,
+                                ),
                               );
                             },
                             topPadding: topPadding,
@@ -79,7 +96,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           Gesture(
                             onTap: () {
                               InjectorContainer.getIt<AppRouter>().push(
-                                SavingAccountDataRoute(),
+                                SavingAccountDataRoute(
+                                  bloc: newContext
+                                      .read<SavingAccountDataBloc>(),
+                                  sessionBloc: sessionBloc,
+                                ),
                               );
                             },
                             topPadding: topPadding,

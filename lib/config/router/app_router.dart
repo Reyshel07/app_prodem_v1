@@ -12,5 +12,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: AccountInquiryRoute.page),
     AutoRoute(page: SavingAccountExtractDataTranSacreen.page),
     AutoRoute(page: SavingAccountDataRoute.page),
+    AutoRoute(page: TransferFeesTwoRoute.page),
   ];
 }
