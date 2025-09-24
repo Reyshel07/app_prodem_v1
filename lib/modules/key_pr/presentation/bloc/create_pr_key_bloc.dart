@@ -19,9 +19,9 @@ class CreatePrKeyBloc extends Bloc<CreatePrKeyEvent, CreatePrKeyState> {
   ) async {
     emit(CreatePrKeyLoading());
     try {
-      String idUser = '';
-      String idWebOperation = '';
-      String idWebPersonClient = '';
+      String idUser = '350880';
+      String idWebOperation = '2';
+      String idWebPersonClient = '1129150143954615';
       final token = SecureHive.readToken();
       final response = await keyPrRepository.createPrKey(
         idUser,

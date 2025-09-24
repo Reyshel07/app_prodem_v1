@@ -12,26 +12,29 @@ import '../../../../../utils/text.dart';
 import '../../../../home/UserSessionInfo/presentation/bloc/bloc.dart';
 
 @RoutePage()
-class SavingAccountDataScreen extends StatefulWidget {
+class TransferToAThirdPartyAccountScreen extends StatefulWidget {
   final SavingAccountDataBloc bloc;
   final SessionInfoBloc sessionBloc;
-  const SavingAccountDataScreen({
+  const TransferToAThirdPartyAccountScreen({
     super.key,
     required this.bloc,
     required this.sessionBloc,
   });
 
   @override
-  State<SavingAccountDataScreen> createState() =>
-      _SavingAccountDataScreenState();
+  State<TransferToAThirdPartyAccountScreen> createState() =>
+      _TransferToAThirdPartyAccountState();
 }
 
-class _SavingAccountDataScreenState extends State<SavingAccountDataScreen> {
+class _TransferToAThirdPartyAccountState
+    extends State<TransferToAThirdPartyAccountScreen> {
   final TextEditingController transactionAmountController =
       TextEditingController(text: '45');
   final TextEditingController observationController = TextEditingController(
     text: 'deposito',
   );
+  final TextEditingController destinationAccountController =
+      TextEditingController(text: '117-2-1-17513-0');
   String? _selectedValue;
   String? _codeSavingAccount;
   String? _codeSavingAccountSource;
@@ -52,7 +55,7 @@ class _SavingAccountDataScreenState extends State<SavingAccountDataScreen> {
           foregroundColor: Theme.of(context).colorScheme.white,
           backgroundColor: Theme.of(context).colorScheme.green,
           title: Text(
-            'Transferencia entre cuentas propias',
+            'Transferencia a Cuentas de Terceros',
             style: AppTextStyles.mainStyleWhite18Bold(context),
           ),
         ),
@@ -71,7 +74,7 @@ class _SavingAccountDataScreenState extends State<SavingAccountDataScreen> {
                 child: Column(
                   children: [
                     Text(
-                      'TRANSFERENCIA ENTRE CUENTAS PROPIAS:',
+                      'TRANSFERENCIA A TERCEROS:',
                       style: AppTextStyles.mainStyleGreen16Bold(context),
                     ),
                     SizedBox(
@@ -156,50 +159,11 @@ class _SavingAccountDataScreenState extends State<SavingAccountDataScreen> {
                       userController: transactionAmountController,
                       lbText: 'MONTO TRANSACCION',
                     ),
-                    /*DrowpButoon2(
+                    TextFromFiel02(
                       screenSize: screenSize,
                       smallSpacing: smallSpacing,
-                      selectedValue: _codeSavingAccount,
-                      list: list,
-                      text: 'CUENTA AHORRO DESTINO',
-                    ),*/
-                    SizedBox(
-                      child: Card(
-                        elevation: smallSpacing * 0.5,
-                        child: Container(
-                          width: double.infinity,
-                          height: smallSpacing * 3,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Theme.of(context).colorScheme.green,
-                            ),
-                            borderRadius: BorderRadius.all(radiusCircular(11)),
-                          ),
-                          child: DropdownButton<String>(
-                            isExpanded: true,
-                            underline: const SizedBox(),
-                            padding: EdgeInsetsGeometry.all(smallSpacing * 0.5),
-                            hint: Text(
-                              'CUENTA AHORRO DESTINO',
-                              style: AppTextStyles.mainStyleGreen14Bold(
-                                context,
-                              ),
-                            ),
-                            value: _codeSavingAccount,
-                            items: list.map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (newValue) {
-                              setState(() {
-                                _codeSavingAccount = newValue;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
+                      userController: destinationAccountController,
+                      lbText: 'Cuenta AHORRO DESTINO',
                     ),
                     TextFromFiel02(
                       screenSize: screenSize,
@@ -207,6 +171,13 @@ class _SavingAccountDataScreenState extends State<SavingAccountDataScreen> {
                       userController: observationController,
                       lbText: 'DIGITE ALGUNA OBSERVACIÓNQ',
                     ),
+                    SizedBox(height: smallSpacing * 0.5),
+                    Text(
+                      'Los datos que se validaran para procesar la transferencia de fondos son el numero de cuenta del beneficiario y el nombre de la Entidad Financiera Destinataria, por lo que es responsabilidad del ordenante verificar dichos datos.',
+                      style: AppTextStyles.mainStyleRed10Bold(context),
+                      textAlign: TextAlign.justify,
+                    ),
+                    SizedBox(height: smallSpacing * 0.5),
                     SizedBox(
                       width: screenSize.width * 0.4,
                       child: Card(

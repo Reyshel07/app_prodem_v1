@@ -12,4 +12,5 @@ extension ExtensionsLinghTheme on ColorScheme {
   Color get leadBajito => Color.fromARGB(255, 189, 189, 197).withOpacity(0.5);
   Color get blackBajo => Colors.black.withOpacity(0.2);
   Color get grey => Colors.grey;
+  Color get red => const Color.fromARGB(255, 255, 0, 0);
 }
