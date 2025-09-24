@@ -26,7 +26,12 @@ class SessionInfoBloc extends Bloc<SessionInfoEvent, SessionInfoState> {
       final response = await repository.userSession(idWebClient, token);
       emit(SessionInfoSuccess(response.data));
     } on BaseApiException catch (error) {
-      emit(SessionInfoError('error'));
+      switch (error.key) {
+        case "api_logic_error":
+          emit(SessionInfoError(error.message));
+        case "dio_unexpected":
+          emit(SessionInfoError("Ocurrio un error, no tiene internet"));
+      }
     }
   }
 }

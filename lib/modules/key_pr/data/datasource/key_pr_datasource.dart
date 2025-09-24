@@ -14,16 +14,16 @@ class KeyPrDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'ProdemKey/GetProdemKeyById',
+      'ProdemKey/CreateProdemKey',
       operationName: 'key creation',
       data: {
-        "idUser": idUser, // "350880",
+        "idUser": idUser, //"350880",
         "IdWebOperation": idWebOperation, // "2",
         "Channel": "52238",
         "DeviceIp": "192.168.162.12",
         "DeviceImei": "bd818720bb7f1ec1",
         "DeviceLocation": "context",
-        "IdWebPersonClient": idWebPersonClient, // "1129150143954615",
+        "IdWebPersonClient": idWebPersonClient, //"1129150143954615"
       },
       headers: {
         'Authorization': 'Bearer $vToken',
@@ -40,7 +40,7 @@ class KeyPrDatasource {
     final response = await _apiClient.post(
       'ProdemKey/GetProdemKeyById',
       operationName: 'obtains the final key',
-      data: {"Location": "context", "IdSmsOperation": "451113"},
+      data: {"Location": "context", "IdSmsOperation": idSmsOperation},
       headers: {
         'Authorization': 'Bearer $vToken',
         'Content-Type': 'application/json',

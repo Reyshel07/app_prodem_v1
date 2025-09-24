@@ -110,7 +110,15 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                             title: 'Transferencia entre cuentas propias',
                           ),
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                TransferToAThirdPartyAccountRoute(
+                                  bloc: newContext
+                                      .read<SavingAccountDataBloc>(),
+                                  sessionBloc: sessionBloc,
+                                ),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,

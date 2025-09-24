@@ -205,4 +205,10 @@ class AppTextStyles {
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.bold,
   );
+  static TextStyle mainStyleRed10Bold(BuildContext context) => GoogleFonts.exo(
+    color: Theme.of(context).colorScheme.red,
+    fontSize: 10,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
 }
