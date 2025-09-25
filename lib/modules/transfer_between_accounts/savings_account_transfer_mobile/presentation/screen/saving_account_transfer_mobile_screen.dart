@@ -112,19 +112,27 @@ class SavingAccountTransMobileEndScreen extends StatelessWidget {
             ),
             SizedBox(height: smallSpacing * 0.5),
             SizedBox(
-              height: screenSize.height * 0.27,
+              height: screenSize.height * 0.3,
               child: ListView(
                 children: data.entries.map((entry) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "${entry.key}: ",
-                        style: AppTextStyles.mainStyleGreen14Bold(context),
+                      Expanded(
+                        child: Text(
+                          "${entry.key}: ",
+                          style: AppTextStyles.mainStyleGreen14Bold(context),
+                          textAlign: TextAlign.start,
+                        ),
                       ),
-                      Text(
-                        entry.value,
-                        style: AppTextStyles.mainStyleGreen14(context),
+                      Expanded(
+                        child: Text(
+                          entry.value,
+                          style: AppTextStyles.mainStyleGreen14(context),
+                          softWrap: true,
+                          textAlign: TextAlign.end,
+                        ),
                       ),
                     ],
                   );

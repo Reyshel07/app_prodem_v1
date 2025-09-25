@@ -1,4 +1,7 @@
+import 'package:app_prodem_v1/config/router/app_router.dart';
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +28,9 @@ class AppBarHome extends StatelessWidget {
         scrolledUnderElevation: 0,
         automaticallyImplyLeading: false,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            InjectorContainer.getIt<AppRouter>().push(SettingsRoute());
+          },
           icon: Icon(
             Icons.settings,
             color: Theme.of(context).colorScheme.green,

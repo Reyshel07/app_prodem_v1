@@ -164,22 +164,6 @@ class _BodyState extends State<Body> {
                     ),
                   ),
                 ),
-                /*/SizedBox(
-                  width: screenSize.width * 0.5,
-                  child: Card(
-                    elevation: smallSpacing * 0.5,
-                    child: Butoon1(
-                      onTap: () {
-                        context.read<SessionInfoBloc>().add(SessionInfEvent());
-                        //context.pushRoute(PruebaRoute());
-                        /*InjectorContainer.getIt<AppRouter>().push(
-                            PruebaRoute(text: 'hola'),
-                          );*/
-                      },
-                      lblTextField: 'INGRESAR',
-                    ),
-                  ),
-                ),*/
               ],
             ),
           ),

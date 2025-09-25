@@ -1,12 +1,10 @@
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension_theme.dart';
-import 'package:app_prodem_v1/presentation/bloc/theme_provider.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/container02_widget.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:app_prodem_v1/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 @RoutePage()
 class SettingsScreen extends StatelessWidget {
@@ -14,7 +12,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    //final themeProvider = Provider.of<ThemeProvider>(context);
     final screenSize = MediaQuery.of(context).size;
     final double smallSpacing = screenSize.height * 0.02;
     final double letterSize = screenSize.height;
@@ -120,10 +118,11 @@ class SettingsScreen extends StatelessWidget {
             letterSize: letterSize,
             smallSpacing: smallSpacing,
             onTap1: () {
-              themeProvider.changeTheme();
+              // themeProvider.changeTheme();
             },
             lblTextField: 'Cambiar tema',
-            icon: themeProvider.isDark ? Icons.light_mode : Icons.dark_mode,
+            icon: Icons
+                .abc_outlined, //themeProvider.isDark ? Icons.light_mode : Icons.dark_mode,
           ),
           ListTitle1(
             smallSpacing: smallSpacing,

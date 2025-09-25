@@ -1,4 +1,5 @@
 import 'package:app_prodem_v1/modules/auth/auth.container.dart';
+import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/get.ach.bank.list.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/injector.container.dart';
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/account.balances.container.dart';
 import 'package:app_prodem_v1/modules/home/SavingsAccountExtractDataTransactionable/savings.account.container.dart';
@@ -25,5 +26,6 @@ class InjectorContainer {
     initSavingAccountData(getIt);
     initKeyPr(getIt);
     initSavingAccountTransMobile(getIt);
+    initGetAchBankList(getIt);
   }
 }
