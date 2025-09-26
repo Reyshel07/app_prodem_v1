@@ -2,12 +2,13 @@ import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/presentation/bloc/get_ach_banck_bloc.dart';
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/account_balance_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/bloc.dart';
+import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/presentation/screen/saving_account_data_screen.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../transfer_between_accounts/GetSavingAccountData/presentation/bloc/bloc.dart';
 import '../../../../SavingsAccountExtractDataTransactionable/presentation/bloc/bloc.dart';
 
@@ -36,6 +37,9 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
         ),
         BlocProvider(
           create: (context) => InjectorContainer.getIt<SavingAccountDataBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => InjectorContainer.getIt<GetAchBanckBloc>(),
         ),
       ],
       child: Scaffold(
@@ -96,10 +100,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           Gesture(
                             onTap: () {
                               InjectorContainer.getIt<AppRouter>().push(
-                                SavingAccountDataRoute(
+                                TransferRoute(
                                   bloc: newContext
                                       .read<SavingAccountDataBloc>(),
                                   sessionBloc: sessionBloc,
+                                  transferType: TransferType.ownAccounts,
                                 ),
                               );
                             },
@@ -112,10 +117,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           Gesture(
                             onTap: () {
                               InjectorContainer.getIt<AppRouter>().push(
-                                TransferToAThirdPartyAccountRoute(
+                                TransferRoute(
                                   bloc: newContext
                                       .read<SavingAccountDataBloc>(),
                                   sessionBloc: sessionBloc,
+                                  transferType: TransferType.thirdParty,
                                 ),
                               );
                             },
@@ -125,13 +131,32 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                             icon: Icons.send,
                             title: 'Transferencia a cuenta de terceros',
                           ),
-                          Gesture(
-                            onTap: () {},
-                            topPadding: topPadding,
-                            letterSize: letterSize,
-                            small: smallSpacing,
-                            icon: Icons.compare_arrows,
-                            title: 'Transferencia a otros bancos',
+                          BlocConsumer<GetAchBanckBloc, GetAchBanckState>(
+                            listener: (context, state) {
+                              if (state is GetAchBanckSuccess) {
+                                InjectorContainer.getIt<AppRouter>().push(
+                                  GetAchBanckListRoute(
+                                    bloc: newContext.read<GetAchBanckBloc>(),
+                                    sessionBloc: sessionBloc,
+                                  ),
+                                );
+                              }
+                            },
+                            builder: (context, state) {
+                              return Gesture(
+                                onTap: () {
+                                  context.read<GetAchBanckBloc>().add(
+                                    GEtAchBEvent(accountType: '1'),
+                                  );
+                                  //InjectorContainer.getIt<AppRouter>().push(GetAchBanckListRoute(bloc: ))
+                                },
+                                topPadding: topPadding,
+                                letterSize: letterSize,
+                                small: smallSpacing,
+                                icon: Icons.compare_arrows,
+                                title: 'Transferencia a otros bancos',
+                              );
+                            },
                           ),
                           Gesture(
                             onTap: () {},
