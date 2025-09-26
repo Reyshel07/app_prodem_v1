@@ -221,17 +221,17 @@ class GetAchDataScreen extends StatelessWidget {
                                                     .add(
                                                       TransferAchFromMobBanEvent(
                                                         beneficiary:
-                                                            'Juan pasten',
-                                                        idBankDestiny: '17',
+                                                            'jade pasten',
+                                                        idBankDestiny: '20',
                                                         idMoney: '1',
                                                         idSavingAccount:
-                                                            '17529542444803121',
+                                                            '17098064656442366',
                                                         idWebPersonClient:
                                                             '1129150143954615',
                                                         identityCardNumber:
                                                             '58649564',
                                                         accountNumber:
-                                                            '123154645889',
+                                                            '3061495151',
                                                         commissionAmount: '0',
                                                         observation: 'k,ujk,j',
                                                         amount: '23',
