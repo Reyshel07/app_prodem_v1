@@ -16,11 +16,8 @@ class LoginScreen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final authBloc = AuthBloc(SignInResponseRepositoryImpl());
     return BlocProvider(
-      //create: (context) => InjectorContainer.getIt<AuthBloc>(),
       create: (context) => InjectorContainer.getIt<AuthBloc>(),
-      //create: (context) => AuthBloc(SignInResponseRepositoryImpl()),
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
