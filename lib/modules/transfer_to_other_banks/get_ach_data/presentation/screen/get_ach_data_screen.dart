@@ -1,8 +1,10 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/create_pr_key_bloc.dart';
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/get_pr_key_by_id_bloc.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_data/presentation/bloc/get_ach_data_bloc.dart';
+import 'package:app_prodem_v1/modules/transfer_to_other_banks/transfer_ach_from_mobile_banking/presentation/bloc/transfer_ach_from_mobile_banking_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +55,10 @@ class GetAchDataScreen extends StatelessWidget {
         BlocProvider(
           create: (contex) => InjectorContainer.getIt<GetPrKeyByIdBloc>(),
         ),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<TransferAchFromMobileBankingBloc>(),
+        ),
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -63,152 +69,179 @@ class GetAchDataScreen extends StatelessWidget {
             style: AppTextStyles.mainStyleWhite18Bold(context),
           ),
         ),
-        body: Column(
-          children: [
-            Text(
-              'Transferencia entre cuentas propias',
-              style: AppTextStyles.mainStyleGreen18Bold(context),
-            ),
-            Row(
-              children: [
-                Text(
-                  'Cuenta ORIGEN:\n'
-                  'Saldo disponible:\n'
-                  'Monto del envió\n'
-                  'Banco DESTINO'
-                  'Njombre DESTINATARIO:\n'
-                  'Nro.Doc/NIT destinatario:\n'
-                  'Motivo del envio:\n'
-                  'Cuenta destinatario:\n'
-                  'Existecambio de moneda:\n'
-                  'Monto DÉBITO:\n'
-                  'Monto comisión:\n'
-                  'Monto comisión:\n'
-                  'Monto impuesto:\n'
-                  'Monto total a debitar:',
-                ),
-                Text(''),
-              ],
-            ),
-            Text(
-              'Sólo se validara el número de cuenta del beneficiario, por lo que es responsabilidad del ordenante verificar la informacion registrada.',
-              style: AppTextStyles.mainStyleRed10Bold(context),
-            ),
-            BlocConsumer<CreatePrKeyBloc, CreatePrKeyState>(
-              listener: (context, createState) {
-                if (createState is CreatePrKeySuccess) {
-                  context.read<GetPrKeyByIdBloc>().add(
-                    GetPrKeyEvent(
-                      idSmsOperation: createState
-                          .createProdemKeyResponseEntity!
-                          .data
-                          .toString(),
+        body: Padding(
+          padding: EdgeInsets.all(topPadding * 0.05),
+          child: Column(
+            children: [
+              Text(
+                'Transferencia entre cuentas propias',
+                style: AppTextStyles.mainStyleGreen18Bold(context),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Cuenta ORIGEN:\n'
+                    'Saldo disponible:\n'
+                    'Monto del envió\n'
+                    'Nombre DESTINATARIO:\n'
+                    'Nro.Doc/NIT destinatario:\n'
+                    'Motivo del envio:\n'
+                    'Cuenta destinatario:\n'
+                    'Existecambio de moneda:\n'
+                    'Monto DÉBITO:\n'
+                    'Monto comisión:\n'
+                    'Monto impuesto:\n'
+                    'Monto total a debitar:\n'
+                    'Banco DESTINO',
+                  ),
+                  Expanded(
+                    child: Text(
+                      '$cuentaO\n'
+                      '$montoEn\n' //o
+                      '$montoEn\n'
+                      '$nombreDes\n'
+                      '$nit\n'
+                      '$motivoEn\n'
+                      '$cuentaDes\n'
+                      '$cambioM\n'
+                      '$montoDev\n'
+                      '$mComision\n'
+                      '$montoIm\n'
+                      '$montoTotal\n'
+                      '$bancoDes',
                     ),
-                  );
-                }
-              },
-              builder: (context, createState) {
-                return BlocBuilder<GetPrKeyByIdBloc, GetPrKeyByIdState>(
-                  builder: (context, getState) {
-                    return Column(
-                      children: [
-                        // 🔹 Texto dinámico según el estado de GetKey
-                        if (getState is GetPrKeyByIdSuccess)
-                          Text(
-                            getState.getProdemKeyByIdResponseEntity?.data ??
-                                '---',
-                            style: AppTextStyles.mainStyleGreen18Bold(context),
-                          )
-                        else
-                          Text(
-                            'CÓDIGO PRODEM',
-                            style: AppTextStyles.mainStyleGreen18Bold(context),
-                          ),
+                  ),
+                ],
+              ),
+              Text(
+                'Sólo se validara el número de cuenta del beneficiario, por lo que es responsabilidad del ordenante verificar la informacion registrada.',
+                style: AppTextStyles.mainStyleRed10Bold(context),
+              ),
+              BlocConsumer<CreatePrKeyBloc, CreatePrKeyState>(
+                listener: (context, createState) {
+                  if (createState is CreatePrKeySuccess) {
+                    context.read<GetPrKeyByIdBloc>().add(
+                      GetPrKeyEvent(
+                        idSmsOperation: createState
+                            .createProdemKeyResponseEntity!
+                            .data
+                            .toString(),
+                      ),
+                    );
+                  }
+                },
+                builder: (context, createState) {
+                  return BlocBuilder<GetPrKeyByIdBloc, GetPrKeyByIdState>(
+                    builder: (context, getState) {
+                      return Column(
+                        children: [
+                          if (getState is GetPrKeyByIdSuccess)
+                            Text(
+                              getState.getProdemKeyByIdResponseEntity?.data ??
+                                  '---',
+                              style: AppTextStyles.mainStyleGreen18Bold(
+                                context,
+                              ),
+                            )
+                          else
+                            Text(
+                              'CÓDIGO PRODEM',
+                              style: AppTextStyles.mainStyleGreen18Bold(
+                                context,
+                              ),
+                            ),
 
-                        SizedBox(height: smallSpacing * 0.5),
+                          SizedBox(height: smallSpacing * 0.5),
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            if (createState is CreatePrKeyLoading)
-                              const CircularProgressIndicator(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (createState is CreatePrKeyLoading)
+                                const CircularProgressIndicator(),
 
-                            if (createState is! CreatePrKeySuccess &&
-                                createState is! CreatePrKeyLoading)
-                              SizedBox(
-                                width: screenSize.width * 0.4,
-                                child: Card(
-                                  elevation: smallSpacing * 0.5,
-                                  child: Butoon1(
-                                    onTap: () {
-                                      context.read<CreatePrKeyBloc>().add(
-                                        CreatePrKeyEvent1(),
-                                      );
-                                    },
-                                    lblTextField: 'OBTENER CÓDIGO',
+                              if (createState is! CreatePrKeySuccess &&
+                                  createState is! CreatePrKeyLoading)
+                                SizedBox(
+                                  width: screenSize.width * 0.4,
+                                  child: Card(
+                                    elevation: smallSpacing * 0.5,
+                                    child: Butoon1(
+                                      onTap: () {
+                                        context.read<CreatePrKeyBloc>().add(
+                                          CreatePrKeyEvent1(),
+                                        );
+                                      },
+                                      lblTextField: 'OBTENER CÓDIGO',
+                                    ),
                                   ),
                                 ),
-                              ),
 
-                            if (createState is CreatePrKeySuccess &&
-                                getState is GetPrKeyByIdSuccess)
-                              SizedBox(
-                                width: screenSize.width * 0.3,
-                                child: Card(
-                                  elevation: smallSpacing * 0.5,
-                                  child:
-                                      BlocConsumer<
-                                        GetAchDataBloc,
-                                        GetAchDataState
-                                      >(
-                                        listener: (context, state) {
-                                          if (state is GetAchDataSuccess) {
-                                            /*InjectorContainer.getIt<
+                              if (createState is CreatePrKeySuccess &&
+                                  getState is GetPrKeyByIdSuccess)
+                                SizedBox(
+                                  width: screenSize.width * 0.3,
+                                  child: Card(
+                                    elevation: smallSpacing * 0.5,
+                                    child:
+                                        BlocConsumer<
+                                          TransferAchFromMobileBankingBloc,
+                                          TransferAchFromMobileBankingState
+                                        >(
+                                          listener: (context, state) {
+                                            if (state
+                                                is TransferAchFromMobileBankingSuccess) {
+                                              InjectorContainer.getIt<
                                                     AppRouter
                                                   >()
                                                   .push(
                                                     SavingAccountTransMobileEndRoute(
-                                                      response: state.,
+                                                      response: state.data,
                                                     ),
-                                                  );*/
-                                          }
-                                          if (state is GetAchDataError) {
-                                            ScaffoldMessenger.of(
-                                              context,
-                                            ).showSnackBar(
-                                              SnackBar(
-                                                content: Text(state.message),
-                                              ),
-                                            );
-                                          }
-                                        },
-                                        builder: (context, state) {
-                                          return Butoon1(
-                                            onTap: () {
-                                              /*context
+                                                  );
+                                            }
+                                            if (state
+                                                is TransferAchFromMobileBankingError) {
+                                              ScaffoldMessenger.of(
+                                                context,
+                                              ).showSnackBar(
+                                                SnackBar(
+                                                  content: Text(state.message),
+                                                ),
+                                              );
+                                            }
+                                          },
+                                          builder: (context, state) {
+                                            return Butoon1(
+                                              onTap: () {
+                                                context
                                                     .read<
-                                                      SavingAccountTransferMobileBloc
+                                                      TransferAchFromMobileBankingBloc
                                                     >()
                                                     .add(
-                                                      SavingAccountTransMoEvent(
-                                                        codeSavingAccountSource:
-                                                            cuentaO ?? '',
-                                                        codeSavingAccountTarget:
-                                                            cuentaD ?? '',
-                                                        amountTransfer:
-                                                            monto ?? '',
-                                                        idMoneyTransfer: '1',
-                                                        isNaturalCustomer: true,
-                                                        observation:
-                                                            'observation',
-                                                        reasonDestiny:
-                                                            'reasonDestiny',
-                                                        typeApplicationAccessX:
-                                                            '112582',
-                                                        idTerminal: '2',
-                                                        userAppOriginType: '2',
-                                                        beneficiaryName:
-                                                            'beneficiaryName',
+                                                      TransferAchFromMobBanEvent(
+                                                        beneficiary:
+                                                            'Juan pasten',
+                                                        idBankDestiny: '17',
+                                                        idMoney: '1',
+                                                        idSavingAccount:
+                                                            '17529542444803121',
+                                                        idWebPersonClient:
+                                                            '1129150143954615',
+                                                        identityCardNumber:
+                                                            '58649564',
+                                                        accountNumber:
+                                                            '123154645889',
+                                                        commissionAmount: '0',
+                                                        observation: 'k,ujk,j',
+                                                        amount: '23',
+                                                        amountSolicitation:
+                                                            '23',
+                                                        applyGeneratePCC01:
+                                                            false,
+                                                        reasonDestinyPCC01:
+                                                            '23',
+                                                        bankDestinyName: '',
                                                         idSMSOperation: createState
                                                             .createProdemKeyResponseEntity!
                                                             .data
@@ -219,37 +252,38 @@ class GetAchDataScreen extends StatelessWidget {
                                                                 ?.data ??
                                                             '',
                                                       ),
-                                                    );*/
-                                            },
-                                            lblTextField:
-                                                state is GetAchDataLoading
-                                                ? 'Procesando...'
-                                                : 'CONFIRMAR',
-                                          );
-                                        },
-                                      ),
+                                                    );
+                                              },
+                                              lblTextField:
+                                                  state is GetAchDataLoading
+                                                  ? 'Procesando...'
+                                                  : 'CONFIRMAR',
+                                            );
+                                          },
+                                        ),
+                                  ),
                                 ),
-                              ),
 
-                            SizedBox(
-                              width: screenSize.width * 0.3,
-                              child: Card(
-                                elevation: smallSpacing * 0.5,
-                                child: Butoon1(
-                                  onTap: () {},
-                                  lblTextField: 'CANCELAR',
+                              SizedBox(
+                                width: screenSize.width * 0.3,
+                                child: Card(
+                                  elevation: smallSpacing * 0.5,
+                                  child: Butoon1(
+                                    onTap: () {},
+                                    lblTextField: 'CANCELAR',
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-          ],
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -6,10 +6,14 @@ import 'package:app_prodem_v1/modules/home/SavingsAccountExtractDataTransactiona
 import 'package:app_prodem_v1/modules/key_pr/pr.key.container.dart';
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/saving_account_data_container.dart';
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/saving.account.transfer.mobile.container.dart';
+import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_data/get.ach.data.container.dart';
+import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_valid_account/get.valid.account.container.dart';
+import 'package:app_prodem_v1/modules/transfer_to_other_banks/transfer_ach_from_mobile_banking/transfer.ach.from.mobile.container.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'config/router/router.dart';
 
+///central container
 class InjectorContainer {
   InjectorContainer();
 
@@ -18,7 +22,6 @@ class InjectorContainer {
   static setupGetIt() {
     getIt.registerLazySingleton(() => Dio());
     getIt.registerSingleton<AppRouter>(AppRouter());
-    //
     initAuthContainer(getIt);
     initUserSessionInfo(getIt);
     initAccountsBalances(getIt);
@@ -27,5 +30,8 @@ class InjectorContainer {
     initKeyPr(getIt);
     initSavingAccountTransMobile(getIt);
     initGetAchBankList(getIt);
+    initGetValidAccount(getIt);
+    initGEtAchData(getIt);
+    inittransferAchFromMobileBanking(getIt);
   }
 }

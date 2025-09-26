@@ -16,11 +16,11 @@ class GetAchDataEntity {
   final int idMoneyComission;
   final dynamic moneyComissionDescription;
   final int amountTax;
-  final int amountMaxLip;
+  final double amountMaxLip;
   final int idMoney;
   final String moneyDescription;
   final String idSavingAccount;
-  final int savingBalance;
+  final double savingBalance;
   final bool applyGenerateConfidentialInformationForm;
   final bool conditionNumberWithdrawalApply;
   final String messageConditionNumberWithdrawal;

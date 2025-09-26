@@ -6,9 +6,15 @@ import 'injector.container.dart';
 import 'utils/secure_hive.dart';
 
 void main() async {
+  ///This .env file contains the private URL.
   await dotenv.load(fileName: '.env');
+
+  ///This is the main container where all containers will be declared.
   InjectorContainer.setupGetIt();
+
+  ///hive declaration
   await SecureHive.init();
+
   runApp(MainApp());
 }
 
@@ -18,10 +24,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appRouter = InjectorContainer.getIt<AppRouter>();
-    //final providerTheme = Provider.of<ThemeProvider>(context);
     return MaterialApp.router(
       title: 'Prodem',
-      // theme: providerTheme.currentTheme,
       routerConfig: appRouter.config(),
     );
   }
