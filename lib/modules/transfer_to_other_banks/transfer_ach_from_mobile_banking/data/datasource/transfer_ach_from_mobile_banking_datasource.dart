@@ -32,7 +32,7 @@ class TransferAchFromMobileBankingDatasource {
     String prodemKeyCode,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/TransferAchFromMobileBanking  ',
+      'Mobile/TransferAchFromMobileBanking',
       operationName: 'transfer to other banks final process',
       data: {
         "Beneficiary": beneficiary,
@@ -53,7 +53,7 @@ class TransferAchFromMobileBankingDatasource {
         "Imei": imei,
         "Location": location,
         "IpAddress": ipAddress,
-        "BankDestinyName": bankDestinyName,
+        "BankDestinyName": bankDestinyName, // "BANCO PYME ECOFUTURO S.A.",
       },
       headers: {
         'Authorization': 'Bearer $vToken',

@@ -25,6 +25,7 @@ class GetAchDataScreen extends StatelessWidget {
   String mComision;
   String montoIm;
   String montoTotal;
+  String idBankDestiny;
   GetAchDataScreen({
     super.key,
     required this.bancoDes,
@@ -39,6 +40,7 @@ class GetAchDataScreen extends StatelessWidget {
     required this.motivoEn,
     required this.nit,
     required this.nombreDes,
+    required this.idBankDestiny,
   });
 
   @override
@@ -220,18 +222,15 @@ class GetAchDataScreen extends StatelessWidget {
                                                     >()
                                                     .add(
                                                       TransferAchFromMobBanEvent(
-                                                        beneficiary:
-                                                            'jade pasten',
-                                                        idBankDestiny: '20',
+                                                        beneficiary: nombreDes,
+                                                        idBankDestiny:
+                                                            idBankDestiny,
                                                         idMoney: '1',
                                                         idSavingAccount:
                                                             '17098064656442366',
-                                                        idWebPersonClient:
-                                                            '1129150143954615',
-                                                        identityCardNumber:
-                                                            '58649564',
+                                                        identityCardNumber: '',
                                                         accountNumber:
-                                                            '3061495151',
+                                                            cuentaDes,
                                                         commissionAmount: '0',
                                                         observation: 'k,ujk,j',
                                                         amount: '23',
@@ -241,7 +240,8 @@ class GetAchDataScreen extends StatelessWidget {
                                                             false,
                                                         reasonDestinyPCC01:
                                                             '23',
-                                                        bankDestinyName: '',
+                                                        bankDestinyName:
+                                                            bancoDes,
                                                         idSMSOperation: createState
                                                             .createProdemKeyResponseEntity!
                                                             .data
