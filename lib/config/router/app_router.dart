@@ -19,5 +19,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: TransferRoute.page),
     AutoRoute(page: GetAchBanckListRoute.page),
     AutoRoute(page: GetAchDataRoute.page),
+    AutoRoute(page: ExpressDataRoute.page),
+    AutoRoute(page: PrExpressSolicitationWebRoute.page),
   ];
 }

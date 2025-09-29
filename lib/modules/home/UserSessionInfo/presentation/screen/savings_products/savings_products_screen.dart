@@ -2,6 +2,8 @@ import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressData/presentation/bloc/express_data_bloc.dart';
+import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressSolicitationWeb/presentation/bloc/pr_express_solicitation_web_bloc.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/presentation/bloc/get_ach_banck_bloc.dart';
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/account_balance_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/bloc.dart';
@@ -40,6 +42,9 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
         ),
         BlocProvider(
           create: (context) => InjectorContainer.getIt<GetAchBanckBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => InjectorContainer.getIt<ExpressDataBloc>(),
         ),
       ],
       child: Scaffold(
@@ -190,7 +195,14 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                       column: Column(
                         children: [
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                ExpressDataRoute(
+                                  bloc: newContext.read<ExpressDataBloc>(),
+                                  sessionBloc: sessionBloc,
+                                ),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,
@@ -198,14 +210,62 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                             title: 'Solicitud de Giro Relampago',
                           ),
                           SizedBox(height: smallSpacing * 1),
-                          Gesture(
-                            onTap: () {},
-                            topPadding: topPadding,
-                            letterSize: letterSize,
-                            small: smallSpacing,
-                            icon: Icons.abc_outlined,
-                            title: 'Detalles de solicitudes de Giro Relampago',
+                          BlocListener<
+                            PrExpressSolicitationWebBloc,
+                            PrExpressSolicitationWebState
+                          >(
+                            listener: (context, state) {
+                              if (state is PrExpressSolicitationWebSuccess) {
+                                InjectorContainer.getIt<AppRouter>().push(
+                                  PrExpressSolicitationWebRoute(
+                                    data: state
+                                        .getProdemExpressSolicitationWebResponseEntity
+                                        .data,
+                                  ),
+                                );
+                              }
+                              if (state is PrExpressSolicitationWebError) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Error: ${state.message}'),
+                                  ),
+                                );
+                              }
+                            },
+                            child: BlocConsumer<SessionInfoBloc, SessionInfoState>(
+                              listener: (context, state) {},
+                              builder: (context, state) {
+                                if (state is SessionInfoSuccess) {
+                                  final listAccounts = state
+                                      .userInfoResponseEnttity
+                                      .listCodeSavingsAccount;
+                                  final list = listAccounts
+                                      .map((account) => account.operationCode)
+                                      .toList();
+
+                                  return Gesture(
+                                    onTap: () {
+                                      context
+                                          .read<PrExpressSolicitationWebBloc>()
+                                          .add(
+                                            PrExpressSoliWebEvent(
+                                              colCodeSavingsAccounts: list,
+                                            ),
+                                          );
+                                    },
+                                    topPadding: topPadding,
+                                    letterSize: letterSize,
+                                    small: smallSpacing,
+                                    icon: Icons.abc_outlined,
+                                    title:
+                                        'Detalles de solicitudes de Giro Relampago',
+                                  );
+                                }
+                                return const CircularProgressIndicator();
+                              },
+                            ),
                           ),
+
                           SizedBox(height: smallSpacing * 1),
                         ],
                       ),

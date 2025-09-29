@@ -14,7 +14,6 @@ final class TransferAchFromMobBanEvent
   final String idSavingAccount;
   final String amount;
   final String amountSolicitation;
-  final String idWebPersonClient;
   final bool applyGeneratePCC01;
   final String reasonDestinyPCC01;
   final String bankDestinyName;
@@ -32,7 +31,6 @@ final class TransferAchFromMobBanEvent
     required this.idSavingAccount,
     required this.amount,
     required this.amountSolicitation,
-    required this.idWebPersonClient,
     required this.applyGeneratePCC01,
     required this.reasonDestinyPCC01,
     required this.bankDestinyName,
