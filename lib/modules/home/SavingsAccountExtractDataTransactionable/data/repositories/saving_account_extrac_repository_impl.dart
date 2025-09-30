@@ -13,14 +13,14 @@ class SavingAccountExtracImpl extends SavingAccountExtracRespository {
     String idPerson,
     String idUser,
     String? vToken,
-    String location
+    String location,String  ip, String imei
   ) async {
     return await savingAccountExtracDatasource.savingAccountExtrac(
       codeSavingsAccount,
       idPerson,
       idUser,
       vToken,
-      location
+      location,ip,imei
     );
   }
 }

@@ -11,7 +11,8 @@ class SavingAccountExtracDatasource {
     String idPerson,
     String idUser,
     String? vToken,
-    String location
+    String location,
+    String ip, String imei
   ) async {
     final response = await _apiClient.post(
       'Mobile/SavingsAccountExtractDataTransactionable',
@@ -19,9 +20,9 @@ class SavingAccountExtracDatasource {
         "CodeSavingsAccount": codeSavingsAccount,
         "IdPerson": idPerson,
         "IdUser": idUser,
-        "IMEI": "c0556d3b362470ac",
+        "IMEI": imei, 
         "location": location,
-        "IpAddress": "192.168.162.12",
+        "IpAddress": ip,
       },
       headers: {
         'Authorization': 'Bearer $vToken',

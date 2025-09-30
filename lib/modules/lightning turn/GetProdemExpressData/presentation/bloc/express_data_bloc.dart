@@ -18,7 +18,7 @@ class ExpressDataBloc extends Bloc<ExpressDataEvent, ExpressDataState> {
   ) async {
     emit(ExpressDataLoading());
     try {
-      String idPerson = '17000000000003984';
+      String idPerson =SecureHive.readIdPerson();// '17000000000003984';
       final token = SecureHive.readToken();
       final response = await repository.expressData(
         event.codeSavingAccountSource,

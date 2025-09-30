@@ -1,4 +1,7 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
+import 'package:app_prodem_v1/utils/device_info_helper.dart';
+import 'package:app_prodem_v1/utils/geolocation_helper.dart';
+import 'package:app_prodem_v1/utils/ip_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/entities.dart';
 import '../../domain/repositories/repositories.dart';
@@ -14,19 +17,33 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> signIn(SignInEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
-    //final vVerifGPS=await GeolocationHelper.isLocationServiceEnabled();
+    final vVerifGPS=await GeolocationHelper.isLocationServiceEnabled();
+    final ip=await IpHelper.getDeviceIp();
+    final imei=await DeviceInfoHelper.getDeviceIdentifier();
     try {
       final response = await repository.signIn(
         event.username,
         event.password,
         event.chanel,
         event.aditionalItems,
+        ip, imei
       );
 
       final token = response.data!.token;
       if (token.isNotEmpty) {
         await SecureHive.writeToken(token);
       }
+
+      final idwebperson = response.data!.aditionalItems.singleWhere((x)=>x.key=='IdWebPersonClient').value;
+      if(idwebperson.isNotEmpty){
+        await SecureHive.writeIdWebPerson(idwebperson);
+      }
+
+      final IdUsuario = response.data!.aditionalItems.singleWhere((x)=>x.key=='IdUsuario').value;
+      if(IdUsuario.isNotEmpty){
+        await SecureHive.writeIdUser(IdUsuario);
+      }
+
 
       emit(AuthSuccess("Inicio de sesión exitoso"));
     } on BaseApiException catch (error) {
