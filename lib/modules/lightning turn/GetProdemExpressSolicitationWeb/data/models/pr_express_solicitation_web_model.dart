@@ -5,6 +5,10 @@ GetProdemExpressSolicitationWebResponseModel
 getProdemExpressSolicitationWebResponseFromJson(String str) =>
     GetProdemExpressSolicitationWebResponseModel.fromJson(json.decode(str));
 
+ProdemExpressAnnulmentResponseModel prodemExpressAnnulmentResponseFromJson(
+  String str,
+) => ProdemExpressAnnulmentResponseModel.fromJson(json.decode(str));
+
 class GetProdemExpressSolicitationWebResponseModel
     extends GetProdemExpressSolicitationWebResponseEntity {
   GetProdemExpressSolicitationWebResponseModel({
@@ -57,4 +61,21 @@ class PrExpressSolicitationWebModel extends PrExpressSolicitationWebEntity {
         beneficiaryName: json["beneficiaryName"],
         cellPhoneBeneficiary: json["cellPhoneBeneficiary"],
       );
+}
+
+class ProdemExpressAnnulmentResponseModel
+    extends ProdemExpressAnnulmentResponseEntity {
+  ProdemExpressAnnulmentResponseModel({
+    required super.data,
+    required super.state,
+    required super.message,
+  });
+
+  factory ProdemExpressAnnulmentResponseModel.fromJson(
+    Map<String, dynamic> json,
+  ) => ProdemExpressAnnulmentResponseModel(
+    data: json["data"],
+    state: json["state"],
+    message: json["message"],
+  );
 }

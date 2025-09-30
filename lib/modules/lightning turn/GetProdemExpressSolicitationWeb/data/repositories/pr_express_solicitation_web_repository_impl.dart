@@ -19,4 +19,12 @@ class PrExpressSolicitationWebRepositoryImpl
       colCodeSavingsAccounts,
     );
   }
+
+  @override
+  Future<ProdemExpressAnnulmentResponseEntity> prDelete(
+    String id,
+    String? vToken,
+  ) async {
+    return await datasource.prDelete(id, vToken);
+  }
 }

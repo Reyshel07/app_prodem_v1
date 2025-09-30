@@ -17,10 +17,10 @@ class PrExpressSolicitationWebEntity {
   final String moneySolicitation;
   final String moneyAccount;
   final String codeSavingsAccount;
-  final int amountTransaction;
-  final int amountCommision;
-  final int amountDebit;
-  final int amountTotalDebit;
+  final double amountTransaction;
+  final double amountCommision;
+  final double amountDebit;
+  final double amountTotalDebit;
   final String beneficiaryDi;
   final String beneficiaryName;
   final String cellPhoneBeneficiary;
@@ -39,5 +39,17 @@ class PrExpressSolicitationWebEntity {
     required this.beneficiaryDi,
     required this.beneficiaryName,
     required this.cellPhoneBeneficiary,
+  });
+}
+
+class ProdemExpressAnnulmentResponseEntity {
+  final String data;
+  final int state;
+  final String message;
+
+  ProdemExpressAnnulmentResponseEntity({
+    required this.data,
+    required this.state,
+    required this.message,
   });
 }
