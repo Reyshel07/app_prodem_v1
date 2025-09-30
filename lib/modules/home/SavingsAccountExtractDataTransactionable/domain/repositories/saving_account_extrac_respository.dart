@@ -7,5 +7,6 @@ abstract class SavingAccountExtracRespository {
     String idPerson,
     String idUser,
     String? vToken,
+    String location
   );
 }

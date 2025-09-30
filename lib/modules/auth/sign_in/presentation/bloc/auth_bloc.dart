@@ -1,4 +1,5 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
+import 'package:app_prodem_v1/utils/geolocation_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/entities.dart';
 import '../../domain/repositories/repositories.dart';
@@ -14,6 +15,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> signIn(SignInEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
+    final vVerifGPS=await GeolocationHelper.isLocationServiceEnabled();
     try {
       final response = await repository.signIn(
         event.username,

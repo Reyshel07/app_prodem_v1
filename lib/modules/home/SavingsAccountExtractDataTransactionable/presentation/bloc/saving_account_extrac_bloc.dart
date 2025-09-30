@@ -1,4 +1,5 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
+import 'package:app_prodem_v1/utils/geolocation_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/entity.dart';
@@ -23,11 +24,13 @@ class SavingAccountExtracBloc
       final token = SecureHive.readToken();
       String idPerson = '17000000000003984';
       String idUser = '350880';
+      String location=await GeolocationHelper.getLocationJson();
       final response = await savingAccountExtracRespository.savingAccountExtrac(
         event.codeSavingsAccount,
         idPerson,
         idUser,
         token,
+        location
       );
       emit(SavingAccountExtracSuccess(response.data));
     } on BaseApiException catch (error) {

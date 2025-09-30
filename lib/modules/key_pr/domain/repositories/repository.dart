@@ -5,11 +5,13 @@ abstract class KeyPrRepository {
     String idUser,
     String idWebOperation,
     String idWebPersonClient,
-    String? vToken,
+    String? vToken,   
+    String location
   );
 
   Future<GetProdemKeyByIdResponseEntity> getPrKeyById(
     String idSmsOperation,
     String? vToken,
+    String location
   );
 }
