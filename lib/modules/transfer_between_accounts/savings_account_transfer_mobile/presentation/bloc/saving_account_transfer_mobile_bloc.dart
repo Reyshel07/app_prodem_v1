@@ -1,5 +1,7 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
+import 'package:app_prodem_v1/utils/device_info_helper.dart';
 import 'package:app_prodem_v1/utils/geolocation_helper.dart';
+import 'package:app_prodem_v1/utils/ip_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/entity.dart';
@@ -25,14 +27,14 @@ class SavingAccountTransferMobileBloc
   ) async {
     emit(SavingAccountTransferMobileLoading());
     try {
-      String idPerson = '17000000000003984';
+      String idPerson =SecureHive.readIdPerson();// '17000000000003984';
       bool applyGeneratePCC01 = false;
       String depositorName = '';
       String depositorDI = '';
-      String idUser = '350880';
-      String imei = '';
+      String idUser =SecureHive.readIdUser();// '350880';
+      String imei = await DeviceInfoHelper.getDeviceIdentifier() ;
       String location = await GeolocationHelper.getLocationJson();
-      String ipAddress = '';
+      String ipAddress = await IpHelper.getDeviceIp();
       final token = SecureHive.readToken();
       final response = await repository.savingAccountTransMobile(
         event.codeSavingAccountSource,

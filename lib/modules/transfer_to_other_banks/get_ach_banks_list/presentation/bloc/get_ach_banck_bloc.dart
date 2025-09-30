@@ -20,7 +20,7 @@ class GetAchBanckBloc extends Bloc<GetAchBanckEvent, GetAchBanckState> {
   ) async {
     emit(GetAchBanckLoading());
     try {
-      String idUser = '350880';
+      String idUser =SecureHive.readIdUser();// '350880';
       final token = SecureHive.readToken();
       final response = await repository.getAchBanck(
         idUser,

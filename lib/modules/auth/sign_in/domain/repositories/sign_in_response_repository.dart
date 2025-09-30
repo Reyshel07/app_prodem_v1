@@ -6,5 +6,6 @@ abstract class SignInResponseRepository {
     String password,
     int chanel,
     List<AditionalItemEntity> aditionalItems,
+    String ip,String  imei
   );
 }
