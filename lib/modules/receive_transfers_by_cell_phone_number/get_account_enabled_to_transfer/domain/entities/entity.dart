@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/receive_transfers_by_cell_phone_number/get_account_enabled_to_transfer/domain/entities/get_account_enabled_to_transfer_entity.dart';

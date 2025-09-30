@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import '../../domain/repositories/repositori.dart';
 import '../../domain/entities/entity.dart';
-
 part 'session_info_event.dart';
 part 'session_info_state.dart';
 
