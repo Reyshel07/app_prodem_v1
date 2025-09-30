@@ -22,3 +22,8 @@ final class PrExpressSolicitationWebSuccess
     this.getProdemExpressSolicitationWebResponseEntity,
   );
 }
+
+final class PrDeleteSuccess extends PrExpressSolicitationWebState {
+  final ProdemExpressAnnulmentResponseEntity delete;
+  PrDeleteSuccess(this.delete);
+}

@@ -1,5 +1,6 @@
 import 'package:app_prodem_v1/modules/auth/auth.container.dart';
 import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressData/express.data.container.dart';
+import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/get.ach.bank.list.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/injector.container.dart';
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/account.balances.container.dart';
@@ -35,5 +36,6 @@ class InjectorContainer {
     initGEtAchData(getIt);
     inittransferAchFromMobileBanking(getIt);
     initExpressData(getIt);
+    initPrExpressSoliWeb(getIt);
   }
 }

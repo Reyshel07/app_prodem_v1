@@ -6,4 +6,8 @@ abstract class PrExpressSolicitationWebRepository {
     String? vToken,
     List<String> colCodeSavingsAccounts,
   );
+  Future<ProdemExpressAnnulmentResponseEntity> prDelete(
+    String id,
+    String? vToken,
+  );
 }

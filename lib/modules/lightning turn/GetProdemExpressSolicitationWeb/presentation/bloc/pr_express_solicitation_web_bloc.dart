@@ -13,10 +13,11 @@ class PrExpressSolicitationWebBloc
   PrExpressSolicitationWebRepository repository;
   PrExpressSolicitationWebBloc(this.repository)
     : super(PrExpressSolicitationWebInitial()) {
-    on<PrExpressSoliWebEvent>(prExpressSoliWebBloc);
+    on<PrExpressSoliWebEvent>(_prExpressSoliWebBloc);
+    on<PrDeleteEvent>(_prDeleteBloc);
   }
 
-  Future<void> prExpressSoliWebBloc(
+  Future<void> _prExpressSoliWebBloc(
     PrExpressSoliWebEvent event,
     Emitter<PrExpressSolicitationWebState> emit,
   ) async {
@@ -30,6 +31,29 @@ class PrExpressSolicitationWebBloc
         event.colCodeSavingsAccounts,
       );
       emit(PrExpressSolicitationWebSuccess(response));
+    } on BaseApiException catch (error) {
+      switch (error.key) {
+        case "api_logic_error":
+          emit(PrExpressSolicitationWebError(error.message));
+        case "dio_unexpected":
+          emit(
+            PrExpressSolicitationWebError(
+              "Ocurrio un error, no tiene internet",
+            ),
+          );
+      }
+    }
+  }
+
+  Future<void> _prDeleteBloc(
+    PrDeleteEvent event,
+    Emitter<PrExpressSolicitationWebState> emit,
+  ) async {
+    emit(PrExpressSolicitationWebLoading());
+    try {
+      final token = SecureHive.readToken();
+      final response = await repository.prDelete(event.id, token);
+      emit(PrDeleteSuccess(response));
     } on BaseApiException catch (error) {
       switch (error.key) {
         case "api_logic_error":

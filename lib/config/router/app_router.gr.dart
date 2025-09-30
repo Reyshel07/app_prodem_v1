@@ -15,7 +15,7 @@ import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/screen/account_balances_screen.dart'
     as _i1;
 import 'package:app_prodem_v1/modules/home/SavingsAccountExtractDataTransactionable/presentation/bloc/saving_account_extrac_bloc.dart'
-    as _i21;
+    as _i20;
 import 'package:app_prodem_v1/modules/home/SavingsAccountExtractDataTransactionable/presentation/screen/saving_account_extrac_data_tran_screen.dart'
     as _i8;
 import 'package:app_prodem_v1/modules/home/settings_screen/settings_screen.dart'
@@ -32,16 +32,14 @@ import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressData/pres
     as _i17;
 import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressData/presentation/screen/express_data_screen.dart'
     as _i2;
-import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressSolicitationWeb/domain/entities/entity.dart'
-    as _i20;
 import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressSolicitationWeb/presentation/screen/pr_express_solicitation_web_sceen.dart'
     as _i7;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/presentation/bloc/saving_account_data_bloc.dart'
-    as _i23;
+    as _i22;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/presentation/screen/saving_account_data_screen.dart'
     as _i12;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/domain/entities/entity.dart'
-    as _i22;
+    as _i21;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/presentation/screen/saving_account_transfer_mobile_screen.dart'
     as _i9;
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/presentation/bloc/get_ach_banck_bloc.dart'
@@ -372,13 +370,13 @@ class PrExpressSolicitationWebRoute
     extends _i13.PageRouteInfo<PrExpressSolicitationWebRouteArgs> {
   PrExpressSolicitationWebRoute({
     _i14.Key? key,
-    required List<_i20.PrExpressSolicitationWebEntity> data,
+    required List<String> listCodeSavingsAccount,
     List<_i13.PageRouteInfo>? children,
   }) : super(
           PrExpressSolicitationWebRoute.name,
           args: PrExpressSolicitationWebRouteArgs(
             key: key,
-            data: data,
+            listCodeSavingsAccount: listCodeSavingsAccount,
           ),
           initialChildren: children,
         );
@@ -391,7 +389,7 @@ class PrExpressSolicitationWebRoute
       final args = data.argsAs<PrExpressSolicitationWebRouteArgs>();
       return _i7.PrExpressSolicitationWebScreen(
         key: args.key,
-        data: args.data,
+        listCodeSavingsAccount: args.listCodeSavingsAccount,
       );
     },
   );
@@ -400,16 +398,16 @@ class PrExpressSolicitationWebRoute
 class PrExpressSolicitationWebRouteArgs {
   const PrExpressSolicitationWebRouteArgs({
     this.key,
-    required this.data,
+    required this.listCodeSavingsAccount,
   });
 
   final _i14.Key? key;
 
-  final List<_i20.PrExpressSolicitationWebEntity> data;
+  final List<String> listCodeSavingsAccount;
 
   @override
   String toString() {
-    return 'PrExpressSolicitationWebRouteArgs{key: $key, data: $data}';
+    return 'PrExpressSolicitationWebRouteArgs{key: $key, listCodeSavingsAccount: $listCodeSavingsAccount}';
   }
 }
 
@@ -419,7 +417,7 @@ class SavingAccountExtractDataTranSacreen
     extends _i13.PageRouteInfo<SavingAccountExtractDataTranSacreenArgs> {
   SavingAccountExtractDataTranSacreen({
     _i14.Key? key,
-    required _i21.SavingAccountExtracBloc bloc,
+    required _i20.SavingAccountExtracBloc bloc,
     required _i19.SessionInfoBloc sessionBloc,
     List<_i13.PageRouteInfo>? children,
   }) : super(
@@ -456,7 +454,7 @@ class SavingAccountExtractDataTranSacreenArgs {
 
   final _i14.Key? key;
 
-  final _i21.SavingAccountExtracBloc bloc;
+  final _i20.SavingAccountExtracBloc bloc;
 
   final _i19.SessionInfoBloc sessionBloc;
 
@@ -472,7 +470,7 @@ class SavingAccountTransMobileEndRoute
     extends _i13.PageRouteInfo<SavingAccountTransMobileEndRouteArgs> {
   SavingAccountTransMobileEndRoute({
     _i14.Key? key,
-    required _i22.SavingsAccountTransferMobileResponseEntity response,
+    required _i21.SavingsAccountTransferMobileResponseEntity response,
     List<_i13.PageRouteInfo>? children,
   }) : super(
           SavingAccountTransMobileEndRoute.name,
@@ -505,7 +503,7 @@ class SavingAccountTransMobileEndRouteArgs {
 
   final _i14.Key? key;
 
-  final _i22.SavingsAccountTransferMobileResponseEntity response;
+  final _i21.SavingsAccountTransferMobileResponseEntity response;
 
   @override
   String toString() {
@@ -608,7 +606,7 @@ class TransferFeesTwoRouteArgs {
 class TransferRoute extends _i13.PageRouteInfo<TransferRouteArgs> {
   TransferRoute({
     _i14.Key? key,
-    required _i23.SavingAccountDataBloc bloc,
+    required _i22.SavingAccountDataBloc bloc,
     required _i19.SessionInfoBloc sessionBloc,
     required _i12.TransferType transferType,
     List<_i13.PageRouteInfo>? children,
@@ -649,7 +647,7 @@ class TransferRouteArgs {
 
   final _i14.Key? key;
 
-  final _i23.SavingAccountDataBloc bloc;
+  final _i22.SavingAccountDataBloc bloc;
 
   final _i19.SessionInfoBloc sessionBloc;
 

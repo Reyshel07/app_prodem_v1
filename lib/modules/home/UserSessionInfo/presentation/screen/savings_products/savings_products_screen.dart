@@ -210,60 +210,35 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                             title: 'Solicitud de Giro Relampago',
                           ),
                           SizedBox(height: smallSpacing * 1),
-                          BlocListener<
-                            PrExpressSolicitationWebBloc,
-                            PrExpressSolicitationWebState
-                          >(
-                            listener: (context, state) {
-                              if (state is PrExpressSolicitationWebSuccess) {
-                                InjectorContainer.getIt<AppRouter>().push(
-                                  PrExpressSolicitationWebRoute(
-                                    data: state
-                                        .getProdemExpressSolicitationWebResponseEntity
-                                        .data,
-                                  ),
+                          BlocConsumer<SessionInfoBloc, SessionInfoState>(
+                            listener: (context, state) {},
+                            builder: (context, state) {
+                              if (state is SessionInfoSuccess) {
+                                final listAccounts = state
+                                    .userInfoResponseEnttity
+                                    .listCodeSavingsAccount;
+                                // listAccounts[0].operationCode
+                                final list = listAccounts
+                                    .map((account) => account.operationCode)
+                                    .toList();
+                                return Gesture(
+                                  onTap: () {
+                                    InjectorContainer.getIt<AppRouter>().push(
+                                      PrExpressSolicitationWebRoute(
+                                        listCodeSavingsAccount: list,
+                                      ),
+                                    );
+                                  },
+                                  topPadding: topPadding,
+                                  letterSize: letterSize,
+                                  small: smallSpacing,
+                                  icon: Icons.abc_outlined,
+                                  title:
+                                      'Detalles de solicitudes de Giro Relampago',
                                 );
                               }
-                              if (state is PrExpressSolicitationWebError) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Error: ${state.message}'),
-                                  ),
-                                );
-                              }
+                              return CircularProgressIndicator();
                             },
-                            child: BlocConsumer<SessionInfoBloc, SessionInfoState>(
-                              listener: (context, state) {},
-                              builder: (context, state) {
-                                if (state is SessionInfoSuccess) {
-                                  final listAccounts = state
-                                      .userInfoResponseEnttity
-                                      .listCodeSavingsAccount;
-                                  final list = listAccounts
-                                      .map((account) => account.operationCode)
-                                      .toList();
-
-                                  return Gesture(
-                                    onTap: () {
-                                      context
-                                          .read<PrExpressSolicitationWebBloc>()
-                                          .add(
-                                            PrExpressSoliWebEvent(
-                                              colCodeSavingsAccounts: list,
-                                            ),
-                                          );
-                                    },
-                                    topPadding: topPadding,
-                                    letterSize: letterSize,
-                                    small: smallSpacing,
-                                    icon: Icons.abc_outlined,
-                                    title:
-                                        'Detalles de solicitudes de Giro Relampago',
-                                  );
-                                }
-                                return const CircularProgressIndicator();
-                              },
-                            ),
                           ),
 
                           SizedBox(height: smallSpacing * 1),
