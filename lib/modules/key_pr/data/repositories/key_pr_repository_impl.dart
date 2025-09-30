@@ -12,14 +12,16 @@ class KeyPrRepositoryImpl extends KeyPrRepository {
     String idWebOperation,
     String idWebPersonClient,
     String? vToken,
-    String location
+    String location,
+    String ip,String imei
   ) async {
     return await keyPrDatasource.createPrKey(
       idUser,
       idWebOperation,
       idWebPersonClient,
       vToken,
-      location
+      location,
+      ip, imei
     );
   }
 

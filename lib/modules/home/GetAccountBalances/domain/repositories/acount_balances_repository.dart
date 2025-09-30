@@ -6,6 +6,6 @@ abstract class AccountBalancesRespositoriy {
     String idPErson,
     String idUsert,
     String? vToken,
-    String location,
+    String location,String  ip,String imei
   );
 }

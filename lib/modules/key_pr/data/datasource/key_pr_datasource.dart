@@ -12,7 +12,8 @@ class KeyPrDatasource {
     String idWebOperation,
     String idWebPersonClient,
     String? vToken,
-    String location
+    String location, 
+    String ip,String imei
   ) async {
     final response = await _apiClient.post(
       'ProdemKey/CreateProdemKey',
@@ -21,8 +22,8 @@ class KeyPrDatasource {
         "idUser": idUser, //"350880",
         "IdWebOperation": idWebOperation, // "2",
         "Channel": "52238",
-        "DeviceIp": "192.168.162.12",
-        "DeviceImei": "bd818720bb7f1ec1",
+        "DeviceIp": ip,
+        "DeviceImei": imei,
         "DeviceLocation": location,
         "IdWebPersonClient": idWebPersonClient, //"1129150143954615"
       },

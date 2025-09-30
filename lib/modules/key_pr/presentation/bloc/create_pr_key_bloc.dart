@@ -1,5 +1,7 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
+import 'package:app_prodem_v1/utils/device_info_helper.dart';
 import 'package:app_prodem_v1/utils/geolocation_helper.dart';
+import 'package:app_prodem_v1/utils/ip_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,16 +22,18 @@ class CreatePrKeyBloc extends Bloc<CreatePrKeyEvent, CreatePrKeyState> {
   ) async {
     emit(CreatePrKeyLoading());
     try {
-      String idUser = '350880';
+      String idUser =SecureHive.readIdUser();// '350880';
       String idWebOperation = '2';
-      String idWebPersonClient = '1129150143954615';
+      String idWebPersonClient =SecureHive.readIdWebPerson();//1129150143954615';
       final location=await GeolocationHelper.getLocationJson();
+      final ip=await IpHelper.getDeviceIp();
       final token = SecureHive.readToken();
+      String imei=await DeviceInfoHelper.getDeviceIdentifier();
       final response = await keyPrRepository.createPrKey(
         idUser,
         idWebOperation,
         idWebPersonClient,
-        token,location
+        token,location,ip,imei
       );
       emit(CreatePrKeySuccess(response));
     } on BaseApiException catch (error) {

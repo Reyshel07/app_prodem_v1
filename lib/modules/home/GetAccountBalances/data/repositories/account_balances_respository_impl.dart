@@ -13,13 +13,14 @@ class AccountBalancesRespositoryImpl extends AccountBalancesRespositoriy {
     String idUsert,
     String? vToken,
     String location,
+    String  ip,String imei
   ) async {
     return await accountBalancesDatasource.accountBalances(
       codeSavingsAccount,
       idPErson,
       idUsert,
       vToken,
-      location
+      location,ip, imei
     );
   }
 }

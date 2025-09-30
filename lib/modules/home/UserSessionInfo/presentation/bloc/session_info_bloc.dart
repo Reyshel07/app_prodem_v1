@@ -22,8 +22,13 @@ class SessionInfoBloc extends Bloc<SessionInfoEvent, SessionInfoState> {
 
     try {
       final token = SecureHive.readToken();
-      final idWebClient = event.idWebClient ?? '1129150143954615';
+      final idWebClient = event.idWebClient ?? SecureHive.readIdWebPerson(); //'1129150143954615';
       final response = await repository.userSession(idWebClient, token);
+       final idPerson = response.data.idPerson;
+      if(idPerson.isNotEmpty){
+        await SecureHive.writeIdPerson(idPerson);
+      }
+
       emit(SessionInfoSuccess(response.data));
     } on BaseApiException catch (error) {
       switch (error.key) {
