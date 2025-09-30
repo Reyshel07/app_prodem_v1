@@ -12,6 +12,7 @@ class KeyPrDatasource {
     String idWebOperation,
     String idWebPersonClient,
     String? vToken,
+    String location
   ) async {
     final response = await _apiClient.post(
       'ProdemKey/CreateProdemKey',
@@ -22,7 +23,7 @@ class KeyPrDatasource {
         "Channel": "52238",
         "DeviceIp": "192.168.162.12",
         "DeviceImei": "bd818720bb7f1ec1",
-        "DeviceLocation": "context",
+        "DeviceLocation": location,
         "IdWebPersonClient": idWebPersonClient, //"1129150143954615"
       },
       headers: {
@@ -36,11 +37,12 @@ class KeyPrDatasource {
   Future<GetProdemKeyByIdResponseEntity> getPrKeyById(
     String idSmsOperation,
     String? vToken,
+    String location,
   ) async {
     final response = await _apiClient.post(
       'ProdemKey/GetProdemKeyById',
       operationName: 'obtains the final key',
-      data: {"Location": "context", "IdSmsOperation": idSmsOperation},
+      data: {"Location": location, "IdSmsOperation": idSmsOperation},
       headers: {
         'Authorization': 'Bearer $vToken',
         'Content-Type': 'application/json',

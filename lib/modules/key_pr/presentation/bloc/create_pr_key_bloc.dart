@@ -1,4 +1,5 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
+import 'package:app_prodem_v1/utils/geolocation_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,12 +23,13 @@ class CreatePrKeyBloc extends Bloc<CreatePrKeyEvent, CreatePrKeyState> {
       String idUser = '350880';
       String idWebOperation = '2';
       String idWebPersonClient = '1129150143954615';
+      final location=await GeolocationHelper.getLocationJson();
       final token = SecureHive.readToken();
       final response = await keyPrRepository.createPrKey(
         idUser,
         idWebOperation,
         idWebPersonClient,
-        token,
+        token,location
       );
       emit(CreatePrKeySuccess(response));
     } on BaseApiException catch (error) {

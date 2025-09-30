@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class SavingsAccountExtractDataTransactionableResponseEntity {
   final DataSavingAccountExtracEntity data;
   final int state;
@@ -18,21 +20,7 @@ class DataSavingAccountExtracEntity {
   final double accountAvailableBalance;
   final String messageInvoicingProof;
   final List<ColDetailsMovemmentEntity> colDetailsMovemment;
-  final List<dynamic> colMovemmentPendings;
-  final String message;
-  final bool isValid;
-  final int idSavingAccount;
-  final int savingBalance;
-  final bool applyGenerateConfidentialInformationForm;
-  final bool isCloseExecuted;
-  final String reportString;
-  final dynamic codeSavingAccount;
-  final dynamic codeMoney;
-  final bool conditionNumberWithdrawalApply;
-  final String messageConditionNumberWithdrawal;
-  final bool conditionMinimumBalanceApply;
-  final String messageConditionMinimumBalance;
-
+  final List<ColMovemmentPendingstEntity>? colMovemmentPendings;  
   DataSavingAccountExtracEntity({
     required this.codeSavingsAccount,
     required this.moneyCode,
@@ -41,20 +29,7 @@ class DataSavingAccountExtracEntity {
     required this.accountAvailableBalance,
     required this.messageInvoicingProof,
     required this.colDetailsMovemment,
-    required this.colMovemmentPendings,
-    required this.message,
-    required this.isValid,
-    required this.idSavingAccount,
-    required this.savingBalance,
-    required this.applyGenerateConfidentialInformationForm,
-    required this.isCloseExecuted,
-    required this.reportString,
-    required this.codeSavingAccount,
-    required this.codeMoney,
-    required this.conditionNumberWithdrawalApply,
-    required this.messageConditionNumberWithdrawal,
-    required this.conditionMinimumBalanceApply,
-    required this.messageConditionMinimumBalance,
+    required this.colMovemmentPendings  
   });
 }
 
@@ -77,3 +52,24 @@ class ColDetailsMovemmentEntity {
     required this.amountBalance,
   });
 }
+
+   class ColMovemmentPendingstEntity
+   {
+     final  DateTime dateTransaction;
+     final  String descriptionOperation;
+     final  double amountBalance ;
+     final  String officeName ;
+     final  String reference ;
+     ColMovemmentPendingstEntity(
+      {
+        required this.amountBalance,
+        required this.dateTransaction,
+        required this.descriptionOperation,
+        required this.officeName,
+        required  this.reference
+      }
+     );
+   }
+
+
+

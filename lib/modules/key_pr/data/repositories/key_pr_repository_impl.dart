@@ -12,12 +12,14 @@ class KeyPrRepositoryImpl extends KeyPrRepository {
     String idWebOperation,
     String idWebPersonClient,
     String? vToken,
+    String location
   ) async {
     return await keyPrDatasource.createPrKey(
       idUser,
       idWebOperation,
       idWebPersonClient,
       vToken,
+      location
     );
   }
 
@@ -25,7 +27,8 @@ class KeyPrRepositoryImpl extends KeyPrRepository {
   Future<GetProdemKeyByIdResponseEntity> getPrKeyById(
     String idSmsOperation,
     String? vToken,
+    String location
   ) async {
-    return await keyPrDatasource.getPrKeyById(idSmsOperation, vToken);
+    return await keyPrDatasource.getPrKeyById(idSmsOperation, vToken,location);
   }
 }

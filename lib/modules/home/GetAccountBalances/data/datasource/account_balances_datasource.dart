@@ -11,6 +11,7 @@ class AccountBalancesDatasource {
     String idPErson,
     String idUsert,
     String? vToken,
+    String location
   ) async {
     final response = await _apiClient.post(
       'Mobile/GetAccountBalances',
@@ -19,7 +20,7 @@ class AccountBalancesDatasource {
         "IdPerson": idPErson,
         "IdUser": idUsert,
         "IMEI": "c0556d3b362470ac",
-        "location": "",
+        "location": location,
         "IpAddress": "192.168.162.12",
       },
       headers: {

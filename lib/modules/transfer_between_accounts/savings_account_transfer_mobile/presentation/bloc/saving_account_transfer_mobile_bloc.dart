@@ -1,4 +1,5 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
+import 'package:app_prodem_v1/utils/geolocation_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/entity.dart';
@@ -30,7 +31,7 @@ class SavingAccountTransferMobileBloc
       String depositorDI = '';
       String idUser = '350880';
       String imei = '';
-      String location = '';
+      String location = await GeolocationHelper.getLocationJson();
       String ipAddress = '';
       final token = SecureHive.readToken();
       final response = await repository.savingAccountTransMobile(
