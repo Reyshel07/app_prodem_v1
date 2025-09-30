@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class SavingsAccountExtractDataTransactionableResponseEntity {
   final DataSavingAccountExtracEntity data;
   final int state;
@@ -20,7 +18,7 @@ class DataSavingAccountExtracEntity {
   final double accountAvailableBalance;
   final String messageInvoicingProof;
   final List<ColDetailsMovemmentEntity> colDetailsMovemment;
-  final List<ColMovemmentPendingstEntity>? colMovemmentPendings;  
+  final List<ColMovemmentPendingstEntity>? colMovemmentPendings;
   DataSavingAccountExtracEntity({
     required this.codeSavingsAccount,
     required this.moneyCode,
@@ -29,7 +27,7 @@ class DataSavingAccountExtracEntity {
     required this.accountAvailableBalance,
     required this.messageInvoicingProof,
     required this.colDetailsMovemment,
-    required this.colMovemmentPendings  
+    required this.colMovemmentPendings,
   });
 }
 
@@ -53,23 +51,17 @@ class ColDetailsMovemmentEntity {
   });
 }
 
-   class ColMovemmentPendingstEntity
-   {
-     final  DateTime dateTransaction;
-     final  String descriptionOperation;
-     final  double amountBalance ;
-     final  String officeName ;
-     final  String reference ;
-     ColMovemmentPendingstEntity(
-      {
-        required this.amountBalance,
-        required this.dateTransaction,
-        required this.descriptionOperation,
-        required this.officeName,
-        required  this.reference
-      }
-     );
-   }
-
-
-
+class ColMovemmentPendingstEntity {
+  final DateTime dateTransaction;
+  final String descriptionOperation;
+  final double amountBalance;
+  final String officeName;
+  final String reference;
+  ColMovemmentPendingstEntity({
+    required this.amountBalance,
+    required this.dateTransaction,
+    required this.descriptionOperation,
+    required this.officeName,
+    required this.reference,
+  });
+}

@@ -32,7 +32,7 @@ class PrExpressSolicitationWebDatasource {
     final response = await _apiClient.post(
       'Mobile/ProdemExpressAnnulment',
       operationName: 'cancel lightning transfer',
-      data: {id: id},
+      data: {"IdProdemExpressSolicitation": id},
       headers: {
         'Authorization': 'Bearer $vToken',
         'Content-Type': 'application/json',

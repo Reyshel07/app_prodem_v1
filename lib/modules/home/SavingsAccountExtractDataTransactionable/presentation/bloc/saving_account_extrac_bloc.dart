@@ -24,6 +24,7 @@ class SavingAccountExtracBloc
     emit(SavingAccountExtracLoading());
     try {
       final token = SecureHive.readToken();
+
       String idPerson = SecureHive.readIdPerson();// '17000000000003984';
       String idUser =SecureHive.readIdUser();// '350880';
       String location=await GeolocationHelper.getLocationJson();
