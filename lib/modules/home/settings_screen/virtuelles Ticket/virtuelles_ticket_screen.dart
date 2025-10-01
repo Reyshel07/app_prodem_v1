@@ -5,8 +5,6 @@ import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 
 class VirtuellesTicketScreen extends StatelessWidget {
-  static const path = '/VirtuellesTicketScreen';
-  static const name = 'VirtuellesTicketScreen';
   const VirtuellesTicketScreen({super.key});
 
   @override

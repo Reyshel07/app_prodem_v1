@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/data/models/get_account_enabled_to_transfer_model.dart';

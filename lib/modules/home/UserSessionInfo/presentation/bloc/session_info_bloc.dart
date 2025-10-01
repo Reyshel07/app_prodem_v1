@@ -8,7 +8,6 @@ part 'session_info_state.dart';
 
 class SessionInfoBloc extends Bloc<SessionInfoEvent, SessionInfoState> {
   final UserSessionInfoRepository repository;
-
   SessionInfoBloc(this.repository) : super(SessionInfoInitial()) {
     on<SessionInfEvent>(_onLoadSessionInfo);
   }
@@ -21,10 +20,10 @@ class SessionInfoBloc extends Bloc<SessionInfoEvent, SessionInfoState> {
 
     try {
       final token = SecureHive.readToken();
-      final idWebClient = event.idWebClient ?? SecureHive.readIdWebPerson(); //'1129150143954615';
+      final idWebClient = SecureHive.readIdWebPerson(); //'1129150143954615';
       final response = await repository.userSession(idWebClient, token);
-       final idPerson = response.data.idPerson;
-      if(idPerson.isNotEmpty){
+      final idPerson = response.data.idPerson;
+      if (idPerson.isNotEmpty) {
         await SecureHive.writeIdPerson(idPerson);
       }
 

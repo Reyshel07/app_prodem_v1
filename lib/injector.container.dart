@@ -1,10 +1,12 @@
 import 'package:app_prodem_v1/modules/auth/auth.container.dart';
+import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/get.parameters.to.digital.dpf.container.dart';
 import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressData/express.data.container.dart';
 import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
+import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/get.ach.bank.list.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/injector.container.dart';
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/account.balances.container.dart';
-import 'package:app_prodem_v1/modules/home/SavingsAccountExtractDataTransactionable/savings.account.container.dart';
+import 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/savings.account.container.dart';
 import 'package:app_prodem_v1/modules/key_pr/pr.key.container.dart';
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/saving_account_data_container.dart';
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/saving.account.transfer.mobile.container.dart';
@@ -37,5 +39,7 @@ class InjectorContainer {
     inittransferAchFromMobileBanking(getIt);
     initExpressData(getIt);
     initPrExpressSoliWeb(getIt);
+    initGetAccountEnableToTransfer(getIt);
+    initGetParametersToDigitalDpf(getIt);
   }
 }

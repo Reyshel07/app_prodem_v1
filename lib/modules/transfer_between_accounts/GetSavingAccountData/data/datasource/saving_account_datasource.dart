@@ -30,4 +30,20 @@ class SavingAccountDatasource {
     );
     return GetSavingAccountDataResponseModel.fromJson(response);
   }
+
+  Future<GetAccountByPhoneNumberResponseEntity> getAccountByPhoneNum(
+    String? vToken,
+    String phoneNumber,
+  ) async {
+    final response = await _apiClient.post(
+      'Mobile/GetAccountByPhoneNumber',
+      operationName: 'get an account by cell phone number',
+      data: {"PhoneNumber": phoneNumber},
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+    );
+    return GetAccountByPhoneNumberResponseModel.fromJson(response);
+  }
 }

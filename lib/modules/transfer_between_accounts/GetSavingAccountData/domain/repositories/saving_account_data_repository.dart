@@ -9,4 +9,8 @@ abstract class SavingAccountDataRepository {
     String idPerson,
     String? vToken,
   );
+  Future<GetAccountByPhoneNumberResponseEntity> getAAccountByPhoneNum(
+    String? vToken,
+    String phoneNumber,
+  );
 }

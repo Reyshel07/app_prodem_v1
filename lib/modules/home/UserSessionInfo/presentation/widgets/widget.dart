@@ -4,7 +4,6 @@ import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
-
 import '../../domain/entities/entity.dart';
 
 class AppBarHome extends StatelessWidget {
@@ -66,14 +65,14 @@ class ListCards extends StatelessWidget {
   });
 
   final Size screenSize;
-  final List<CuentaConTipo<ListCodeResponseEntity>> todasList;
+  final List<CuentaConTipo<ListCodeCreditLineElementEntity>> todasList;
   final double smallSpacing;
   final double topPadding;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenSize.height * 0.18,
+      height: screenSize.height * 0.17,
       width: screenSize.width,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -83,24 +82,33 @@ class ListCards extends StatelessWidget {
           final tipo = account.tipo;
           final data1 = account.data;
           String nombre;
+          String estado;
           String imagen;
           switch (tipo) {
             case "cuenta":
               nombre = "CUENTA DE AHORRO:";
+              estado = "ESTADO";
               imagen = "assets/img/fondoverde1.png";
+              break;
+            case "dpf":
+              nombre = "DPF:";
+              estado = "VENCIMIENTO";
+              imagen = "assets/img/fondoazul1.png";
               break;
             case "credito":
               nombre = "CREDITO:";
+              estado = "ESTADO";
               imagen = "assets/img/fondonegro1.png";
               break;
             case "targeta":
             default:
               nombre = "TARGETA DE CREDITO:";
+              estado = "ESTADO";
               imagen = "assets/img/fondonegro1.png";
               break;
           }
           return SizedBox(
-            height: screenSize.height * 0.18,
+            height: screenSize.height * 0.17,
             width: screenSize.width * 0.95,
             child: Card(
               margin: EdgeInsetsDirectional.all(8),
@@ -110,63 +118,63 @@ class ListCards extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.asset(imagen, fit: BoxFit.cover),
+                    Image.asset(imagen, fit: BoxFit.fill),
                     Padding(
                       padding: EdgeInsets.all(topPadding * 0.05),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'SALDO',
+                                    textAlign: TextAlign.start,
+                                    style: AppTextStyles.mainStyleWhite14(
+                                      context,
+                                    ),
+                                  ),
+                                  Text(
+                                    data1.balance,
+                                    style: AppTextStyles.mainStyleWhite25Bold(
+                                      context,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Icon(
+                                    Icons.sticky_note_2_outlined,
+                                    color: Theme.of(context).colorScheme.white,
+                                  ),
+                                  SizedBox(height: smallSpacing * 0.8),
+                                  Icon(
+                                    Icons.remove_red_eye,
+                                    color: Theme.of(context).colorScheme.white,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'SALDO',
-                                textAlign: TextAlign.start,
-                                style: AppTextStyles.mainStyleWhite14Bold(
-                                  context,
-                                ),
-                              ),
-                              Text(
-                                '${data1.availableAmount} ${data1.codMoney}',
-                                style: AppTextStyles.mainStyleWhite25Bold(
-                                  context,
-                                ),
-                              ),
-                              Text(
-                                'ESTADO\n'
+                                '$estado\n'
                                 '$nombre',
-                                style: AppTextStyles.mainStyleWhite14Bold(
-                                  context,
-                                ),
+                                style: AppTextStyles.mainStyleWhite14(context),
                                 textAlign: TextAlign.start,
                               ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
                               Text(
-                                '\n'
-                                '\n\n'
-                                'ACTIVO\n'
+                                '${data1.stateOperation}\n'
                                 '${data1.operationCode}',
-                                style: AppTextStyles.mainStyleWhite14Bold(
-                                  context,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.sticky_note_2_outlined,
-                                color: Theme.of(context).colorScheme.white,
-                              ),
-                              SizedBox(height: smallSpacing * 0.8),
-                              Icon(
-                                Icons.remove_red_eye,
-                                color: Theme.of(context).colorScheme.white,
+                                style: AppTextStyles.mainStyleWhite14(context),
+                                textAlign: TextAlign.start,
                               ),
                             ],
                           ),

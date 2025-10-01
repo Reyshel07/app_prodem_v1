@@ -1,1 +1,1 @@
-export 'package:app_prodem_v1/modules/home/SavingsAccountExtractDataTransactionable/data/models/saving_account_extrac_model.dart';
+export 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/data/models/saving_account_extrac_model.dart';

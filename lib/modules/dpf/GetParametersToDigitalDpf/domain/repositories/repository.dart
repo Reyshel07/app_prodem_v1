@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/domain/repositories/get_parameters_to_digital_dpf_repository.dart';

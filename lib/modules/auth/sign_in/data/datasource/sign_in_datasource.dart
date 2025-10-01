@@ -9,9 +9,10 @@ class SignInDatasource {
   Future<SignInResponseEntity> signIn(
     String user,
     String password,
-    int channel,    
+    int channel,
     List<AditionalItemEntity> aditionalItems,
-    String ip,  String imei
+    String ip,
+    String imei,
   ) async {
     final response = await _apiClient.post(
       'auth/token',
@@ -21,7 +22,7 @@ class SignInDatasource {
         "channel": channel,
         "aditionalItems": [
           {"Key": "IP", "Value": ip},
-          {"Key": "SmartphoneIMEI", "Value": imei},
+          {"Key": "SmartphoneIMEI", "Value": "ebb6d4e2c9e1485e"},
         ],
       },
       operationName: 'Login',
