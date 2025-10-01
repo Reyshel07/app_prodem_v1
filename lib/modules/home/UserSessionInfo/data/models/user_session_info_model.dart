@@ -1,4 +1,8 @@
 import '../../domain/entities/entity.dart';
+import 'dart:convert';
+
+UserSessionInfoResponseModel userSessionInfoResponseFromJson(String str) =>
+    UserSessionInfoResponseModel.fromJson(json.decode(str));
 
 class UserSessionInfoResponseModel extends UserSessionInfoResponseEntity {
   UserSessionInfoResponseModel({
@@ -24,6 +28,7 @@ class UserInfoResponseModel extends UserInfoResponseEnttity {
     required super.listCodeSavingsAccount,
     required super.listCodeLoanFlowCredit,
     required super.listCodeCreditLine,
+    required super.listFixedTermDeposit,
     required super.listElectronicWallet,
     required super.currencyExchangeBuy,
     required super.currencyExchangeSell,
@@ -49,6 +54,7 @@ class UserInfoResponseModel extends UserInfoResponseEnttity {
     required super.listDobBank,
     required super.listOriginFund,
     required super.listCommand,
+    required super.listServiceAvailable,
   });
 
   factory UserInfoResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -57,14 +63,25 @@ class UserInfoResponseModel extends UserInfoResponseEnttity {
         userName: json["userName"],
         idPerson: json["idPerson"],
         idWebClient: json["idWebClient"],
-        listCodeSavingsAccount: List<ListCodeModel>.from(
-          json["listCodeSavingsAccount"].map((x) => ListCodeModel.fromJson(x)),
+        listCodeSavingsAccount: List<ListCodeCreditLineElementModel>.from(
+          json["listCodeSavingsAccount"].map(
+            (x) => ListCodeCreditLineElementModel.fromJson(x),
+          ),
         ),
-        listCodeLoanFlowCredit: List<ListCodeModel>.from(
-          json["listCodeLoanFlowCredit"].map((x) => ListCodeModel.fromJson(x)),
+        listCodeLoanFlowCredit: List<ListCodeCreditLineElementModel>.from(
+          json["listCodeLoanFlowCredit"].map(
+            (x) => ListCodeCreditLineElementModel.fromJson(x),
+          ),
         ),
-        listCodeCreditLine: List<ListCodeModel>.from(
-          json["listCodeCreditLine"].map((x) => ListCodeModel.fromJson(x)),
+        listCodeCreditLine: List<ListCodeCreditLineElementModel>.from(
+          json["listCodeCreditLine"].map(
+            (x) => ListCodeCreditLineElementModel.fromJson(x),
+          ),
+        ),
+        listFixedTermDeposit: List<ListCodeCreditLineElementModel>.from(
+          json["listFixedTermDeposit"].map(
+            (x) => ListCodeCreditLineElementModel.fromJson(x),
+          ),
         ),
         listElectronicWallet: List<dynamic>.from(
           json["listElectronicWallet"].map((x) => x),
@@ -87,21 +104,53 @@ class UserInfoResponseModel extends UserInfoResponseEnttity {
         isEtv: json["isETV"],
         hasContractPending: json["hasContractPending"],
         contractMessage: json["contractMessage"],
-        listAds: List<ListAdResponseModel>.from(
-          json["listAds"].map((x) => ListAdResponseModel.fromJson(x)),
+        listAds: List<ListAdModel>.from(
+          json["listAds"].map((x) => ListAdModel.fromJson(x)),
         ),
-        listLipBank: List<dynamic>.from(json["listLIPBank"].map((x) => x)),
-        listAchBank: List<dynamic>.from(json["listACHBank"].map((x) => x)),
-        listDobBank: List<dynamic>.from(json["listDOBBank"].map((x) => x)),
-        listOriginFund: List<dynamic>.from(
-          json["listOriginFund"].map((x) => x),
+        listLipBank: List<ListAchBankElementModel>.from(
+          json["listLIPBank"].map((x) => ListAchBankElementModel.fromJson(x)),
+        ),
+        listAchBank: List<ListAchBankElementModel>.from(
+          json["listACHBank"].map((x) => ListAchBankElementModel.fromJson(x)),
+        ),
+        listDobBank: List<ListAchBankElementModel>.from(
+          json["listDOBBank"].map((x) => ListAchBankElementModel.fromJson(x)),
+        ),
+        listOriginFund: List<ListAchBankElementModel>.from(
+          json["listOriginFund"].map(
+            (x) => ListAchBankElementModel.fromJson(x),
+          ),
         ),
         listCommand: List<dynamic>.from(json["listCommand"].map((x) => x)),
+        listServiceAvailable: List<int>.from(
+          json["listServiceAvailable"].map((x) => x),
+        ),
       );
 }
 
-class ListAdResponseModel extends ListAdResponseEntity {
-  ListAdResponseModel({
+class ListAchBankElementModel extends ListAchBankElementEntity {
+  ListAchBankElementModel({
+    required super.idClasificador,
+    required super.nombre,
+    required super.codigo,
+  });
+
+  factory ListAchBankElementModel.fromJson(Map<String, dynamic> json) =>
+      ListAchBankElementModel(
+        idClasificador: json["idClasificador"],
+        nombre: json["nombre"],
+        codigo: json["codigo"],
+      );
+
+  Map<String, dynamic> toJson() => {
+    "idClasificador": idClasificador,
+    "nombre": nombre,
+    "codigo": codigo,
+  };
+}
+
+class ListAdModel extends ListAdEntity {
+  ListAdModel({
     required super.imageUrl,
     required super.typeToLink,
     required super.linkToGo,
@@ -109,18 +158,17 @@ class ListAdResponseModel extends ListAdResponseEntity {
     required super.orderSequence,
   });
 
-  factory ListAdResponseModel.fromJson(Map<String, dynamic> json) =>
-      ListAdResponseModel(
-        imageUrl: json["imageUrl"],
-        typeToLink: json["typeToLink"],
-        linkToGo: json["linkToGo"],
-        withAnimation: json["withAnimation"],
-        orderSequence: json["orderSequence"],
-      );
+  factory ListAdModel.fromJson(Map<String, dynamic> json) => ListAdModel(
+    imageUrl: json["imageUrl"],
+    typeToLink: json["typeToLink"],
+    linkToGo: json["linkToGo"],
+    withAnimation: json["withAnimation"],
+    orderSequence: json["orderSequence"],
+  );
 }
 
-class ListCodeModel extends ListCodeResponseEntity {
-  ListCodeModel({
+class ListCodeCreditLineElementModel extends ListCodeCreditLineElementEntity {
+  ListCodeCreditLineElementModel({
     required super.idMoney,
     required super.codMoney,
     required super.idOperationEntity,
@@ -128,15 +176,20 @@ class ListCodeModel extends ListCodeResponseEntity {
     required super.availableAmount,
     required super.idOffice,
     required super.specialBehavior,
+    required super.stateOperation,
+    required super.balance,
   });
 
-  factory ListCodeModel.fromJson(Map<String, dynamic> json) => ListCodeModel(
-    idMoney: json["idMoney"],
-    codMoney: json["codMoney"],
-    idOperationEntity: json["idOperationEntity"]?.toDouble(),
-    operationCode: json["operationCode"],
-    availableAmount: json["availableAmount"]?.toDouble(),
-    idOffice: json["idOffice"],
-    specialBehavior: json["specialBehavior"],
-  );
+  factory ListCodeCreditLineElementModel.fromJson(Map<String, dynamic> json) =>
+      ListCodeCreditLineElementModel(
+        idMoney: json["idMoney"],
+        codMoney: json["codMoney"],
+        idOperationEntity: json["idOperationEntity"].toDouble(),
+        operationCode: json["operationCode"],
+        availableAmount: json["availableAmount"].toDouble(),
+        idOffice: json["idOffice"],
+        specialBehavior: json["specialBehavior"],
+        stateOperation: json["stateOperation"],
+        balance: json["balance"],
+      );
 }

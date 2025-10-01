@@ -144,11 +144,77 @@ class _TransferScreenState extends State<TransferScreen> {
                         smallSpacing: smallSpacing,
                       )
                     else
-                      TextFromFiel02(
-                        screenSize: screenSize,
-                        smallSpacing: smallSpacing,
-                        userController: destinationAccountController,
-                        lbText: 'Cuenta AHORRO DESTINO',
+                      SizedBox(
+                        child: Card(
+                          elevation: smallSpacing * 0.5,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Theme.of(context).colorScheme.green,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                radiusCircular(11),
+                              ),
+                            ),
+                            child: TextField(
+                              keyboardType: TextInputType.text,
+                              controller: destinationAccountController,
+                              textAlign: TextAlign.start,
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.normal,
+                                fontSize: 14,
+                              ),
+                              decoration: InputDecoration(
+                                disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                ),
+                                hintText: 'Cuenta AHORRO DESTINO',
+                                hintStyle: AppTextStyles.mainStyleGreen14(
+                                  context,
+                                ),
+                                filled: false,
+                                isDense: false,
+                                contentPadding: EdgeInsets.fromLTRB(
+                                  16,
+                                  8,
+                                  16,
+                                  8,
+                                ),
+                                icon: IconButton(
+                                  alignment: AlignmentGeometry.topLeft,
+                                  onPressed: () {
+                                    context.read<SavingAccountDataBloc>().add(
+                                      GetAccountByPhoneNum(
+                                        phoneNumber: '71537314',
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(Icons.contact_phone_outlined),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     // OBSERVACIÓN
                     TextFromFiel02(

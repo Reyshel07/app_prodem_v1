@@ -11,7 +11,7 @@ import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../transfer_between_accounts/GetSavingAccountData/presentation/bloc/bloc.dart';
-import '../../../../SavingsAccountExtractDataTransactionable/presentation/bloc/bloc.dart';
+import '../../../../savingsAccountExtractDataTransactionable/presentation/bloc/bloc.dart';
 
 class SavingsProductsScreen extends StatefulWidget {
   const SavingsProductsScreen({super.key});

@@ -15,3 +15,8 @@ final class SavingAccountDataSuccess extends SavingAccountDataState {
   DataSavingAccountEntity dataSavingAccountEntity;
   SavingAccountDataSuccess(this.dataSavingAccountEntity);
 }
+
+final class GetAccountByPhoneNumSuccess extends SavingAccountDataState {
+  GetAccountByPhoneNumberResponseEntity getAccountByPhoneNumberResponseEntity;
+  GetAccountByPhoneNumSuccess(this.getAccountByPhoneNumberResponseEntity);
+}

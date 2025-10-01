@@ -5,6 +5,10 @@ GetSavingAccountDataResponseModel getSavingAccountDataResponseFromJson(
   String str,
 ) => GetSavingAccountDataResponseModel.fromJson(json.decode(str));
 
+GetAccountByPhoneNumberResponseModel getAccountByPhoneNumberResponseFromJson(
+  String str,
+) => GetAccountByPhoneNumberResponseModel.fromJson(json.decode(str));
+
 class GetSavingAccountDataResponseModel
     extends GetSavingAccountDataResponseEntity {
   GetSavingAccountDataResponseModel({
@@ -60,5 +64,39 @@ class DataSavingAccountModel extends DataSavingAccountEntity {
             json["messageConditionNumberWithdrawal"],
         conditionMinimumBalanceApply: json["conditionMinimumBalanceApply"],
         messageConditionMinimumBalance: json["messageConditionMinimumBalance"],
+      );
+}
+
+class GetAccountByPhoneNumberResponseModel
+    extends GetAccountByPhoneNumberResponseEntity {
+  GetAccountByPhoneNumberResponseModel({
+    required super.data,
+    required super.state,
+    required super.message,
+  });
+
+  factory GetAccountByPhoneNumberResponseModel.fromJson(
+    Map<String, dynamic> json,
+  ) => GetAccountByPhoneNumberResponseModel(
+    data: GetAccountByPhoneNumModel.fromJson(json["data"]),
+    state: json["state"],
+    message: json["message"],
+  );
+}
+
+class GetAccountByPhoneNumModel extends GetAccountByPhoneNumberEntity {
+  GetAccountByPhoneNumModel({
+    required super.codeObfuscate,
+    required super.codeSavingsAccount,
+    required super.holder,
+    required super.identityCardNumber,
+  });
+
+  factory GetAccountByPhoneNumModel.fromJson(Map<String, dynamic> json) =>
+      GetAccountByPhoneNumModel(
+        codeObfuscate: json["codeObfuscate"],
+        codeSavingsAccount: json["codeSavingsAccount"],
+        holder: json["holder"],
+        identityCardNumber: json["identityCardNumber"],
       );
 }

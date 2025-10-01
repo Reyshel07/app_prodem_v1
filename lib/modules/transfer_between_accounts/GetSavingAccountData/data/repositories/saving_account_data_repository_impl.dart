@@ -24,4 +24,12 @@ class SavingAccountDataRepositoryImpl extends SavingAccountDataRepository {
       vToken,
     );
   }
+
+  @override
+  Future<GetAccountByPhoneNumberResponseEntity> getAAccountByPhoneNum(
+    String? vToken,
+    String phoneNumber,
+  ) async {
+    return await datasource.getAccountByPhoneNum(vToken, phoneNumber);
+  }
 }

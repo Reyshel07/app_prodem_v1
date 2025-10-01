@@ -45,3 +45,29 @@ class DataSavingAccountEntity {
     required this.messageConditionMinimumBalance,
   });
 }
+
+class GetAccountByPhoneNumberResponseEntity {
+  final GetAccountByPhoneNumberEntity data;
+  final int state;
+  final String message;
+
+  GetAccountByPhoneNumberResponseEntity({
+    required this.data,
+    required this.state,
+    required this.message,
+  });
+}
+
+class GetAccountByPhoneNumberEntity {
+  final String codeObfuscate;
+  final String codeSavingsAccount;
+  final String holder;
+  final String identityCardNumber;
+
+  GetAccountByPhoneNumberEntity({
+    required this.codeObfuscate,
+    required this.codeSavingsAccount,
+    required this.holder,
+    required this.identityCardNumber,
+  });
+}

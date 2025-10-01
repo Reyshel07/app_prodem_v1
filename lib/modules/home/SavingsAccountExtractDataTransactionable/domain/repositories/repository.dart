@@ -1,1 +1,1 @@
-export 'package:app_prodem_v1/modules/home/SavingsAccountExtractDataTransactionable/domain/repositories/saving_account_extrac_respository.dart';
+export 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/domain/repositories/saving_account_extrac_respository.dart';

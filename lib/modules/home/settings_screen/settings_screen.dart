@@ -1,5 +1,7 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension_theme.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/container02_widget.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
@@ -110,7 +112,14 @@ class SettingsScreen extends StatelessWidget {
           ListTitle1(
             letterSize: letterSize,
             smallSpacing: smallSpacing,
-            onTap1: () {},
+            onTap1: () {
+              /*context.read<GetAccountEnableToTransferBloc>().add(
+                GEtAccountEnableToTransEvent(),
+              );*/
+              InjectorContainer.getIt<AppRouter>().push(
+                ReceiveTransfersByCellPhoneNumberRoute(),
+              );
+            },
             lblTextField: 'Configuracion',
             icon: Icons.settings,
           ),

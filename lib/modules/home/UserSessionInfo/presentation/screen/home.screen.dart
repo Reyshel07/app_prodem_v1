@@ -77,9 +77,13 @@ class _HomeScreenState extends State<HomeScreen> {
               final listCodeCreditLine = userSessionInfo.listCodeCreditLine;
               final listCodeLoanFlowCredit =
                   userSessionInfo.listCodeLoanFlowCredit;
+              final listFixedTermDeposit = userSessionInfo.listFixedTermDeposit;
               final todasList = [
                 ...listCodeSavingsAccount.map(
                   (c) => CuentaConTipo(tipo: "cuenta", data: c),
+                ),
+                ...listFixedTermDeposit.map(
+                  (c) => CuentaConTipo(tipo: "dpf", data: c),
                 ),
                 ...listCodeLoanFlowCredit.map(
                   (c) => CuentaConTipo(tipo: "credito", data: c),

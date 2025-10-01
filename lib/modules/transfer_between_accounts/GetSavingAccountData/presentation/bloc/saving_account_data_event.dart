@@ -14,3 +14,8 @@ final class SavingAccountDEvent extends SavingAccountDataEvent {
     required this.idMoneyOperation,
   });
 }
+
+final class GetAccountByPhoneNum extends SavingAccountDataEvent {
+  final String phoneNumber;
+  GetAccountByPhoneNum({required this.phoneNumber});
+}

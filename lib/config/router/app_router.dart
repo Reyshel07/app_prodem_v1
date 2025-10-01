@@ -21,5 +21,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: GetAchDataRoute.page),
     AutoRoute(page: ExpressDataRoute.page),
     AutoRoute(page: PrExpressSolicitationWebRoute.page),
+    AutoRoute(page: ReceiveTransfersByCellPhoneNumberRoute.page),
+    AutoRoute(page: ParametersToDigitalDpfRoute.page),
   ];
 }
