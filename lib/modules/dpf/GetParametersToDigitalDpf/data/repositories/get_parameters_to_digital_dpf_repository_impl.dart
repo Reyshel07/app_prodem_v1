@@ -20,4 +20,21 @@ class GetParametersToDigitalDpfRepositoryImpl
       vToken,
     );
   }
+
+  @override
+  Future<GetOfficeListByIdGeographicLocationEntity> getOfficeListByIdGeo(
+    String operationName,
+    String? vToken,
+  ) async {
+    return await datasource.getOfficeListByIdGeo(operationName, vToken);
+  }
+
+  @override
+  Future<GetDateEstimateResponseEntity> getDateEst(
+    String term,
+    String idOffice,
+    String? vToken,
+  ) async {
+    return await datasource.getDateEst(term, idOffice, vToken);
+  }
 }

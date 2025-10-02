@@ -13,7 +13,7 @@ class Butoon1 extends StatelessWidget {
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
         backgroundColor: Theme.of(context).colorScheme.green,
-        padding: EdgeInsets.symmetric(vertical: 14),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       child: Text(

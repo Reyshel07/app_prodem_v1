@@ -11,37 +11,40 @@ part 'get_parameters_to_digital_dpf_state.dart';
 class GetParametersToDigitalDpfBloc
     extends
         Bloc<GetParametersToDigitalDpfEvent, GetParametersToDigitalDpfState> {
-  GetParametersToDigitalDpfRepository repository;
+  final GetParametersToDigitalDpfRepository repository;
+
   GetParametersToDigitalDpfBloc(this.repository)
     : super(GetParametersToDigitalDpfInitial()) {
-    on<GetParametersToDigDpfEvent>(parametersToDigitalDpfBloc);
+    on<GetParametersToDigDpfEvent>(_onGetParameters);
   }
 
-  Future<void> parametersToDigitalDpfBloc(
+  /// Handler para cargar parámetros iniciales del DPF
+  Future<void> _onGetParameters(
     GetParametersToDigDpfEvent event,
     Emitter<GetParametersToDigitalDpfState> emit,
   ) async {
     emit(GetParametersToDigitalDpfLoading());
     try {
-      String idFather = '3000001';
-      bool isEmployee = false;
+      const String idFather = '3000001';
+
       final token = SecureHive.readToken();
+
       final response = await repository.getParametersToDigitalDpf(
         idFather,
-        isEmployee,
+        event.isEmployee,
         token,
       );
+
       emit(GetParametersToDigitalDpfSuccess(response));
     } on BaseApiException catch (error) {
-      switch (error.message) {
-        case "api_logic_error":
-          emit(GetParametersToDigitalDpfError(error.message));
-        case "dio_unexpected":
-          emit(
-            GetParametersToDigitalDpfError(
-              "Ocurrio un error, no tiene internet",
-            ),
-          );
+      if (error.message == "api_logic_error") {
+        emit(GetParametersToDigitalDpfError(error.message));
+      } else if (error.message == "dio_unexpected") {
+        emit(
+          GetParametersToDigitalDpfError("Ocurrió un error, no tiene internet"),
+        );
+      } else {
+        emit(GetParametersToDigitalDpfError(error.message));
       }
     }
   }

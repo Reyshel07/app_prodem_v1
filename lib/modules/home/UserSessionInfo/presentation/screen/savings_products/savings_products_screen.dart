@@ -2,6 +2,7 @@ import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation/bloc/get_parameters_to_digital_dpf_bloc.dart';
 import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressData/presentation/bloc/express_data_bloc.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/presentation/bloc/get_ach_banck_bloc.dart';
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/account_balance_bloc.dart';
@@ -44,6 +45,10 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
         ),
         BlocProvider(
           create: (context) => InjectorContainer.getIt<ExpressDataBloc>(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<GetParametersToDigitalDpfBloc>(),
         ),
       ],
       child: Scaffold(
@@ -290,7 +295,7 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                       icon: Icons.broadcast_on_home,
                       column: Column(
                         children: [
-                          Gesture(
+                          /*Gesture(
                             onTap: () {},
                             topPadding: topPadding,
                             letterSize: letterSize,
@@ -298,14 +303,40 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                             icon: Icons.abc_outlined,
                             title: 'Solicitud DPF Empleado Prodem',
                           ),
-                          SizedBox(height: smallSpacing * 1),
-                          Gesture(
-                            onTap: () {},
-                            topPadding: topPadding,
-                            letterSize: letterSize,
-                            small: smallSpacing,
-                            icon: Icons.abc_outlined,
-                            title: 'Solicitud DPF en linea',
+                          SizedBox(height: smallSpacing * 1),*/
+                          BlocConsumer<
+                            GetParametersToDigitalDpfBloc,
+                            GetParametersToDigitalDpfState
+                          >(
+                            listener: (context, state) {
+                              if (state is GetParametersToDigitalDpfSuccess) {
+                                InjectorContainer.getIt<AppRouter>().push(
+                                  ParametersToDigitalDpfRoute(
+                                    bloc: newContext
+                                        .read<GetParametersToDigitalDpfBloc>(),
+                                    sessioninfo: sessionBloc,
+                                  ),
+                                );
+                              }
+                            },
+                            builder: (context, state) {
+                              return Gesture(
+                                onTap: () {
+                                  context
+                                      .read<GetParametersToDigitalDpfBloc>()
+                                      .add(
+                                        GetParametersToDigDpfEvent(
+                                          isEmployee: false,
+                                        ),
+                                      );
+                                },
+                                topPadding: topPadding,
+                                letterSize: letterSize,
+                                small: smallSpacing,
+                                icon: Icons.abc_outlined,
+                                title: 'Solicitud DPF en linea',
+                              );
+                            },
                           ),
                           SizedBox(height: smallSpacing * 1),
                           Gesture(

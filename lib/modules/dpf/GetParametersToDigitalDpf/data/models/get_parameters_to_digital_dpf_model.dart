@@ -99,3 +99,82 @@ class ColRateModel extends ColRateEntity {
     rate: json["rate"].toDouble(),
   );
 }
+
+///GetOfficeListByIdGeographicLocation
+GetOfficeListByIdGeographicLocationModel
+getOfficeListByIdGeographicLocationFromJson(String str) =>
+    GetOfficeListByIdGeographicLocationModel.fromJson(json.decode(str));
+
+class GetOfficeListByIdGeographicLocationModel
+    extends GetOfficeListByIdGeographicLocationEntity {
+  GetOfficeListByIdGeographicLocationModel({
+    required super.data,
+    required super.state,
+    required super.message,
+  });
+
+  factory GetOfficeListByIdGeographicLocationModel.fromJson(
+    Map<String, dynamic> json,
+  ) => GetOfficeListByIdGeographicLocationModel(
+    data: List<GetOfficeListByGeoModel>.from(
+      json["data"].map((x) => GetOfficeListByGeoModel.fromJson(x)),
+    ),
+    state: json["state"],
+    message: json["message"],
+  );
+}
+
+class GetOfficeListByGeoModel extends GetOfficeListByGeoEntiyt {
+  GetOfficeListByGeoModel({
+    required super.idClassifierEntity,
+    required super.nameClassifierEntity,
+    required super.classifierCode,
+    required super.allowAmount,
+  });
+
+  factory GetOfficeListByGeoModel.fromJson(Map<String, dynamic> json) =>
+      GetOfficeListByGeoModel(
+        idClassifierEntity: json["idClassifierEntity"],
+        nameClassifierEntity: json["nameClassifierEntity"],
+        classifierCode: json["classifierCode"],
+        allowAmount: json["allowAmount"],
+      );
+}
+
+///GetDateEstimateResponse
+GetDateEstimateResponseModel getDateEstimateResponseFromJson(String str) =>
+    GetDateEstimateResponseModel.fromJson(json.decode(str));
+
+class GetDateEstimateResponseModel extends GetDateEstimateResponseEntity {
+  GetDateEstimateResponseModel({
+    required super.data,
+    required super.state,
+    required super.message,
+  });
+
+  factory GetDateEstimateResponseModel.fromJson(Map<String, dynamic> json) =>
+      GetDateEstimateResponseModel(
+        data: GetDataEstModel.fromJson(json["data"]),
+        state: json["state"],
+        message: json["message"],
+      );
+}
+
+class GetDataEstModel extends GetDataEstEntity {
+  GetDataEstModel({
+    required super.initialDate,
+    required super.initialDateMessage,
+    required super.endDate,
+    required super.endDateMessage,
+    required super.term,
+  });
+
+  factory GetDataEstModel.fromJson(Map<String, dynamic> json) =>
+      GetDataEstModel(
+        initialDate: json["initialDate"],
+        initialDateMessage: json["initialDateMessage"],
+        endDate: json["endDate"],
+        endDateMessage: json["endDateMessage"],
+        term: json["term"],
+      );
+}

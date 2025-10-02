@@ -6,4 +6,14 @@ abstract class GetParametersToDigitalDpfRepository {
     bool isEmployee,
     String? vToken,
   );
+  Future<GetOfficeListByIdGeographicLocationEntity> getOfficeListByIdGeo(
+    String operationName,
+    String? vToken,
+  );
+
+  Future<GetDateEstimateResponseEntity> getDateEst(
+    String term,
+    String idOffice,
+    String? vToken,
+  );
 }
