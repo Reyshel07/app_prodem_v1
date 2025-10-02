@@ -10,6 +10,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:app_prodem_v1/modules/auth/sign_in/presentation/screens/login_screen1.dart'
     as _i6;
+import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation/bloc/get_parameters_to_digital_dpf_bloc.dart'
+    as _i22;
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation/screen/get_parameters_to_digital_dpf_screen.dart'
     as _i7;
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/bloc.dart'
@@ -17,7 +19,7 @@ import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/screen/account_balances_screen.dart'
     as _i1;
 import 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/presentation/bloc/saving_account_extrac_bloc.dart'
-    as _i22;
+    as _i23;
 import 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/presentation/screen/saving_account_extrac_data_tran_screen.dart'
     as _i10;
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/presentation/screen/get_account_enabled_to_transfer_screen.dart'
@@ -39,11 +41,11 @@ import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressData/pres
 import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressSolicitationWeb/presentation/screen/pr_express_solicitation_web_sceen.dart'
     as _i8;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/presentation/bloc/saving_account_data_bloc.dart'
-    as _i24;
+    as _i25;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/presentation/screen/saving_account_data_screen.dart'
     as _i14;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/domain/entities/entity.dart'
-    as _i23;
+    as _i24;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/presentation/screen/saving_account_transfer_mobile_screen.dart'
     as _i11;
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/presentation/bloc/get_ach_banck_bloc.dart'
@@ -370,10 +372,20 @@ class LoginRoute1 extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.ParametersToDigitalDpfScreen]
-class ParametersToDigitalDpfRoute extends _i15.PageRouteInfo<void> {
-  const ParametersToDigitalDpfRoute({List<_i15.PageRouteInfo>? children})
-      : super(
+class ParametersToDigitalDpfRoute
+    extends _i15.PageRouteInfo<ParametersToDigitalDpfRouteArgs> {
+  ParametersToDigitalDpfRoute({
+    _i16.Key? key,
+    required _i21.SessionInfoBloc sessioninfo,
+    required _i22.GetParametersToDigitalDpfBloc bloc,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
           ParametersToDigitalDpfRoute.name,
+          args: ParametersToDigitalDpfRouteArgs(
+            key: key,
+            sessioninfo: sessioninfo,
+            bloc: bloc,
+          ),
           initialChildren: children,
         );
 
@@ -382,9 +394,33 @@ class ParametersToDigitalDpfRoute extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i7.ParametersToDigitalDpfScreen();
+      final args = data.argsAs<ParametersToDigitalDpfRouteArgs>();
+      return _i7.ParametersToDigitalDpfScreen(
+        key: args.key,
+        sessioninfo: args.sessioninfo,
+        bloc: args.bloc,
+      );
     },
   );
+}
+
+class ParametersToDigitalDpfRouteArgs {
+  const ParametersToDigitalDpfRouteArgs({
+    this.key,
+    required this.sessioninfo,
+    required this.bloc,
+  });
+
+  final _i16.Key? key;
+
+  final _i21.SessionInfoBloc sessioninfo;
+
+  final _i22.GetParametersToDigitalDpfBloc bloc;
+
+  @override
+  String toString() {
+    return 'ParametersToDigitalDpfRouteArgs{key: $key, sessioninfo: $sessioninfo, bloc: $bloc}';
+  }
 }
 
 /// generated route for
@@ -460,7 +496,7 @@ class SavingAccountExtractDataTranSacreen
     extends _i15.PageRouteInfo<SavingAccountExtractDataTranSacreenArgs> {
   SavingAccountExtractDataTranSacreen({
     _i16.Key? key,
-    required _i22.SavingAccountExtracBloc bloc,
+    required _i23.SavingAccountExtracBloc bloc,
     required _i21.SessionInfoBloc sessionBloc,
     List<_i15.PageRouteInfo>? children,
   }) : super(
@@ -497,7 +533,7 @@ class SavingAccountExtractDataTranSacreenArgs {
 
   final _i16.Key? key;
 
-  final _i22.SavingAccountExtracBloc bloc;
+  final _i23.SavingAccountExtracBloc bloc;
 
   final _i21.SessionInfoBloc sessionBloc;
 
@@ -513,7 +549,7 @@ class SavingAccountTransMobileEndRoute
     extends _i15.PageRouteInfo<SavingAccountTransMobileEndRouteArgs> {
   SavingAccountTransMobileEndRoute({
     _i16.Key? key,
-    required _i23.SavingsAccountTransferMobileResponseEntity response,
+    required _i24.SavingsAccountTransferMobileResponseEntity response,
     List<_i15.PageRouteInfo>? children,
   }) : super(
           SavingAccountTransMobileEndRoute.name,
@@ -546,7 +582,7 @@ class SavingAccountTransMobileEndRouteArgs {
 
   final _i16.Key? key;
 
-  final _i23.SavingsAccountTransferMobileResponseEntity response;
+  final _i24.SavingsAccountTransferMobileResponseEntity response;
 
   @override
   String toString() {
@@ -649,7 +685,7 @@ class TransferFeesTwoRouteArgs {
 class TransferRoute extends _i15.PageRouteInfo<TransferRouteArgs> {
   TransferRoute({
     _i16.Key? key,
-    required _i24.SavingAccountDataBloc bloc,
+    required _i25.SavingAccountDataBloc bloc,
     required _i21.SessionInfoBloc sessionBloc,
     required _i14.TransferType transferType,
     List<_i15.PageRouteInfo>? children,
@@ -690,7 +726,7 @@ class TransferRouteArgs {
 
   final _i16.Key? key;
 
-  final _i24.SavingAccountDataBloc bloc;
+  final _i25.SavingAccountDataBloc bloc;
 
   final _i21.SessionInfoBloc sessionBloc;
 

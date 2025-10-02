@@ -26,8 +26,8 @@ class GEtParametersToDigitalDpfEntity {
 
 class ColAmountEntity {
   final int idMoney;
-  final int minimumAmount;
-  final int maximumAmount;
+  final double minimumAmount;
+  final double maximumAmount;
 
   ColAmountEntity({
     required this.idMoney,
@@ -61,5 +61,61 @@ class ColRateEntity {
     required this.minimumTerm,
     required this.maximumTerm,
     required this.rate,
+  });
+}
+
+///GetOfficeListByIdGeographicLocation
+class GetOfficeListByIdGeographicLocationEntity {
+  final List<GetOfficeListByGeoEntiyt> data;
+  final int state;
+  final String message;
+
+  GetOfficeListByIdGeographicLocationEntity({
+    required this.data,
+    required this.state,
+    required this.message,
+  });
+}
+
+class GetOfficeListByGeoEntiyt {
+  final int idClassifierEntity;
+  final String nameClassifierEntity;
+  final String classifierCode;
+  final bool allowAmount;
+
+  GetOfficeListByGeoEntiyt({
+    required this.idClassifierEntity,
+    required this.nameClassifierEntity,
+    required this.classifierCode,
+    required this.allowAmount,
+  });
+}
+
+///GetDateEstimateResponse
+class GetDateEstimateResponseEntity {
+  final GetDataEstEntity data;
+  final int state;
+  final String message;
+
+  GetDateEstimateResponseEntity({
+    required this.data,
+    required this.state,
+    required this.message,
+  });
+}
+
+class GetDataEstEntity {
+  final String initialDate;
+  final String initialDateMessage;
+  final String endDate;
+  final String endDateMessage;
+  final int term;
+
+  GetDataEstEntity({
+    required this.initialDate,
+    required this.initialDateMessage,
+    required this.endDate,
+    required this.endDateMessage,
+    required this.term,
   });
 }

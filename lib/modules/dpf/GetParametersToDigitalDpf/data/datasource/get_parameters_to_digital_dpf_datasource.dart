@@ -23,4 +23,38 @@ class GetParametersToDigitalDpfDatasource {
     );
     return GetParametersToDigitalDpfResponseModel.fromJson(response);
   }
+
+  Future<GetOfficeListByIdGeographicLocationEntity> getOfficeListByIdGeo(
+    String operationName,
+    String? vToken,
+  ) async {
+    final response = await _apiClient.post(
+      'Mobile/GetOfficeListByIdGeographicLocation',
+      operationName:
+          'obtains the DPF incorporation agencies from the departments',
+      data: {"IdGeographicLocation": operationName},
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+    );
+    return GetOfficeListByIdGeographicLocationModel.fromJson(response);
+  }
+
+  Future<GetDateEstimateResponseEntity> getDateEst(
+    String term,
+    String idOffice,
+    String? vToken,
+  ) async {
+    final response = await _apiClient.post(
+      'Mobile/GetDateEstimate',
+      operationName: 'shows the estimated time from start to finish',
+      data: {"term": term, "idOffice": idOffice},
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+    );
+    return GetDateEstimateResponseModel.fromJson(response);
+  }
 }

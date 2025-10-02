@@ -133,7 +133,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     lblTextField: 'Cobro QR',
                                     smallSpacing: smallSpacing,
                                     icon: Icons.qr_code_2,
-
                                     onTap: () {},
                                   ),
                                   Container1(
