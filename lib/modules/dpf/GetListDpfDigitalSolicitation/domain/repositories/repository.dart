@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/dpf/GetListDpfDigitalSolicitation/domain/repositories/get_list_dpf_digital_solicitation_repository.dart';

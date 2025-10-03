@@ -36,12 +36,9 @@ class _ParametersToDigitalDpfScreenState
   final TextEditingController emailController = TextEditingController(
     text: '71579864jp@gmail.com',
   );
-  final TextEditingController amountInBsController = TextEditingController(
-    text: '7521',
-  );
-  final TextEditingController deadlineInDaysController = TextEditingController(
-    text: '98',
-  );
+  final TextEditingController amountInBsController = TextEditingController();
+  final TextEditingController deadlineInDaysController =
+      TextEditingController();
   final TextEditingController annualInterestRateController =
       TextEditingController();
   final TextEditingController interestEarnedController =
@@ -52,6 +49,7 @@ class _ParametersToDigitalDpfScreenState
   String? _selectedAgenciaValue;
   int? _selectedDepartamentoId;
   bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -81,6 +79,23 @@ class _ParametersToDigitalDpfScreenState
             if (state is GetParametersToDigitalDpfSuccess) {
               final res = state.response.data;
               final listDep = res.colGeographicLocations;
+              // lee los valores de los controllers como String
+              final daysStr = deadlineInDaysController.text;
+              final amountStr = amountInBsController.text;
+              final rateStr = annualInterestRateController.text;
+
+              // conviértelos a double
+              final days = double.tryParse(daysStr) ?? 0;
+              final amount = double.tryParse(amountStr) ?? 0;
+              final rate = double.tryParse(rateStr) ?? 0;
+
+              // fórmula del interés
+              final interes = (days * amount * rate) / 36000;
+
+              // si quieres mostrarlo como texto
+              interestEarnedController.text = interes.toStringAsFixed(2);
+              final total = (interes + amountStr.toInt());
+              mountDpfController.text = total.toStringAsFixed(2);
               return Padding(
                 padding: EdgeInsets.all(topPadding * 0.05),
                 child: ListView(
@@ -190,12 +205,147 @@ class _ParametersToDigitalDpfScreenState
                       userController: emailController,
                       lbText: 'Correo electronico:',
                     ),
-                    TextFromFiel02(
-                      screenSize: screenSize,
-                      smallSpacing: smallSpacing,
-                      userController: amountInBsController,
-                      lbText: 'Monto en Bs a partir de 700bs',
+                    SizedBox(
+                      child: Card(
+                        elevation: smallSpacing * 0.5,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.green,
+                            ),
+                            borderRadius: BorderRadius.all(radiusCircular(11)),
+                          ),
+                          child: TextFormField(
+                            //keyboardType: TextInputType.number,
+                            controller: amountInBsController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            decoration: InputDecoration(
+                              disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              hintText: 'Monto en Bs a partir de 700bs',
+                              hintStyle: AppTextStyles.mainStyleGreen14(
+                                context,
+                              ),
+                              filled: false,
+                              isDense: false,
+                              contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                            ),
+                            validator: (value) {
+                              final min1 = res.colAmounts[0].minimumAmount;
+                              final max1 = res.colAmounts[0].maximumAmount;
+
+                              if (value == null || value.trim().isEmpty) {
+                                return 'Este campo es obligatorio';
+                              }
+
+                              final parsed = double.tryParse(value);
+                              if (parsed == null) {
+                                return 'Ingresa un número válido';
+                              }
+
+                              if (parsed < min1) {
+                                return 'El monto mínimo es $min1';
+                              } else if (parsed > max1) {
+                                return 'El monto máximo es $max1';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                      ),
                     ),
+                    SizedBox(
+                      child: Card(
+                        elevation: smallSpacing * 0.5,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.green,
+                            ),
+                            borderRadius: BorderRadius.all(radiusCircular(11)),
+                          ),
+                          child: TextFormField(
+                            controller: deadlineInDaysController,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              hintText: 'Plaxo en dias',
+                              hintStyle: AppTextStyles.mainStyleGreen14(
+                                context,
+                              ),
+                              filled: false,
+                              isDense: false,
+                              contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                            ),
+                            onChanged: (value) {
+                              final days = int.tryParse(value);
+                              if (days != null) {
+                                final matches = res.colRates
+                                    .where(
+                                      (r) =>
+                                          days >= r.minimumTerm &&
+                                          days <= r.maximumTerm,
+                                    )
+                                    .toList();
+
+                                if (matches.isNotEmpty) {
+                                  // Asigna la tasa (como decimal). Si prefieres porcentaje: multiply by 100 y formatea.
+                                  annualInterestRateController.text = matches
+                                      .first
+                                      .rate
+                                      .toString();
+                                } else {
+                                  annualInterestRateController.clear();
+                                }
+                              } else {
+                                annualInterestRateController.clear();
+                              }
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+
                     SizedBox(
                       child: Card(
                         elevation: smallSpacing * 0.5,
@@ -208,9 +358,10 @@ class _ParametersToDigitalDpfScreenState
                           ),
                           child: TextField(
                             keyboardType: TextInputType.text,
-                            controller: deadlineInDaysController,
+                            controller: annualInterestRateController,
                             textAlign: TextAlign.start,
                             maxLines: 1,
+                            readOnly: true,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
@@ -238,7 +389,7 @@ class _ParametersToDigitalDpfScreenState
                                   width: 1,
                                 ),
                               ),
-                              hintText: 'Plazo en dias',
+                              hintText: 'Tasa de interés anual',
                               hintStyle: AppTextStyles.mainStyleGreen14(
                                 context,
                               ),
@@ -250,18 +401,67 @@ class _ParametersToDigitalDpfScreenState
                         ),
                       ),
                     ),
-                    TextFromFiel02(
-                      screenSize: screenSize,
-                      smallSpacing: smallSpacing,
-                      userController: annualInterestRateController,
-                      lbText: 'Tasa de interés anual',
+                    SizedBox(
+                      child: Card(
+                        elevation: smallSpacing * 0.5,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.green,
+                            ),
+                            borderRadius: BorderRadius.all(radiusCircular(11)),
+                          ),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            controller: interestEarnedController,
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                            readOnly: true,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 14,
+                            ),
+                            decoration: InputDecoration(
+                              disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                              ),
+                              hintText: 'Interéz ganado',
+                              hintStyle: AppTextStyles.mainStyleGreen14(
+                                context,
+                              ),
+                              filled: false,
+                              isDense: false,
+                              contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    TextFromFiel02(
+                    /*TextFromFiel02(
                       screenSize: screenSize,
                       smallSpacing: smallSpacing,
                       userController: interestEarnedController,
                       lbText: 'Interéz ganado',
-                    ),
+                    ),*/
                     TextFromFiel02(
                       screenSize: screenSize,
                       smallSpacing: smallSpacing,
