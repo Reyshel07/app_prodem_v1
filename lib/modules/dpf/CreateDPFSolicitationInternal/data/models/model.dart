@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/dpf/CreateDPFSolicitationInternal/data/models/create_dpf_solicitation_internal_model.dart';

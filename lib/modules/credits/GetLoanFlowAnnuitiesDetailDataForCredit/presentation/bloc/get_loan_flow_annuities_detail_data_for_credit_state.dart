@@ -1,0 +1,18 @@
+part of 'get_loan_flow_annuities_detail_data_for_credit_bloc.dart';
+
+sealed class GetLoanFlowAnnuitiesDetailDataForCreditState {}
+
+final class GetLoanFlowAnnuitiesDetailDataForCreditInitial extends GetLoanFlowAnnuitiesDetailDataForCreditState {}
+
+
+final class GetLoanFlowAnnuitiesDetailDataForCreditLoading extends GetLoanFlowAnnuitiesDetailDataForCreditState {}
+
+final class GetLoanFlowAnnuitiesDetailDataForCreditError extends GetLoanFlowAnnuitiesDetailDataForCreditState {
+  final String message;
+  GetLoanFlowAnnuitiesDetailDataForCreditError (this.message);
+}
+
+final class GetLoanFlowAnnuitiesDetailDataForCreditSuccess extends GetLoanFlowAnnuitiesDetailDataForCreditState {
+  final GetLoanFlowAnnuitiesDetailDataForCreditEntity getLoanFlowAnnuitiesDetailDataForCreditEntity;
+  GetLoanFlowAnnuitiesDetailDataForCreditSuccess(this.getLoanFlowAnnuitiesDetailDataForCreditEntity);
+}
