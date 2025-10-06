@@ -1,1 +1,0 @@
-export 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressSolicitationWeb/domain/entities/pr_express_solicitation_web_entity.dart';

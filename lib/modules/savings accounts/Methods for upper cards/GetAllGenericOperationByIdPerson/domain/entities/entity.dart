@@ -1,1 +1,0 @@
-export 'package:app_prodem_v1/modules/savings%20accounts/Methods%20for%20upper%20cards/GetAllGenericOperationByIdPerson/domain/entities/all_generic_operation_by_id_person_entity.dart';

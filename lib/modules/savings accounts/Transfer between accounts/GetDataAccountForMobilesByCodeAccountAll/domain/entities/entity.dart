@@ -1,1 +1,0 @@
-export 'package:app_prodem_v1/modules/savings%20accounts/Transfer%20between%20accounts/GetDataAccountForMobilesByCodeAccountAll/domain/entities/data_account_for_mobiles_by_code_account_all_entity.dart';
