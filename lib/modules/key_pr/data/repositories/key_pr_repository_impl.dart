@@ -1,6 +1,7 @@
 import 'package:app_prodem_v1/modules/key_pr/data/datasource/key_pr_datasource.dart';
 import 'package:app_prodem_v1/modules/key_pr/domain/entities/key_pr_entity.dart';
-import 'package:app_prodem_v1/modules/key_pr/domain/repositories/repository.dart';
+
+import '../../domain/repositories/repository.dart';
 
 class KeyPrRepositoryImpl extends KeyPrRepository {
   KeyPrDatasource keyPrDatasource;
@@ -13,7 +14,8 @@ class KeyPrRepositoryImpl extends KeyPrRepository {
     String idWebPersonClient,
     String? vToken,
     String location,
-    String ip,String imei
+    String ip,
+    String imei,
   ) async {
     return await keyPrDatasource.createPrKey(
       idUser,
@@ -21,7 +23,8 @@ class KeyPrRepositoryImpl extends KeyPrRepository {
       idWebPersonClient,
       vToken,
       location,
-      ip, imei
+      ip,
+      imei,
     );
   }
 
@@ -29,8 +32,8 @@ class KeyPrRepositoryImpl extends KeyPrRepository {
   Future<GetProdemKeyByIdResponseEntity> getPrKeyById(
     String idSmsOperation,
     String? vToken,
-    String location
+    String location,
   ) async {
-    return await keyPrDatasource.getPrKeyById(idSmsOperation, vToken,location);
+    return await keyPrDatasource.getPrKeyById(idSmsOperation, vToken, location);
   }
 }

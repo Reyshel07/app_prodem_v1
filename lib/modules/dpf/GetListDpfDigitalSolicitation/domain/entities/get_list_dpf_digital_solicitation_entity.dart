@@ -15,7 +15,7 @@ class GetListDpfDigitalSolicitationEntity {
   final double idPerson;
   final int rate;
   final String product;
-  final int amount;
+  final double amount;
   final int idOffice;
   final String observations;
   final int idMoney;

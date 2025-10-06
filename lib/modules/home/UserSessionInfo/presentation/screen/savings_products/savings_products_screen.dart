@@ -340,7 +340,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           ),
                           SizedBox(height: smallSpacing * 1),
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                GetListDpfDigitalSolicitationRoute(),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,

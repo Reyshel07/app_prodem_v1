@@ -8,17 +8,13 @@ class GetListDpfDigitalSolicitationDatasource {
   GetListDpfDigitalSolicitationDatasource(this._apiClient);
 
   Future<GetListDpfDigitalSolicitationResponseEntity> getListDpfDigiSoli(
-    String idGeographicLocation,
     String idWebPerson,
     String? vToken,
   ) async {
     final response = await _apiClient.post(
       'Mobile/GetListDpfDigitalSolicitation',
       operationName: 'get the list of dpf',
-      data: {
-        "IdGeographicLocation": idGeographicLocation,
-        "IdWebPerson": idWebPerson,
-      },
+      data: {"IdWebPerson": idWebPerson},
       headers: {
         'Authorization': 'Bearer $vToken',
         'Content-Type': 'application/json',
