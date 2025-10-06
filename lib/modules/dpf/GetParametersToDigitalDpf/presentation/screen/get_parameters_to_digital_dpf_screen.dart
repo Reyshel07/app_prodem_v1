@@ -192,7 +192,8 @@ class _ParametersToDigitalDpfScreenState
 
                         return const SizedBox();
                       },
-                    ),
+                    ),  
+                    SizedBox(height: smallSpacing *0.5,),
                     TextFromFiel02(
                       screenSize: screenSize,
                       smallSpacing: smallSpacing,

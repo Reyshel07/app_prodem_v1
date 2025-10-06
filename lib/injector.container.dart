@@ -1,5 +1,6 @@
 import 'package:app_prodem_v1/modules/auth/auth.container.dart';
 import 'package:app_prodem_v1/modules/dpf/GetListDpfDigitalSolicitation/get.list.dpf.digital.solicitation.container.dart';
+import 'package:app_prodem_v1/modules/dpf/CreateDPFSolicitationInternal/create.dpf.solicitation.intenal.container.dart';
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/get.parameters.to.digital.dpf.container.dart';
 import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressData/express.data.container.dart';
 import 'package:app_prodem_v1/modules/lightning%20turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
@@ -43,5 +44,6 @@ class InjectorContainer {
     initGetAccountEnableToTransfer(getIt);
     initGetParametersToDigitalDpf(getIt);
     initGetListDigitalSolicitation(getIt);
+    initCreateDpfSolicitationInternal(getIt);
   }
 }
