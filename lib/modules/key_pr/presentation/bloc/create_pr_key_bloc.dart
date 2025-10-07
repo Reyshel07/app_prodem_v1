@@ -4,7 +4,6 @@ import 'package:app_prodem_v1/utils/geolocation_helper.dart';
 import 'package:app_prodem_v1/utils/ip_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../domain/entities/entity.dart';
 import '../../domain/repositories/repository.dart';
 part 'create_pr_key_event.dart';
@@ -22,18 +21,22 @@ class CreatePrKeyBloc extends Bloc<CreatePrKeyEvent, CreatePrKeyState> {
   ) async {
     emit(CreatePrKeyLoading());
     try {
-      String idUser =SecureHive.readIdUser();// '350880';
+      String idUser = SecureHive.readIdUser(); // '350880';
       String idWebOperation = '2';
-      String idWebPersonClient =SecureHive.readIdWebPerson();//1129150143954615';
-      final location=await GeolocationHelper.getLocationJson();
-      final ip=await IpHelper.getDeviceIp();
+      String idWebPersonClient =
+          SecureHive.readIdWebPerson(); //1129150143954615';
+      final location = await GeolocationHelper.getLocationJson();
+      final ip = await IpHelper.getDeviceIp();
       final token = SecureHive.readToken();
-      String imei=await DeviceInfoHelper.getDeviceIdentifier();
+      String imei = await DeviceInfoHelper.getDeviceIdentifier();
       final response = await keyPrRepository.createPrKey(
         idUser,
         idWebOperation,
         idWebPersonClient,
-        token,location,ip,imei
+        token,
+        location,
+        ip,
+        imei,
       );
       emit(CreatePrKeySuccess(response));
     } on BaseApiException catch (error) {

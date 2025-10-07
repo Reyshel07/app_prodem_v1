@@ -25,5 +25,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ParametersToDigitalDpfRoute.page),
     AutoRoute(page: GetListDpfDigitalSolicitationRoute.page),
     AutoRoute(page: LoanFlowAnnuitiesDetailDataForCreditRoute.page),
+    AutoRoute(page: AdministracionRoute.page),
+    AutoRoute(page: InforAccionesRoute.page),
+    AutoRoute(page: GetEncriptedQrStringRoute.page),
   ];
 }
