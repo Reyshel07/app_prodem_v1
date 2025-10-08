@@ -1,4 +1,6 @@
 import 'package:app_prodem_v1/modules/auth/auth.container.dart';
+import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/get_loan_flow_annuities_detail_data_for_credit_injector.container.dart';
+import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/loan_flow_get_credit_detail_data_for_recovery_injector.container.dart';
 import 'package:app_prodem_v1/modules/dpf/GetListDpfDigitalSolicitation/get.list.dpf.digital.solicitation.container.dart';
 import 'package:app_prodem_v1/modules/dpf/CreateDPFSolicitationInternal/create.dpf.solicitation.intenal.container.dart';
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/get.parameters.to.digital.dpf.container.dart';
@@ -45,5 +47,7 @@ class InjectorContainer {
     initGetParametersToDigitalDpf(getIt);
     initGetListDigitalSolicitation(getIt);
     initCreateDpfSolicitationInternal(getIt);
+    initGetLoanFlowAnnDetDataForCredit(getIt);
+    initLoanFlowGetCreditDetailDataForRecovery(getIt);
   }
 }
