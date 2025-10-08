@@ -4,9 +4,11 @@ import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForReco
 import 'package:app_prodem_v1/modules/dpf/GetListDpfDigitalSolicitation/get.list.dpf.digital.solicitation.container.dart';
 import 'package:app_prodem_v1/modules/dpf/CreateDPFSolicitationInternal/create.dpf.solicitation.intenal.container.dart';
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/get.parameters.to.digital.dpf.container.dart';
+import 'package:app_prodem_v1/modules/dpf/InforAcciones/infor.acciones.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/express.data.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
+import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/get.encripted.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/get.ach.bank.list.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/injector.container.dart';
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/account.balances.container.dart';
@@ -49,5 +51,8 @@ class InjectorContainer {
     initCreateDpfSolicitationInternal(getIt);
     initGetLoanFlowAnnDetDataForCredit(getIt);
     initLoanFlowGetCreditDetailDataForRecovery(getIt);
+    initInforAcciones(getIt);
+    initGEtEncriptedQrString(getIt);
+
   }
 }

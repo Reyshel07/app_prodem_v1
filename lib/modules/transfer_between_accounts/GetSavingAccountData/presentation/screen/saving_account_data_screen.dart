@@ -216,7 +216,6 @@ class _TransferScreenState extends State<TransferScreen> {
                           ),
                         ),
                       ),
-                    // OBSERVACIÓN
                     TextFromFiel02(
                       screenSize: screenSize,
                       smallSpacing: smallSpacing,
@@ -233,7 +232,6 @@ class _TransferScreenState extends State<TransferScreen> {
                         ),
                       ),
                     SizedBox(height: smallSpacing),
-                    // BOTÓN CONTINUAR
                     SizedBox(
                       width: screenSize.width * 0.4,
                       child: Card(
