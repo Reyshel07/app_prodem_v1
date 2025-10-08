@@ -1,5 +1,10 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
+import 'package:app_prodem_v1/config/router/router.dart';
+import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/savings_products/savings_products_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreditProductsScreen extends StatefulWidget {
   const CreditProductsScreen({super.key});
@@ -18,6 +23,7 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
     return Scaffold(
       body: Builder(
         builder: (context) {
+           final sessionBloc = context.read<SessionInfoBloc>();
           return ListView(
             children: [
               Column(
@@ -31,7 +37,9 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
                     column: Column(
                       children: [
                         Gesture(
-                          onTap: () {},
+                          onTap: () {
+                            InjectorContainer.getIt<AppRouter>().push(LoanFlowAnnuitiesDetailDataForCreditRoute(sessionBloc: sessionBloc));
+                          },
                           topPadding: topPadding,
                           letterSize: letterSize,
                           small: smallSpacing,

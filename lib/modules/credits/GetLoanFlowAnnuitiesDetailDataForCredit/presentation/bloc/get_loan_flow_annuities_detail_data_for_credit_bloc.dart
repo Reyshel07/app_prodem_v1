@@ -3,7 +3,7 @@ import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForC
 import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/domain/repositories/get_loan_flow_annuities_detail_data_for_credit_repository.dart';
 import 'package:app_prodem_v1/utils/geolocation_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'get_loan_flow_annuities_detail_data_for_credit_event.dart';
 part 'get_loan_flow_annuities_detail_data_for_credit_state.dart';
@@ -26,14 +26,15 @@ class GetLoanFlowAnnuitiesDetailDataForCreditBloc extends Bloc<GetLoanFlowAnnuit
       final idPerson = SecureHive.readIdPerson();
       final idUser = SecureHive.readIdUser();
       final location = GeolocationHelper.getLocationJson().toString();
-      
+      final imei = "";
+      final ipadd = "";
       final response = await repository.getLoanFlowAnnDetDatForCredit(token, 
       event.idLoanCredit,
       idPerson,
       idUser,
-      event.iMEI,
+      imei,
       location,
-      event.ipAddress);
+      ipadd);
     
       emit(GetLoanFlowAnnuitiesDetailDataForCreditSuccess(response.data));
     }on BaseApiException catch (error) {

@@ -18,13 +18,13 @@ class GetLoanFlowAnnuitiesDetailDataForCreditDatasource {
   )async{
     final response = await _apiClient.post(
       'Mobile/GetLoanFlowAnnuitiesDetailDataForCredit',
-      data:{
-    "IdLoanCredit" : "72529583052010222" ,
-    "IdPerson": "17000000000008890",
-    "IdUser": "350832",
-    "IMEI": "abc123",
-    "location": "",
-    "IpAddress": ""
+    data:{
+      "IdLoanCredit" : idLoanCredit ,
+      "IdPerson": idPerson,
+      "IdUser": idUser,
+      "IMEI": "abc123",
+      "location": "",
+      "IpAddress": ""
     },
     headers: {
         'Authorization': 'Bearer $vToken',

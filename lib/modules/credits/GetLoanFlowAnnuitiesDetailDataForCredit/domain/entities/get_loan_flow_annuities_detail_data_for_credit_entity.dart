@@ -20,7 +20,7 @@ class GetLoanFlowAnnuitiesDetailDataForCreditEntity {
     final int idCreditState;
     final String creditState;
     final int delayDays;
-    final int creditAmount;
+    final double creditAmount;
     final List<ColAnnuitiesDetail> colAnnuitiesDetail;
     final String customerName;
     final String identityCard;
