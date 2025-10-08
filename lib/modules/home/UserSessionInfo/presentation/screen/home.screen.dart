@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
@@ -125,7 +126,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     letterSize: letterSize,
                                     lblTextField: 'Pago QR',
                                     icon: Icons.qr_code_scanner,
-                                    onTap: () {},
+                                    onTap: () {
+                                      InjectorContainer.getIt<AppRouter>().push(
+                                        DecryptQrStringRoute(
+                                          sessionBloc: context
+                                              .read<SessionInfoBloc>(),
+                                        ),
+                                      );
+                                    },
                                   ),
                                   Container1(
                                     screenSize: screenSize,
@@ -133,7 +141,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     lblTextField: 'Cobro QR',
                                     smallSpacing: smallSpacing,
                                     icon: Icons.qr_code_2,
-                                    onTap: () {},
+                                    onTap: () {
+                                      InjectorContainer.getIt<AppRouter>().push(
+                                        GetEncriptedQrStringRoute(
+                                          sessionBloc: context
+                                              .read<SessionInfoBloc>(),
+                                        ),
+                                      );
+                                    },
                                   ),
                                   Container1(
                                     smallSpacing: smallSpacing,

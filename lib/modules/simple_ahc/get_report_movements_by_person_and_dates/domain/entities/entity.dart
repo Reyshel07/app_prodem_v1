@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/simple_ahc/get_report_movements_by_person_and_dates/domain/entities/report_movements_by_person_and_dates_entity.dart';
