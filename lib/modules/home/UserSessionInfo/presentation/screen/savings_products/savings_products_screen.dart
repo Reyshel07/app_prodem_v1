@@ -273,7 +273,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           ),
                           SizedBox(height: smallSpacing * 1),
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                DecryptQrStringRoute(sessionBloc: sessionBloc),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,
@@ -282,7 +286,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           ),
                           SizedBox(height: smallSpacing * 1),
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                ReportMovementByPErsonAndDateRoute(),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,

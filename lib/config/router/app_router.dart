@@ -11,10 +11,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: HomeRoute.page),
     AutoRoute(page: AccountInquiryRoute.page),
     AutoRoute(page: SavingAccountExtractDataTranSacreen.page),
-    //AutoRoute(page: SavingAccountDataRoute.page),
     AutoRoute(page: TransferFeesTwoRoute.page),
     AutoRoute(page: SavingAccountTransMobileEndRoute.page),
-    //AutoRoute(page: TransferToAThirdPartyAccountRoute.page),
     AutoRoute(page: SettingsRoute.page),
     AutoRoute(page: TransferRoute.page),
     AutoRoute(page: GetAchBanckListRoute.page),
@@ -29,5 +27,10 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: InforAccionesRoute.page),
     AutoRoute(page: GetEncriptedQrStringRoute.page),
     AutoRoute(page: LoanFlowGetCreditDetailDataForRecoveryRoute.page),
+    AutoRoute(page: EncriptedQRRoute.page),
+    AutoRoute(page: DecryptQrStringRoute.page),
+    AutoRoute(page: DecryptQrRoute.page),
+    AutoRoute(page: DecryptQrDetailsRoute.page),
+    AutoRoute(page: ReportMovementByPErsonAndDateRoute.page),
   ];
 }

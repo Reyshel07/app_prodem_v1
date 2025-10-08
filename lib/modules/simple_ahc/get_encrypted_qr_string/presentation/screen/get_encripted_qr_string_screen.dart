@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
@@ -22,7 +23,12 @@ class GetEncriptedQrStringScreen extends StatefulWidget {
 
 class _GetEncriptedQrStringScreenState
     extends State<GetEncriptedQrStringScreen> {
-  final TextEditingController amountController = TextEditingController();
+  final TextEditingController amountController = TextEditingController(
+    text: '45',
+  );
+  final TextEditingController referenceController = TextEditingController(
+    text: 'gastos',
+  );
   String? _codeSavingAccountSource;
   String? _deadline;
   String? _money;
@@ -117,40 +123,59 @@ class _GetEncriptedQrStringScreenState
               TextFromFiel02(
                 screenSize: screenSize,
                 smallSpacing: smallSpacing,
-                userController: amountController,
+                userController: referenceController,
                 lbText: 'Referencia',
               ),
-              Builder(
-                builder: (ctx) {
+              BlocBuilder<GetEncriptedQrStringBloc, GetEncriptedQrStringState>(
+                builder: (context, state) {
+                  if (state is GetEncriptedQrStringSuccess) {
+                    InjectorContainer.getIt<AppRouter>().push(
+                      EncriptedQRRoute(
+                        getEncryptedQrStringEntity:
+                            state.getEncryptedQrStringEntity,
+                        moneda: 'Bs',
+                        monto: amountController.text,
+                        referencia: referenceController.text,
+                      ),
+                    );
+                  }
                   return ElevateButton1(
                     onTap: () {
-                      try {
-                        final bloc = BlocProvider.of<GetEncriptedQrStringBloc>(
-                          ctx,
-                          listen: false,
-                        );
-                        bloc.add(
-                          GetEncriptedQrSEvent(
-                            accountCode:
-                                _codeSavingAccountSource ?? '117-2-1-17491-5',
-                            moneyCode: 'BOB',
-                            amount: '4545',
-                            isUniqueUse: false,
-                            expiredOption: '365',
-                            reference: '0',
-                          ),
-                        );
-                      } catch (e, st) {
-                        // show friendly error and print stacktrace for debugging
-                        print('GetEncriptedQrStringBloc not found: $e\n$st');
-                        ScaffoldMessenger.of(ctx).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Error interno: no se pudo accesar el servicio.',
-                            ),
-                          ),
-                        );
-                      }
+                      context.read<GetEncriptedQrStringBloc>().add(
+                        GetEncriptedQrSEvent(
+                          accountCode: _codeSavingAccountSource ?? '',
+                          moneyCode: 'BOB',
+                          amount: amountController.text,
+                          isUniqueUse: isChecked,
+                          expiredOption: '365',
+                          reference: referenceController.text,
+                        ),
+                      );
+                      /*try {
+                                      final bloc = BlocProvider.of<GetEncriptedQrStringBloc>(
+                                        ctx,
+                                        listen: false,
+                                      );
+                                      bloc.add(
+                                        GetEncriptedQrSEvent(
+                                          accountCode:
+                                              _codeSavingAccountSource ?? '117-2-1-17491-5',
+                                          moneyCode: 'BOB',
+                                          amount: '4545',
+                                          isUniqueUse: false,
+                                          expiredOption: '365',
+                                          reference: '0',
+                                        ),
+                                      );
+                                    } catch (e, st) {
+                                      ScaffoldMessenger.of(ctx).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Error interno: no se pudo accesar el servicio.',
+                                          ),
+                                        ),
+                                      );
+                                    }*/
                     },
                     lblTextField: 'GENERAR QR',
                   );
