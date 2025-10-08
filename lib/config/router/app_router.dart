@@ -28,5 +28,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: AdministracionRoute.page),
     AutoRoute(page: InforAccionesRoute.page),
     AutoRoute(page: GetEncriptedQrStringRoute.page),
+    AutoRoute(page: LoanFlowGetCreditDetailDataForRecoveryRoute.page),
   ];
 }
