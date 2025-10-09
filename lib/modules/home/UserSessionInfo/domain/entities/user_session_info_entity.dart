@@ -115,7 +115,7 @@ class ListAdEntity {
 class ListCodeCreditLineElementEntity {
   final int idMoney;
   final String codMoney;
-  final double idOperationEntity;
+  final int idOperationEntity;
   final String operationCode;
   final double availableAmount;
   final int idOffice;

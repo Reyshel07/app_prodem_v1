@@ -7,7 +7,10 @@ import 'package:get_it/get_it.dart';
 
 void initLoanFlowGetCreditDetailDataForRecovery(GetIt getIt){
   var apiClient = ApiClient();
-  getIt.registerSingleton(()=>LoanFlowGetCreditDetailDataForRecoveryDatasource(apiClient));
+  //getIt.registerSingleton(()=>LoanFlowGetCreditDetailDataForRecoveryDatasource(apiClient));
+  getIt.registerSingleton<LoanFlowGetCreditDetailDataForRecoveryDatasource>(
+    LoanFlowGetCreditDetailDataForRecoveryDatasource(apiClient),
+  );
   getIt.registerCachedFactory<LoanFlowGetCreditDetailDataForRecoveryRepository>(
     ()=> LoanFlowGetCreditDetailDataForRecoveryRepositoryImpl(datasource: getIt()));
   getIt.registerFactory(()=>LoanFlowGetCreditDetailDataForRecoveryBloc(getIt()));
