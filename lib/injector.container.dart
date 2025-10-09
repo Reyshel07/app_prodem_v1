@@ -8,6 +8,7 @@ import 'package:app_prodem_v1/modules/dpf/InforAcciones/infor.acciones.container
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/express.data.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
+import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/decrypt.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/get.encripted.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/get.ach.bank.list.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/injector.container.dart';
@@ -53,7 +54,6 @@ class InjectorContainer {
     initLoanFlowGetCreditDetailDataForRecovery(getIt);
     initInforAcciones(getIt);
     initGEtEncriptedQrString(getIt);
-    
-
+    initDecryptQrString(getIt);
   }
 }
