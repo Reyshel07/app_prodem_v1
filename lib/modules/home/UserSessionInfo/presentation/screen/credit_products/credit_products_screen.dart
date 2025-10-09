@@ -48,7 +48,9 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
                         ),
                         SizedBox(height: smallSpacing * 1),
                         Gesture(
-                          onTap: () {},
+                          onTap: () {
+                            InjectorContainer.getIt<AppRouter>().push(LoanFlowGetCreditDetailDataForRecoveryRoute(sessionBloc: sessionBloc));
+                          },
                           topPadding: topPadding,
                           letterSize: letterSize,
                           small: smallSpacing,

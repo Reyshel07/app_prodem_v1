@@ -53,6 +53,7 @@ class InjectorContainer {
     initLoanFlowGetCreditDetailDataForRecovery(getIt);
     initInforAcciones(getIt);
     initGEtEncriptedQrString(getIt);
+    
 
   }
 }
