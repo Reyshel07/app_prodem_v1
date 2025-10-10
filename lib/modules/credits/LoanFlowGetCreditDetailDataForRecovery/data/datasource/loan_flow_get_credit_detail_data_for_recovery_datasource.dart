@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/data/models/loan_flow_get_credit_detail_data_for_recovery_model.dart';
