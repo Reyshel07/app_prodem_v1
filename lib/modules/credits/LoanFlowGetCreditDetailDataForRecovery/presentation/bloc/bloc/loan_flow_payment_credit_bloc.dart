@@ -4,6 +4,7 @@ import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_
 import 'package:app_prodem_v1/utils/geolocation_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 part 'loan_flow_payment_credit_event.dart';
 part 'loan_flow_payment_credit_state.dart';
@@ -26,11 +27,18 @@ class LoanFlowPaymentCreditBloc extends Bloc<LoanFlowPaymentCreditEvent, LoanFlo
       final idPerson = SecureHive.readIdPerson();
       final idUser = SecureHive.readIdUser();
       final location = GeolocationHelper.getLocationJson().toString();
+      final personNatural = SecureHive.readIsPersonNatural();
       final imei = "";
       final ipadd = "";
-      final idCustomer = 0;
+      var idCustomer = 0;
+      if (personNatural) {
+        idCustomer = SecureHive.readIdPerson().toInt();
+      }else{
+        idCustomer = SecureHive.readIdWebPerson().toInt();
+      };
+
       final codeAuthentication = "";
-      final isNaturalCustomer = true;
+      final isNaturalCustomer = personNatural;
       final customerId = "";
       final customerName = "";
 

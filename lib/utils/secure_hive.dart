@@ -83,4 +83,20 @@ class SecureHive {
     final b = box();
     await b.delete('IdUser');
   }
+
+  ///idIsPersonNatural
+  static Future<void> writeIsPersonNatural(bool pIdUser) async {
+    final b = box();
+    await b.put('IdUser', pIdUser);
+  }
+
+  static bool readIsPersonNatural() {
+    final b = box();
+    return b.get('IsPersonNatural') as bool;
+  }
+
+  static Future<void> deleteIsPersonNatural() async {
+    final b = box();
+    await b.delete('IsPersonNatural');
+  }
 }

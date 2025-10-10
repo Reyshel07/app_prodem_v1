@@ -27,6 +27,10 @@ class SessionInfoBloc extends Bloc<SessionInfoEvent, SessionInfoState> {
         await SecureHive.writeIdPerson(idPerson);
       }
 
+      final isPersonNatural = response.data.isPersonNatural;
+      await SecureHive.writeIsPersonNatural(isPersonNatural);
+      
+
       emit(SessionInfoSuccess(response.data));
     } on BaseApiException catch (error) {
       switch (error.key) {

@@ -1,7 +1,9 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/presentation/bloc/bloc/loan_flow_get_credit_detail_data_for_recovery_bloc.dart';
+import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/presentation/bloc/bloc/loan_flow_payment_credit_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/create_pr_key_bloc.dart';
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/get_pr_key_by_id_bloc.dart';
@@ -119,7 +121,7 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Saldo Disponible:',
-                                      entity.savingBalance?.toString() ?? '',
+                                      entity.savingBalance.toString() ?? '',
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
@@ -261,95 +263,71 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                 getState is GetPrKeyByIdSuccess)
                                               SizedBox(
                                                 width: screenSize.width * 0.3,
-                                                // child: Card(
-                                                //   elevation: smallSpacing * 0.5,
-                                                //   child:
-                                                //       BlocConsumer<
-                                                //         LoanFlowGetCreditDetailDataForRecoveryBloc,
-                                                //         LoanFlowGetCreditDetailDataForRecoveryState
-                                                //       >(
-                                                //         listener: (context, state) {
-                                                //           if (state
-                                                //               is SavingAccountTransferMobileSuccess) {
-                                                //             InjectorContainer.getIt<
-                                                //                   AppRouter
-                                                //                 >()
-                                                //                 .push(
-                                                //                   SavingAccountTransMobileEndRoute(
-                                                //                     response:
-                                                //                         state
-                                                //                             .data,
-                                                //                   ),
-                                                //                 );
-                                                //           }
-                                                //           if (state
-                                                //               is SavingAccountTransferMobiletaError) {
-                                                //             ScaffoldMessenger.of(
-                                                //               context,
-                                                //             ).showSnackBar(
-                                                //               SnackBar(
-                                                //                 content: Text(
-                                                //                   state.message,
-                                                //                 ),
-                                                //               ),
-                                                //             );
-                                                //           }
-                                                //         },
-                                                //         builder: (context, state) {
-                                                //           return Butoon1(
-                                                //             onTap: () {
-                                                //               context
-                                                //                   .read<
-                                                //                     SavingAccountTransferMobileBloc
-                                                //                   >()
-                                                //                   .add(
-                                                //                     SavingAccountTransMoEvent(
-                                                //                       codeSavingAccountSource:
-                                                //                           cuentaO ??
-                                                //                           '',
-                                                //                       codeSavingAccountTarget:
-                                                //                           cuentaD ??
-                                                //                           '',
-                                                //                       amountTransfer:
-                                                //                           monto ??
-                                                //                           '',
-                                                //                       idMoneyTransfer:
-                                                //                           '1',
-                                                //                       isNaturalCustomer:
-                                                //                           true,
-                                                //                       observation:
-                                                //                           'observation',
-                                                //                       reasonDestiny:
-                                                //                           'reasonDestiny',
-                                                //                       typeApplicationAccessX:
-                                                //                           '112582',
-                                                //                       idTerminal:
-                                                //                           '2',
-                                                //                       userAppOriginType:
-                                                //                           '2',
-                                                //                       beneficiaryName:
-                                                //                           'beneficiaryName',
-                                                //                       idSMSOperation: createState
-                                                //                           .createProdemKeyResponseEntity!
-                                                //                           .data
-                                                //                           .toString(),
-                                                //                       prodemKeyCode:
-                                                //                           getState
-                                                //                               .getProdemKeyByIdResponseEntity
-                                                //                               ?.data ??
-                                                //                           '',
-                                                //                     ),
-                                                //                   );
-                                                //             },
-                                                //             lblTextField:
-                                                //                 state
-                                                //                     is SavingAccountTransferMobileLoading
-                                                //                 ? 'Procesando...'
-                                                //                 : 'CONFIRMAR',
-                                                //           );
-                                                //         },
-                                                //       ),
-                                                // ),
+                                                child: Card(
+                                                  elevation: smallSpacing * 0.5,
+                                                  child:
+                                                      BlocConsumer<
+                                                        LoanFlowPaymentCreditBloc,
+                                                        LoanFlowPaymentCreditState
+                                                      >(
+                                                        listener: (context, state) {
+                                                          if (state
+                                                              is LoanFlowPaymentCreditSuccess) {
+                                                            InjectorContainer.getIt<
+                                                                  AppRouter
+                                                                >()
+                                                                .push(
+                                                                  SavingAccountTransMobileEndRoute(
+                                                                    response:
+                                                                        state.savingsAccountTransferMobileResponseEntity,
+                                                                  ),
+                                                                );
+                                                          }
+                                                          if (state
+                                                              is LoanFlowPaymentCreditError) {
+                                                            ScaffoldMessenger.of(
+                                                              context,
+                                                            ).showSnackBar(
+                                                              SnackBar(
+                                                                content: Text(
+                                                                  state.message,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                        },
+                                                        builder: (context, state) {
+                                                          return Butoon1(
+                                                            onTap: () {
+                                                              context
+                                                                  .read<
+                                                                    LoanFlowPaymentCreditBloc
+                                                                  >()
+                                                                  .add(
+                                                                    LoanFlowPaymentCreditE(
+                                                                      idLoanCredit: entity.idLoanCredit,
+                                                                      debitAmount: entity.totalToDebit,
+                                                                      amountToPay: entity.totalAmountToPay,
+                                                                      taxAmount: entity.totalTax,
+                                                                      idLoanCurrency: entity.idLoanCurrency,
+                                                                      withInsuranceReturn: entity.withInsuranceReturn,
+                                                                      idSavingAccount: _selectedAccountId!.toInt(),
+                                                                      loanCreditCode: entity.loanCreditCode,
+                                                                      isOwnCredit: true,
+                                                                      idSMSOperation: createState.createProdemKeyResponseEntity!.data.toString(),
+                                                                      prodemKeyCode:getState.getProdemKeyByIdResponseEntity?.data ??'',
+                                                                    ),
+                                                                  );
+                                                            },
+                                                            lblTextField:
+                                                                state
+                                                                    is LoanFlowPaymentCreditLoading
+                                                                ? 'Procesando...'
+                                                                : 'CONFIRMAR',
+                                                          );
+                                                        },
+                                                      ),
+                                                ),
                                               ),
 
                                             SizedBox(
