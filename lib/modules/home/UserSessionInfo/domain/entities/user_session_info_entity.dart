@@ -28,7 +28,7 @@ class UserInfoResponseEnttity {
   final String idcQuestion;
   final dynamic cellPhoneNumber;
   final int maximumAmount;
-  final int maximumElectronicWalletAmount;
+  final double maximumElectronicWalletAmount;
   final dynamic email;
   final bool sendEmailNotification;
   final dynamic identityCardNumber;

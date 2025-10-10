@@ -5,10 +5,13 @@ import 'package:geocoding/geocoding.dart';
 class GeolocationHelper {
   /// 🧭 Verifica si la ubicación está activada en el dispositivo
   static Future<bool> isLocationServiceEnabled() async {
-   final isLocationServiceEnabled= await Geolocator.isLocationServiceEnabled();
+    final isLocationServiceEnabled =
+        await Geolocator.isLocationServiceEnabled();
     // ignore: prefer_interpolation_to_compose_strings
-    final messa=isLocationServiceEnabled?"esta habilidato:": "no esta habilitado";
-    print('Error obteniendo ubicación: $messa');
+    final messa = isLocationServiceEnabled
+        ? "esta habilidato:"
+        : "no esta habilitado";
+    //print('Error obteniendo ubicación: $messa');
     return isLocationServiceEnabled;
   }
 
@@ -19,7 +22,7 @@ class GeolocationHelper {
       // 1️⃣ Verificar si el servicio de ubicación está habilitado
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
-        print('Error obteniendo ubicación: servicio de ubicacion deshabilitada');
+        //print('Error obteniendo ubicación: servicio de ubicacion deshabilitada');
         return '';
       }
 
@@ -27,14 +30,13 @@ class GeolocationHelper {
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.denied) 
-        {
-          print('Error obteniendo ubicación: LocationPermission.denied');
+        if (permission == LocationPermission.denied) {
+          //print('Error obteniendo ubicación: LocationPermission.denied');
           return '';
-          }
+        }
       }
       if (permission == LocationPermission.deniedForever) {
-        print('Error obteniendo ubicación: LocationPermission.deniedForever');
+        //print('Error obteniendo ubicación: LocationPermission.deniedForever');
         return '';
       }
 
@@ -53,7 +55,7 @@ class GeolocationHelper {
       );
 
       if (placemarks.isEmpty) {
-         print('Error obteniendo ubicación:placemarks vacio');
+        //print('Error obteniendo ubicación:placemarks vacio');
         return '';
       }
 
@@ -72,11 +74,11 @@ class GeolocationHelper {
         "thoroughfare": lugar.thoroughfare,
       };
 
-      print('json: ${jsonEncode(jsonData)}') ;
+      //print('json: ${jsonEncode(jsonData)}') ;
 
       return jsonEncode(jsonData);
     } catch (e) {
-      print('Error obteniendo ubicación: $e');
+      //print('Error obteniendo ubicación: $e');
       return '';
     }
   }

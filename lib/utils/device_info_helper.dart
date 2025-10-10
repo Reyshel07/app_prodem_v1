@@ -21,7 +21,7 @@ class DeviceInfoHelper {
         return '';
       }
     } catch (e) {
-      print('Error obteniendo identificador: $e');
+      //print('Error obteniendo identificador: $e');
       return '';
     }
   }
@@ -53,7 +53,7 @@ class DeviceInfoHelper {
         return {'platform': 'Unknown'};
       }
     } catch (e) {
-      print('Error obteniendo info: $e');
+      //print('Error obteniendo info: $e');
       return {'platform': 'Unknown'};
     }
   }

@@ -11,13 +11,13 @@ class GetReportMovementsByPersonAndDatesResponseEntity {
 }
 
 class GetReportMovementsByPersonAndDateEntity {
-  //final List<ColMovementEntity> colMovements;
+  final List<ColMovementEntity> colMovements;
   final int resultCode;
   final String errorMessage;
   final String reportString;
 
   GetReportMovementsByPersonAndDateEntity({
-    //required this.colMovements,
+    required this.colMovements,
     required this.resultCode,
     required this.errorMessage,
     required this.reportString,
@@ -26,9 +26,9 @@ class GetReportMovementsByPersonAndDateEntity {
 
 class ColMovementEntity {
   final int idMovement;
-  final ClientName clientName;
-  final Detail detail;
-  final Amount amount;
+  final String clientName;
+  final String detail;
+  final String amount;
   final int transactioType;
 
   ColMovementEntity({
@@ -39,7 +39,7 @@ class ColMovementEntity {
     required this.transactioType,
   });
 }
-
+/*
 enum Amount { THE_454500_BS, THE_45600_BS }
 
 final amountValues = EnumValues({
@@ -69,3 +69,4 @@ class EnumValues<T> {
     return reverseMap;
   }
 }
+*/

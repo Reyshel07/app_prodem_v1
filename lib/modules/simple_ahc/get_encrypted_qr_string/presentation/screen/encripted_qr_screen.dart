@@ -8,6 +8,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../domain/entities/entity.dart';
 
 @RoutePage()
+// ignore: must_be_immutable
 class EncriptedQRScreen extends StatelessWidget {
   final GetEncryptedQrStringEntity getEncryptedQrStringEntity;
   String moneda;

@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../config/router/router.dart';
 
 @RoutePage()
+// ignore: must_be_immutable
 class GetAchDataScreen extends StatelessWidget {
   String cuentaO;
   String montoEn;

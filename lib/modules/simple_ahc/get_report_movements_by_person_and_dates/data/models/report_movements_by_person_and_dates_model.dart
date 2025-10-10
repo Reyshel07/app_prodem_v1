@@ -25,7 +25,7 @@ class GetReportMovementsByPersonAndDatesResponseModel
 class GetReportMovementsByPersonAndDateModel
     extends GetReportMovementsByPersonAndDateEntity {
   GetReportMovementsByPersonAndDateModel({
-    //required super.colMovements,
+    required super.colMovements,
     required super.resultCode,
     required super.errorMessage,
     required super.reportString,
@@ -34,16 +34,15 @@ class GetReportMovementsByPersonAndDateModel
   factory GetReportMovementsByPersonAndDateModel.fromJson(
     Map<String, dynamic> json,
   ) => GetReportMovementsByPersonAndDateModel(
-    /*colMovements: List<ColMovementModel>.from(
+    colMovements: List<ColMovementModel>.from(
       json["colMovements"].map((x) => ColMovementModel.fromJson(x)),
-    ),*/
+    ),
     resultCode: json["resultCode"],
     errorMessage: json["errorMessage"],
     reportString: json["reportString"],
   );
 }
 
-/*
 class ColMovementModel extends ColMovementEntity {
   ColMovementModel({
     required super.idMovement,
@@ -53,16 +52,18 @@ class ColMovementModel extends ColMovementEntity {
     required super.transactioType,
   });
 
-  factory ColMovementModel.fromJson(Map<String, dynamic> json) =>
-      ColMovementModel(
-        idMovement: json["idMovement"].toDouble(),
-        clientName: clientNameValues.map[json["clientName"]],
-        detail: detailValues.map[json["detail"]],
-        amount: amountValues.map[json["amount"]],
-        transactioType: json["transactioType"],
-      );
+  factory ColMovementModel.fromJson(Map<String, dynamic> json) {
+    return ColMovementModel(
+      idMovement: json["idMovement"],
+      clientName: json["clientName"] ?? '',
+      detail: json["detail"] ?? '',
+      amount: json["amount"] ?? '',
+      transactioType: json["transactioType"] ?? 0,
+    );
+  }
 }
-*/
+
+/*
 enum Amount { THE_454500_BS, THE_45600_BS }
 
 final amountValues = EnumValues({
@@ -96,3 +97,4 @@ class EnumValues<T> {
     return reverseMap;
   }
 }
+*/

@@ -16,7 +16,7 @@ final class ReportMovementByPersonAndDateError
 
 final class ReportMovementByPersonAndDateSuccess
     extends ReportMovementByPersonAndDateState {
-  final GetReportMovementsByPersonAndDateEntity
+  GetReportMovementsByPersonAndDateEntity
   getReportMovementsByPersonAndDateEntity;
   ReportMovementByPersonAndDateSuccess(
     this.getReportMovementsByPersonAndDateEntity,
