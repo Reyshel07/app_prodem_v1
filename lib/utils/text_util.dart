@@ -211,4 +211,11 @@ class AppTextStyles {
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.bold,
   );
+
+  static TextStyle? mainStyleBlack14(BuildContext context) => GoogleFonts.exo(
+    color: Theme.of(context).colorScheme.black,
+    fontSize: 14,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+  );
 }

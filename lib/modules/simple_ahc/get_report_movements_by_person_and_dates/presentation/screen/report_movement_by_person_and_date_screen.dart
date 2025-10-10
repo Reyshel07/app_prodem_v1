@@ -1,7 +1,12 @@
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
+import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/simple_ahc/get_report_movements_by_person_and_dates/presentation/bloc/report_movement_by_person_and_date_bloc.dart';
+import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 @RoutePage()
@@ -16,35 +21,193 @@ class ReportMovementByPErsonAndDateScreen extends StatefulWidget {
 class _ReportMovementByPErsonAndDateScreenState
     extends State<ReportMovementByPErsonAndDateScreen> {
   String? _selectedValueMoney;
+  DateTime? _fechaSeleccionada;
+  DateTime? _fechaSeleccionada2;
+
+  Future<void> _seleccionarFecha(BuildContext context) async {
+    final DateTime? fechaElegida = await showDatePicker(
+      context: context,
+      initialDate: _fechaSeleccionada ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      locale: const Locale('es', ''), // calendario en español
+    );
+
+    if (fechaElegida != null && fechaElegida != _fechaSeleccionada) {
+      setState(() {
+        _fechaSeleccionada = fechaElegida;
+      });
+    }
+  }
+
+  Future<void> _seleccionarFecha2(BuildContext context) async {
+    final DateTime? fechaElegida = await showDatePicker(
+      context: context,
+      initialDate: _fechaSeleccionada2 ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      locale: const Locale('es', ''), // calendario en español
+    );
+
+    if (fechaElegida != null && fechaElegida != _fechaSeleccionada2) {
+      setState(() {
+        _fechaSeleccionada2 = fechaElegida;
+      });
+    }
+  }
+
+  List<String> listMovimientos = [
+    'Todos',
+    'Cobro QR Prodem',
+    'Pago QR P rodem',
+  ];
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final double smallSpacing = screenSize.height * 0.02;
     final double topPadding = screenSize.height * 0.2;
-    return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Theme.of(context).colorScheme.white,
-        backgroundColor: Theme.of(context).colorScheme.green,
-        title: Text(
-          'Consultar Movimientos',
-          style: AppTextStyles.mainStyleWhite18Bold(context),
+
+    final fechaTexto = _fechaSeleccionada != null
+        ? DateFormat('dd/MM/yyyy').format(_fechaSeleccionada!)
+        : 'dd/mm/aaaa';
+    final fechaTexto2 = _fechaSeleccionada2 != null
+        ? DateFormat('dd/MM/yyyy').format(_fechaSeleccionada2!)
+        : 'dd/mm/aaaa';
+
+    return BlocProvider(
+      create: (context) =>
+          InjectorContainer.getIt<ReportMovementByPersonAndDateBloc>(),
+      child: Scaffold(
+        appBar: AppBar(
+          foregroundColor: Theme.of(context).colorScheme.white,
+          backgroundColor: Theme.of(context).colorScheme.green,
+          title: Text(
+            'Consultar Movimientos',
+            style: AppTextStyles.mainStyleWhite18Bold(context),
+          ),
         ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(topPadding * 0.05),
-        child: Column(
-          children: [
-            _buildDropdown(
-              title: 'MONEDA TRANSFERENCIA',
-              items: [],
-              value: _selectedValueMoney,
-              onChanged: (newValue) {
-                setState(() => _selectedValueMoney = newValue);
-              },
-              smallSpacing: smallSpacing,
-            ),
-            Text('Fechas:', style: AppTextStyles.mainStyleGreen12Bold(context)),
-          ],
+        body: Padding(
+          padding: EdgeInsets.all(topPadding * 0.05),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildDropdown(
+                title: 'Tipo de Movimiento',
+                items: listMovimientos,
+                value: _selectedValueMoney,
+                onChanged: (newValue) {
+                  setState(() => _selectedValueMoney = newValue);
+                },
+                smallSpacing: smallSpacing,
+              ),
+              SizedBox(height: smallSpacing * 0.8),
+              Text(
+                'Fechas:',
+                style: AppTextStyles.mainStyleGreen12Bold(context),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      TextIcon(
+                        onTap: () => _seleccionarFecha(context),
+                        prefix: Icon(
+                          Icons.date_range,
+                          color: Theme.of(context).colorScheme.green,
+                        ),
+                        text: 'Desde: $fechaTexto',
+                        textStyle: AppTextStyles.mainStyleGreen14Bold(context),
+                        suffix: Icon(
+                          Icons.keyboard_arrow_down_outlined,
+                          color: Theme.of(context).colorScheme.green,
+                        ),
+                      ),
+                      TextIcon(
+                        onTap: () => _seleccionarFecha2(context),
+                        prefix: Icon(
+                          Icons.date_range,
+                          color: Theme.of(context).colorScheme.green,
+                        ),
+                        text: 'Hasta: $fechaTexto2',
+                        textStyle: AppTextStyles.mainStyleGreen14Bold(context),
+                        suffix: Icon(
+                          Icons.keyboard_arrow_down_outlined,
+                          color: Theme.of(context).colorScheme.green,
+                        ),
+                      ),
+                    ],
+                  ),
+                  ElevateButton1(
+                    onTap: () {
+                      context.read<ReportMovementByPersonAndDateBloc>().add(
+                        ReportMovementByPersonAndDatEvent(
+                          movementType: 1,
+                          dateIni: fechaTexto,
+                          dateFin: fechaTexto2,
+                        ),
+                      );
+                    },
+                    lblTextField: 'Buscar',
+                  ),
+                  BlocBuilder<
+                    ReportMovementByPersonAndDateBloc,
+                    ReportMovementByPersonAndDateState
+                  >(
+                    builder: (context, state) {
+                      if (state is ReportMovementByPersonAndDateSuccess) {
+                        final res = state
+                            .getReportMovementsByPersonAndDateEntity
+                            .colMovements;
+                        return Expanded(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: res.length,
+                            itemBuilder: (context, index) {
+                              final data = res[index];
+                              return Card(
+                                elevation: smallSpacing * 0.5,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.green,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(topPadding * 0.05),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${data.amount}\n'
+                                          '',
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      } else if (state
+                          is ReportMovementByPersonAndDateLoading) {
+                        return const CircularProgressIndicator();
+                      } else if (state is ReportMovementByPersonAndDateError) {
+                        return Text(state.message);
+                      }
+                      return Column();
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

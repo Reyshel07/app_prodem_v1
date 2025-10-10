@@ -2,6 +2,7 @@ import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'injector.container.dart';
 import 'utils/secure_hive.dart';
 
@@ -26,6 +27,20 @@ class MainApp extends StatelessWidget {
     final appRouter = InjectorContainer.getIt<AppRouter>();
     return MaterialApp.router(
       title: 'Prodem',
+      debugShowCheckedModeBanner: false,
+
+      /// Aquí agregamos las localizaciones
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+
+      /// Soporte para idiomas (español e inglés por ejemplo)
+      supportedLocales: const [
+        Locale('es', ''), // Español
+        Locale('en', ''), // Inglés
+      ],
       routerConfig: appRouter.config(),
     );
   }

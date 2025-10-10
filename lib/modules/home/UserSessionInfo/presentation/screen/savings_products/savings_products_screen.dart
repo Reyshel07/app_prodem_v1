@@ -180,15 +180,36 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
-                      child: ListTitlePrueba(
+                      onTap: () {
+                        InjectorContainer.getIt<AppRouter>().push(
+                          CurrentQrByTypeRoute(),
+                        );
+                      },
+                      child: Card(
+                        elevation: smallSpacing * 0.5,
+                        child: Container(
+                          height: screenSize.height * 0.065,
+                          width: screenSize.width * 0.95,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.green,
+                            ),
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+                          child: Text(
+                            'Deposito de otras entidades',
+                            textAlign: TextAlign.start,
+                            style: AppTextStyles.mainStyleGreen16Bold(context),
+                          ),
+                        ),
+                      ) /*ListTitlePrueba(
                         topPadding: topPadding,
                         smallSpacing: smallSpacing,
                         letterSize: letterSize,
                         title: 'Deposito de otras entidades',
                         icon: Icons.broadcast_on_home,
                         column: Column(),
-                      ),
+                      ),*/,
                     ),
                     ListTitlePrueba(
                       topPadding: topPadding,

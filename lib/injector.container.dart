@@ -5,6 +5,7 @@ import 'package:app_prodem_v1/modules/dpf/GetListDpfDigitalSolicitation/get.list
 import 'package:app_prodem_v1/modules/dpf/CreateDPFSolicitationInternal/create.dpf.solicitation.intenal.container.dart';
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/get.parameters.to.digital.dpf.container.dart';
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/infor.acciones.container.dart';
+import 'package:app_prodem_v1/modules/get_current_qr_by_type/get.current.qr.by.type.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/express.data.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
@@ -55,5 +56,6 @@ class InjectorContainer {
     initInforAcciones(getIt);
     initGEtEncriptedQrString(getIt);
     initDecryptQrString(getIt);
+    initCurrentQrByType(getIt);
   }
 }

@@ -32,5 +32,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: DecryptQrRoute.page),
     AutoRoute(page: DecryptQrDetailsRoute.page),
     AutoRoute(page: ReportMovementByPErsonAndDateRoute.page),
+    AutoRoute(page: CurrentQrByTypeRoute.page),
   ];
 }
