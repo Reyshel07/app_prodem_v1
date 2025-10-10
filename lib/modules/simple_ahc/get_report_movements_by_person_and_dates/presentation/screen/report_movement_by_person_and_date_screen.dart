@@ -30,7 +30,7 @@ class _ReportMovementByPErsonAndDateScreenState
       initialDate: _fechaSeleccionada ?? DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
-      locale: const Locale('es', ''), // calendario en español
+      locale: const Locale('es', ''),
     );
 
     if (fechaElegida != null && fechaElegida != _fechaSeleccionada) {
@@ -46,7 +46,7 @@ class _ReportMovementByPErsonAndDateScreenState
       initialDate: _fechaSeleccionada2 ?? DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
-      locale: const Locale('es', ''), // calendario en español
+      locale: const Locale('es', ''),
     );
 
     if (fechaElegida != null && fechaElegida != _fechaSeleccionada2) {
@@ -56,11 +56,8 @@ class _ReportMovementByPErsonAndDateScreenState
     }
   }
 
-  List<String> listMovimientos = [
-    'Todos',
-    'Cobro QR Prodem',
-    'Pago QR P rodem',
-  ];
+  List<String> listMovimientos = ['Todos', 'Cobro QR Prodem', 'Pago QR Prodem'];
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -86,129 +83,178 @@ class _ReportMovementByPErsonAndDateScreenState
             style: AppTextStyles.mainStyleWhite18Bold(context),
           ),
         ),
-        body: Padding(
-          padding: EdgeInsets.all(topPadding * 0.05),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildDropdown(
-                title: 'Tipo de Movimiento',
-                items: listMovimientos,
-                value: _selectedValueMoney,
-                onChanged: (newValue) {
-                  setState(() => _selectedValueMoney = newValue);
-                },
-                smallSpacing: smallSpacing,
-              ),
-              SizedBox(height: smallSpacing * 0.8),
-              Text(
-                'Fechas:',
-                style: AppTextStyles.mainStyleGreen12Bold(context),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
+        body:
+            BlocBuilder<
+              ReportMovementByPersonAndDateBloc,
+              ReportMovementByPersonAndDateState
+            >(
+              builder: (context, state) {
+                return Padding(
+                  padding: EdgeInsets.all(topPadding * 0.05),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextIcon(
-                        onTap: () => _seleccionarFecha(context),
-                        prefix: Icon(
-                          Icons.date_range,
-                          color: Theme.of(context).colorScheme.green,
-                        ),
-                        text: 'Desde: $fechaTexto',
-                        textStyle: AppTextStyles.mainStyleGreen14Bold(context),
-                        suffix: Icon(
-                          Icons.keyboard_arrow_down_outlined,
-                          color: Theme.of(context).colorScheme.green,
-                        ),
+                      _buildDropdown(
+                        title: 'Tipo de Movimiento',
+                        items: listMovimientos,
+                        value: _selectedValueMoney,
+                        onChanged: (newValue) {
+                          setState(() => _selectedValueMoney = newValue);
+                        },
+                        smallSpacing: smallSpacing,
                       ),
-                      TextIcon(
-                        onTap: () => _seleccionarFecha2(context),
-                        prefix: Icon(
-                          Icons.date_range,
-                          color: Theme.of(context).colorScheme.green,
-                        ),
-                        text: 'Hasta: $fechaTexto2',
-                        textStyle: AppTextStyles.mainStyleGreen14Bold(context),
-                        suffix: Icon(
-                          Icons.keyboard_arrow_down_outlined,
-                          color: Theme.of(context).colorScheme.green,
-                        ),
+                      SizedBox(height: smallSpacing * 0.8),
+                      Text(
+                        'Fechas:',
+                        style: AppTextStyles.mainStyleGreen14Bold(context),
                       ),
-                    ],
-                  ),
-                  ElevateButton1(
-                    onTap: () {
-                      context.read<ReportMovementByPersonAndDateBloc>().add(
-                        ReportMovementByPersonAndDatEvent(
-                          movementType: 1,
-                          dateIni: fechaTexto,
-                          dateFin: fechaTexto2,
-                        ),
-                      );
-                    },
-                    lblTextField: 'Buscar',
-                  ),
-                  BlocBuilder<
-                    ReportMovementByPersonAndDateBloc,
-                    ReportMovementByPersonAndDateState
-                  >(
-                    builder: (context, state) {
-                      if (state is ReportMovementByPersonAndDateSuccess) {
-                        final res = state
-                            .getReportMovementsByPersonAndDateEntity
-                            .colMovements;
-                        return Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: res.length,
-                            itemBuilder: (context, index) {
-                              final data = res[index];
-                              return Card(
-                                elevation: smallSpacing * 0.5,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.green,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextIcon(
+                                onTap: () => _seleccionarFecha(context),
+                                prefix: Icon(
+                                  Icons.date_range,
+                                  color: Theme.of(context).colorScheme.green,
+                                ),
+                                text: 'Desde: $fechaTexto',
+                                textStyle: AppTextStyles.mainStyleGreen14Bold(
+                                  context,
+                                ),
+                                suffix: Icon(
+                                  Icons.keyboard_arrow_down_outlined,
+                                  color: Theme.of(context).colorScheme.green,
+                                ),
+                              ),
+                              TextIcon(
+                                onTap: () => _seleccionarFecha2(context),
+                                prefix: Icon(
+                                  Icons.date_range,
+                                  color: Theme.of(context).colorScheme.green,
+                                ),
+                                text: 'Hasta: $fechaTexto2',
+                                textStyle: AppTextStyles.mainStyleGreen14Bold(
+                                  context,
+                                ),
+                                suffix: Icon(
+                                  Icons.keyboard_arrow_down_outlined,
+                                  color: Theme.of(context).colorScheme.green,
+                                ),
+                              ),
+                            ],
+                          ),
+                          ElevateButton1(
+                            onTap: () {
+                              context
+                                  .read<ReportMovementByPersonAndDateBloc>()
+                                  .add(
+                                    ReportMovementByPersonAndDatEvent(
+                                      movementType: 0,
+                                      dateIni: fechaTexto,
+                                      dateFin: fechaTexto2,
                                     ),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(topPadding * 0.05),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                  );
+                            },
+                            lblTextField: 'Buscar',
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: smallSpacing),
+                      Expanded(
+                        child:
+                            BlocBuilder<
+                              ReportMovementByPersonAndDateBloc,
+                              ReportMovementByPersonAndDateState
+                            >(
+                              builder: (context, state) {
+                                if (state
+                                    is ReportMovementByPersonAndDateSuccess) {
+                                  final res = state
+                                      .getReportMovementsByPersonAndDateEntity
+                                      .colMovements;
+                                  return SingleChildScrollView(
+                                    child: Column(
                                       children: [
                                         Text(
-                                          '${data.amount}\n'
-                                          '',
+                                          'Detalle de movimientos:',
+                                          style:
+                                              AppTextStyles.mainStyleGreen14Bold(
+                                                context,
+                                              ),
+                                        ),
+                                        ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: res.length,
+                                          itemBuilder: (context, index) {
+                                            final data = res[index];
+                                            return Card(
+                                              elevation: smallSpacing * 0.5,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                    color: Theme.of(
+                                                      context,
+                                                    ).colorScheme.green,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(
+                                                    topPadding * 0.05,
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          '${data.clientName}\n${data.detail}',
+                                                          style:
+                                                              AppTextStyles.mainStyleGreen12(
+                                                                context,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        data.amount,
+                                                        style:
+                                                            AppTextStyles.mainStyleGreen14Bold(
+                                                              context,
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      } else if (state
-                          is ReportMovementByPersonAndDateLoading) {
-                        return const CircularProgressIndicator();
-                      } else if (state is ReportMovementByPersonAndDateError) {
-                        return Text(state.message);
-                      }
-                      return Column();
-                    },
+                                  );
+                                } else if (state
+                                    is ReportMovementByPersonAndDateLoading) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                } else if (state
+                                    is ReportMovementByPersonAndDateError) {
+                                  return Center(child: Text(state.message));
+                                }
+                                return const SizedBox();
+                              },
+                            ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ],
-          ),
-        ),
+                );
+              },
+            ),
       ),
     );
   }
@@ -233,7 +279,7 @@ class _ReportMovementByPErsonAndDateScreenState
           child: DropdownButton<String>(
             isExpanded: true,
             underline: const SizedBox(),
-            padding: EdgeInsetsGeometry.all(smallSpacing * 0.5),
+            padding: EdgeInsets.all(smallSpacing * 0.5),
             hint: Text(
               title,
               style: AppTextStyles.mainStyleGreen14Bold(context),

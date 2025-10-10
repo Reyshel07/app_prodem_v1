@@ -27,7 +27,7 @@ class UserInfoResponseEnttity {
   final dynamic personName;
   final String idcQuestion;
   final dynamic cellPhoneNumber;
-  final int maximumAmount;
+  final double maximumAmount;
   final double maximumElectronicWalletAmount;
   final dynamic email;
   final bool sendEmailNotification;
@@ -115,7 +115,7 @@ class ListAdEntity {
 class ListCodeCreditLineElementEntity {
   final int idMoney;
   final String codMoney;
-  final int idOperationEntity;
+  final double idOperationEntity;
   final String operationCode;
   final double availableAmount;
   final int idOffice;
