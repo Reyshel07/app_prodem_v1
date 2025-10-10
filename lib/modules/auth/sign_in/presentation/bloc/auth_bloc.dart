@@ -41,11 +41,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await SecureHive.writeIdWebPerson(idwebperson);
       }
 
-      final IdUsuario = response.data!.aditionalItems
+      final idUsuario = response.data!.aditionalItems
           .singleWhere((x) => x.key == 'IdUsuario')
           .value;
-      if (IdUsuario.isNotEmpty) {
-        await SecureHive.writeIdUser(IdUsuario);
+      if (idUsuario.isNotEmpty) {
+        await SecureHive.writeIdUser(idUsuario);
       }
 
       emit(AuthSuccess("Inicio de sesión exitoso"));

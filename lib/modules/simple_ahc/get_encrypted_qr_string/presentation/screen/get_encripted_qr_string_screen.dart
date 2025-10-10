@@ -67,91 +67,96 @@ class _GetEncriptedQrStringScreenState
                 listener: (context, state) {},
                 builder: (context, state) {
                   if (state is SessionInfoSuccess) {
+                    final res = state.userInfoResponseEnttity;
                     final listAccounts =
                         state.userInfoResponseEnttity.listCodeSavingsAccount;
                     final list = listAccounts
                         .map((account) => account.operationCode)
                         .toList();
-                    return _buildDropdown(
-                      title: 'CUENTA AHORRO ORIGEN',
-                      items: list,
-                      value: _codeSavingAccountSource,
-                      onChanged: (newValue) {
-                        setState(() => _codeSavingAccountSource = newValue);
-                      },
-                      smallSpacing: smallSpacing,
-                    );
-                  }
-                  return CircularProgressIndicator();
-                },
-              ),
-              TextFromFiel02(
-                screenSize: screenSize,
-                smallSpacing: smallSpacing,
-                userController: amountController,
-                lbText: 'MONTO',
-              ),
-              _buildDropdown(
-                title: 'Moneda',
-                items: [],
-                value: _money,
-                onChanged: (newValue) {
-                  setState(() => _codeSavingAccountSource = newValue);
-                },
-                smallSpacing: smallSpacing,
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    value: isChecked,
-                    onChanged: (value) {
-                      setState(() => isChecked = value ?? false);
-                    },
-                  ),
-                  Text('¿Un único uso?'),
-                ],
-              ),
-              _buildDropdown(
-                title: 'plazo:',
-                items: [],
-                value: _deadline,
-                onChanged: (newValue) {
-                  setState(() => _codeSavingAccountSource = newValue);
-                },
-                smallSpacing: smallSpacing,
-              ),
-              TextFromFiel02(
-                screenSize: screenSize,
-                smallSpacing: smallSpacing,
-                userController: referenceController,
-                lbText: 'Referencia',
-              ),
-              BlocBuilder<GetEncriptedQrStringBloc, GetEncriptedQrStringState>(
-                builder: (context, state) {
-                  if (state is GetEncriptedQrStringSuccess) {
-                    InjectorContainer.getIt<AppRouter>().push(
-                      EncriptedQRRoute(
-                        getEncryptedQrStringEntity:
-                            state.getEncryptedQrStringEntity,
-                        moneda: 'Bs',
-                        monto: amountController.text,
-                        referencia: referenceController.text,
-                      ),
-                    );
-                  }
-                  return ElevateButton1(
-                    onTap: () {
-                      context.read<GetEncriptedQrStringBloc>().add(
-                        GetEncriptedQrSEvent(
-                          accountCode: _codeSavingAccountSource ?? '',
-                          moneyCode: 'BOB',
-                          amount: amountController.text,
-                          isUniqueUse: isChecked,
-                          expiredOption: '365',
-                          reference: referenceController.text,
+                    return Column(
+                      children: [
+                        _buildDropdown(
+                          title: 'CUENTA AHORRO ORIGEN',
+                          items: list,
+                          value: _codeSavingAccountSource,
+                          onChanged: (newValue) {
+                            setState(() => _codeSavingAccountSource = newValue);
+                          },
+                          smallSpacing: smallSpacing,
                         ),
-                      );
-                      /*try {
+                        TextFromFiel02(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: amountController,
+                          lbText: 'MONTO',
+                        ),
+                        _buildDropdown(
+                          title: 'Moneda',
+                          items: [],
+                          value: _money,
+                          onChanged: (newValue) {
+                            setState(() => _codeSavingAccountSource = newValue);
+                          },
+                          smallSpacing: smallSpacing,
+                        ),
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: isChecked,
+                              onChanged: (value) {
+                                setState(() => isChecked = value ?? false);
+                              },
+                            ),
+                            Text('¿Un único uso?'),
+                          ],
+                        ),
+                        _buildDropdown(
+                          title: 'plazo:',
+                          items: [],
+                          value: _deadline,
+                          onChanged: (newValue) {
+                            setState(() => _codeSavingAccountSource = newValue);
+                          },
+                          smallSpacing: smallSpacing,
+                        ),
+                        TextFromFiel02(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: referenceController,
+                          lbText: 'Referencia',
+                        ),
+                        BlocBuilder<
+                          GetEncriptedQrStringBloc,
+                          GetEncriptedQrStringState
+                        >(
+                          builder: (context, state) {
+                            if (state is GetEncriptedQrStringSuccess) {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                EncriptedQRRoute(
+                                  getEncryptedQrStringEntity:
+                                      state.getEncryptedQrStringEntity,
+                                  moneda: 'Bs',
+                                  monto: amountController.text,
+                                  referencia: referenceController.text,
+                                  nombre: res.personName ?? '',
+                                  cuenta: _codeSavingAccountSource ?? '',
+                                  valido: '12/03/2025',
+                                ),
+                              );
+                            }
+                            return ElevateButton1(
+                              onTap: () {
+                                context.read<GetEncriptedQrStringBloc>().add(
+                                  GetEncriptedQrSEvent(
+                                    accountCode: _codeSavingAccountSource ?? '',
+                                    moneyCode: 'BOB',
+                                    amount: amountController.text,
+                                    isUniqueUse: isChecked,
+                                    expiredOption: '365',
+                                    reference: referenceController.text,
+                                  ),
+                                );
+                                /*try {
                                       final bloc = BlocProvider.of<GetEncriptedQrStringBloc>(
                                         ctx,
                                         listen: false,
@@ -176,9 +181,15 @@ class _GetEncriptedQrStringScreenState
                                         ),
                                       );
                                     }*/
-                    },
-                    lblTextField: 'GENERAR QR',
-                  );
+                              },
+                              lblTextField: 'GENERAR QR',
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  }
+                  return CircularProgressIndicator();
                 },
               ),
             ],

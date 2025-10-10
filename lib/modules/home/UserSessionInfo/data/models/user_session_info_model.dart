@@ -93,7 +93,7 @@ class UserInfoResponseModel extends UserInfoResponseEnttity {
         personName: json["personName"],
         idcQuestion: json["idcQuestion"],
         cellPhoneNumber: json["cellPhoneNumber"],
-        maximumAmount: json["maximumAmount"],
+        maximumAmount: json["maximumAmount"].toDouble(),
         maximumElectronicWalletAmount: json["maximumElectronicWalletAmount"]
             .toDouble(),
         email: json["email"],
