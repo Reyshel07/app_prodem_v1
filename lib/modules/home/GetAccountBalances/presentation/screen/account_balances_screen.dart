@@ -2,6 +2,7 @@ import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
+import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,9 @@ class AccountInquiryScreen extends StatefulWidget {
 }
 
 class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
-  String? _selectedValue;
+  String? _selectedAccount;
+  String? _selectedAccountId;
+  String? _selectedAccountMoneyId;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
                 style: AppTextStyles.mainStyleGreen18Bold(context),
               ),
               SizedBox(height: smallSpacing * 0.5),
-              BlocBuilder<SessionInfoBloc, SessionInfoState>(
+              /*BlocBuilder<SessionInfoBloc, SessionInfoState>(
                 builder: (context, state) {
                   if (state is SessionInfoSuccess) {
                     final listAccounts =
@@ -87,7 +90,20 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
                   }
                   return SizedBox();
                 },
+              ),*/
+              AccountDropdown(
+                selectedAccount: _selectedAccount,
+                smallSpacing: smallSpacing,
+                screenSize: screenSize,
+                onAccountSelected: (account) {
+                  setState(() {
+                    _selectedAccount = account.operationCode;
+                    _selectedAccountId = account.idOperationEntity;
+                    _selectedAccountMoneyId = account.idMoney;
+                  });
+                },
               ),
+
               SizedBox(
                 width: screenSize.width * 0.3,
                 child: Card(
@@ -98,7 +114,7 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
                       widget.bloc.add(
                         AccountBalEvent(
                           codeSavingsAccount:
-                              _selectedValue ?? '117-2-1-17515-8',
+                              _selectedAccount ?? '117-2-1-17515-8',
                         ),
                       );
                     },
