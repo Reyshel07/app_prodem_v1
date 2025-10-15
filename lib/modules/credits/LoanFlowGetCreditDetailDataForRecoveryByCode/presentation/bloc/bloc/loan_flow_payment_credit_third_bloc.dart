@@ -1,26 +1,28 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
-import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/domain/repositories/loan_flow_payment_credit_repository.dart';
+import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecoveryByCode/domain/repositories/loan_flow_payment_credit_third_repository.dart';
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/domain/entities/saving_account_transfer_mobile_entity.dart';
 import 'package:app_prodem_v1/utils/geolocation_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
+import 'package:meta/meta.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-part 'loan_flow_payment_credit_event.dart';
-part 'loan_flow_payment_credit_state.dart';
+part 'loan_flow_payment_credit_third_event.dart';
+part 'loan_flow_payment_credit_third_state.dart';
 
-class LoanFlowPaymentCreditBloc extends Bloc<LoanFlowPaymentCreditEvent, LoanFlowPaymentCreditState> {
-  final LoanFlowPaymentCreditRepository repository;
+class LoanFlowPaymentCreditThirdBloc extends Bloc<LoanFlowPaymentCreditThirdEvent, LoanFlowPaymentCreditThirdState> {
+  final LoanFlowPaymentCreditThirdRepository repository;
 
-  LoanFlowPaymentCreditBloc(this.repository) : super(LoanFlowPaymentCreditInitial()) {
-    on<LoanFlowPaymentCreditE>(loanFlowPaymentCreditEvent);
+  LoanFlowPaymentCreditThirdBloc(this.repository) : super(LoanFlowPaymentCreditThirdInitial()) {
+    on<LoanFlowPaymentCreditThirdE>(loanFlowPaymentCreditThirdEvent);
   }
 
-  Future<void> loanFlowPaymentCreditEvent(
-    LoanFlowPaymentCreditE event,
-    Emitter<LoanFlowPaymentCreditState> emit,
+
+  Future<void> loanFlowPaymentCreditThirdEvent(
+    LoanFlowPaymentCreditThirdE event,
+    Emitter<LoanFlowPaymentCreditThirdState> emit,
     )async{
-    emit(LoanFlowPaymentCreditLoading());
+    emit(LoanFlowPaymentCreditThirdLoading());
     try{
       final token = SecureHive.readToken();
       
@@ -43,7 +45,7 @@ class LoanFlowPaymentCreditBloc extends Bloc<LoanFlowPaymentCreditEvent, LoanFlo
       final customerName = "";
 
 
-      final response = await repository.loanFlowPaymentCredit(token, 
+      final response = await repository.loanFlowPaymentCreditThird(token, 
       event.idLoanCredit,
       event.debitAmount,
       event.amountToPay,
@@ -67,15 +69,20 @@ class LoanFlowPaymentCreditBloc extends Bloc<LoanFlowPaymentCreditEvent, LoanFlo
       event.prodemKeyCode);
 
     
-      emit(LoanFlowPaymentCreditSuccess(response));
+      emit(LoanFlowPaymentCreditThirdSuccess(response));
     }on BaseApiException catch (error) {
       if (error.message == "api_logic_error") {
-        emit(LoanFlowPaymentCreditError(error.message));
+        emit(LoanFlowPaymentCreditThirdError(error.message));
       } else if (error.message == "dio_unexpected") {
-        emit(LoanFlowPaymentCreditError("Ocurrió un error, no tiene internet"));
+        emit(LoanFlowPaymentCreditThirdError("Ocurrió un error, no tiene internet"));
       } else {
-        emit(LoanFlowPaymentCreditError(error.message));
+        emit(LoanFlowPaymentCreditThirdError(error.message));
       }
     }
   }
 }
+
+
+
+
+

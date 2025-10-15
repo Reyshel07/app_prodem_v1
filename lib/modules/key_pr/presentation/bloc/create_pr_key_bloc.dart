@@ -21,7 +21,7 @@ class CreatePrKeyBloc extends Bloc<CreatePrKeyEvent, CreatePrKeyState> {
   ) async {
     emit(CreatePrKeyLoading());
     try {
-      String idUser = '350921'; //SecureHive.readIdUser(); // '350880';
+      String idUser = SecureHive.readIdUser().toString(); // '350880';
       String idWebOperation = '2';
       String idWebPersonClient =
           SecureHive.readIdWebPerson(); //1129150143954615';

@@ -2,8 +2,8 @@ import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
-import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/presentation/bloc/bloc/loan_flow_get_credit_detail_data_for_recovery_bloc.dart';
-import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/presentation/bloc/bloc/loan_flow_payment_credit_bloc.dart';
+import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecoveryByCode/presentation/bloc/bloc/loan_flow_get_credit_detail_data_for_recovery_by_code_bloc.dart';
+import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecoveryByCode/presentation/bloc/bloc/loan_flow_payment_credit_third_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/create_pr_key_bloc.dart';
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/get_pr_key_by_id_bloc.dart';
@@ -14,22 +14,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 @RoutePage()
-class LoanFlowGetCreditDetailDataForRecoveryScreen extends StatefulWidget {
+class LoanFlowGetCreditDetailDataForRecoveryByCodeScreen
+    extends StatefulWidget {
   final SessionInfoBloc sessionBloc;
-  const LoanFlowGetCreditDetailDataForRecoveryScreen({
+  const LoanFlowGetCreditDetailDataForRecoveryByCodeScreen({
     super.key,
     required this.sessionBloc,
   });
 
   @override
-  State<LoanFlowGetCreditDetailDataForRecoveryScreen> createState() =>
-      _LoanFlowGetCreditDetailDataForRecoveryScreenState();
+  State<LoanFlowGetCreditDetailDataForRecoveryByCodeScreen> createState() =>
+      _LoanFlowGetCreditDetailDataForRecoveryByCodeScreenState();
 }
 
-class _LoanFlowGetCreditDetailDataForRecoveryScreenState
-    extends State<LoanFlowGetCreditDetailDataForRecoveryScreen> {
-  String? _selectedOperationCode;
-  String? _selectedLoanId;
+class _LoanFlowGetCreditDetailDataForRecoveryByCodeScreenState
+    extends State<LoanFlowGetCreditDetailDataForRecoveryByCodeScreen> {
+  String? _codeOperationCode;
+  // String? _selectedLoanId;
+  final TextEditingController _textFieldController = TextEditingController();
 
   String? _selectedAccount;
   String? _selectedAccountId;
@@ -46,7 +48,7 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
         BlocProvider(
           create: (context) =>
               InjectorContainer.getIt<
-                LoanFlowGetCreditDetailDataForRecoveryBloc
+                LoanFlowGetCreditDetailDataForRecoveryByCodeBloc
               >(),
         ),
         BlocProvider.value(value: widget.sessionBloc),
@@ -60,7 +62,7 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
         ),
 
          BlocProvider(
-          create: (contex) => InjectorContainer.getIt<LoanFlowPaymentCreditBloc>(),
+          create: (contex) => InjectorContainer.getIt<LoanFlowPaymentCreditThirdBloc>(),
         ),
       ],
       child: Builder(
@@ -77,11 +79,12 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
             padding: EdgeInsets.all(topPadding * 0.05),
             child:
                 BlocConsumer<
-                  LoanFlowGetCreditDetailDataForRecoveryBloc,
-                  LoanFlowGetCreditDetailDataForRecoveryState
+                  LoanFlowGetCreditDetailDataForRecoveryByCodeBloc,
+                  LoanFlowGetCreditDetailDataForRecoveryByCodeState
                 >(
                   listener: (context, state) {
-                    if (state is LoanFlowGetCreditDetailDataForRecoveryError) {
+                    if (state
+                        is LoanFlowGetCreditDetailDataForRecoveryByCodeError) {
                       ScaffoldMessenger.of(
                         context,
                       ).showSnackBar(SnackBar(content: Text(state.message)));
@@ -90,19 +93,18 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                   builder: (context, state) {
                     // Loading -> indicador
                     if (state
-                        is LoanFlowGetCreditDetailDataForRecoveryLoading) {
+                        is LoanFlowGetCreditDetailDataForRecoveryByCodeLoading) {
                       return const Center(child: CircularProgressIndicator());
                     }
 
                     // Success -> mostrar datos recuperados (ocultar UI inicial)
                     if (state
-                        is LoanFlowGetCreditDetailDataForRecoverySuccess) {
-                      final entity =
-                          state.loanFlowGetCreditDetailDataForRecoveryEntity;
+                        is LoanFlowGetCreditDetailDataForRecoveryByCodeSuccess) {
+                      final entity = state
+                          .loanFlowGetCreditDetailDataForRecoveryByCodeEntity;
 
                       return SingleChildScrollView(
                         child: Column(
-                          //crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'DETALLE PAGO DE CRÉDITO',
@@ -125,49 +127,50 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Saldo Disponible:',
-                                      entity.savingBalance.toString(),
+                                      entity.savingBalance.toString() ?? '',
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Cliente:',
-                                      entity.customerName,
+                                      entity.customerName ?? '',
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Doc. Identidad:',
-                                      entity.identityCard,
+                                      entity.identityCard ?? '',
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Cod. del CRÉDITO:',
-                                      entity.loanCreditCode,
+                                      entity.loanCreditCode ?? '',
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Monto de la cuota:',
-                                      '${entity.totalAmountToPay - entity.voluntarySaving - entity.totalTax} ${entity.loanCurrency}',
+                                      '${entity.totalAmountToPay - entity.voluntarySaving - entity.totalTax} ${entity.loanCurrency ?? ''}',
                                     ),
 
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Total Impuestos:',
-                                      entity.totalTax.toString(),
+                                      entity.totalTax.toString() ?? '',
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Ahorro Voluntario:',
-                                      entity.voluntarySaving.toString(),
+                                      entity.voluntarySaving.toString() ?? '',
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Monto de la cuota:',
-                                      entity.totalAmountToPay.toString(),
+                                      entity.totalAmountToPay.toString() ?? '',
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Fecha de Vencimiento:',
                                       entity.currentAnnuityEnddingDate
-                                          .toString(),
+                                              .toString() ??
+                                          '',
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
@@ -270,25 +273,24 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                   elevation: smallSpacing * 0.5,
                                                   child:
                                                       BlocConsumer<
-                                                        LoanFlowPaymentCreditBloc,
-                                                        LoanFlowPaymentCreditState
+                                                        LoanFlowPaymentCreditThirdBloc,
+                                                        LoanFlowPaymentCreditThirdState
                                                       >(
                                                         listener: (context, state) {
                                                           if (state
-                                                              is LoanFlowPaymentCreditSuccess) {
+                                                              is LoanFlowPaymentCreditThirdSuccess) {
                                                             InjectorContainer.getIt<
                                                                   AppRouter
                                                                 >()
                                                                 .push(
                                                                   SavingAccountTransMobileEndRoute(
-                                                                    response: state
-                                                                        .savingsAccountTransferMobileResponseEntity
-                                                                        .toString(),
+                                                                    response:
+                                                                        state.savingsAccountTransferMobileResponseEntity,
                                                                   ),
                                                                 );
                                                           }
                                                           if (state
-                                                              is LoanFlowPaymentCreditError) {
+                                                              is LoanFlowPaymentCreditThirdError) {
                                                             ScaffoldMessenger.of(
                                                               context,
                                                             ).showSnackBar(
@@ -305,51 +307,27 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                             onTap:  () {
                                                               context
                                                                   .read<
-                                                                    LoanFlowPaymentCreditBloc
+                                                                    LoanFlowPaymentCreditThirdBloc
                                                                   >()
                                                                   .add(
-                                                                    LoanFlowPaymentCreditE(
-                                                                      idLoanCredit:
-                                                                          entity
-                                                                              .idLoanCredit,
-                                                                      debitAmount:
-                                                                          entity
-                                                                              .totalToDebit,
-                                                                      amountToPay:
-                                                                          entity
-                                                                              .totalAmountToPay,
-                                                                      taxAmount:
-                                                                          entity
-                                                                              .totalTax,
-                                                                      idLoanCurrency:
-                                                                          entity
-                                                                              .idLoanCurrency,
-                                                                      withInsuranceReturn:
-                                                                          entity
-                                                                              .withInsuranceReturn,
-                                                                      idSavingAccount:
-                                                                          _selectedAccountId!
-                                                                              .toInt(),
-                                                                      loanCreditCode:
-                                                                          entity
-                                                                              .loanCreditCode,
-                                                                      isOwnCredit:
-                                                                          true,
-                                                                      idSMSOperation: createState
-                                                                          .createProdemKeyResponseEntity!
-                                                                          .data
-                                                                          .toString(),
-                                                                      prodemKeyCode:
-                                                                          getState
-                                                                              .getProdemKeyByIdResponseEntity
-                                                                              ?.data ??
-                                                                          '',
+                                                                    LoanFlowPaymentCreditThirdE(
+                                                                      idLoanCredit: entity.idLoanCredit,
+                                                                      debitAmount: entity.totalToDebit,
+                                                                      amountToPay: entity.totalAmountToPay,
+                                                                      taxAmount: entity.totalTax,
+                                                                      idLoanCurrency: entity.idLoanCurrency,
+                                                                      withInsuranceReturn: entity.withInsuranceReturn,
+                                                                      idSavingAccount: _selectedAccountId!.toInt(),
+                                                                      loanCreditCode: entity.loanCreditCode,
+                                                                      isOwnCredit: false,
+                                                                      idSMSOperation: createState.createProdemKeyResponseEntity!.data.toString(),
+                                                                      prodemKeyCode:getState.getProdemKeyByIdResponseEntity?.data ??'',
                                                                     ),
                                                                   );
                                                             },
                                                             lblTextField:
                                                                 state
-                                                                    is LoanFlowPaymentCreditLoading
+                                                                    is LoanFlowPaymentCreditThirdLoading
                                                                 ? 'Procesando...'
                                                                 : 'CONFIRMAR',
                                                           );
@@ -357,17 +335,16 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                       ),
                                                 ),
                                               ),
-
-                                            SizedBox(
-                                              width: screenSize.width * 0.3,
-                                              child: Card(
-                                                elevation: smallSpacing * 0.5,
-                                                child: Butoon1(
-                                                  onTap: () {},
-                                                  lblTextField: 'CANCELAR',
+                                              SizedBox(
+                                                width: screenSize.width * 0.3,
+                                                child: Card(
+                                                  elevation: smallSpacing * 0.5,
+                                                  child: Butoon1(
+                                                    onTap: () {},
+                                                    lblTextField: 'CANCELAR',
+                                                  ),
                                                 ),
                                               ),
-                                            ),
                                           ],
                                         ),
                                       ],
@@ -394,8 +371,8 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                           // Dropdown de cuentas
                           _buildAccountsDropdown(screenSize, smallSpacing),
 
-                          // Dropdown de créditos
-                          _buildCreditsDropdown(screenSize, smallSpacing),
+                          // inpout crédito
+                          _buildInputCreditCode(screenSize, smallSpacing),
 
                           SizedBox(height: smallSpacing * 1.5),
 
@@ -419,25 +396,14 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                     return;
                                   }
 
-                                  final idLoan = _selectedLoanId ?? "";
-                                  if (idLoan.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          "Debe seleccionar un crédito primero.",
-                                        ),
-                                      ),
-                                    );
-                                    return;
-                                  }
-
                                   context
                                       .read<
-                                        LoanFlowGetCreditDetailDataForRecoveryBloc
+                                        LoanFlowGetCreditDetailDataForRecoveryByCodeBloc
                                       >()
                                       .add(
-                                        LoanFlowGetCredDetDatForRecoveryEvent(
-                                          idLoanCredit: idLoan,
+                                        LoanFlowGetCreditDetailDataForRecoveryByCodeE(
+                                          loanCreditCode:
+                                              _codeOperationCode ?? "",
                                           idSavingAccount: idAccount,
                                         ),
                                       );
@@ -480,7 +446,7 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                   return DropdownMenuItem<String>(
                     value: account.operationCode.toString(),
                     child: Text(
-                      '${account.operationCode} - ${account.availableAmount} ${account.codMoney}',
+                      '${account.operationCode} - ${account.availableAmount ?? 0} ${account.codMoney ?? 0}',
                       style: AppTextStyles.mainStyleGreen14Bold(context),
                     ),
                   );
@@ -507,51 +473,85 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
     );
   }
 
-  Widget _buildCreditsDropdown(Size screenSize, double smallSpacing) {
-    return BlocConsumer<SessionInfoBloc, SessionInfoState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        if (state is SessionInfoSuccess) {
-          final listCredits =
-              state.userInfoResponseEnttity.listCodeLoanFlowCredit;
-
-          return Card(
-            elevation: smallSpacing * 0.5,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: screenSize.width * 0.05,
-                vertical: smallSpacing * 0.5,
-              ),
-              child: DropdownButton<String>(
-                isExpanded: true,
-                hint: const Text("Seleccione el crédito que desea cancelar:"),
-                value: _selectedOperationCode,
-                items: listCredits.map((credit) {
-                  return DropdownMenuItem<String>(
-                    value: credit.operationCode.toString(),
-                    child: Text(
-                      credit.operationCode.toString(),
-                      style: AppTextStyles.mainStyleGreen14Bold(context),
-                    ),
-                  );
-                }).toList(),
-                onChanged: (newValue) {
-                  setState(() {
-                    _selectedOperationCode = newValue;
-
-                    final selectedCredit = listCredits.firstWhere(
-                      (c) => c.operationCode == newValue,
-                    );
-                    _selectedLoanId = selectedCredit.idOperationEntity
-                        .toString();
-                  });
-                },
-              ),
+  Widget _buildInputCreditCode(Size screenSize, double smallSpacing) {
+    return SizedBox(
+      child: Card(
+        elevation: smallSpacing * 0.5,
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Theme.of(context).colorScheme.green),
+            borderRadius: const BorderRadius.all(Radius.circular(11)),
+          ),
+          child: TextField(
+            keyboardType: TextInputType.number,
+            controller: _textFieldController,
+            textAlign: TextAlign.start,
+            maxLines: 1,
+            style: const TextStyle(
+              fontWeight: FontWeight.w400,
+              fontStyle: FontStyle.normal,
+              fontSize: 14,
             ),
-          );
-        }
-        return const SizedBox();
-      },
+            //usar variable _codeOperationCode
+            onChanged: (value) {
+              // Elimina cualquier guion previo
+              String digits = value.replaceAll('-', '');
+
+              // Limita el largo total (3+1+1+5+1 = 11 caracteres)
+              if (digits.length > 11) digits = digits.substring(0, 11);
+
+              // Aplica formato progresivamente
+              String formatted = '';
+              for (int i = 0; i < digits.length; i++) {
+                formatted += digits[i];
+                if (i == 2 || i == 3 || i == 4 || i == 9) {
+                  if (i != digits.length - 1) formatted += '-';
+                }
+              }
+
+              // Actualiza el texto sin causar loop
+              _textFieldController.value = TextEditingValue(
+                text: formatted,
+                selection: TextSelection.collapsed(offset: formatted.length),
+              );
+
+              setState(() {
+                _codeOperationCode = formatted;
+              });
+            },
+
+            //
+            decoration: InputDecoration(
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.0),
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.0),
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.0),
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1,
+                ),
+              ),
+              hintText: 'Código de Crédito',
+              hintStyle: AppTextStyles.mainStyleGreen14(context),
+              filled: false,
+              isDense: false,
+              contentPadding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
