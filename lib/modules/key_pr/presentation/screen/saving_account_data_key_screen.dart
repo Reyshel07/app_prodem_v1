@@ -172,7 +172,8 @@ class TransferFeesTwoScreen extends StatelessWidget {
                                                   >()
                                                   .push(
                                                     SavingAccountTransMobileEndRoute(
-                                                      response: state.data,
+                                                      response: state.data
+                                                          .toString(),
                                                     ),
                                                   );
                                             }

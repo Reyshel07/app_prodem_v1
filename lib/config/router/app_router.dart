@@ -34,5 +34,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ReportMovementByPErsonAndDateRoute.page),
     AutoRoute(page: CurrentQrByTypeRoute.page),
     AutoRoute(page: AccountNumberlnOtherBankRoute.page),
+    AutoRoute(page: CurrentQrByTypeTreeRoute.page),
+    AutoRoute(page: CurrentQrByTypeTwoRoute.page),
+    AutoRoute(page: ExternalPaymentGenerateFileWebClientRoute.page),
   ];
 }

@@ -6,6 +6,7 @@ import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/get_account_numberIn_other_bank/presentation/bloc/get_account_numberln_other_bank_bloc.dart';
 import 'package:app_prodem_v1/modules/get_current_qr_by_type/presentation/bloc/get_current_qr_by_type_bloc.dart';
+import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/utils/text.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,9 @@ import 'package:flutter_html/flutter_html.dart';
 
 @RoutePage()
 class CurrentQrByTypeScreen extends StatelessWidget {
-  const CurrentQrByTypeScreen({super.key});
+  final SessionInfoBloc sessionBloc;
+
+  const CurrentQrByTypeScreen({super.key, required this.sessionBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +113,9 @@ class CurrentQrByTypeScreen extends StatelessWidget {
                                   if (state
                                       is GetAccountNumberlnOtherBankSuccess) {
                                     InjectorContainer.getIt<AppRouter>().push(
-                                      AccountNumberlnOtherBankRoute(),
+                                      AccountNumberlnOtherBankRoute(
+                                        sessionBloc: sessionBloc,
+                                      ),
                                     );
                                   }
                                 },

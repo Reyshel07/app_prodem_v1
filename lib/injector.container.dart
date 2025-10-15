@@ -7,9 +7,12 @@ import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/get.paramete
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/infor.acciones.container.dart';
 import 'package:app_prodem_v1/modules/get_account_numberIn_other_bank/account.numberln.other.bank.container.dart';
 import 'package:app_prodem_v1/modules/get_current_qr_by_type/get.current.qr.by.type.container.dart';
+import 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_client/get.external.payment.generate.file.web.client.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/express.data.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
+import 'package:app_prodem_v1/modules/list_get_other_account_deposit/list.get.other.account.deposit.container.dart';
+import 'package:app_prodem_v1/modules/save_online_third_deposit/save.online.third.deposit.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/decrypt.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/get.encripted.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_report_movements_by_person_and_dates/get.report.movements.by.pewrson.and.date.container.dart';
@@ -61,5 +64,8 @@ class InjectorContainer {
     initCurrentQrByType(getIt);
     initReportMovementsByPersonAndDate(getIt);
     initAccountNumberlnOtherBank(getIt);
+    initListGetOtherAccountDeposit(getIt);
+    initSaveOnlineThirdDeposit(getIt);
+    initGetExternalPaymentGenerateFileWebClient(getIt);
   }
 }

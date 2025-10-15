@@ -199,7 +199,8 @@ class GetAchDataScreen extends StatelessWidget {
                                                   >()
                                                   .push(
                                                     SavingAccountTransMobileEndRoute(
-                                                      response: state.data,
+                                                      response: state.data
+                                                          .toString(),
                                                     ),
                                                   );
                                             }
