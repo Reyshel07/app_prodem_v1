@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_client/domain/entities/get_external_payment_generate_file_by_web_client_entity.dart';

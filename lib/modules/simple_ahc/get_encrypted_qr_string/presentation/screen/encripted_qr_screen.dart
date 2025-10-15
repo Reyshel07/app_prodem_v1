@@ -13,6 +13,9 @@ class EncriptedQRScreen extends StatelessWidget {
   final GetEncryptedQrStringEntity getEncryptedQrStringEntity;
   String moneda;
   String monto;
+  String? nombre;
+  String cuenta;
+  String valido;
   String referencia;
   EncriptedQRScreen({
     super.key,
@@ -20,6 +23,9 @@ class EncriptedQRScreen extends StatelessWidget {
     required this.moneda,
     required this.monto,
     required this.referencia,
+    required this.cuenta,
+    required this.nombre,
+    required this.valido,
   });
 
   @override
@@ -40,30 +46,64 @@ class EncriptedQRScreen extends StatelessWidget {
         padding: EdgeInsets.all(topPadding * 0.05),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              'COBRO MEDIANTE CÓDIGO QR:',
-              style: AppTextStyles.mainStyleGreen18Bold(context),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: smallSpacing * 0.5),
             Card(
               elevation: smallSpacing * 0.5,
-              child: QrImageView(
-                data: getEncryptedQrStringEntity.qrValue,
-                version: QrVersions.auto,
-                size: screenSize.height * 0.35,
-                backgroundColor: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.all(topPadding * 0.05),
+                child: Column(
+                  children: [
+                    Text(
+                      'Prodem',
+                      style: AppTextStyles.mainStyleGreen35Bold(context),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'COBRO MEDIANTE CÓDIGO QR:',
+                      style: AppTextStyles.mainStyleGreen18Bold(context),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: smallSpacing * 0.5),
+                    QrImageView(
+                      data: getEncryptedQrStringEntity.qrValue,
+                      version: QrVersions.auto,
+                      size: screenSize.height * 0.35,
+                      backgroundColor: Colors.white,
+                    ),
+                    SizedBox(height: smallSpacing * 0.5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Monto:\n'
+                          'Cuenta destino:\n'
+                          'Válido hasta:\n'
+                          'Referencia:\n'
+                          'Pagar a:',
+                          style: AppTextStyles.mainStyleGreen10Bold(context),
+                          textAlign: TextAlign.end,
+                        ),
+                        SizedBox(width: smallSpacing * 0.5),
+                        SizedBox(
+                          width: smallSpacing * 6,
+                          child: Text(
+                            '$moneda. $monto\n'
+                            '$cuenta\n'
+                            '$valido\n'
+                            '$referencia\n'
+                            '${nombre ?? ''}',
+                            style: AppTextStyles.mainStyleGreen10Bold(context),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: smallSpacing * 0.5),
-            Text(
-              '$moneda: $monto\n'
-              'Referencia: $referencia',
-              style: AppTextStyles.mainStyleGreen10Bold(context),
-              textAlign: TextAlign.center,
-            ),
+
             SizedBox(height: smallSpacing * 0.5),
             Text(
               'EL QR GENERADO ES EXCLUSIVO PARA USO ENTRE CUENTAS PRODEM.',

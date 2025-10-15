@@ -6,11 +6,9 @@ import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/utils/text.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/entity.dart';
-
 @RoutePage()
 class SavingAccountTransMobileEndScreen extends StatelessWidget {
-  final SavingsAccountTransferMobileResponseEntity response;
+  final String response;
 
   const SavingAccountTransMobileEndScreen({super.key, required this.response});
 
@@ -29,7 +27,7 @@ class SavingAccountTransMobileEndScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = _parseData(response.data);
+    final data = _parseData(response);
     final screenSize = MediaQuery.of(context).size;
     final double smallSpacing = screenSize.height * 0.02;
     //final double letterSize = screenSize.height;
@@ -55,33 +53,31 @@ class SavingAccountTransMobileEndScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: smallSpacing * 0.5),
-            SizedBox(
-              height: screenSize.height * 0.3,
-              child: ListView(
-                children: data.entries.map((entry) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          "${entry.key}: ",
-                          style: AppTextStyles.mainStyleGreen14Bold(context),
-                          textAlign: TextAlign.start,
-                        ),
+            ListView(
+              shrinkWrap: true,
+              children: data.entries.map((entry) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "${entry.key}: ",
+                        style: AppTextStyles.mainStyleGreen14Bold(context),
+                        textAlign: TextAlign.start,
                       ),
-                      Expanded(
-                        child: Text(
-                          entry.value,
-                          style: AppTextStyles.mainStyleGreen14(context),
-                          softWrap: true,
-                          textAlign: TextAlign.end,
-                        ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        entry.value,
+                        style: AppTextStyles.mainStyleGreen14(context),
+                        softWrap: true,
+                        textAlign: TextAlign.end,
                       ),
-                    ],
-                  );
-                }).toList(),
-              ),
+                    ),
+                  ],
+                );
+              }).toList(),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
