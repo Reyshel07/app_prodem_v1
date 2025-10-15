@@ -1,0 +1,22 @@
+part of 'loan_flow_get_credit_detail_data_for_recovery_by_code_bloc.dart';
+
+sealed class LoanFlowGetCreditDetailDataForRecoveryByCodeState {}
+
+final class LoanFlowGetCreditDetailDataForRecoveryByCodeInitial extends LoanFlowGetCreditDetailDataForRecoveryByCodeState {}
+
+final class LoanFlowGetCreditDetailDataForRecoveryByCodeLoading extends LoanFlowGetCreditDetailDataForRecoveryByCodeState {}
+
+final class LoanFlowGetCreditDetailDataForRecoveryByCodeError extends LoanFlowGetCreditDetailDataForRecoveryByCodeState {
+  final String message;
+  LoanFlowGetCreditDetailDataForRecoveryByCodeError (this.message);
+}
+
+final class LoanFlowGetCreditDetailDataForRecoveryByCodeSuccess extends LoanFlowGetCreditDetailDataForRecoveryByCodeState {
+  final LoanFlowGetCreditDetailDataForRecoveryByCodeEntity loanFlowGetCreditDetailDataForRecoveryByCodeEntity;
+  LoanFlowGetCreditDetailDataForRecoveryByCodeSuccess (this.loanFlowGetCreditDetailDataForRecoveryByCodeEntity);
+}
+
+
+
+
+
