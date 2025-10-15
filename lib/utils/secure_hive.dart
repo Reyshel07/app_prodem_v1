@@ -36,7 +36,7 @@ class SecureHive {
     await b.delete('token');
   }
 
-  ///idwebperson
+  //idwebperson
   static Future<void> writeIdWebPerson(String pIdWebPerson) async {
     final b = box();
     await b.put('IdWebPerson', pIdWebPerson);
@@ -52,7 +52,7 @@ class SecureHive {
     await b.delete('IdWebPerson');
   }
 
-  ///idperson
+  //idperson
   static Future<void> writeIdPerson(String pIdPerson) async {
     final b = box();
     await b.put('IdPerson', pIdPerson);
@@ -68,7 +68,7 @@ class SecureHive {
     await b.delete('IdPerson');
   }
 
-  ///iduser
+  //iduser
   static Future<void> writeIdUser(String pIdUser) async {
     final b = box();
     await b.put('IdUser', pIdUser);
@@ -87,7 +87,7 @@ class SecureHive {
   ///idIsPersonNatural
   static Future<void> writeIsPersonNatural(bool pIdUser) async {
     final b = box();
-    await b.put('IdUser', pIdUser);
+    await b.put('IsPersonNatural', pIdUser);
   }
 
   static bool readIsPersonNatural() {
