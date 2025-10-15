@@ -61,8 +61,9 @@ class _LoanFlowGetCreditDetailDataForRecoveryByCodeScreenState
           create: (contex) => InjectorContainer.getIt<GetPrKeyByIdBloc>(),
         ),
 
-         BlocProvider(
-          create: (contex) => InjectorContainer.getIt<LoanFlowPaymentCreditThirdBloc>(),
+        BlocProvider(
+          create: (contex) =>
+              InjectorContainer.getIt<LoanFlowPaymentCreditThirdBloc>(),
         ),
       ],
       child: Builder(
@@ -284,8 +285,9 @@ class _LoanFlowGetCreditDetailDataForRecoveryByCodeScreenState
                                                                 >()
                                                                 .push(
                                                                   SavingAccountTransMobileEndRoute(
-                                                                    response:
-                                                                        state.savingsAccountTransferMobileResponseEntity,
+                                                                    response: state
+                                                                        .savingsAccountTransferMobileResponseEntity
+                                                                        .data,
                                                                   ),
                                                                 );
                                                           }
@@ -304,24 +306,48 @@ class _LoanFlowGetCreditDetailDataForRecoveryByCodeScreenState
                                                         },
                                                         builder: (context, state) {
                                                           return Butoon1(
-                                                            onTap:  () {
+                                                            onTap: () {
                                                               context
                                                                   .read<
                                                                     LoanFlowPaymentCreditThirdBloc
                                                                   >()
                                                                   .add(
                                                                     LoanFlowPaymentCreditThirdE(
-                                                                      idLoanCredit: entity.idLoanCredit,
-                                                                      debitAmount: entity.totalToDebit,
-                                                                      amountToPay: entity.totalAmountToPay,
-                                                                      taxAmount: entity.totalTax,
-                                                                      idLoanCurrency: entity.idLoanCurrency,
-                                                                      withInsuranceReturn: entity.withInsuranceReturn,
-                                                                      idSavingAccount: _selectedAccountId!.toInt(),
-                                                                      loanCreditCode: entity.loanCreditCode,
-                                                                      isOwnCredit: false,
-                                                                      idSMSOperation: createState.createProdemKeyResponseEntity!.data.toString(),
-                                                                      prodemKeyCode:getState.getProdemKeyByIdResponseEntity?.data ??'',
+                                                                      idLoanCredit:
+                                                                          entity
+                                                                              .idLoanCredit,
+                                                                      debitAmount:
+                                                                          entity
+                                                                              .totalToDebit,
+                                                                      amountToPay:
+                                                                          entity
+                                                                              .totalAmountToPay,
+                                                                      taxAmount:
+                                                                          entity
+                                                                              .totalTax,
+                                                                      idLoanCurrency:
+                                                                          entity
+                                                                              .idLoanCurrency,
+                                                                      withInsuranceReturn:
+                                                                          entity
+                                                                              .withInsuranceReturn,
+                                                                      idSavingAccount:
+                                                                          _selectedAccountId!
+                                                                              .toInt(),
+                                                                      loanCreditCode:
+                                                                          entity
+                                                                              .loanCreditCode,
+                                                                      isOwnCredit:
+                                                                          false,
+                                                                      idSMSOperation: createState
+                                                                          .createProdemKeyResponseEntity!
+                                                                          .data
+                                                                          .toString(),
+                                                                      prodemKeyCode:
+                                                                          getState
+                                                                              .getProdemKeyByIdResponseEntity
+                                                                              ?.data ??
+                                                                          '',
                                                                     ),
                                                                   );
                                                             },
@@ -335,16 +361,16 @@ class _LoanFlowGetCreditDetailDataForRecoveryByCodeScreenState
                                                       ),
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: screenSize.width * 0.3,
-                                                child: Card(
-                                                  elevation: smallSpacing * 0.5,
-                                                  child: Butoon1(
-                                                    onTap: () {},
-                                                    lblTextField: 'CANCELAR',
-                                                  ),
+                                            SizedBox(
+                                              width: screenSize.width * 0.3,
+                                              child: Card(
+                                                elevation: smallSpacing * 0.5,
+                                                child: Butoon1(
+                                                  onTap: () {},
+                                                  lblTextField: 'CANCELAR',
                                                 ),
                                               ),
+                                            ),
                                           ],
                                         ),
                                       ],
