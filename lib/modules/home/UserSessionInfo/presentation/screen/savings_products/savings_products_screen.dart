@@ -68,7 +68,11 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                       column: Column(
                         children: [
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                ExternalPaymentGenerateFileWebClientRoute(),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,
@@ -182,7 +186,7 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                     GestureDetector(
                       onTap: () {
                         InjectorContainer.getIt<AppRouter>().push(
-                          CurrentQrByTypeRoute(),
+                          CurrentQrByTypeRoute(sessionBloc: sessionBloc),
                         );
                       },
                       child: Card(

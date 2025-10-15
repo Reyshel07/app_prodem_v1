@@ -121,50 +121,49 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Saldo Disponible:',
-                                      entity.savingBalance.toString() ?? '',
+                                      entity.savingBalance.toString(),
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Cliente:',
-                                      entity.customerName ?? '',
+                                      entity.customerName,
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Doc. Identidad:',
-                                      entity.identityCard ?? '',
+                                      entity.identityCard,
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Cod. del CRÉDITO:',
-                                      entity.loanCreditCode ?? '',
+                                      entity.loanCreditCode,
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Monto de la cuota:',
-                                      '${entity.totalAmountToPay - entity.voluntarySaving - entity.totalTax} ${entity.loanCurrency ?? ''}',
+                                      '${entity.totalAmountToPay - entity.voluntarySaving - entity.totalTax} ${entity.loanCurrency}',
                                     ),
 
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Total Impuestos:',
-                                      entity.totalTax.toString() ?? '',
+                                      entity.totalTax.toString(),
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Ahorro Voluntario:',
-                                      entity.voluntarySaving.toString() ?? '',
+                                      entity.voluntarySaving.toString(),
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Monto de la cuota:',
-                                      entity.totalAmountToPay.toString() ?? '',
+                                      entity.totalAmountToPay.toString(),
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
                                       'Fecha de Vencimiento:',
                                       entity.currentAnnuityEnddingDate
-                                              .toString() ??
-                                          '',
+                                          .toString(),
                                     ),
                                     SizedBox(height: smallSpacing * 0.5),
                                     _buildLabelValueRow(
@@ -278,8 +277,9 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                                 >()
                                                                 .push(
                                                                   SavingAccountTransMobileEndRoute(
-                                                                    response:
-                                                                        state.savingsAccountTransferMobileResponseEntity,
+                                                                    response: state
+                                                                        .savingsAccountTransferMobileResponseEntity
+                                                                        .toString(),
                                                                   ),
                                                                 );
                                                           }
@@ -305,17 +305,41 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                                   >()
                                                                   .add(
                                                                     LoanFlowPaymentCreditE(
-                                                                      idLoanCredit: entity.idLoanCredit,
-                                                                      debitAmount: entity.totalToDebit,
-                                                                      amountToPay: entity.totalAmountToPay,
-                                                                      taxAmount: entity.totalTax,
-                                                                      idLoanCurrency: entity.idLoanCurrency,
-                                                                      withInsuranceReturn: entity.withInsuranceReturn,
-                                                                      idSavingAccount: _selectedAccountId!.toInt(),
-                                                                      loanCreditCode: entity.loanCreditCode,
-                                                                      isOwnCredit: true,
-                                                                      idSMSOperation: createState.createProdemKeyResponseEntity!.data.toString(),
-                                                                      prodemKeyCode:getState.getProdemKeyByIdResponseEntity?.data ??'',
+                                                                      idLoanCredit:
+                                                                          entity
+                                                                              .idLoanCredit,
+                                                                      debitAmount:
+                                                                          entity
+                                                                              .totalToDebit,
+                                                                      amountToPay:
+                                                                          entity
+                                                                              .totalAmountToPay,
+                                                                      taxAmount:
+                                                                          entity
+                                                                              .totalTax,
+                                                                      idLoanCurrency:
+                                                                          entity
+                                                                              .idLoanCurrency,
+                                                                      withInsuranceReturn:
+                                                                          entity
+                                                                              .withInsuranceReturn,
+                                                                      idSavingAccount:
+                                                                          _selectedAccountId!
+                                                                              .toInt(),
+                                                                      loanCreditCode:
+                                                                          entity
+                                                                              .loanCreditCode,
+                                                                      isOwnCredit:
+                                                                          true,
+                                                                      idSMSOperation: createState
+                                                                          .createProdemKeyResponseEntity!
+                                                                          .data
+                                                                          .toString(),
+                                                                      prodemKeyCode:
+                                                                          getState
+                                                                              .getProdemKeyByIdResponseEntity
+                                                                              ?.data ??
+                                                                          '',
                                                                     ),
                                                                   );
                                                             },
@@ -452,7 +476,7 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                   return DropdownMenuItem<String>(
                     value: account.operationCode.toString(),
                     child: Text(
-                      '${account.operationCode} - ${account.availableAmount ?? 0} ${account.codMoney ?? 0}',
+                      '${account.operationCode} - ${account.availableAmount} ${account.codMoney}',
                       style: AppTextStyles.mainStyleGreen14Bold(context),
                     ),
                   );
