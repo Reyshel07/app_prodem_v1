@@ -30,6 +30,8 @@ class SavingAccountTransferMobileDatasource {
     String? vToken,
     String idSMSOperation,
     String prodemKeyCode,
+    String reasonOrigin,
+    String obfuscatedCode,
   ) async {
     final response = await _apiClient.post(
       'Mobile/SavingsAccountTransferMobile',
@@ -42,6 +44,8 @@ class SavingAccountTransferMobileDatasource {
         "IdMoneyTransfer": idMoneyTransfer,
         "IsNaturalCustomer": isNaturalCustomer,
         "Observation": observation,
+        "ObfuscatedCode": obfuscatedCode, //nro de cuenta ofuscado
+        "ReasonOrigin": reasonDestiny,
         "ReasonDestiny": reasonDestiny,
         "ApplyGeneratePCC01": applyGeneratePCC01,
         "TypeApplicationAccessX": typeApplicationAccessX,

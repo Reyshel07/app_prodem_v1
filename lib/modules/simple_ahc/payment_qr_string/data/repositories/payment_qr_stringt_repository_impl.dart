@@ -15,7 +15,7 @@ class PaymentQrStringtRepositoryImpl extends PaymentQrStringRepository {
     String codeAccountDestiny,
     String codeMoney,
     String amount,
-    String isSingleUse,
+    bool isSingleUse,
     String expirationDate,
     String codeService,
     String reference,
@@ -28,6 +28,8 @@ class PaymentQrStringtRepositoryImpl extends PaymentQrStringRepository {
     String location,
     String imei,
     String? vToken,
+    String idSMSOperation,
+    String prodemKeyCode,
   ) async {
     return await datasource.paymentQrString(
       codeQr,
@@ -50,6 +52,8 @@ class PaymentQrStringtRepositoryImpl extends PaymentQrStringRepository {
       location,
       imei,
       vToken,
+      idSMSOperation,
+      prodemKeyCode,
     );
   }
 }

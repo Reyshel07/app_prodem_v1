@@ -56,41 +56,6 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
                 style: AppTextStyles.mainStyleGreen18Bold(context),
               ),
               SizedBox(height: smallSpacing * 0.5),
-              /*BlocBuilder<SessionInfoBloc, SessionInfoState>(
-                builder: (context, state) {
-                  if (state is SessionInfoSuccess) {
-                    final listAccounts =
-                        state.userInfoResponseEnttity.listCodeSavingsAccount;
-                    // listAccounts[0].operationCode
-                    final list = listAccounts
-                        .map((account) => account.operationCode)
-                        .toList();
-                    return Card(
-                      elevation: smallSpacing * 0.5,
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: DropdownButton<String>(
-                          padding: EdgeInsetsGeometry.all(topPadding * 0.05),
-                          hint: const Text("Seleccione una opción"),
-                          value: _selectedValue,
-                          items: list.map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              _selectedValue = newValue;
-                            });
-                          },
-                        ),
-                      ),
-                    );
-                  }
-                  return SizedBox();
-                },
-              ),*/
               AccountDropdown(
                 selectedAccount: _selectedAccount,
                 smallSpacing: smallSpacing,
@@ -103,24 +68,16 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
                   });
                 },
               ),
-
-              SizedBox(
-                width: screenSize.width * 0.3,
-                child: Card(
-                  elevation: smallSpacing * 0.5,
-                  child: Butoon1(
-                    onTap: () {
-                      // String codeSavingsAccount1 = '117-2-1-17515-8';
-                      widget.bloc.add(
-                        AccountBalEvent(
-                          codeSavingsAccount:
-                              _selectedAccount ?? '117-2-1-17515-8',
-                        ),
-                      );
-                    },
-                    lblTextField: 'CONSULTAR',
-                  ),
-                ),
+              Butoon1(
+                onTap: () {
+                  // String codeSavingsAccount1 = '117-2-1-17515-8';
+                  widget.bloc.add(
+                    AccountBalEvent(
+                      codeSavingsAccount: _selectedAccount ?? '117-2-1-17515-8',
+                    ),
+                  );
+                },
+                lblTextField: 'CONSULTAR',
               ),
               BlocBuilder<AccountBalanceBloc, AccountBalanceState>(
                 builder: (context, state) {

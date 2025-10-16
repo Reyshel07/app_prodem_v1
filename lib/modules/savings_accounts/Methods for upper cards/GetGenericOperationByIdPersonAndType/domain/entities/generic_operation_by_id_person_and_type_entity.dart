@@ -29,7 +29,7 @@ class DataGenericOperationByIdPersonAndTypeEntity {
 class ColAccountEntity {
   final int idMoney;
   final String codMoney;
-  final double idOperationEntity;
+  final String idOperationEntity;
   final String operationCode;
   final int idOperationOffice;
   final double availableAmount;

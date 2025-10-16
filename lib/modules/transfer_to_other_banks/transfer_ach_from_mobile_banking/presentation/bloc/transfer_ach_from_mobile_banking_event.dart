@@ -19,6 +19,7 @@ final class TransferAchFromMobBanEvent
   final String bankDestinyName;
   final String idSMSOperation;
   final String prodemKeyCode;
+  final String reasonOriginPCC01;
 
   TransferAchFromMobBanEvent({
     required this.beneficiary,
@@ -36,5 +37,6 @@ final class TransferAchFromMobBanEvent
     required this.bankDestinyName,
     required this.idSMSOperation,
     required this.prodemKeyCode,
+    required this.reasonOriginPCC01,
   });
 }

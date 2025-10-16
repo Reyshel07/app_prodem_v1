@@ -23,6 +23,7 @@ class DecryptQrStringScreen extends StatefulWidget {
 class _DecryptQrStringScreenState extends State<DecryptQrStringScreen> {
   bool _isReturned = false;
   late final DecryptQrStringBloc _decryptBloc;
+  String? _scannedQrValue;
 
   Future<void> _pickImageAndScan() async {
     final picker = ImagePicker();
@@ -79,6 +80,7 @@ class _DecryptQrStringScreenState extends State<DecryptQrStringScreen> {
               DecryptQrRoute(
                 decryptQrStringEntity: state.decryptQrStringEntity,
                 sessionBloc: widget.sessionBloc,
+                stringQr: _scannedQrValue ?? '',
               ),
             );
           } else if (state is DecryptQrStringError) {
@@ -100,6 +102,7 @@ class _DecryptQrStringScreenState extends State<DecryptQrStringScreen> {
 
                 if (value != null && value.isNotEmpty) {
                   _isReturned = true;
+                  _scannedQrValue = value; // <-- guardamos el valor leído
                   _decryptBloc.add(DecryptQrStrEvent(qrString: value));
                 }
               },

@@ -245,24 +245,13 @@ class _LoanFlowGetCreditDetailDataForRecoveryByCodeScreenState
                                                     is! CreatePrKeySuccess &&
                                                 createState
                                                     is! CreatePrKeyLoading)
-                                              SizedBox(
-                                                width: screenSize.width * 0.4,
-                                                child: Card(
-                                                  elevation: smallSpacing * 0.5,
-                                                  child: Butoon1(
-                                                    onTap: () {
-                                                      context
-                                                          .read<
-                                                            CreatePrKeyBloc
-                                                          >()
-                                                          .add(
-                                                            CreatePrKeyEvent1(),
-                                                          );
-                                                    },
-                                                    lblTextField:
-                                                        'OBTENER CÓDIGO',
-                                                  ),
-                                                ),
+                                              Butoon1(
+                                                onTap: () {
+                                                  context
+                                                      .read<CreatePrKeyBloc>()
+                                                      .add(CreatePrKeyEvent1());
+                                                },
+                                                lblTextField: 'OBTENER CÓDIGO',
                                               ),
 
                                             if (createState
@@ -404,39 +393,32 @@ class _LoanFlowGetCreditDetailDataForRecoveryByCodeScreenState
 
                           // Botón consultar
                           /// BOTÓN CONSULTAR
-                          SizedBox(
-                            width: screenSize.width * 0.4,
-                            child: Card(
-                              elevation: smallSpacing * 0.5,
-                              child: Butoon1(
-                                onTap: () {
-                                  final idAccount = _selectedAccountId ?? "";
-                                  if (idAccount.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          "Debe seleccionar una cuenta.",
-                                        ),
-                                      ),
-                                    );
-                                    return;
-                                  }
+                          Butoon1(
+                            onTap: () {
+                              final idAccount = _selectedAccountId ?? "";
+                              if (idAccount.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      "Debe seleccionar una cuenta.",
+                                    ),
+                                  ),
+                                );
+                                return;
+                              }
 
-                                  context
-                                      .read<
-                                        LoanFlowGetCreditDetailDataForRecoveryByCodeBloc
-                                      >()
-                                      .add(
-                                        LoanFlowGetCreditDetailDataForRecoveryByCodeE(
-                                          loanCreditCode:
-                                              _codeOperationCode ?? "",
-                                          idSavingAccount: idAccount,
-                                        ),
-                                      );
-                                },
-                                lblTextField: 'CONSULTAR',
-                              ),
-                            ),
+                              context
+                                  .read<
+                                    LoanFlowGetCreditDetailDataForRecoveryByCodeBloc
+                                  >()
+                                  .add(
+                                    LoanFlowGetCreditDetailDataForRecoveryByCodeE(
+                                      loanCreditCode: _codeOperationCode ?? "",
+                                      idSavingAccount: idAccount,
+                                    ),
+                                  );
+                            },
+                            lblTextField: 'CONSULTAR',
                           ),
                         ],
                       ),

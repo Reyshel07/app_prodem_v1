@@ -14,17 +14,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class CurrentQrByTypeTreeScreen extends StatelessWidget {
-  String nameDepo;
-  String cuentaPro;
-  String cuenta;
-  String monto;
-  String moneda;
-  String oriFon;
-  String desFon;
-  String bancoOri;
-  String cuentaOri;
-  String fechaDepo;
-  CurrentQrByTypeTreeScreen({
+  final String nameDepo;
+  final String cuentaPro;
+  final String cuenta;
+  final String monto;
+  final String moneda;
+  final String oriFon;
+  final String desFon;
+  final String bancoOri;
+  final String cuentaOri;
+  final String fechaDepo;
+  const CurrentQrByTypeTreeScreen({
     super.key,
     required this.bancoOri,
     required this.cuenta,
@@ -152,19 +152,13 @@ class CurrentQrByTypeTreeScreen extends StatelessWidget {
 
                             if (createState is! CreatePrKeySuccess &&
                                 createState is! CreatePrKeyLoading)
-                              SizedBox(
-                                width: screenSize.width * 0.4,
-                                child: Card(
-                                  elevation: smallSpacing * 0.5,
-                                  child: Butoon1(
-                                    onTap: () {
-                                      context.read<CreatePrKeyBloc>().add(
-                                        CreatePrKeyEvent1(),
-                                      );
-                                    },
-                                    lblTextField: 'OBTENER CÓDIGO',
-                                  ),
-                                ),
+                              Butoon1(
+                                onTap: () {
+                                  context.read<CreatePrKeyBloc>().add(
+                                    CreatePrKeyEvent1(),
+                                  );
+                                },
+                                lblTextField: 'OBTENER CÓDIGO',
                               ),
 
                             if (createState is CreatePrKeySuccess &&
@@ -263,16 +257,7 @@ class CurrentQrByTypeTreeScreen extends StatelessWidget {
                                 ),
                               ),
 
-                            SizedBox(
-                              width: screenSize.width * 0.3,
-                              child: Card(
-                                elevation: smallSpacing * 0.5,
-                                child: Butoon1(
-                                  onTap: () {},
-                                  lblTextField: 'CANCELAR',
-                                ),
-                              ),
-                            ),
+                            Butoon1(onTap: () {}, lblTextField: 'CANCELAR'),
                           ],
                         ),
                       ],

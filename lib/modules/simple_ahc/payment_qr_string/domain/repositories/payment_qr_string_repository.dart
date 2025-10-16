@@ -9,7 +9,7 @@ abstract class PaymentQrStringRepository {
     String codeAccountDestiny,
     String codeMoney,
     String amount,
-    String isSingleUse,
+    bool isSingleUse,
     String expirationDate,
     String codeService,
     String reference,
@@ -22,5 +22,7 @@ abstract class PaymentQrStringRepository {
     String location,
     String imei,
     String? vToken,
+    String idSMSOperation,
+    String prodemKeyCode,
   );
 }

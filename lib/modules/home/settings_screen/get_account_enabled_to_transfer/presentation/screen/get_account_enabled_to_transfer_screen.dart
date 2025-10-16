@@ -422,59 +422,41 @@ class _ReceiveTransfersByCellPhoneNumberScreenState
                                         if (createState
                                                 is! CreatePrKeySuccess &&
                                             createState is! CreatePrKeyLoading)
-                                          SizedBox(
-                                            width: screenSize.width * 0.4,
-                                            child: Card(
-                                              elevation: smallSpacing * 0.5,
-                                              child: Butoon1(
-                                                onTap: () {
-                                                  context
-                                                      .read<CreatePrKeyBloc>()
-                                                      .add(CreatePrKeyEvent1());
-                                                },
-                                                lblTextField: 'OBTENER CÓDIGO',
-                                              ),
-                                            ),
+                                          Butoon1(
+                                            onTap: () {
+                                              context
+                                                  .read<CreatePrKeyBloc>()
+                                                  .add(CreatePrKeyEvent1());
+                                            },
+                                            lblTextField: 'OBTENER CÓDIGO',
                                           ),
                                         if (createState is CreatePrKeySuccess &&
                                             getState is GetPrKeyByIdSuccess)
-                                          SizedBox(
-                                            width: screenSize.width * 0.3,
-                                            child: Card(
-                                              elevation: smallSpacing * 0.5,
-                                              child: Butoon1(
-                                                onTap: () {
-                                                  context
-                                                      .read<
-                                                        GetAccountEnableToTransferBloc
-                                                      >()
-                                                      .add(
-                                                        AccountEnableToTransSaveEvent(
-                                                          codeAccount:
-                                                              '17098064656442366',
-                                                          idSavingAccount:
-                                                              '117-2-1-17491-5',
-                                                          isActive: true,
-                                                        ),
-                                                      );
-                                                },
-                                                lblTextField:
-                                                    state
-                                                        is GetAccountEnableToTransferLoading
-                                                    ? 'Procesando...'
-                                                    : 'CONFIRMAR',
-                                              ),
-                                            ),
+                                          Butoon1(
+                                            onTap: () {
+                                              context
+                                                  .read<
+                                                    GetAccountEnableToTransferBloc
+                                                  >()
+                                                  .add(
+                                                    AccountEnableToTransSaveEvent(
+                                                      codeAccount:
+                                                          '17098064656442366',
+                                                      idSavingAccount:
+                                                          '117-2-1-17491-5',
+                                                      isActive: true,
+                                                    ),
+                                                  );
+                                            },
+                                            lblTextField:
+                                                state
+                                                    is GetAccountEnableToTransferLoading
+                                                ? 'Procesando...'
+                                                : 'CONFIRMAR',
                                           ),
-                                        SizedBox(
-                                          width: screenSize.width * 0.3,
-                                          child: Card(
-                                            elevation: smallSpacing * 0.5,
-                                            child: Butoon1(
-                                              onTap: () {},
-                                              lblTextField: 'CANCELAR',
-                                            ),
-                                          ),
+                                        Butoon1(
+                                          onTap: () {},
+                                          lblTextField: 'CANCELAR',
                                         ),
                                       ],
                                     ),

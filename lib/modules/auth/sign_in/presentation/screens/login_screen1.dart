@@ -129,37 +129,28 @@ class _BodyState extends State<Body> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: screenSize.width * 0.5,
-                  child: Card(
-                    elevation: smallSpacing * 0.5,
-                    child: Butoon1(
-                      onTap: () {
-                        String username = userController.text;
-                        String password = 'Prodem123';
-                        int chanel = 1;
-                        List<AditionalItemEntity> aditionalItems = [
-                          AditionalItemEntity(
-                            key: 'IP',
-                            value: '192.168.162.12',
-                          ),
-                          AditionalItemEntity(
-                            key: 'SmartphoneIMEI',
-                            value: '45165sdwe45we46-PC',
-                          ),
-                        ];
-                        context.read<AuthBloc>().add(
-                          SignInEvent(
-                            username: username,
-                            password: password,
-                            chanel: chanel,
-                            aditionalItems: aditionalItems,
-                          ),
-                        );
-                      },
-                      lblTextField: 'INGRESAR',
-                    ),
-                  ),
+                Butoon1(
+                  onTap: () {
+                    String username = userController.text;
+                    String password = 'Prodem123';
+                    int chanel = 1;
+                    List<AditionalItemEntity> aditionalItems = [
+                      AditionalItemEntity(key: 'IP', value: '192.168.162.12'),
+                      AditionalItemEntity(
+                        key: 'SmartphoneIMEI',
+                        value: '45165sdwe45we46-PC',
+                      ),
+                    ];
+                    context.read<AuthBloc>().add(
+                      SignInEvent(
+                        username: username,
+                        password: password,
+                        chanel: chanel,
+                        aditionalItems: aditionalItems,
+                      ),
+                    );
+                  },
+                  lblTextField: 'INGRESAR',
                 ),
               ],
             ),

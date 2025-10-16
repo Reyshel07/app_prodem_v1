@@ -59,8 +59,9 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
           create: (contex) => InjectorContainer.getIt<GetPrKeyByIdBloc>(),
         ),
 
-         BlocProvider(
-          create: (contex) => InjectorContainer.getIt<LoanFlowPaymentCreditBloc>(),
+        BlocProvider(
+          create: (contex) =>
+              InjectorContainer.getIt<LoanFlowPaymentCreditBloc>(),
         ),
       ],
       child: Builder(
@@ -241,24 +242,13 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                     is! CreatePrKeySuccess &&
                                                 createState
                                                     is! CreatePrKeyLoading)
-                                              SizedBox(
-                                                width: screenSize.width * 0.4,
-                                                child: Card(
-                                                  elevation: smallSpacing * 0.5,
-                                                  child: Butoon1(
-                                                    onTap: () {
-                                                      context
-                                                          .read<
-                                                            CreatePrKeyBloc
-                                                          >()
-                                                          .add(
-                                                            CreatePrKeyEvent1(),
-                                                          );
-                                                    },
-                                                    lblTextField:
-                                                        'OBTENER CÓDIGO',
-                                                  ),
-                                                ),
+                                              Butoon1(
+                                                onTap: () {
+                                                  context
+                                                      .read<CreatePrKeyBloc>()
+                                                      .add(CreatePrKeyEvent1());
+                                                },
+                                                lblTextField: 'OBTENER CÓDIGO',
                                               ),
 
                                             if (createState
@@ -302,7 +292,7 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                         },
                                                         builder: (context, state) {
                                                           return Butoon1(
-                                                            onTap:  () {
+                                                            onTap: () {
                                                               context
                                                                   .read<
                                                                     LoanFlowPaymentCreditBloc
@@ -358,15 +348,9 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                 ),
                                               ),
 
-                                            SizedBox(
-                                              width: screenSize.width * 0.3,
-                                              child: Card(
-                                                elevation: smallSpacing * 0.5,
-                                                child: Butoon1(
-                                                  onTap: () {},
-                                                  lblTextField: 'CANCELAR',
-                                                ),
-                                              ),
+                                            Butoon1(
+                                              onTap: () {},
+                                              lblTextField: 'CANCELAR',
                                             ),
                                           ],
                                         ),
@@ -401,50 +385,44 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
 
                           // Botón consultar
                           /// BOTÓN CONSULTAR
-                          SizedBox(
-                            width: screenSize.width * 0.4,
-                            child: Card(
-                              elevation: smallSpacing * 0.5,
-                              child: Butoon1(
-                                onTap: () {
-                                  final idAccount = _selectedAccountId ?? "";
-                                  if (idAccount.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          "Debe seleccionar una cuenta.",
-                                        ),
-                                      ),
-                                    );
-                                    return;
-                                  }
+                          Butoon1(
+                            onTap: () {
+                              final idAccount = _selectedAccountId ?? "";
+                              if (idAccount.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      "Debe seleccionar una cuenta.",
+                                    ),
+                                  ),
+                                );
+                                return;
+                              }
 
-                                  final idLoan = _selectedLoanId ?? "";
-                                  if (idLoan.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          "Debe seleccionar un crédito primero.",
-                                        ),
-                                      ),
-                                    );
-                                    return;
-                                  }
+                              final idLoan = _selectedLoanId ?? "";
+                              if (idLoan.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      "Debe seleccionar un crédito primero.",
+                                    ),
+                                  ),
+                                );
+                                return;
+                              }
 
-                                  context
-                                      .read<
-                                        LoanFlowGetCreditDetailDataForRecoveryBloc
-                                      >()
-                                      .add(
-                                        LoanFlowGetCredDetDatForRecoveryEvent(
-                                          idLoanCredit: idLoan,
-                                          idSavingAccount: idAccount,
-                                        ),
-                                      );
-                                },
-                                lblTextField: 'CONSULTAR',
-                              ),
-                            ),
+                              context
+                                  .read<
+                                    LoanFlowGetCreditDetailDataForRecoveryBloc
+                                  >()
+                                  .add(
+                                    LoanFlowGetCredDetDatForRecoveryEvent(
+                                      idLoanCredit: idLoan,
+                                      idSavingAccount: idAccount,
+                                    ),
+                                  );
+                            },
+                            lblTextField: 'CONSULTAR',
                           ),
                         ],
                       ),

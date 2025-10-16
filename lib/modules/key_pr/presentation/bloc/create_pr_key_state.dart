@@ -12,6 +12,6 @@ final class CreatePrKeyError extends CreatePrKeyState {
 }
 
 final class CreatePrKeySuccess extends CreatePrKeyState {
-  CreateProdemKeyResponseEntity? createProdemKeyResponseEntity;
+  final CreateProdemKeyResponseEntity createProdemKeyResponseEntity;
   CreatePrKeySuccess(this.createProdemKeyResponseEntity);
 }
