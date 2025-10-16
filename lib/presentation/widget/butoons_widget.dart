@@ -9,16 +9,23 @@ class Butoon1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Theme.of(context).colorScheme.green,
-        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 13),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      ),
-      child: Text(
-        lblTextField,
-        style: AppTextStyles.mainStyleWhite16Bold(context),
+    final screenSize = MediaQuery.of(context).size;
+    final double smallSpacing = screenSize.height * 0.02;
+    return Card(
+      elevation: smallSpacing * 0.5,
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Theme.of(context).colorScheme.green,
+          padding: EdgeInsets.symmetric(vertical: 13, horizontal: 13),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        child: Text(
+          lblTextField,
+          style: AppTextStyles.mainStyleWhite16Bold(context),
+        ),
       ),
     );
   }

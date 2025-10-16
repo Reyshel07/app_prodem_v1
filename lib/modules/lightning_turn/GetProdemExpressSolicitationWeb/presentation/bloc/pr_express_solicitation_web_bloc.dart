@@ -49,18 +49,18 @@ class PrExpressSolicitationWebBloc
     PrDeleteEvent event,
     Emitter<PrExpressSolicitationWebState> emit,
   ) async {
-    emit(PrExpressSolicitationWebLoading());
+    emit(PrExpressSolicitationWebDeleteLoading());
     try {
       final token = SecureHive.readToken();
       final response = await repository.prDelete(event.id, token);
-      emit(PrDeleteSuccess(response));
+      emit(PrExpressSolicitationWebDeleteSuccess(response.data));
     } on BaseApiException catch (error) {
       switch (error.key) {
         case "api_logic_error":
-          emit(PrExpressSolicitationWebError(error.message));
+          emit(PrExpressSolicitationWebDeleteError(error.message));
         case "dio_unexpected":
           emit(
-            PrExpressSolicitationWebError(
+            PrExpressSolicitationWebDeleteError(
               "Ocurrio un error, no tiene internet",
             ),
           );

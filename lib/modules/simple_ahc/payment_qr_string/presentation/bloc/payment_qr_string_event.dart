@@ -10,12 +10,14 @@ class PaymentQrEvent extends PaymentQrStringEvent {
   final String codeAccountDestiny;
   final String codeMoney;
   final String amount;
-  final String isSingleUse;
+  final bool isSingleUse;
   final String expirationDate;
   final String codeService;
   final String reference;
   final String stringQr;
   final String codePaymentAccount;
+  final String idSMSOperation;
+  final String prodemKeyCode;
   PaymentQrEvent({
     required this.codeQr,
     required this.receiverName,
@@ -30,5 +32,7 @@ class PaymentQrEvent extends PaymentQrStringEvent {
     required this.expirationDate,
     required this.reference,
     required this.stringQr,
+    required this.idSMSOperation,
+    required this.prodemKeyCode,
   });
 }

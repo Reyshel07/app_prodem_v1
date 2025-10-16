@@ -24,5 +24,6 @@ abstract class TransferAchFromMobileBankingRepository {
     String? vToken,
     String idSMSOperation,
     String prodemKeyCode,
+    String reasonOriginPCC01,
   );
 }

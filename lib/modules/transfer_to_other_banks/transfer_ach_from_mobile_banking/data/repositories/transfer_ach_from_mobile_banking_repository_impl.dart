@@ -31,6 +31,7 @@ class TransferAchFromMobileBankingRepositoryImpl
     String? vToken,
     String idSMSOperation,
     String prodemKeyCode,
+    String reasonOriginPCC01,
   ) async {
     return await datasource.transferAchFromMobileB(
       beneficiary,
@@ -55,6 +56,7 @@ class TransferAchFromMobileBankingRepositoryImpl
       vToken,
       idSMSOperation,
       prodemKeyCode,
+      reasonOriginPCC01,
     );
   }
 }

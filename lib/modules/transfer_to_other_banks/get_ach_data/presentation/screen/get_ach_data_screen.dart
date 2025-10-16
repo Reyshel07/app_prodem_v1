@@ -12,7 +12,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../config/router/router.dart';
 
 @RoutePage()
-// ignore: must_be_immutable
 class GetAchDataScreen extends StatelessWidget {
   String cuentaO;
   String montoEn;
@@ -27,6 +26,8 @@ class GetAchDataScreen extends StatelessWidget {
   String montoIm;
   String montoTotal;
   String idBankDestiny;
+  String saldoDispo;
+  String idCuentaEnvio;
   GetAchDataScreen({
     super.key,
     required this.bancoDes,
@@ -42,6 +43,8 @@ class GetAchDataScreen extends StatelessWidget {
     required this.nit,
     required this.nombreDes,
     required this.idBankDestiny,
+    required this.saldoDispo,
+    required this.idCuentaEnvio,
   });
 
   @override
@@ -97,11 +100,13 @@ class GetAchDataScreen extends StatelessWidget {
                     'Monto impuesto:\n'
                     'Monto total a debitar:\n'
                     'Banco DESTINO',
+                    style: AppTextStyles.mainStyleGreen14Bold(context),
                   ),
+                  SizedBox(width: smallSpacing * 0.5),
                   Expanded(
                     child: Text(
                       '$cuentaO\n'
-                      '$montoEn\n' //o
+                      '$saldoDispo\n' //o
                       '$montoEn\n'
                       '$nombreDes\n'
                       '$nit\n'
@@ -113,6 +118,7 @@ class GetAchDataScreen extends StatelessWidget {
                       '$montoIm\n'
                       '$montoTotal\n'
                       '$bancoDes',
+                      style: AppTextStyles.mainStyleGreen14(context),
                     ),
                   ),
                 ],
@@ -165,117 +171,82 @@ class GetAchDataScreen extends StatelessWidget {
 
                               if (createState is! CreatePrKeySuccess &&
                                   createState is! CreatePrKeyLoading)
-                                SizedBox(
-                                  width: screenSize.width * 0.4,
-                                  child: Card(
-                                    elevation: smallSpacing * 0.5,
-                                    child: Butoon1(
-                                      onTap: () {
-                                        context.read<CreatePrKeyBloc>().add(
-                                          CreatePrKeyEvent1(),
-                                        );
-                                      },
-                                      lblTextField: 'OBTENER CÓDIGO',
-                                    ),
-                                  ),
+                                Butoon1(
+                                  onTap: () {
+                                    context.read<CreatePrKeyBloc>().add(
+                                      CreatePrKeyEvent1(),
+                                    );
+                                  },
+                                  lblTextField: 'OBTENER CÓDIGO',
                                 ),
 
                               if (createState is CreatePrKeySuccess &&
                                   getState is GetPrKeyByIdSuccess)
-                                SizedBox(
-                                  width: screenSize.width * 0.3,
-                                  child: Card(
-                                    elevation: smallSpacing * 0.5,
-                                    child:
-                                        BlocConsumer<
-                                          TransferAchFromMobileBankingBloc,
-                                          TransferAchFromMobileBankingState
-                                        >(
-                                          listener: (context, state) {
-                                            if (state
-                                                is TransferAchFromMobileBankingSuccess) {
-                                              InjectorContainer.getIt<
-                                                    AppRouter
-                                                  >()
-                                                  .push(
-                                                    SavingAccountTransMobileEndRoute(
-                                                      response: state.data
-                                                          .toString(),
-                                                    ),
-                                                  );
-                                            }
-                                            if (state
-                                                is TransferAchFromMobileBankingError) {
-                                              ScaffoldMessenger.of(
-                                                context,
-                                              ).showSnackBar(
-                                                SnackBar(
-                                                  content: Text(state.message),
-                                                ),
-                                              );
-                                            }
-                                          },
-                                          builder: (context, state) {
-                                            return Butoon1(
-                                              onTap: () {
-                                                context
-                                                    .read<
-                                                      TransferAchFromMobileBankingBloc
-                                                    >()
-                                                    .add(
-                                                      TransferAchFromMobBanEvent(
-                                                        beneficiary: nombreDes,
-                                                        idBankDestiny:
-                                                            idBankDestiny,
-                                                        idMoney: '1',
-                                                        idSavingAccount:
-                                                            '17098064656442366',
-                                                        identityCardNumber: '',
-                                                        accountNumber:
-                                                            cuentaDes,
-                                                        commissionAmount: '0',
-                                                        observation: 'k,ujk,j',
-                                                        amount: '23',
-                                                        amountSolicitation:
-                                                            '23',
-                                                        applyGeneratePCC01:
-                                                            false,
-                                                        reasonDestinyPCC01:
-                                                            '23',
-                                                        bankDestinyName:
-                                                            bancoDes,
-                                                        idSMSOperation: createState
-                                                            .createProdemKeyResponseEntity!
-                                                            .data
-                                                            .toString(),
-                                                        prodemKeyCode:
-                                                            getState
-                                                                .getProdemKeyByIdResponseEntity
-                                                                ?.data ??
-                                                            '',
-                                                      ),
-                                                    );
-                                              },
-                                              lblTextField:
-                                                  state is GetAchDataLoading
-                                                  ? 'Procesando...'
-                                                  : 'CONFIRMAR',
-                                            );
-                                          },
+                                BlocConsumer<
+                                  TransferAchFromMobileBankingBloc,
+                                  TransferAchFromMobileBankingState
+                                >(
+                                  listener: (context, state) {
+                                    if (state
+                                        is TransferAchFromMobileBankingSuccess) {
+                                      InjectorContainer.getIt<AppRouter>().push(
+                                        SavingAccountTransMobileEndRoute(
+                                          response: state.data.data,
                                         ),
-                                  ),
+                                      );
+                                    }
+                                    if (state
+                                        is TransferAchFromMobileBankingError) {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(content: Text(state.message)),
+                                      );
+                                    }
+                                  },
+                                  builder: (context, state) {
+                                    return Butoon1(
+                                      onTap: () {
+                                        context
+                                            .read<
+                                              TransferAchFromMobileBankingBloc
+                                            >()
+                                            .add(
+                                              TransferAchFromMobBanEvent(
+                                                reasonOriginPCC01: 'hola',
+                                                beneficiary: nombreDes,
+                                                idBankDestiny: idBankDestiny,
+                                                idMoney: '1',
+                                                idSavingAccount: idCuentaEnvio,
+                                                identityCardNumber: '',
+                                                accountNumber: cuentaDes,
+                                                commissionAmount: '0',
+                                                observation: 'k,ujk,j',
+                                                amount: '23',
+                                                amountSolicitation: '23',
+                                                applyGeneratePCC01: false,
+                                                reasonDestinyPCC01: '23',
+                                                bankDestinyName: bancoDes,
+                                                idSMSOperation: createState
+                                                    .createProdemKeyResponseEntity!
+                                                    .data
+                                                    .toString(),
+                                                prodemKeyCode:
+                                                    getState
+                                                        .getProdemKeyByIdResponseEntity
+                                                        ?.data ??
+                                                    '',
+                                              ),
+                                            );
+                                      },
+                                      lblTextField: state is GetAchDataLoading
+                                          ? 'Procesando...'
+                                          : 'CONFIRMAR',
+                                    );
+                                  },
                                 ),
 
-                              SizedBox(
-                                width: screenSize.width * 0.3,
-                                child: Card(
-                                  elevation: smallSpacing * 0.5,
-                                  child: Butoon1(
-                                    onTap: () {},
-                                    lblTextField: 'CANCELAR',
-                                  ),
-                                ),
-                              ),
+                              Butoon1(onTap: () {}, lblTextField: 'CANCELAR'),
                             ],
                           ),
                         ],

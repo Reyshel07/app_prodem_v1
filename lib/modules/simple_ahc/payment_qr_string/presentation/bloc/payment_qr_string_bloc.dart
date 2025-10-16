@@ -52,6 +52,8 @@ class PaymentQrStringBloc
         location,
         imei,
         token,
+        event.idSMSOperation,
+        event.prodemKeyCode,
       );
       emit(PaymentQrStringSuccess(response.data));
     } on BaseApiException catch (error) {

@@ -24,5 +24,7 @@ abstract class SavingAccountTransferMobileRepository {
     String? vToken,
     String idSMSOperation,
     String prodemKeyCode,
+    String reasonOrigin,
+    String obfuscatedCode,
   );
 }

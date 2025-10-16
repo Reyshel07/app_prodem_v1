@@ -116,95 +116,126 @@ class _LoanFlowAnnuitiesDetailDataForCreditScreenState
                 SizedBox(height: smallSpacing * 1.5),
 
                 /// BOTÓN CONSULTAR
-                SizedBox(
-                  width: screenSize.width * 0.4,
-                  child: Card(
-                    elevation: smallSpacing * 0.5,
-                    child: Butoon1(
-                      onTap: () {
-                        final idLoan = _selectedLoanId ?? "";
-                        if (idLoan.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                "Debe seleccionar un crédito primero.",
-                              ),
-                            ),
-                          );
-                          return;
-                        }
+                Butoon1(
+                  onTap: () {
+                    final idLoan = _selectedLoanId ?? "";
+                    if (idLoan.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Debe seleccionar un crédito primero."),
+                        ),
+                      );
+                      return;
+                    }
 
-                        context
-                            .read<GetLoanFlowAnnuitiesDetailDataForCreditBloc>()
-                            .add(
-                              GetLoanFlowAnnuDetDataForCreditEvent(
-                                idLoanCredit: idLoan,
-                              ),
-                            );
-                      },
-                      lblTextField: 'CONSULTAR',
-                    ),
-                  ),
-                ),
-                BlocConsumer<GetLoanFlowAnnuitiesDetailDataForCreditBloc, GetLoanFlowAnnuitiesDetailDataForCreditState>(
-                  listener: (context, state) {
+                    context
+                        .read<GetLoanFlowAnnuitiesDetailDataForCreditBloc>()
+                        .add(
+                          GetLoanFlowAnnuDetDataForCreditEvent(
+                            idLoanCredit: idLoan,
+                          ),
+                        );
                   },
+                  lblTextField: 'CONSULTAR',
+                ),
+                BlocConsumer<
+                  GetLoanFlowAnnuitiesDetailDataForCreditBloc,
+                  GetLoanFlowAnnuitiesDetailDataForCreditState
+                >(
+                  listener: (context, state) {},
                   builder: (context, state) {
-                    if(state is GetLoanFlowAnnuitiesDetailDataForCreditSuccess){
-                      final res = state.getLoanFlowAnnuitiesDetailDataForCreditEntity;
-                    return Column(children: [
-                      SizedBox(height: smallSpacing *0.5,),
-
-
-                      Text("DETALLE DEL CRÉDITO",style: AppTextStyles.mainStyleGreen18Bold(context),),
-
-                      SizedBox(height: smallSpacing *0.5,),
-
-
-                      Row(
-                        
+                    if (state
+                        is GetLoanFlowAnnuitiesDetailDataForCreditSuccess) {
+                      final res =
+                          state.getLoanFlowAnnuitiesDetailDataForCreditEntity;
+                      return Column(
                         children: [
-                          Text("Código de Crédito:\n""Monto:\n""Días de Atraso:",style:  AppTextStyles.mainStyleGreen14Bold(context),),
-                          SizedBox(width: smallSpacing * 0.5,),
-                          Text("${res.loanCreditCode}\n""${res.creditAmount}\n""${res.delayDays}",)
-                        ],
-                      ),
-                      SizedBox(height: smallSpacing *0.5,),
-                      Row(
+                          SizedBox(height: smallSpacing * 0.5),
+
+                          Text(
+                            "DETALLE DEL CRÉDITO",
+                            style: AppTextStyles.mainStyleGreen18Bold(context),
+                          ),
+
+                          SizedBox(height: smallSpacing * 0.5),
+
+                          Row(
+                            children: [
+                              Text(
+                                "Código de Crédito:\n"
+                                "Monto:\n"
+                                "Días de Atraso:",
+                                style: AppTextStyles.mainStyleGreen14Bold(
+                                  context,
+                                ),
+                              ),
+                              SizedBox(width: smallSpacing * 0.5),
+                              Text(
+                                "${res.loanCreditCode}\n"
+                                "${res.creditAmount}\n"
+                                "${res.delayDays}",
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: smallSpacing * 0.5),
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Nro. Cuota",style:  AppTextStyles.mainStyleGreen14Bold(context)),
-                              Text("Fecha Vencimiento",style:  AppTextStyles.mainStyleGreen14Bold(context)),
-                              Text("Monto Cuota",style:  AppTextStyles.mainStyleGreen14Bold(context)),
-                              Text("Pagado",style:  AppTextStyles.mainStyleGreen14Bold(context)),
+                              Text(
+                                "Nro. Cuota",
+                                style: AppTextStyles.mainStyleGreen14Bold(
+                                  context,
+                                ),
+                              ),
+                              Text(
+                                "Fecha Vencimiento",
+                                style: AppTextStyles.mainStyleGreen14Bold(
+                                  context,
+                                ),
+                              ),
+                              Text(
+                                "Monto Cuota",
+                                style: AppTextStyles.mainStyleGreen14Bold(
+                                  context,
+                                ),
+                              ),
+                              Text(
+                                "Pagado",
+                                style: AppTextStyles.mainStyleGreen14Bold(
+                                  context,
+                                ),
+                              ),
                             ],
                           ),
                           Divider(),
-                      SizedBox(
-                        height: screenSize.height * 0.5,
-                        child: ListView.builder(
-                          itemCount: res.colAnnuitiesDetail.length,
-                          itemBuilder: (context,index){
-                            final data = res.colAnnuitiesDetail[index];
-                            return Column(
-                              children: [
-                                                        
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                          SizedBox(
+                            height: screenSize.height * 0.5,
+                            child: ListView.builder(
+                              itemCount: res.colAnnuitiesDetail.length,
+                              itemBuilder: (context, index) {
+                                final data = res.colAnnuitiesDetail[index];
+                                return Column(
                                   children: [
-                                    Text(data.annuityNumber),
-                                    Text(data.annuityEndDate.toString()),
-                                    Text(data.annuityBalance.toString()),
-                                    Text(data.isPaid == true ? "SI" : "NO")
-                                ],),
-                                Divider()
-                              ],
-                            );
-                          }),
-                      )
-                    ]);
-
-                    } return CircularProgressIndicator();
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(data.annuityNumber),
+                                        Text(data.annuityEndDate.toString()),
+                                        Text(data.annuityBalance.toString()),
+                                        Text(data.isPaid == true ? "SI" : "NO"),
+                                      ],
+                                    ),
+                                    Divider(),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                    return CircularProgressIndicator();
                   },
                 ),
               ],

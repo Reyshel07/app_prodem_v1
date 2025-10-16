@@ -4,21 +4,23 @@ import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
+import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/presentation/widget/text_from_fiel.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nb_utils/nb_utils.dart';
 import '../../domain/entities/entity.dart';
 
 @RoutePage()
 class DecryptQrScreen extends StatefulWidget {
   final SessionInfoBloc sessionBloc;
   final DecryptQrStringEntity decryptQrStringEntity;
+  final String stringQr;
   const DecryptQrScreen({
     super.key,
     required this.decryptQrStringEntity,
     required this.sessionBloc,
+    required this.stringQr,
   });
 
   @override
@@ -26,7 +28,10 @@ class DecryptQrScreen extends StatefulWidget {
 }
 
 class _DecryptQrScreenState extends State<DecryptQrScreen> {
-  String? _codeSavingAccountSource;
+  String? _selectedAccount;
+  String? _selectedAccountId;
+  String? _selectedAccountMoneyId;
+  String? balance;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -76,78 +81,35 @@ class _DecryptQrScreenState extends State<DecryptQrScreen> {
                 ),
                 lbText: 'Referencia:',
               ),
-              BlocConsumer<SessionInfoBloc, SessionInfoState>(
-                listener: (context, state) {},
-                builder: (context, state) {
-                  if (state is SessionInfoSuccess) {
-                    final listAccounts =
-                        state.userInfoResponseEnttity.listCodeSavingsAccount;
-                    final list = listAccounts
-                        .map((account) => account.operationCode)
-                        .toList();
-                    return _buildDropdown(
-                      title: 'CUENTA AHORRO ORIGEN',
-                      items: list,
-                      value: _codeSavingAccountSource,
-                      onChanged: (newValue) {
-                        setState(() => _codeSavingAccountSource = newValue);
-                      },
-                      smallSpacing: smallSpacing,
-                    );
-                  }
-                  return CircularProgressIndicator();
+              AccountDropdown(
+                selectedAccount: _selectedAccount,
+                smallSpacing: smallSpacing,
+                screenSize: screenSize,
+                onAccountSelected: (account) {
+                  setState(() {
+                    _selectedAccount = account.operationCode;
+                    _selectedAccountId = account.idOperationEntity;
+                    _selectedAccountMoneyId = account.idMoney;
+                    balance = account.balance;
+                  });
                 },
               ),
               Butoon1(
                 onTap: () {
                   InjectorContainer.getIt<AppRouter>().push(
                     DecryptQrDetailsRoute(
-                      cuenta: _codeSavingAccountSource ?? '',
+                      cuenta: _selectedAccount ?? '',
                       monto: widget.decryptQrStringEntity.amount.toString(),
                       cambioMoneda: 'NO',
-                      saldo: '10100',
+                      saldo: balance ?? '',
+                      decryptQrStringEntity: widget.decryptQrStringEntity,
+                      stringQr: widget.stringQr,
                     ),
                   );
                 },
                 lblTextField: 'CONTINUAR',
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDropdown({
-    required String title,
-    required List<String> items,
-    required String? value,
-    required void Function(String?) onChanged,
-    required double smallSpacing,
-  }) {
-    return SizedBox(
-      child: Card(
-        elevation: smallSpacing * 0.5,
-        child: Container(
-          width: double.infinity,
-          height: smallSpacing * 3,
-          decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.green),
-            borderRadius: BorderRadius.all(radiusCircular(11)),
-          ),
-          child: DropdownButton<String>(
-            isExpanded: true,
-            underline: const SizedBox(),
-            padding: EdgeInsetsGeometry.all(smallSpacing * 0.5),
-            hint: Text(
-              title,
-              style: AppTextStyles.mainStyleGreen14Bold(context),
-            ),
-            value: value,
-            items: items
-                .map((val) => DropdownMenuItem(value: val, child: Text(val)))
-                .toList(),
-            onChanged: onChanged,
           ),
         ),
       ),

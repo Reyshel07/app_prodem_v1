@@ -46,78 +46,81 @@ class ListGetOtherAccountDepositScreen extends StatelessWidget {
                           style: AppTextStyles.mainStyleGreen18Bold(context),
                         ),
                         SizedBox(height: smallSpacing * 0.5),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: res.length,
-                          itemBuilder: (context, index) {
-                            final data = res[index];
-                            return Card(
-                              elevation: smallSpacing * 0.5,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Theme.of(context).colorScheme.green,
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: res.length,
+                            itemBuilder: (context, index) {
+                              final data = res[index];
+                              return Card(
+                                elevation: smallSpacing * 0.5,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.green,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(topPadding * 0.05),
-                                  child: Row(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Id depósito:\n'
-                                            'Cuenta destino\n'
-                                            'Destino fondos\n'
-                                            'Cuenta Origen\n'
-                                            'Monto\n'
-                                            'Estado',
-                                            style:
-                                                AppTextStyles.mainStyleGreen12Bold(
-                                                  context,
-                                                ),
-                                          ),
-                                          SizedBox(width: smallSpacing * 0.5),
-                                          Text(
-                                            '${data.idThirdOnlineDeposit}\n'
-                                            '${data.thirdAccount}\n'
-                                            '${data.destinationFunds}\n'
-                                            '${data.accountFunds}\n'
-                                            '${data.monto} ${data.codMoney}\n'
-                                            '${data.state}',
-                                            style:
-                                                AppTextStyles.mainStyleGreen12(
-                                                  context,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Fecha:',
-                                            style:
-                                                AppTextStyles.mainStyleGreen12Bold(
-                                                  context,
-                                                ),
-                                          ),
-                                          SizedBox(width: smallSpacing * 0.5),
-                                          Text(
-                                            data.depositDate,
-                                            style:
-                                                AppTextStyles.mainStyleGreen12(
-                                                  context,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                  child: Padding(
+                                    padding: EdgeInsets.all(topPadding * 0.05),
+                                    child: Row(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Id depósito:\n'
+                                              'Cuenta destino\n'
+                                              'Destino fondos\n'
+                                              'Cuenta Origen\n'
+                                              'Monto\n'
+                                              'Estado',
+                                              style:
+                                                  AppTextStyles.mainStyleGreen12Bold(
+                                                    context,
+                                                  ),
+                                            ),
+                                            SizedBox(width: smallSpacing * 0.5),
+                                            Text(
+                                              '${data.idThirdOnlineDeposit}\n'
+                                              '${data.thirdAccount}\n'
+                                              '${data.destinationFunds}\n'
+                                              '${data.accountFunds}\n'
+                                              '${data.monto} ${data.codMoney}\n'
+                                              '${data.state}',
+                                              style:
+                                                  AppTextStyles.mainStyleGreen12(
+                                                    context,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Fecha:',
+                                              style:
+                                                  AppTextStyles.mainStyleGreen12Bold(
+                                                    context,
+                                                  ),
+                                            ),
+                                            SizedBox(width: smallSpacing * 0.5),
+                                            Text(
+                                              data.depositDate,
+                                              style:
+                                                  AppTextStyles.mainStyleGreen12(
+                                                    context,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),

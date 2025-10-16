@@ -138,116 +138,86 @@ class TransferFeesTwoScreen extends StatelessWidget {
 
                               if (createState is! CreatePrKeySuccess &&
                                   createState is! CreatePrKeyLoading)
-                                SizedBox(
-                                  width: screenSize.width * 0.4,
-                                  child: Card(
-                                    elevation: smallSpacing * 0.5,
-                                    child: Butoon1(
-                                      onTap: () {
-                                        context.read<CreatePrKeyBloc>().add(
-                                          CreatePrKeyEvent1(),
-                                        );
-                                      },
-                                      lblTextField: 'OBTENER CÓDIGO',
-                                    ),
-                                  ),
+                                Butoon1(
+                                  onTap: () {
+                                    context.read<CreatePrKeyBloc>().add(
+                                      CreatePrKeyEvent1(),
+                                    );
+                                  },
+                                  lblTextField: 'OBTENER CÓDIGO',
                                 ),
 
                               if (createState is CreatePrKeySuccess &&
                                   getState is GetPrKeyByIdSuccess)
-                                SizedBox(
-                                  width: screenSize.width * 0.3,
-                                  child: Card(
-                                    elevation: smallSpacing * 0.5,
-                                    child:
-                                        BlocConsumer<
-                                          SavingAccountTransferMobileBloc,
-                                          SavingAccountTransferMobileState
-                                        >(
-                                          listener: (context, state) {
-                                            if (state
-                                                is SavingAccountTransferMobileSuccess) {
-                                              InjectorContainer.getIt<
-                                                    AppRouter
-                                                  >()
-                                                  .push(
-                                                    SavingAccountTransMobileEndRoute(
-                                                      response: state.data
-                                                          .toString(),
-                                                    ),
-                                                  );
-                                            }
-                                            if (state
-                                                is SavingAccountTransferMobiletaError) {
-                                              ScaffoldMessenger.of(
-                                                context,
-                                              ).showSnackBar(
-                                                SnackBar(
-                                                  content: Text(state.message),
-                                                ),
-                                              );
-                                            }
-                                          },
-                                          builder: (context, state) {
-                                            return Butoon1(
-                                              onTap: () {
-                                                context
-                                                    .read<
-                                                      SavingAccountTransferMobileBloc
-                                                    >()
-                                                    .add(
-                                                      SavingAccountTransMoEvent(
-                                                        codeSavingAccountSource:
-                                                            cuentaO ?? '',
-                                                        codeSavingAccountTarget:
-                                                            cuentaD ?? '',
-                                                        amountTransfer:
-                                                            monto ?? '',
-                                                        idMoneyTransfer: '1',
-                                                        isNaturalCustomer: true,
-                                                        observation:
-                                                            'observation',
-                                                        reasonDestiny:
-                                                            'reasonDestiny',
-                                                        typeApplicationAccessX:
-                                                            '112582',
-                                                        idTerminal: '2',
-                                                        userAppOriginType: '2',
-                                                        beneficiaryName:
-                                                            'beneficiaryName',
-                                                        idSMSOperation: createState
-                                                            .createProdemKeyResponseEntity!
-                                                            .data
-                                                            .toString(),
-                                                        prodemKeyCode:
-                                                            getState
-                                                                .getProdemKeyByIdResponseEntity
-                                                                ?.data ??
-                                                            '',
-                                                      ),
-                                                    );
-                                              },
-                                              lblTextField:
-                                                  state
-                                                      is SavingAccountTransferMobileLoading
-                                                  ? 'Procesando...'
-                                                  : 'CONFIRMAR',
-                                            );
-                                          },
+                                BlocConsumer<
+                                  SavingAccountTransferMobileBloc,
+                                  SavingAccountTransferMobileState
+                                >(
+                                  listener: (context, state) {
+                                    if (state
+                                        is SavingAccountTransferMobileSuccess) {
+                                      InjectorContainer.getIt<AppRouter>().push(
+                                        SavingAccountTransMobileEndRoute(
+                                          response: state.data.data,
                                         ),
-                                  ),
+                                      );
+                                    }
+                                    if (state
+                                        is SavingAccountTransferMobiletaError) {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(content: Text(state.message)),
+                                      );
+                                    }
+                                  },
+                                  builder: (context, state) {
+                                    return Butoon1(
+                                      onTap: () {
+                                        context
+                                            .read<
+                                              SavingAccountTransferMobileBloc
+                                            >()
+                                            .add(
+                                              SavingAccountTransMoEvent(
+                                                codeSavingAccountSource:
+                                                    cuentaO ?? '',
+                                                codeSavingAccountTarget:
+                                                    cuentaD ?? '',
+                                                amountTransfer: monto ?? '',
+                                                idMoneyTransfer: '1',
+                                                isNaturalCustomer: true,
+                                                observation: 'observation',
+                                                reasonDestiny: 'reasonDestiny',
+                                                typeApplicationAccessX:
+                                                    '112582',
+                                                idTerminal: '2',
+                                                userAppOriginType: '2',
+                                                beneficiaryName:
+                                                    'beneficiaryName',
+                                                idSMSOperation: createState
+                                                    .createProdemKeyResponseEntity!
+                                                    .data
+                                                    .toString(),
+                                                prodemKeyCode:
+                                                    getState
+                                                        .getProdemKeyByIdResponseEntity
+                                                        ?.data ??
+                                                    '',
+                                                reasonOrigin: '',
+                                                obfuscatedCode: '',
+                                              ),
+                                            );
+                                      },
+                                      lblTextField:
+                                          state
+                                              is SavingAccountTransferMobileLoading
+                                          ? 'Procesando...'
+                                          : 'CONFIRMAR',
+                                    );
+                                  },
                                 ),
-
-                              SizedBox(
-                                width: screenSize.width * 0.3,
-                                child: Card(
-                                  elevation: smallSpacing * 0.5,
-                                  child: Butoon1(
-                                    onTap: () {},
-                                    lblTextField: 'CANCELAR',
-                                  ),
-                                ),
-                              ),
+                              Butoon1(onTap: () {}, lblTextField: 'CANCELAR'),
                             ],
                           ),
                         ],

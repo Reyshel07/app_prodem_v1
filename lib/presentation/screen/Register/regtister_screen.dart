@@ -116,24 +116,18 @@ class _RegisterScreeenState extends State<RegisterScreeen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              SizedBox(
-                width: screenSize.width * 0.5,
-                child: Card(
-                  elevation: smallSpacing * 0.5,
-                  child: Butoon1(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AccountSettingsScreen(),
-                        ),
-                      );
-                    },
-                    lblTextField: 'INGRESAR',
-                  ),
-                ),
+              Butoon1(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AccountSettingsScreen(),
+                    ),
+                  );
+                },
+                lblTextField: 'INGRESAR',
               ),
+              SizedBox(height: 20),
               IconButton(
                 onPressed: () {
                   Navigator.push(

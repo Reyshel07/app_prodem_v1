@@ -32,6 +32,8 @@ class SavingAccountTransferMobileRepositoryImpl
     String? vToken,
     String idSMSOperation,
     String prodemKeyCode,
+    String reasonOrigin,
+    String obfuscatedCode,
   ) async {
     return await datasource.savingAccountTransMobile(
       codeSavingAccountSource,
@@ -56,6 +58,8 @@ class SavingAccountTransferMobileRepositoryImpl
       vToken,
       idSMSOperation,
       prodemKeyCode,
+      reasonOrigin,
+      obfuscatedCode,
     );
   }
 }

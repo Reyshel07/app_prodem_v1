@@ -162,13 +162,7 @@ class _StepOneState extends State<StepOne> {
               ),
               SizedBox(height: widget.screenSize.height * 0.02),
               Center(
-                child: SizedBox(
-                  width: widget.screenSize.width * 0.5,
-                  child: Card(
-                    elevation: widget.smallSpacing * 0.5,
-                    child: Butoon1(onTap: () {}, lblTextField: 'Continuar'),
-                  ),
-                ),
+                child: Butoon1(onTap: () {}, lblTextField: 'Continuar'),
               ),
             ],
           ),

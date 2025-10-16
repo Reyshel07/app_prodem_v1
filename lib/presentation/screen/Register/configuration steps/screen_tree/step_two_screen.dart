@@ -175,10 +175,7 @@ class _StepTwoState extends State<StepTwo> {
                 ),
               ),
               SizedBox(height: widget.smallSpacing * 0.5),
-              SizedBox(
-                width: widget.screenSize.width * 0.3,
-                child: Butoon1(onTap: () {}, lblTextField: 'Registrar'),
-              ),
+              Butoon1(onTap: () {}, lblTextField: 'Registrar'),
             ],
           ),
         ],

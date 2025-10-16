@@ -51,8 +51,7 @@ class PrExpressSolicitationWebScreen extends StatelessWidget {
                         'Detalles de Solicitud de Giro relámpago',
                         style: AppTextStyles.mainStyleGreen18Bold(context),
                       ),
-                      SizedBox(
-                        height: screenSize.height * 0.5,
+                      Expanded(
                         child: ListView.builder(
                           itemCount: res.data.length,
                           itemBuilder: (BuildContext context, int index) {

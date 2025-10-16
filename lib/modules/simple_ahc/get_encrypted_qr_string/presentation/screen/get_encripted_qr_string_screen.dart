@@ -5,6 +5,7 @@ import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/presentation/bloc/get_encripted_qr_string_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
+import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/presentation/widget/text_from_fiel.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,10 @@ class _GetEncriptedQrStringScreenState
   String? _deadline;
   String? _money;
   bool isChecked = false;
+
+  String? _selectedAccount;
+  String? _selectedAccountId;
+  String? _selectedAccountMoneyId;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -75,14 +80,17 @@ class _GetEncriptedQrStringScreenState
                         .toList();
                     return Column(
                       children: [
-                        _buildDropdown(
-                          title: 'CUENTA AHORRO ORIGEN',
-                          items: list,
-                          value: _codeSavingAccountSource,
-                          onChanged: (newValue) {
-                            setState(() => _codeSavingAccountSource = newValue);
-                          },
+                        AccountDropdown(
+                          selectedAccount: _selectedAccount,
                           smallSpacing: smallSpacing,
+                          screenSize: screenSize,
+                          onAccountSelected: (account) {
+                            setState(() {
+                              _selectedAccount = account.operationCode;
+                              _selectedAccountId = account.idOperationEntity;
+                              _selectedAccountMoneyId = account.idMoney;
+                            });
+                          },
                         ),
                         TextFromFiel02(
                           screenSize: screenSize,
@@ -139,7 +147,7 @@ class _GetEncriptedQrStringScreenState
                                   monto: amountController.text,
                                   referencia: referenceController.text,
                                   nombre: res.personName ?? '',
-                                  cuenta: _codeSavingAccountSource ?? '',
+                                  cuenta: _selectedAccount ?? '',
                                   valido: '12/03/2025',
                                 ),
                               );
@@ -148,7 +156,7 @@ class _GetEncriptedQrStringScreenState
                               onTap: () {
                                 context.read<GetEncriptedQrStringBloc>().add(
                                   GetEncriptedQrSEvent(
-                                    accountCode: _codeSavingAccountSource ?? '',
+                                    accountCode: _selectedAccount ?? '',
                                     moneyCode: 'BOB',
                                     amount: amountController.text,
                                     isUniqueUse: isChecked,
@@ -156,31 +164,6 @@ class _GetEncriptedQrStringScreenState
                                     reference: referenceController.text,
                                   ),
                                 );
-                                /*try {
-                                      final bloc = BlocProvider.of<GetEncriptedQrStringBloc>(
-                                        ctx,
-                                        listen: false,
-                                      );
-                                      bloc.add(
-                                        GetEncriptedQrSEvent(
-                                          accountCode:
-                                              _codeSavingAccountSource ?? '117-2-1-17491-5',
-                                          moneyCode: 'BOB',
-                                          amount: '4545',
-                                          isUniqueUse: false,
-                                          expiredOption: '365',
-                                          reference: '0',
-                                        ),
-                                      );
-                                    } catch (e, st) {
-                                      ScaffoldMessenger.of(ctx).showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Error interno: no se pudo accesar el servicio.',
-                                          ),
-                                        ),
-                                      );
-                                    }*/
                               },
                               lblTextField: 'GENERAR QR',
                             );

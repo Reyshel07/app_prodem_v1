@@ -30,6 +30,7 @@ class TransferAchFromMobileBankingDatasource {
     String? vToken,
     String idSMSOperation,
     String prodemKeyCode,
+    String reasonOriginPCC01,
   ) async {
     final response = await _apiClient.post(
       'Mobile/TransferAchFromMobileBanking',
@@ -54,6 +55,7 @@ class TransferAchFromMobileBankingDatasource {
         "Location": location,
         "IpAddress": ipAddress,
         "BankDestinyName": bankDestinyName, // "BANCO PYME ECOFUTURO S.A.",
+        "ReasonOriginPCC01": reasonOriginPCC01,
       },
       headers: {
         'Authorization': 'Bearer $vToken',
