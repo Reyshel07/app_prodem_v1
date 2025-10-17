@@ -378,7 +378,7 @@ class _ReceiveTransfersByCellPhoneNumberScreenState
                               context.read<GetPrKeyByIdBloc>().add(
                                 GetPrKeyEvent(
                                   idSmsOperation: createState
-                                      .createProdemKeyResponseEntity!
+                                      .createProdemKeyResponseEntity
                                       .data
                                       .toString(),
                                 ),

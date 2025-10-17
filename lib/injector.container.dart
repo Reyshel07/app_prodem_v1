@@ -1,3 +1,5 @@
+import 'package:app_prodem_v1/modules/ATM/atm_transaction_qr_create/atm.transaction.qr.create.container.dart';
+import 'package:app_prodem_v1/modules/ATM/validate_qr_from_prodem_movil/validate.qr.from.prodem.movil.container.dart';
 import 'package:app_prodem_v1/modules/auth/auth.container.dart';
 import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/get_loan_flow_annuities_detail_data_for_credit_injector.container.dart';
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/loan_flow_get_credit_detail_data_for_recovery_injector.container.dart';
@@ -73,5 +75,7 @@ class InjectorContainer {
     initGetExternalPaymentGenerateFileWebClient(getIt);
     initPrExpressSaveSolicitation(getIt);
     initPaymentQrString(getIt);
+    initVAlidateQrFromPRodemMovil(getIt);
+    initAtmTransactionQrCreate(getIt);
   }
 }

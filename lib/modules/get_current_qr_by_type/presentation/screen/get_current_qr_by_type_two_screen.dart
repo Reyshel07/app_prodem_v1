@@ -11,17 +11,17 @@ import 'package:image_picker/image_picker.dart';
 
 @RoutePage()
 class CurrentQrByTypeTwoScreen extends StatefulWidget {
-  String nameDepo;
-  String cuentaPro;
-  String cuenta;
-  String monto;
-  String moneda;
-  String oriFon;
-  String desFon;
-  String bancoOri;
-  String cuentaOri;
-  String fechaDepo;
-  CurrentQrByTypeTwoScreen({
+  final String nameDepo;
+  final String cuentaPro;
+  final String cuenta;
+  final String monto;
+  final String moneda;
+  final String oriFon;
+  final String desFon;
+  final String bancoOri;
+  final String cuentaOri;
+  final String fechaDepo;
+  const CurrentQrByTypeTwoScreen({
     super.key,
     required this.bancoOri,
     required this.cuenta,

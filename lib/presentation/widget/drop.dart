@@ -11,12 +11,12 @@ class AccountDropdown extends StatefulWidget {
   final Size screenSize;
 
   const AccountDropdown({
-    Key? key,
+    super.key,
     required this.selectedAccount,
     required this.onAccountSelected,
     required this.smallSpacing,
     required this.screenSize,
-  }) : super(key: key);
+  });
 
   @override
   State<AccountDropdown> createState() => _AccountDropdownState();
@@ -36,7 +36,7 @@ class _AccountDropdownState extends State<AccountDropdown> {
     final screenSize = MediaQuery.of(context).size;
     final double smallSpacing = screenSize.height * 0.02;
     return BlocConsumer<SessionInfoBloc, SessionInfoState>(
-      listener: (_, __) {},
+      listener: (_, _) {},
       builder: (context, state) {
         if (state is SessionInfoSuccess) {
           final listAccounts =

@@ -27,8 +27,6 @@ class SavingAccountExtractDataTranSacreen extends StatefulWidget {
 class _SavingAccountExtractDataTranSacreenState
     extends State<SavingAccountExtractDataTranSacreen> {
   String? _selectedAccount;
-  String? _selectedAccountId;
-  String? _selectedAccountMoneyId;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -66,8 +64,6 @@ class _SavingAccountExtractDataTranSacreenState
                   onAccountSelected: (account) {
                     setState(() {
                       _selectedAccount = account.operationCode;
-                      _selectedAccountId = account.idOperationEntity;
-                      _selectedAccountMoneyId = account.idMoney;
                     });
                   },
                 ),

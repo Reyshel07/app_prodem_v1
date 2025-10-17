@@ -6,7 +6,7 @@ class CreateDpfSolicitationInternalDatasource {
   final ApiClient _apiClient;
   CreateDpfSolicitationInternalDatasource(this._apiClient);
 
-  Future<CreateDpfSolicitationInternalResponseEntity>createDpfSoliciInternal(
+  Future<CreateDpfSolicitationInternalResponseEntity> createDpfSoliciInternal(
     String? vToken,
     String phoneNumber,
     String contextData,
@@ -28,42 +28,41 @@ class CreateDpfSolicitationInternalDatasource {
     String idUser,
     String idWebPerson,
     bool isEmployee,
-
-
-  )async{
+    String idSMSOperation,
+    String prodemKeyCode,
+  ) async {
     final response = await _apiClient.post(
       'Mobile/CreateDPFSolicitationInternal',
-      data:
-        {
-    "PhoneNumber": "72584788",
-    "ContextData": "",
-    "IdentityCardNumber": "5968439",
-    "Location": "context",
-    "InteresUpdate": 0,
-    "Amount": "1000",
-    "AmountFinalUpdate": "49.56",
-    "TermUpdate": "367",
-    "RateUpdate": "8.5",
-    "Email": "kjsdkjdns@gmail.com",
-    "Names": "jade piza",
-    "Term": "365",
-    "IdOfficeDPF": 17,
-    "DebitAccountCode": "117-2-1-17491-5",
-    "IdPerson": "17000000000003984",
-    "IpNumber": "",
-    "IdAccount": "17098064656442366",
-    "IdUser": "350880",
-    "IdWebPerson": "1129150143954615",
-    "IsEmployee": true
-},
-headers: {
+      data: {
+        "PhoneNumber": phoneNumber,
+        "ContextData": contextData,
+        "IdentityCardNumber": identityCardNumber,
+        "Location": location,
+        "InteresUpdate": interesUpdate,
+        "Amount": amount,
+        "AmountFinalUpdate": amountFinalUpdate,
+        "TermUpdate": termUpdate,
+        "RateUpdate": rateUpdate,
+        "Email": email,
+        "Names": names,
+        "Term": term,
+        "IdOfficeDPF": idOfficeDPF,
+        "DebitAccountCode": debitAccountCode,
+        "IdPerson": idPerson,
+        "IpNumber": ipNumber,
+        "IdAccount": idAccount,
+        "IdUser": idUser,
+        "IdWebPerson": idWebPerson,
+        "IsEmployee": isEmployee,
+      },
+      headers: {
         'Authorization': 'Bearer $vToken',
+        'CodeOperation':
+            "{'IdSMSOperation': $idSMSOperation,'ProdemKeyCode': '$prodemKeyCode'}",
         'Content-Type': 'application/json',
       },
       operationName: 'create final dpf',
-      
     );
     return CreateDpfSolicitationInternalResponseModel.fromJson(response);
-
   }
 }

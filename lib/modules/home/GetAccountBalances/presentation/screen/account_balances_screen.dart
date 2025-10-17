@@ -24,8 +24,6 @@ class AccountInquiryScreen extends StatefulWidget {
 
 class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
   String? _selectedAccount;
-  String? _selectedAccountId;
-  String? _selectedAccountMoneyId;
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +61,6 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
                 onAccountSelected: (account) {
                   setState(() {
                     _selectedAccount = account.operationCode;
-                    _selectedAccountId = account.idOperationEntity;
-                    _selectedAccountMoneyId = account.idMoney;
                   });
                 },
               ),

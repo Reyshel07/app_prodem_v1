@@ -13,16 +13,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class ExpressDataTwoScreen extends StatelessWidget {
-  GetProdemExpressDataResponseEntity res;
-  String cuentaOri;
-  String ciDesti;
-  String desti;
-  String celDesti;
-  String cambioMo;
-  String montoDebi;
-  String montoImp;
-  String montoTotalDebi;
-  ExpressDataTwoScreen({
+  final GetProdemExpressDataResponseEntity res;
+  final String cuentaOri;
+  final String ciDesti;
+  final String desti;
+  final String celDesti;
+  final String cambioMo;
+  final String montoDebi;
+  final String montoImp;
+  final String montoTotalDebi;
+  const ExpressDataTwoScreen({
     super.key,
     required this.res,
     required this.cambioMo,

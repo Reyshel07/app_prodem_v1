@@ -192,7 +192,7 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                   context.read<GetPrKeyByIdBloc>().add(
                                     GetPrKeyEvent(
                                       idSmsOperation: createState
-                                          .createProdemKeyResponseEntity!
+                                          .createProdemKeyResponseEntity
                                           .data
                                           .toString(),
                                     ),
@@ -326,7 +326,7 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                                                       isOwnCredit:
                                                                           true,
                                                                       idSMSOperation: createState
-                                                                          .createProdemKeyResponseEntity!
+                                                                          .createProdemKeyResponseEntity
                                                                           .data
                                                                           .toString(),
                                                                       prodemKeyCode:

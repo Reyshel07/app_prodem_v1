@@ -51,6 +51,8 @@ class CreateDpfSolicitationInternalBloc
         idUser,
         idWebPerson,
         event.isEmployee,
+        event.idSMSOperation,
+        event.prodemKeyCode,
       );
 
       emit(CreateDpfSolicitationInternalSuccess(response.data));

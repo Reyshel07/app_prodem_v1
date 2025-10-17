@@ -117,7 +117,7 @@ class CurrentQrByTypeTreeScreen extends StatelessWidget {
                   context.read<GetPrKeyByIdBloc>().add(
                     GetPrKeyEvent(
                       idSmsOperation: createState
-                          .createProdemKeyResponseEntity!
+                          .createProdemKeyResponseEntity
                           .data
                           .toString(),
                     ),
@@ -235,7 +235,7 @@ class CurrentQrByTypeTreeScreen extends StatelessWidget {
                                                   usuarioRegistro: 'dev001',
                                                   whatsAppNumber: '71012857x',
                                                   idSMSOperation: createState
-                                                      .createProdemKeyResponseEntity!
+                                                      .createProdemKeyResponseEntity
                                                       .data
                                                       .toString(),
                                                   prodemKeyCode:
