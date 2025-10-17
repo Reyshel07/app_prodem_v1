@@ -13,22 +13,22 @@ import '../../../../../config/router/router.dart';
 
 @RoutePage()
 class GetAchDataScreen extends StatelessWidget {
-  String cuentaO;
-  String montoEn;
-  String bancoDes;
-  String nombreDes;
-  String nit;
-  String motivoEn;
-  String cuentaDes;
-  String cambioM;
-  String montoDev;
-  String mComision;
-  String montoIm;
-  String montoTotal;
-  String idBankDestiny;
-  String saldoDispo;
-  String idCuentaEnvio;
-  GetAchDataScreen({
+  final String cuentaO;
+  final String montoEn;
+  final String bancoDes;
+  final String nombreDes;
+  final String nit;
+  final String motivoEn;
+  final String cuentaDes;
+  final String cambioM;
+  final String montoDev;
+  final String mComision;
+  final String montoIm;
+  final String montoTotal;
+  final String idBankDestiny;
+  final String saldoDispo;
+  final String idCuentaEnvio;
+  const GetAchDataScreen({
     super.key,
     required this.bancoDes,
     required this.cambioM,
@@ -133,7 +133,7 @@ class GetAchDataScreen extends StatelessWidget {
                     context.read<GetPrKeyByIdBloc>().add(
                       GetPrKeyEvent(
                         idSmsOperation: createState
-                            .createProdemKeyResponseEntity!
+                            .createProdemKeyResponseEntity
                             .data
                             .toString(),
                       ),
@@ -228,7 +228,7 @@ class GetAchDataScreen extends StatelessWidget {
                                                 reasonDestinyPCC01: '23',
                                                 bankDestinyName: bancoDes,
                                                 idSMSOperation: createState
-                                                    .createProdemKeyResponseEntity!
+                                                    .createProdemKeyResponseEntity
                                                     .data
                                                     .toString(),
                                                 prodemKeyCode:

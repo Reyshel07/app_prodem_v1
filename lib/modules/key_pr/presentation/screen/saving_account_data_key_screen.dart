@@ -99,7 +99,7 @@ class TransferFeesTwoScreen extends StatelessWidget {
                     context.read<GetPrKeyByIdBloc>().add(
                       GetPrKeyEvent(
                         idSmsOperation: createState
-                            .createProdemKeyResponseEntity!
+                            .createProdemKeyResponseEntity
                             .data
                             .toString(),
                       ),
@@ -196,7 +196,7 @@ class TransferFeesTwoScreen extends StatelessWidget {
                                                 beneficiaryName:
                                                     'beneficiaryName',
                                                 idSMSOperation: createState
-                                                    .createProdemKeyResponseEntity!
+                                                    .createProdemKeyResponseEntity
                                                     .data
                                                     .toString(),
                                                 prodemKeyCode:

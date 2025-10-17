@@ -2,7 +2,7 @@ import '../entities/entity.dart';
 
 abstract class CreateDpfSolicitationInternalRepository {
   Future<CreateDpfSolicitationInternalResponseEntity> createDpfSoliciInternal(
-     String? vToken,
+    String? vToken,
     String phoneNumber,
     String contextData,
     String identityCardNumber,
@@ -23,5 +23,7 @@ abstract class CreateDpfSolicitationInternalRepository {
     String idUser,
     String idWebPerson,
     bool isEmployee,
+    String idSMSOperation,
+    String prodemKeyCode,
   );
 }

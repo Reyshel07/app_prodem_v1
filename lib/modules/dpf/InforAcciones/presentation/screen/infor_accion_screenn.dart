@@ -33,73 +33,76 @@ class InforAccionesScreen extends StatelessWidget {
             if (state is InforAccionesSuccess) {
               final res = state.inforAccionesEntity;
               final data1 = state.dpfExpiracion;
-              return Column(
-                children: [
-                  Text(
-                    res[0].info,
-                    style: AppTextStyles.mainStyleGreen16Bold(context),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Seleccione un DPF:',
-                    style: AppTextStyles.mainStyleGreen14Bold(context),
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: data1?.length,
-                    itemBuilder: (context, index) {
-                      final data = data1?[index];
-                      return Card(
-                        elevation: smallSpacing * 0.5,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Theme.of(context).colorScheme.green,
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text(
+                      res[0].info,
+                      style: AppTextStyles.mainStyleGreen16Bold(context),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Seleccione un DPF:',
+                      style: AppTextStyles.mainStyleGreen14Bold(context),
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: data1?.length,
+                      itemBuilder: (context, index) {
+                        final data = data1?[index];
+                        return Card(
+                          elevation: smallSpacing * 0.5,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Theme.of(context).colorScheme.green,
+                              ),
+                              borderRadius: BorderRadius.circular(15),
                             ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(topPadding * 0.05),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Departamento:\n'
-                                  'Código DPF:\n'
-                                  'Capital Bs:\n'
-                                  'Interes:\n'
-                                  'Monto total al cierre:\n'
-                                  'Tipo Moneda:\n'
-                                  'Detalle:',
-                                  style: AppTextStyles.mainStyleGreen12Bold(
-                                    context,
-                                  ),
-                                ),
-                                SizedBox(width: smallSpacing * 0.5),
-                                SizedBox(
-                                  width: screenSize.width * 0.55,
-                                  child: Text(
-                                    '${data?.departamento}\n'
-                                    '${data?.codigoDpf}\n'
-                                    '${data?.monto}\n'
-                                    '${data?.interes}\n'
-                                    '${data?.capitalARenovar}\n'
-                                    '${data?.moneda}\n'
-                                    '${data?.depositProduct}',
-                                    textAlign: TextAlign.justify,
-                                    style: AppTextStyles.mainStyleGreen12(
+                            child: Padding(
+                              padding: EdgeInsets.all(topPadding * 0.05),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Departamento:\n'
+                                    'Código DPF:\n'
+                                    'Capital Bs:\n'
+                                    'Interes:\n'
+                                    'Monto total al cierre:\n'
+                                    'Tipo Moneda:\n'
+                                    'Detalle:',
+                                    style: AppTextStyles.mainStyleGreen12Bold(
                                       context,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  SizedBox(width: smallSpacing * 0.5),
+                                  SizedBox(
+                                    width: screenSize.width * 0.55,
+                                    child: Text(
+                                      '${data?.departamento}\n'
+                                      '${data?.codigoDpf}\n'
+                                      '${data?.monto}\n'
+                                      '${data?.interes}\n'
+                                      '${data?.capitalARenovar}\n'
+                                      '${data?.moneda}\n'
+                                      '${data?.depositProduct}',
+                                      textAlign: TextAlign.justify,
+                                      style: AppTextStyles.mainStyleGreen12(
+                                        context,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               );
             }
             return CircularProgressIndicator();

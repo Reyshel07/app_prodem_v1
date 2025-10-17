@@ -43,7 +43,6 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
   final TextEditingController reasonForTransferController =
       TextEditingController(text: 'pago');
 
-  String? _selectedValue1;
   String? _selectedValueMoney;
   List<String> listMoney1 = ['BS', 'SUS'];
   bool isChecked = false;
@@ -51,8 +50,6 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
   String? _selectedValueBankName;
   String? _selectedAccount;
   String? _selectedAccountId;
-  String? _selectedAccountMoneyId;
-  double? _idSavingsAccount;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +107,6 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
                                   _selectedAccount = account.operationCode;
                                   _selectedAccountId =
                                       account.idOperationEntity;
-                                  _selectedAccountMoneyId = account.idMoney;
                                   //_idSavingsAccount = account.idOperationEntity;
                                 });
                               },

@@ -39,15 +39,16 @@ class GetListDpfDigitalSolicitationScreen extends StatelessWidget {
                   final res = state.getListDpfDigitalSolicitationResponseEntity;
                   return Padding(
                     padding: EdgeInsets.all(topPadding * 0.05),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Solicitudes de DPF',
-                          style: AppTextStyles.mainStyleGreen18Bold(context),
-                        ),
-                        SizedBox(
-                          height: screenSize.height * 0.8,
-                          child: ListView.builder(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Text(
+                            'Solicitudes de DPF',
+                            style: AppTextStyles.mainStyleGreen18Bold(context),
+                          ),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: res.data.length,
                             itemBuilder: (BuildContext context, int index) {
                               final data = res.data[index];
@@ -110,8 +111,8 @@ class GetListDpfDigitalSolicitationScreen extends StatelessWidget {
                               );
                             },
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 }

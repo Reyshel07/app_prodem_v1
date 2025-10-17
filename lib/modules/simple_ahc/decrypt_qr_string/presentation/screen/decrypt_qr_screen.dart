@@ -29,8 +29,7 @@ class DecryptQrScreen extends StatefulWidget {
 
 class _DecryptQrScreenState extends State<DecryptQrScreen> {
   String? _selectedAccount;
-  String? _selectedAccountId;
-  String? _selectedAccountMoneyId;
+
   String? balance;
   @override
   Widget build(BuildContext context) {
@@ -88,8 +87,6 @@ class _DecryptQrScreenState extends State<DecryptQrScreen> {
                 onAccountSelected: (account) {
                   setState(() {
                     _selectedAccount = account.operationCode;
-                    _selectedAccountId = account.idOperationEntity;
-                    _selectedAccountMoneyId = account.idMoney;
                     balance = account.balance;
                   });
                 },

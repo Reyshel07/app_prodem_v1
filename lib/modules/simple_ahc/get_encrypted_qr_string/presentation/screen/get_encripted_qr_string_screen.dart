@@ -36,8 +36,7 @@ class _GetEncriptedQrStringScreenState
   bool isChecked = false;
 
   String? _selectedAccount;
-  String? _selectedAccountId;
-  String? _selectedAccountMoneyId;
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -73,11 +72,6 @@ class _GetEncriptedQrStringScreenState
                 builder: (context, state) {
                   if (state is SessionInfoSuccess) {
                     final res = state.userInfoResponseEnttity;
-                    final listAccounts =
-                        state.userInfoResponseEnttity.listCodeSavingsAccount;
-                    final list = listAccounts
-                        .map((account) => account.operationCode)
-                        .toList();
                     return Column(
                       children: [
                         AccountDropdown(
@@ -87,8 +81,6 @@ class _GetEncriptedQrStringScreenState
                           onAccountSelected: (account) {
                             setState(() {
                               _selectedAccount = account.operationCode;
-                              _selectedAccountId = account.idOperationEntity;
-                              _selectedAccountMoneyId = account.idMoney;
                             });
                           },
                         ),
