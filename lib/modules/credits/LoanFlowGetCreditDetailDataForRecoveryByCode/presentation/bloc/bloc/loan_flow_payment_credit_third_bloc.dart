@@ -27,7 +27,7 @@ class LoanFlowPaymentCreditThirdBloc extends Bloc<LoanFlowPaymentCreditThirdEven
       final token = SecureHive.readToken();
       
       final idPerson = SecureHive.readIdPerson();
-      final idUser = '350923';//SecureHive.readIdUser();
+      final idUser = SecureHive.readIdUser();
       final location = GeolocationHelper.getLocationJson().toString();
       final personNatural = true;//SecureHive.readIsPersonNatural();
       final imei = "";
