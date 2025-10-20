@@ -11,17 +11,17 @@ import 'package:image_picker/image_picker.dart';
 
 @RoutePage()
 class CurrentQrByTypeTwoScreen extends StatefulWidget {
-  String nameDepo;
-  String cuentaPro;
-  String cuenta;
-  String monto;
-  String moneda;
-  String oriFon;
-  String desFon;
-  String bancoOri;
-  String cuentaOri;
-  String fechaDepo;
-  CurrentQrByTypeTwoScreen({
+  final String nameDepo;
+  final String cuentaPro;
+  final String cuenta;
+  final String monto;
+  final String moneda;
+  final String oriFon;
+  final String desFon;
+  final String bancoOri;
+  final String cuentaOri;
+  final String fechaDepo;
+  const CurrentQrByTypeTwoScreen({
     super.key,
     required this.bancoOri,
     required this.cuenta,
@@ -104,47 +104,32 @@ class _CurrentQrByTypeTwoScreenState extends State<CurrentQrByTypeTwoScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Card(
-                  elevation: smallSpacing * 0.5,
-                  child: SizedBox(
-                    width: screenSize.width * 0.4,
-                    child: Butoon1(
-                      onTap: _pickImage,
-                      lblTextField: 'CARGAR IMAGEN',
-                    ),
-                  ),
-                ),
-                Card(
-                  elevation: smallSpacing * 0.5,
-                  child: SizedBox(
-                    width: screenSize.width * 0.4,
-                    child: Butoon1(
-                      onTap: () {
-                        if (_pickedImage == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Adjunte una imagen')),
-                          );
-                          return;
-                        } else {
-                          InjectorContainer.getIt<AppRouter>().push(
-                            CurrentQrByTypeTreeRoute(
-                              nameDepo: widget.nameDepo,
-                              bancoOri: widget.bancoOri,
-                              cuenta: widget.cuenta,
-                              cuentaOri: widget.cuentaOri,
-                              cuentaPro: widget.cuentaPro,
-                              desFon: widget.desFon,
-                              fechaDepo: widget.fechaDepo,
-                              moneda: widget.moneda,
-                              monto: widget.monto,
-                              oriFon: widget.oriFon,
-                            ),
-                          );
-                        }
-                      },
-                      lblTextField: 'CONTINUAR',
-                    ),
-                  ),
+                Butoon1(onTap: _pickImage, lblTextField: 'CARGAR IMAGEN'),
+                Butoon1(
+                  onTap: () {
+                    if (_pickedImage == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Adjunte una imagen')),
+                      );
+                      return;
+                    } else {
+                      InjectorContainer.getIt<AppRouter>().push(
+                        CurrentQrByTypeTreeRoute(
+                          nameDepo: widget.nameDepo,
+                          bancoOri: widget.bancoOri,
+                          cuenta: widget.cuenta,
+                          cuentaOri: widget.cuentaOri,
+                          cuentaPro: widget.cuentaPro,
+                          desFon: widget.desFon,
+                          fechaDepo: widget.fechaDepo,
+                          moneda: widget.moneda,
+                          monto: widget.monto,
+                          oriFon: widget.oriFon,
+                        ),
+                      );
+                    }
+                  },
+                  lblTextField: 'CONTINUAR',
                 ),
               ],
             ),

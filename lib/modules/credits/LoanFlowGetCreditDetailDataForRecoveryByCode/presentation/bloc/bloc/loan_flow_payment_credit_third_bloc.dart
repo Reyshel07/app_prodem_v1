@@ -3,86 +3,83 @@ import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForReco
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/domain/entities/saving_account_transfer_mobile_entity.dart';
 import 'package:app_prodem_v1/utils/geolocation_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nb_utils/nb_utils.dart';
-
 part 'loan_flow_payment_credit_third_event.dart';
 part 'loan_flow_payment_credit_third_state.dart';
 
-class LoanFlowPaymentCreditThirdBloc extends Bloc<LoanFlowPaymentCreditThirdEvent, LoanFlowPaymentCreditThirdState> {
+class LoanFlowPaymentCreditThirdBloc
+    extends
+        Bloc<LoanFlowPaymentCreditThirdEvent, LoanFlowPaymentCreditThirdState> {
   final LoanFlowPaymentCreditThirdRepository repository;
 
-  LoanFlowPaymentCreditThirdBloc(this.repository) : super(LoanFlowPaymentCreditThirdInitial()) {
+  LoanFlowPaymentCreditThirdBloc(this.repository)
+    : super(LoanFlowPaymentCreditThirdInitial()) {
     on<LoanFlowPaymentCreditThirdE>(loanFlowPaymentCreditThirdEvent);
   }
-
 
   Future<void> loanFlowPaymentCreditThirdEvent(
     LoanFlowPaymentCreditThirdE event,
     Emitter<LoanFlowPaymentCreditThirdState> emit,
-    )async{
+  ) async {
     emit(LoanFlowPaymentCreditThirdLoading());
-    try{
+    try {
       final token = SecureHive.readToken();
-      
+
       final idPerson = SecureHive.readIdPerson();
       final idUser = SecureHive.readIdUser();
       final location = GeolocationHelper.getLocationJson().toString();
-      final personNatural = true;//SecureHive.readIsPersonNatural();
+      final personNatural = true; //SecureHive.readIsPersonNatural();
       final imei = "";
       final ipadd = "";
       var idCustomer = 0;
       if (personNatural) {
         idCustomer = SecureHive.readIdPerson().toInt();
-      }else{
-        idCustomer = SecureHive.readIdWebPerson().toInt();
-      };
+      }
 
       final codeAuthentication = "";
       final isNaturalCustomer = personNatural;
       final customerId = "";
       final customerName = "";
 
+      final response = await repository.loanFlowPaymentCreditThird(
+        token,
+        event.idLoanCredit,
+        event.debitAmount,
+        event.amountToPay,
+        event.taxAmount,
+        event.idLoanCurrency,
+        event.withInsuranceReturn,
+        event.idSavingAccount,
+        event.loanCreditCode,
+        idCustomer,
+        codeAuthentication,
+        isNaturalCustomer,
+        idPerson,
+        idUser,
+        imei,
+        location,
+        ipadd,
+        event.isOwnCredit,
+        customerId,
+        customerName,
+        event.idSMSOperation,
+        event.prodemKeyCode,
+      );
 
-      final response = await repository.loanFlowPaymentCreditThird(token, 
-      event.idLoanCredit,
-      event.debitAmount,
-      event.amountToPay,
-      event.taxAmount,
-      event.idLoanCurrency,
-      event.withInsuranceReturn,
-      event.idSavingAccount,
-      event.loanCreditCode,
-      idCustomer,
-      codeAuthentication,
-      isNaturalCustomer,
-      idPerson,
-      idUser,
-      imei,
-      location,
-      ipadd,
-      event.isOwnCredit,
-      customerId,
-      customerName,
-      event.idSMSOperation,
-      event.prodemKeyCode);
-
-    
       emit(LoanFlowPaymentCreditThirdSuccess(response));
-    }on BaseApiException catch (error) {
+    } on BaseApiException catch (error) {
       if (error.message == "api_logic_error") {
         emit(LoanFlowPaymentCreditThirdError(error.message));
       } else if (error.message == "dio_unexpected") {
-        emit(LoanFlowPaymentCreditThirdError("Ocurrió un error, no tiene internet"));
+        emit(
+          LoanFlowPaymentCreditThirdError(
+            "Ocurrió un error, no tiene internet",
+          ),
+        );
       } else {
         emit(LoanFlowPaymentCreditThirdError(error.message));
       }
     }
   }
 }
-
-
-
-
-

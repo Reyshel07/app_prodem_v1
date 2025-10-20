@@ -16,6 +16,8 @@ final class SavingAccountTransMoEvent extends SavingAccountTransferMobileEvent {
   final String beneficiaryName;
   final String idSMSOperation;
   final String prodemKeyCode;
+  final String reasonOrigin;
+  final String obfuscatedCode;
   SavingAccountTransMoEvent({
     required this.codeSavingAccountSource,
     required this.codeSavingAccountTarget,
@@ -30,5 +32,7 @@ final class SavingAccountTransMoEvent extends SavingAccountTransferMobileEvent {
     required this.beneficiaryName,
     required this.idSMSOperation,
     required this.prodemKeyCode,
+    required this.obfuscatedCode,
+    required this.reasonOrigin,
   });
 }

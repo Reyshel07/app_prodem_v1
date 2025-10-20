@@ -7,6 +7,7 @@ import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/blo
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_data/presentation/bloc/get_ach_data_bloc.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_valid_account/presentation/bloc/get_valid_account_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
+import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/presentation/widget/text_from_fiel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,12 +43,13 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
   final TextEditingController reasonForTransferController =
       TextEditingController(text: 'pago');
 
-  String? _selectedValue1;
   String? _selectedValueMoney;
   List<String> listMoney1 = ['BS', 'SUS'];
   bool isChecked = false;
   int? _selectedBankId;
   String? _selectedValueBankName;
+  String? _selectedAccount;
+  String? _selectedAccountId;
 
   @override
   Widget build(BuildContext context) {
@@ -93,52 +95,40 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
                           'TRANSFERENCIA A OTROS BANCOS:',
                           style: AppTextStyles.mainStyleGreen18Bold(context),
                         ),
-                        BlocConsumer<SessionInfoBloc, SessionInfoState>(
-                          listener: (context, state) {},
-                          builder: (context, state) {
-                            if (state is SessionInfoSuccess) {
-                              final listAccounts = state
-                                  .userInfoResponseEnttity
-                                  .listCodeSavingsAccount;
-                              final list = listAccounts
-                                  .map((account) => account.operationCode)
-                                  .toList();
-                              return Column(
-                                children: [
-                                  _buildDropdown(
-                                    title: 'CUENTA ORIGEN:',
-                                    items: list,
-                                    value: _selectedValue1,
-                                    onChanged: (newValue) {
-                                      setState(
-                                        () => _selectedValue1 = newValue,
-                                      );
-                                    },
-                                    smallSpacing: smallSpacing,
-                                  ),
-                                  _buildDropdown(
-                                    title: 'MONEDA TRANSFERENCIA',
-                                    items: listMoney1,
-                                    value: _selectedValueMoney,
-                                    onChanged: (newValue) {
-                                      setState(
-                                        () => _selectedValueMoney = newValue,
-                                      );
-                                    },
-                                    smallSpacing: smallSpacing,
-                                  ),
-                                  TextFromFiel02(
-                                    screenSize: screenSize,
-                                    smallSpacing: smallSpacing,
-                                    userController: amountToSendController,
-                                    lbText: 'Monto a enviar:',
-                                  ),
-                                ],
-                              );
-                            }
-                            return const CircularProgressIndicator();
-                          },
+                        Column(
+                          children: [
+                            ///cuenta origen
+                            AccountDropdown(
+                              selectedAccount: _selectedAccount,
+                              smallSpacing: smallSpacing,
+                              screenSize: screenSize,
+                              onAccountSelected: (account) {
+                                setState(() {
+                                  _selectedAccount = account.operationCode;
+                                  _selectedAccountId =
+                                      account.idOperationEntity;
+                                  //_idSavingsAccount = account.idOperationEntity;
+                                });
+                              },
+                            ),
+                            _buildDropdown(
+                              title: 'MONEDA TRANSFERENCIA',
+                              items: listMoney1,
+                              value: _selectedValueMoney,
+                              onChanged: (newValue) {
+                                setState(() => _selectedValueMoney = newValue);
+                              },
+                              smallSpacing: smallSpacing,
+                            ),
+                            TextFromFiel02(
+                              screenSize: screenSize,
+                              smallSpacing: smallSpacing,
+                              userController: amountToSendController,
+                              lbText: 'Monto a enviar:',
+                            ),
+                          ],
                         ),
+
                         Row(
                           children: [
                             Checkbox(
@@ -247,15 +237,24 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
                                                             recipientsAccountController
                                                                 .text,
                                                         cuentaO:
-                                                            _selectedValue1 ??
+                                                            _selectedAccount ??
                                                             '',
                                                         mComision: res
                                                             .data
                                                             .amountCommision
                                                             .toString(),
-                                                        montoDev: '0',
-                                                        montoEn: '0',
-                                                        montoIm: '0',
+                                                        montoDev: res
+                                                            .data
+                                                            .amountReal
+                                                            .toString(),
+                                                        montoEn: res
+                                                            .data
+                                                            .amountReal
+                                                            .toString(),
+                                                        montoIm: res
+                                                            .data
+                                                            .amountCommision
+                                                            .toString(),
                                                         montoTotal: res
                                                             .data
                                                             .amountMaxLip
@@ -274,6 +273,13 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
                                                         idBankDestiny:
                                                             _selectedBankId
                                                                 .toString(),
+                                                        saldoDispo: res
+                                                            .data
+                                                            .savingBalance
+                                                            .toString(),
+                                                        idCuentaEnvio:
+                                                            _selectedAccountId ??
+                                                            '',
                                                       ),
                                                     );
                                                   }
@@ -292,7 +298,8 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
                                                                       .text,
                                                               idMoney: '1',
                                                               idSavingsAccount:
-                                                                  '17149242834457352',
+                                                                  _selectedAccountId ??
+                                                                  '',
                                                               isNaturalClient:
                                                                   true,
                                                             ),
@@ -319,37 +326,29 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
                             }
                           },
                           builder: (context, state) {
-                            return SizedBox(
-                              width: screenSize.width * 0.4,
-                              child: Card(
-                                elevation: smallSpacing * 0.5,
-                                child: Butoon1(
-                                  onTap: () {
-                                    String accountNumber =
-                                        recipientsAccountController.text;
-                                    if (_selectedBankId == null) {
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
-                                        const SnackBar(
-                                          content: Text(
-                                            "Debe seleccionar un banco destino",
-                                          ),
-                                        ),
-                                      );
-                                      return;
-                                    }
-                                    String idbank = _selectedBankId.toString();
-                                    context.read<GetValidAccountBloc>().add(
-                                      GetValidAEvent(
-                                        accountNumber: accountNumber,
-                                        idbank: idbank,
+                            return Butoon1(
+                              onTap: () {
+                                String accountNumber =
+                                    recipientsAccountController.text;
+                                if (_selectedBankId == null) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                        "Debe seleccionar un banco destino",
                                       ),
-                                    );
-                                  },
-                                  lblTextField: 'CONTINUAR',
-                                ),
-                              ),
+                                    ),
+                                  );
+                                  return;
+                                }
+                                String idbank = _selectedBankId.toString();
+                                context.read<GetValidAccountBloc>().add(
+                                  GetValidAEvent(
+                                    accountNumber: accountNumber,
+                                    idbank: idbank,
+                                  ),
+                                );
+                              },
+                              lblTextField: 'CONTINUAR',
                             );
                           },
                         ),

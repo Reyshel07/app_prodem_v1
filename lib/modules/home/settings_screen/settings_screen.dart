@@ -85,15 +85,9 @@ class SettingsScreen extends StatelessWidget {
                       'Tickets virtuales',
                       style: AppTextStyles.mainStyleGreen18Bold(context),
                     ),
-                    content: SizedBox(
-                      width: screenSize.width * 0.5,
-                      child: Card(
-                        elevation: smallSpacing * 0.5,
-                        child: Butoon1(
-                          onTap: () {},
-                          lblTextField: 'Solicitar ticket',
-                        ),
-                      ),
+                    content: Butoon1(
+                      onTap: () {},
+                      lblTextField: 'Solicitar ticket',
                     ),
                   );
                 },

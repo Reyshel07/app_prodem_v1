@@ -94,7 +94,8 @@ class UserInfoResponseModel extends UserInfoResponseEnttity {
         idcQuestion: json["idcQuestion"],
         cellPhoneNumber: json["cellPhoneNumber"],
         maximumAmount: json["maximumAmount"].toDouble(),
-        maximumElectronicWalletAmount: json["maximumElectronicWalletAmount"].toDouble(),
+        maximumElectronicWalletAmount: json["maximumElectronicWalletAmount"]
+            .toDouble(),
         email: json["email"],
         sendEmailNotification: json["sendEmailNotification"],
         identityCardNumber: json["identityCardNumber"],
@@ -184,7 +185,7 @@ class ListCodeCreditLineElementModel extends ListCodeCreditLineElementEntity {
       ListCodeCreditLineElementModel(
         idMoney: json["idMoney"],
         codMoney: json["codMoney"],
-        idOperationEntity: json["idOperationEntity"],
+        idOperationEntity: json["idOperationEntity"].toString(),
         operationCode: json["operationCode"],
         availableAmount: json["availableAmount"].toDouble(),
         idOffice: json["idOffice"],

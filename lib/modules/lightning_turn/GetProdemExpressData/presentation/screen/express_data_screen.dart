@@ -1,7 +1,11 @@
+import 'package:app_prodem_v1/config/router/app_router.dart';
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/presentation/bloc/express_data_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
+import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/presentation/widget/text_from_fiel.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:auto_route/auto_route.dart';
@@ -36,10 +40,12 @@ class _ExpressDataScreenState extends State<ExpressDataScreen> {
       TextEditingController(text: '62537906');
   final TextEditingController reasonForSendingController =
       TextEditingController(text: 'pago');
-  String? _selectedValue1;
   String? _selectedValueMoney;
   List<String> listMoney1 = ['BS', 'SUS'];
   bool isChecked = false;
+
+  String? _selectedAccount;
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -61,6 +67,21 @@ class _ExpressDataScreenState extends State<ExpressDataScreen> {
         ),
         body: BlocBuilder<ExpressDataBloc, ExpressDataState>(
           builder: (context, state) {
+            if (state is ExpressDataSuccess) {
+              InjectorContainer.getIt<AppRouter>().push(
+                ExpressDataTwoRoute(
+                  res: state.getProdemExpressDataResponseEntity,
+                  cambioMo: 'No',
+                  celDesti: recipientCellPhoneController.text,
+                  ciDesti: recipientAddressController.text,
+                  cuentaOri: _selectedAccount ?? '',
+                  desti: recipientNameController.text,
+                  montoDebi: amountToSendController.text,
+                  montoImp: '0',
+                  montoTotalDebi: amountToSendController.text,
+                ),
+              );
+            }
             return Padding(
               padding: EdgeInsets.all(topPadding * 0.05),
               child: Column(
@@ -73,22 +94,17 @@ class _ExpressDataScreenState extends State<ExpressDataScreen> {
                     listener: (context, state) {},
                     builder: (context, state) {
                       if (state is SessionInfoSuccess) {
-                        final listAccounts = state
-                            .userInfoResponseEnttity
-                            .listCodeSavingsAccount;
-                        final list = listAccounts
-                            .map((account) => account.operationCode)
-                            .toList();
                         return Column(
                           children: [
-                            _buildDropdown(
-                              title: 'CUENTA ORIGEN:',
-                              items: list,
-                              value: _selectedValue1,
-                              onChanged: (newValue) {
-                                setState(() => _selectedValue1 = newValue);
-                              },
+                            AccountDropdown(
+                              selectedAccount: _selectedAccount,
                               smallSpacing: smallSpacing,
+                              screenSize: screenSize,
+                              onAccountSelected: (account) {
+                                setState(() {
+                                  _selectedAccount = account.operationCode;
+                                });
+                              },
                             ),
                             _buildDropdown(
                               title: 'MONEDA TRANSFERENCIA',
@@ -163,25 +179,18 @@ class _ExpressDataScreenState extends State<ExpressDataScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    width: screenSize.width * 0.3,
-                    child: Card(
-                      elevation: smallSpacing * 0.5,
-                      child: Butoon1(
-                        onTap: () {
-                          //String codeSavingsAccount1 = '117-2-1-17515-8';
-                          widget.bloc.add(
-                            ExpressDEvent(
-                              amountTransaction: amountToSendController.text,
-                              benificiaryDi: recipientAddressController.text,
-                              codeSavingAccountSource: _selectedValue1 ?? '',
-                              idMoney: '1',
-                            ),
-                          );
-                        },
-                        lblTextField: 'Continuar',
-                      ),
-                    ),
+                  Butoon1(
+                    onTap: () {
+                      widget.bloc.add(
+                        ExpressDEvent(
+                          amountTransaction: amountToSendController.text,
+                          benificiaryDi: recipientAddressController.text,
+                          codeSavingAccountSource: _selectedAccount ?? '',
+                          idMoney: '1',
+                        ),
+                      );
+                    },
+                    lblTextField: 'Continuar',
                   ),
                 ],
               ),

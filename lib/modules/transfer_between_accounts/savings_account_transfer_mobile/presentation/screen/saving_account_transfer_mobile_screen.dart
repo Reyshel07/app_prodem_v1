@@ -79,6 +79,7 @@ class SavingAccountTransMobileEndScreen extends StatelessWidget {
                 );
               }).toList(),
             ),
+            SizedBox(height: smallSpacing * 0.5),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

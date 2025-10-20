@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/config/theme/extension_theme.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,12 @@ class AccountDropdown extends StatefulWidget {
   final Size screenSize;
 
   const AccountDropdown({
-    Key? key,
+    super.key,
     required this.selectedAccount,
     required this.onAccountSelected,
     required this.smallSpacing,
     required this.screenSize,
-  }) : super(key: key);
+  });
 
   @override
   State<AccountDropdown> createState() => _AccountDropdownState();
@@ -32,8 +33,10 @@ class _AccountDropdownState extends State<AccountDropdown> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final double smallSpacing = screenSize.height * 0.02;
     return BlocConsumer<SessionInfoBloc, SessionInfoState>(
-      listener: (_, __) {},
+      listener: (_, _) {},
       builder: (context, state) {
         if (state is SessionInfoSuccess) {
           final listAccounts =
@@ -41,42 +44,55 @@ class _AccountDropdownState extends State<AccountDropdown> {
 
           return Card(
             elevation: widget.smallSpacing * 0.5,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: widget.screenSize.width * 0.05,
-                vertical: widget.smallSpacing * 0.5,
+            child: Container(
+              height: smallSpacing * 3,
+              decoration: BoxDecoration(
+                border: Border.all(color: Theme.of(context).colorScheme.green),
+                borderRadius: BorderRadius.circular(13),
               ),
-              child: DropdownButton<String>(
-                isExpanded: true,
-                hint: const Text("Seleccione una cuenta de la lista:"),
-                value: _selectedAccount,
-                items: listAccounts.map((account) {
-                  return DropdownMenuItem<String>(
-                    value: account.operationCode.toString(),
-                    child: Text(
-                      '${account.operationCode} - ${account.balance}',
-                      style: AppTextStyles.mainStyleGreen14Bold(context),
-                    ),
-                  );
-                }).toList(),
-                onChanged: (newValue) {
-                  setState(() {
-                    _selectedAccount = newValue;
 
-                    final selectedAccount = listAccounts.firstWhere(
-                      (c) => c.operationCode == newValue,
-                    );
-
-                    widget.onAccountSelected(
-                      AccountSelection(
-                        idOperationEntity: selectedAccount.idOperationEntity
-                            .toString(),
-                        idMoney: selectedAccount.idMoney.toString(),
-                        operationCode: selectedAccount.operationCode.toString(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: widget.screenSize.width * 0.05,
+                  vertical: widget.smallSpacing * 0.5,
+                ),
+                child: DropdownButton<String>(
+                  isExpanded: true,
+                  hint: Text(
+                    "Seleccione una cuenta de la lista:",
+                    style: AppTextStyles.mainStyleGreen14Bold(context),
+                  ),
+                  value: _selectedAccount,
+                  items: listAccounts.map((account) {
+                    return DropdownMenuItem<String>(
+                      value: account.operationCode.toString(),
+                      child: Text(
+                        '${account.operationCode} - ${account.balance}',
+                        style: AppTextStyles.mainStyleGreen14Bold(context),
                       ),
                     );
-                  });
-                },
+                  }).toList(),
+                  onChanged: (newValue) {
+                    setState(() {
+                      _selectedAccount = newValue;
+
+                      final selectedAccount = listAccounts.firstWhere(
+                        (c) => c.operationCode == newValue,
+                      );
+
+                      widget.onAccountSelected(
+                        AccountSelection(
+                          idOperationEntity: selectedAccount.idOperationEntity,
+                          idMoney: selectedAccount.idMoney.toString(),
+                          operationCode: selectedAccount.operationCode
+                              .toString(),
+                          balance: selectedAccount.balance,
+                        ),
+                      );
+                    });
+                  },
+                  underline: const SizedBox(),
+                ),
               ),
             ),
           );
@@ -93,10 +109,12 @@ class AccountSelection {
   final String idOperationEntity;
   final String idMoney;
   final String operationCode;
+  final String balance;
 
   AccountSelection({
     required this.idOperationEntity,
     required this.idMoney,
     required this.operationCode,
+    required this.balance,
   });
 }

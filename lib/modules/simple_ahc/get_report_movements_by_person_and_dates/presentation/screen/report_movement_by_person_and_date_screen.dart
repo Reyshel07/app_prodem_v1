@@ -91,166 +91,164 @@ class _ReportMovementByPErsonAndDateScreenState
               builder: (context, state) {
                 return Padding(
                   padding: EdgeInsets.all(topPadding * 0.05),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildDropdown(
-                        title: 'Tipo de Movimiento',
-                        items: listMovimientos,
-                        value: _selectedValueMoney,
-                        onChanged: (newValue) {
-                          setState(() => _selectedValueMoney = newValue);
-                        },
-                        smallSpacing: smallSpacing,
-                      ),
-                      SizedBox(height: smallSpacing * 0.8),
-                      Text(
-                        'Fechas:',
-                        style: AppTextStyles.mainStyleGreen14Bold(context),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextIcon(
-                                onTap: () => _seleccionarFecha(context),
-                                prefix: Icon(
-                                  Icons.date_range,
-                                  color: Theme.of(context).colorScheme.green,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildDropdown(
+                          title: 'Tipo de Movimiento',
+                          items: listMovimientos,
+                          value: _selectedValueMoney,
+                          onChanged: (newValue) {
+                            setState(() => _selectedValueMoney = newValue);
+                          },
+                          smallSpacing: smallSpacing,
+                        ),
+                        SizedBox(height: smallSpacing * 0.8),
+                        Text(
+                          'Fechas:',
+                          style: AppTextStyles.mainStyleGreen14Bold(context),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextIcon(
+                                  onTap: () => _seleccionarFecha(context),
+                                  prefix: Icon(
+                                    Icons.date_range,
+                                    color: Theme.of(context).colorScheme.green,
+                                  ),
+                                  text: 'Desde: $fechaTexto',
+                                  textStyle: AppTextStyles.mainStyleGreen14Bold(
+                                    context,
+                                  ),
+                                  suffix: Icon(
+                                    Icons.keyboard_arrow_down_outlined,
+                                    color: Theme.of(context).colorScheme.green,
+                                  ),
                                 ),
-                                text: 'Desde: $fechaTexto',
-                                textStyle: AppTextStyles.mainStyleGreen14Bold(
-                                  context,
+                                TextIcon(
+                                  onTap: () => _seleccionarFecha2(context),
+                                  prefix: Icon(
+                                    Icons.date_range,
+                                    color: Theme.of(context).colorScheme.green,
+                                  ),
+                                  text: 'Hasta: $fechaTexto2',
+                                  textStyle: AppTextStyles.mainStyleGreen14Bold(
+                                    context,
+                                  ),
+                                  suffix: Icon(
+                                    Icons.keyboard_arrow_down_outlined,
+                                    color: Theme.of(context).colorScheme.green,
+                                  ),
                                 ),
-                                suffix: Icon(
-                                  Icons.keyboard_arrow_down_outlined,
-                                  color: Theme.of(context).colorScheme.green,
-                                ),
-                              ),
-                              TextIcon(
-                                onTap: () => _seleccionarFecha2(context),
-                                prefix: Icon(
-                                  Icons.date_range,
-                                  color: Theme.of(context).colorScheme.green,
-                                ),
-                                text: 'Hasta: $fechaTexto2',
-                                textStyle: AppTextStyles.mainStyleGreen14Bold(
-                                  context,
-                                ),
-                                suffix: Icon(
-                                  Icons.keyboard_arrow_down_outlined,
-                                  color: Theme.of(context).colorScheme.green,
-                                ),
-                              ),
-                            ],
-                          ),
-                          ElevateButton1(
-                            onTap: () {
-                              context
-                                  .read<ReportMovementByPersonAndDateBloc>()
-                                  .add(
-                                    ReportMovementByPersonAndDatEvent(
-                                      movementType: 0,
-                                      dateIni: fechaTexto,
-                                      dateFin: fechaTexto2,
-                                    ),
-                                  );
-                            },
-                            lblTextField: 'Buscar',
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: smallSpacing),
-                      Expanded(
-                        child:
-                            BlocBuilder<
-                              ReportMovementByPersonAndDateBloc,
-                              ReportMovementByPersonAndDateState
-                            >(
-                              builder: (context, state) {
-                                if (state
-                                    is ReportMovementByPersonAndDateSuccess) {
-                                  final res = state
-                                      .getReportMovementsByPersonAndDateEntity
-                                      .colMovements;
-                                  return SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          'Detalle de movimientos:',
-                                          style:
-                                              AppTextStyles.mainStyleGreen14Bold(
-                                                context,
-                                              ),
-                                        ),
-                                        ListView.builder(
-                                          shrinkWrap: true,
-                                          itemCount: res.length,
-                                          itemBuilder: (context, index) {
-                                            final data = res[index];
-                                            return Card(
-                                              elevation: smallSpacing * 0.5,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                    color: Theme.of(
-                                                      context,
-                                                    ).colorScheme.green,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(
-                                                    topPadding * 0.05,
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          '${data.clientName}\n${data.detail}',
-                                                          style:
-                                                              AppTextStyles.mainStyleGreen12(
-                                                                context,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        data.amount,
-                                                        style:
-                                                            AppTextStyles.mainStyleGreen14Bold(
-                                                              context,
-                                                            ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                } else if (state
-                                    is ReportMovementByPersonAndDateLoading) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else if (state
-                                    is ReportMovementByPersonAndDateError) {
-                                  return Center(child: Text(state.message));
-                                }
-                                return const SizedBox();
-                              },
+                              ],
                             ),
-                      ),
-                    ],
+                            ElevateButton1(
+                              onTap: () {
+                                context
+                                    .read<ReportMovementByPersonAndDateBloc>()
+                                    .add(
+                                      ReportMovementByPersonAndDatEvent(
+                                        movementType: 0,
+                                        dateIni: fechaTexto,
+                                        dateFin: fechaTexto2,
+                                      ),
+                                    );
+                              },
+                              lblTextField: 'Buscar',
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: smallSpacing),
+                        BlocBuilder<
+                          ReportMovementByPersonAndDateBloc,
+                          ReportMovementByPersonAndDateState
+                        >(
+                          builder: (context, state) {
+                            if (state is ReportMovementByPersonAndDateSuccess) {
+                              final res = state
+                                  .getReportMovementsByPersonAndDateEntity
+                                  .colMovements;
+                              return Column(
+                                children: [
+                                  Text(
+                                    'Detalle de movimientos:',
+                                    style: AppTextStyles.mainStyleGreen14Bold(
+                                      context,
+                                    ),
+                                  ),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: res.length,
+                                    itemBuilder: (context, index) {
+                                      final data = res[index];
+                                      return Card(
+                                        elevation: smallSpacing * 0.5,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.green,
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                              15,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(
+                                              topPadding * 0.05,
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    '${data.clientName}\n${data.detail}',
+                                                    style:
+                                                        AppTextStyles.mainStyleGreen12(
+                                                          context,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  data.amount,
+                                                  style:
+                                                      AppTextStyles.mainStyleGreen14Bold(
+                                                        context,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              );
+                            } else if (state
+                                is ReportMovementByPersonAndDateLoading) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else if (state
+                                is ReportMovementByPersonAndDateError) {
+                              return Center(child: Text(state.message));
+                            }
+                            return const SizedBox();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

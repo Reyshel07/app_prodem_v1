@@ -137,7 +137,11 @@ class CurrentQrByTypeScreen extends StatelessWidget {
                                 },
                               ),
                               ContainerIconText(
-                                onTap: () {},
+                                onTap: () {
+                                  InjectorContainer.getIt<AppRouter>().push(
+                                    ListGetOtherAccountDepositRoute(),
+                                  );
+                                },
                                 smallSpacing: smallSpacing,
                                 topPadding: topPadding,
                                 screenSize: screenSize,

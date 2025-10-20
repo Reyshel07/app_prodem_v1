@@ -115,13 +115,7 @@ class _PasswordScreenProdemState extends State<PasswordScreenProdem> {
                 ),
               ),
               SizedBox(height: 20),
-              SizedBox(
-                width: screenSize.width * 0.5,
-                child: Card(
-                  elevation: smallSpacing * 0.5,
-                  child: Butoon1(onTap: () {}, lblTextField: 'INGRESAR'),
-                ),
-              ),
+              Butoon1(onTap: () {}, lblTextField: 'INGRESAR'),
             ],
           ),
         ),

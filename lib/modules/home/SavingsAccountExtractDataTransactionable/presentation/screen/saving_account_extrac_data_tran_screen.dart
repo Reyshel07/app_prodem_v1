@@ -1,4 +1,5 @@
 import 'package:app_prodem_v1/config/theme/extension.dart';
+import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/utils/time.dart';
 import 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/presentation/bloc/saving_account_extrac_bloc.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class SavingAccountExtractDataTranSacreen extends StatefulWidget {
 
 class _SavingAccountExtractDataTranSacreenState
     extends State<SavingAccountExtractDataTranSacreen> {
-  String? _selectedValue;
+  String? _selectedAccount;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -48,100 +49,71 @@ class _SavingAccountExtractDataTranSacreenState
         ),
         body: Padding(
           padding: EdgeInsets.all(topPadding * 0.05),
-          child: Column(
-            children: [
-              Text(
-                'CONSULTA DE SALDOS DE CUENTAS DE AHORRO',
-                style: AppTextStyles.mainStyleGreen18Bold(context),
-              ),
-              SizedBox(height: smallSpacing * 0.5),
-              BlocBuilder<SessionInfoBloc, SessionInfoState>(
-                builder: (context, state) {
-                  if (state is SessionInfoSuccess) {
-                    final listAccounts =
-                        state.userInfoResponseEnttity.listCodeSavingsAccount;
-                    // listAccounts[0].operationCode
-                    final list = listAccounts
-                        .map((account) => account.operationCode)
-                        .toList();
-                    return Card(
-                      elevation: smallSpacing * 0.5,
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: DropdownButton<String>(
-                          padding: EdgeInsetsGeometry.all(topPadding * 0.05),
-                          hint: const Text("Seleccione una opción"),
-                          value: _selectedValue,
-                          items: list.map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              _selectedValue = newValue;
-                            });
-                          },
-                        ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  'CONSULTA DE SALDOS DE CUENTAS DE AHORRO',
+                  style: AppTextStyles.mainStyleGreen18Bold(context),
+                ),
+                SizedBox(height: smallSpacing * 0.5),
+                AccountDropdown(
+                  selectedAccount: _selectedAccount,
+                  smallSpacing: smallSpacing,
+                  screenSize: screenSize,
+                  onAccountSelected: (account) {
+                    setState(() {
+                      _selectedAccount = account.operationCode;
+                    });
+                  },
+                ),
+                Butoon1(
+                  onTap: () {
+                    widget.bloc.add(
+                      SavingAccountExEnevet(
+                        codeSavingsAccount: _selectedAccount ?? '',
                       ),
                     );
-                  }
-                  return SizedBox();
-                },
-              ),
-              SizedBox(
-                width: screenSize.width * 0.3,
-                child: Card(
-                  elevation: smallSpacing * 0.5,
-                  child: Butoon1(
-                    onTap: () {
-                      widget.bloc.add(
-                        SavingAccountExEnevet(
-                          codeSavingsAccount:
-                              _selectedValue ?? '117-2-1-17515-8',
-                        ),
-                      );
-                    },
-                    lblTextField: 'CONSULTAR',
-                  ),
+                  },
+                  lblTextField: 'CONSULTAR',
                 ),
-              ),
-              SizedBox(height: smallSpacing * 0.5),
-              BlocBuilder<SavingAccountExtracBloc, SavingAccountExtracState>(
-                builder: (context, state) {
-                  if (state is SavingAccountExtracSuccess) {
-                    final res = state.dataSavingAccountExtracEntity;
-                    return Column(
-                      children: [
-                        Text(
-                          'ULTIMOS MOVIMIENTOS:',
-                          style: AppTextStyles.mainStyleGreen18Bold(context),
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: screenSize.width * 0.3,
-                              child: Text(
-                                'Fecha: \nNro. de cuenta:\n Saldo:',
-                                textAlign: TextAlign.start,
-                                style: AppTextStyles.mainStyleGreen14Bold(
-                                  context,
+                SizedBox(height: smallSpacing * 0.5),
+                BlocBuilder<SavingAccountExtracBloc, SavingAccountExtracState>(
+                  builder: (context, state) {
+                    if (state is SavingAccountExtracSuccess) {
+                      final res = state.dataSavingAccountExtracEntity;
+                      return Column(
+                        children: [
+                          Text(
+                            'ULTIMOS MOVIMIENTOS:',
+                            style: AppTextStyles.mainStyleGreen18Bold(context),
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: screenSize.width * 0.3,
+                                child: Text(
+                                  'Fecha: \n'
+                                  'Nro. de cuenta:\n'
+                                  'Saldo:',
+                                  textAlign: TextAlign.start,
+                                  style: AppTextStyles.mainStyleGreen14Bold(
+                                    context,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Text(
-                              '${res.processDate}\n'
-                              '${res.codeSavingsAccount}\n'
-                              '${res.accountBalance}',
-                              textAlign: TextAlign.start,
-                              style: AppTextStyles.mainStyleGreen14(context),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: screenSize.height * 0.45,
-                          child: ListView.builder(
+                              Text(
+                                '${DateFormatter.formatDateTime(res.processDate)}\n'
+                                '${res.codeSavingsAccount}\n'
+                                '${res.accountBalance}',
+                                textAlign: TextAlign.start,
+                                style: AppTextStyles.mainStyleGreen14(context),
+                              ),
+                            ],
+                          ),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: res.colDetailsMovemment.length,
                             itemBuilder: (BuildContext context, int index) {
                               final colDetailsM =
@@ -180,7 +152,11 @@ class _SavingAccountExtractDataTranSacreenState
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        'Fecha/Hora:\nTransaccion:\nAgencia:\nMonto:\nSaldo:',
+                                                        'Fecha/Hora:\n'
+                                                        'Transaccion:\n'
+                                                        'Agencia:\n'
+                                                        'Monto:\n'
+                                                        'Saldo:',
                                                         style:
                                                             AppTextStyles.mainStyleGreen12Bold(
                                                               context,
@@ -267,14 +243,14 @@ class _SavingAccountExtractDataTranSacreenState
                               );
                             },
                           ),
-                        ),
-                      ],
-                    );
-                  }
-                  return SizedBox();
-                },
-              ),
-            ],
+                        ],
+                      );
+                    }
+                    return SizedBox();
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

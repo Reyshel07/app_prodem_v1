@@ -44,22 +44,16 @@ class VirtuellesTicketScreen extends StatelessWidget {
               children: [Icon(Icons.circle_outlined), Text('Hoy 12/09/2025')],
             ),
             DrowpButoon1(screenSize: screenSize, smallSpacing: smallSpacing),
-            SizedBox(
-              width: screenSize.width * 0.5,
-              child: Card(
-                elevation: smallSpacing * 0.5,
-                child: Butoon1(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AccountSettingsScreen(),
-                      ),
-                    );
-                  },
-                  lblTextField: 'RESERVAR',
-                ),
-              ),
+            Butoon1(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AccountSettingsScreen(),
+                  ),
+                );
+              },
+              lblTextField: 'RESERVAR',
             ),
           ],
         ),

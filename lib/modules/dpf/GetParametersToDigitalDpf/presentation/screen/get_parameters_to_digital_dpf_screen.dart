@@ -5,6 +5,7 @@ import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation
     hide GetOfficeListByIdGeoSuccess;
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
+import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/presentation/widget/text_from_fiel.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:auto_route/auto_route.dart';
@@ -44,11 +45,12 @@ class _ParametersToDigitalDpfScreenState
   final TextEditingController interestEarnedController =
       TextEditingController();
   final TextEditingController mountDpfController = TextEditingController();
-  String? _selectedValue;
   //String? _selectedDepartValue;
   String? _selectedAgenciaValue;
   int? _selectedDepartamentoId;
   bool isChecked = false;
+
+  String? _selectedAccount;
 
   @override
   Widget build(BuildContext context) {
@@ -104,27 +106,15 @@ class _ParametersToDigitalDpfScreenState
                       'NUEVA SOLICITUD DE DPF',
                       style: AppTextStyles.mainStyleGreen18Bold(context),
                     ),
-                    BlocBuilder<SessionInfoBloc, SessionInfoState>(
-                      builder: (context, state) {
-                        if (state is SessionInfoSuccess) {
-                          final listAccounts = state
-                              .userInfoResponseEnttity
-                              .listCodeSavingsAccount;
-                          // listAccounts[0].operationCode
-                          final list = listAccounts
-                              .map((account) => account.operationCode)
-                              .toList();
-                          return _buildDropdown(
-                            title: 'MONEDA TRANSFERENCIA',
-                            items: list,
-                            value: _selectedValue,
-                            onChanged: (newValue) {
-                              setState(() => _selectedValue = newValue);
-                            },
-                            smallSpacing: smallSpacing,
-                          );
-                        }
-                        return SizedBox();
+
+                    AccountDropdown(
+                      selectedAccount: _selectedAccount,
+                      smallSpacing: smallSpacing,
+                      screenSize: screenSize,
+                      onAccountSelected: (account) {
+                        setState(() {
+                          _selectedAccount = account.operationCode;
+                        });
                       },
                     ),
                     Card(
@@ -192,8 +182,8 @@ class _ParametersToDigitalDpfScreenState
 
                         return const SizedBox();
                       },
-                    ),  
-                    SizedBox(height: smallSpacing *0.5,),
+                    ),
+                    SizedBox(height: smallSpacing * 0.5),
                     TextFromFiel02(
                       screenSize: screenSize,
                       smallSpacing: smallSpacing,

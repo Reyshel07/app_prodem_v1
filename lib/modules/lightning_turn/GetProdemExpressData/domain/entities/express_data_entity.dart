@@ -14,13 +14,13 @@ class ProdemExpressDataEntity {
   final int amountReal;
   final int amountCommision;
   final int amountTax;
-  final int amountMAxCai;
+  final double amountMAxCai;
   final int idMoney;
   final dynamic moneyDescription;
   final String message;
   final bool isValid;
-  final int idSavingAccount;
-  final int savingBalance;
+  final String idSavingAccount;
+  final double savingBalance;
   final bool applyGenerateConfidentialInformationForm;
   final bool isCloseExecuted;
   final String reportString;

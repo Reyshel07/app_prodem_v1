@@ -23,7 +23,22 @@ final class PrExpressSolicitationWebSuccess
   );
 }
 
-final class PrDeleteSuccess extends PrExpressSolicitationWebState {
-  final ProdemExpressAnnulmentResponseEntity delete;
-  PrDeleteSuccess(this.delete);
+final class PrExpressSolicitationWebDeleteInitial
+    extends PrExpressSolicitationWebState {}
+
+final class PrExpressSolicitationWebDeleteLoading
+    extends PrExpressSolicitationWebState {}
+
+final class PrExpressSolicitationWebDeleteError
+    extends PrExpressSolicitationWebState {
+  final String message;
+  PrExpressSolicitationWebDeleteError(this.message);
+}
+
+final class PrExpressSolicitationWebDeleteSuccess
+    extends PrExpressSolicitationWebState {
+  String prodemExpressAnnulmentResponseEntity;
+  PrExpressSolicitationWebDeleteSuccess(
+    this.prodemExpressAnnulmentResponseEntity,
+  );
 }
