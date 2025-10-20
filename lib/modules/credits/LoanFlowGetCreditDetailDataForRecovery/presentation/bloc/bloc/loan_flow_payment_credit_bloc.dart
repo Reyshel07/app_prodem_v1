@@ -27,9 +27,10 @@ class LoanFlowPaymentCreditBloc
       final token = SecureHive.readToken();
 
       final idPerson = SecureHive.readIdPerson();
-      final idUser = '350923'; //SecureHive.readIdUser();
+      final idUser = SecureHive.readIdUser();
       final location = GeolocationHelper.getLocationJson().toString();
-      final personNatural = true; //SecureHive.readIsPersonNatural();
+      final personNatural = SecureHive.readIsPersonNatural();
+      final location = GeolocationHelper.getLocationJson().toString();
       final imei = "";
       final ipadd = "";
       var idCustomer = 0;
