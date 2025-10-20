@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
@@ -11,7 +12,7 @@ class UserSessionInfoDataSouce {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/UserSessionInfo',
+      AppStrings.userSessionInfo,
       data: {
         "IdWebClient": vIdWebClient, // "1129150143954615",
         "deviceIdentifier": "",

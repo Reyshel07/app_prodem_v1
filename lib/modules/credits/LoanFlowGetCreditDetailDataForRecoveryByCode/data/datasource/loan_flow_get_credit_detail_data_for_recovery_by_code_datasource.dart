@@ -1,4 +1,4 @@
-
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecoveryByCode/data/models/loan_flow_get_credit_detail_data_for_recovery_by_code_model.dart';
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecoveryByCode/domain/entities/loan_flow_get_credit_detail_data_for_recovery_by_code_entity.dart';
@@ -16,11 +16,11 @@ class LoanFlowGetCreditDetailDataForRecoveryByCodeDatasource {
     String? idSavingAccount,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/LoanFlowGetCreditDetailDataForRecoveryByCode',
+      AppStrings.loanFlowGetCreditDetailDataForRecoveryByCode,
       data: {
-        "LoanCreditCode": loanCreditCode, 
-        "IdSavingAccount": idSavingAccount
-        },
+        "LoanCreditCode": loanCreditCode,
+        "IdSavingAccount": idSavingAccount,
+      },
       headers: {
         'Authorization': 'Bearer $vToken',
         'Content-Type': 'application/json',
@@ -32,34 +32,33 @@ class LoanFlowGetCreditDetailDataForRecoveryByCodeDatasource {
     );
   }
 
-  
   Future<SavingsAccountTransferMobileResponseEntity> loanFlowPayCreditThird(
     String? vToken,
-    int idLoanCredit,                           
-    double debitAmount,                         
-    double amountToPay,                         
-    double taxAmount,                           
-    int idLoanCurrency,                         
-    bool withInsuranceReturn,                 
-    int idSavingAccount,                        
-    String loanCreditCode,                    
-    int idCustomer,                             
-    String codeAuthentication,                
-    bool isNaturalCustomer,                   
-    String idPerson,                          
-    String idUser,                               
-    String imei,                              
-    String location,                          
-    String ipAddress,                         
-    bool isOwnCredit,                         
-    String customerId,                        
-    String customerName,                 
+    int idLoanCredit,
+    double debitAmount,
+    double amountToPay,
+    double taxAmount,
+    int idLoanCurrency,
+    bool withInsuranceReturn,
+    int idSavingAccount,
+    String loanCreditCode,
+    int idCustomer,
+    String codeAuthentication,
+    bool isNaturalCustomer,
+    String idPerson,
+    String idUser,
+    String imei,
+    String location,
+    String ipAddress,
+    bool isOwnCredit,
+    String customerId,
+    String customerName,
     //prodemkey
     String? idSMSOperation,
     String? prodemKeyCode,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/LoanFlowPaymentCredit',
+      'verifi',
       data: {
         "IdLoanCredit": idLoanCredit, //IdLoanCredit
         "DebitAmount": debitAmount, //TotalToDebit
@@ -69,7 +68,8 @@ class LoanFlowGetCreditDetailDataForRecoveryByCodeDatasource {
         "WithInsuranceReturn": withInsuranceReturn, //
         "IdSavingAccount": idSavingAccount, // selectedAccount IdOperationEntity
         "LoanCreditCode": loanCreditCode, //LoanCreditCode
-        "IdCustomer": idCustomer, //idperson val idPerson = if (objUserSession.IsPersonNatural) objUserSession.IdPerson else objUserSession.IdWebClient
+        "IdCustomer":
+            idCustomer, //idperson val idPerson = if (objUserSession.IsPersonNatural) objUserSession.IdPerson else objUserSession.IdWebClient
         "CodeAuthentication": codeAuthentication, //vacio
         "IsNaturalCustomer": isNaturalCustomer, //scar de la sesion
         "IdPerson": idPerson, //sacar ipperson sesion
@@ -89,9 +89,6 @@ class LoanFlowGetCreditDetailDataForRecoveryByCodeDatasource {
       },
       operationName: 'pay credit and obtein report',
     );
-    return SavingsAccountTransferMobileResponse.fromJson(
-      response,
-    );
+    return SavingsAccountTransferMobileResponse.fromJson(response);
   }
-
 }

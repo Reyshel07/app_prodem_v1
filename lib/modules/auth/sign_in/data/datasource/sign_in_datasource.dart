@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import '../../domain/entities/entities.dart';
 import '../models/models.dart';
@@ -15,7 +16,7 @@ class SignInDatasource {
     String imei,
   ) async {
     final response = await _apiClient.post(
-      'auth/token',
+      AppStrings.token,
       data: {
         "user": user,
         "password": password,

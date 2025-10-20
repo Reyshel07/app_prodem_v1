@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 
 import '../../domain/entities/entity.dart';
@@ -27,7 +28,7 @@ class ProdemExpressSaveSolicitationDatasource {
     String ipAddress,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/ProdemExpressSaveSolicitation',
+      AppStrings.prodemExpressSaveSolicitation,
       operationName: 'service that records the lightning jiro',
       data: {
         "CodeSavingAccountSource": "108-2-1-06681-7",

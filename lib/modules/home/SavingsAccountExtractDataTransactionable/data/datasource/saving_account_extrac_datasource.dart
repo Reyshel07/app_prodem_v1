@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
@@ -16,7 +17,7 @@ class SavingAccountExtracDatasource {
     String imei,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/SavingsAccountExtractDataTransactionable',
+      AppStrings.savingsAccountExtractDataTransactionable,
       data: {
         "CodeSavingsAccount": codeSavingsAccount,
         "IdPerson": idPerson,

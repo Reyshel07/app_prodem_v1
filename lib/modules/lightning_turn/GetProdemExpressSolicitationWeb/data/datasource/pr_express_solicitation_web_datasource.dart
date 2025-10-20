@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/data/models/pr_express_solicitation_web_model.dart';
 import '../../domain/entities/entity.dart';
@@ -11,7 +12,7 @@ class PrExpressSolicitationWebDatasource {
     List<String> colCodeSavingsAccounts,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetProdemExpressSolicitationWeb',
+      AppStrings.getProdemExpressSolicitationWeb,
       operationName: 'obtain list of lightning transfers',
       data: {
         "ColCodeSavingsAccount": colCodeSavingsAccounts,
@@ -30,7 +31,7 @@ class PrExpressSolicitationWebDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/ProdemExpressAnnulment',
+      AppStrings.prodemExpressAnnulment,
       operationName: 'cancel lightning transfer',
       data: {"IdProdemExpressSolicitation": id},
       headers: {

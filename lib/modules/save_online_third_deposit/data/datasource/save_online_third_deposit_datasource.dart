@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/save_online_third_deposit/data/models/save_online_third_deposit_model.dart';
 
@@ -43,7 +44,7 @@ class SaveOnlineThirdDepositDatasource {
     String prodemKeyCode,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/SaveOnlineThirdDeposit',
+      AppStrings.saveOnlineThirdDeposit,
       operationName: 'final transfer action to other banks ',
       data: {
         "AccountDestiny": "108-2-1-06681-7",

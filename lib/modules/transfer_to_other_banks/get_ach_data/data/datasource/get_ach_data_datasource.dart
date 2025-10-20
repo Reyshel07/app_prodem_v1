@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_data/data/models/get_ach_data_screen.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_data/domain/entities/get_ach_data_entity.dart';
@@ -15,7 +16,7 @@ class GetAchDataDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetAchData',
+      AppStrings.getAchData,
       operationName: 'transfer to other banks intermediary',
       data: {
         "IdSavingsAccount":

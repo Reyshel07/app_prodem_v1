@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
@@ -14,7 +15,7 @@ class ExpressDataDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetProdemExpressData',
+      AppStrings.getProdemExpressData,
       data: {
         "CodeSavingAccountSource": codeSavingAccountSource, //"117-2-1-17512-2",
         "AmountTransaction": amountTransaction, //"100",

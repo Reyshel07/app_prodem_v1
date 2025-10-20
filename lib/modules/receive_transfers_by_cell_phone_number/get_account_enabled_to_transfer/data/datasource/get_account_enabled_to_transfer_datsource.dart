@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/receive_transfers_by_cell_phone_number/get_account_enabled_to_transfer/data/models/get_account_enabled_to_transfer_model.dart';
 
@@ -10,7 +11,9 @@ class GetAccountEnabledToTransferDatsource {
   Future<GetAccountEnabledToTransferResponseEntity>
   getAccountEnableToTrans() async {
     final response = await _apiClient.post(
-      'Mobile/GetAccountEnabledToTransfer',
+      ///repetido
+      AppStrings.getAccountEnabledToTransfer,
+
       operationName: 'phone settings for your account  allied ',
       data: {"idWebPersonClient": "1129150143954615"},
     );

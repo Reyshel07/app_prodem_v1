@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/data/models/infor_acciones_model.dart';
 
@@ -14,7 +15,7 @@ class InforAccionesDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/InforAcciones',
+      AppStrings.inforAcciones,
       operationName: 'bring the dpf information to renew',
       data: {
         "IdPersonWeb": idPersonWeb,

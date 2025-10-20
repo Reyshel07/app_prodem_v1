@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/data/models/get_encrypted_qr_string_model.dart';
 import '../../domain/entities/entity.dart';
@@ -18,7 +19,7 @@ class GetEncryptedQrStringDatasource {
     String idQuickResponse,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetEncryptedQrString',
+      AppStrings.getEncryptedQrString,
       operationName: 'QR',
       data: {
         "idPerson": idPerson,

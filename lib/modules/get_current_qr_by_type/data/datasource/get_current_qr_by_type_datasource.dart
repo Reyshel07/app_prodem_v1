@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/get_current_qr_by_type/data/models/get_current_qr_by_type_model.dart';
 import 'package:app_prodem_v1/modules/get_current_qr_by_type/domain/entities/entity.dart';
@@ -10,7 +11,7 @@ class GetCurrentQrByTypeDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetCurrentQrByType',
+      AppStrings.getCurrentQrByType,
       operationName: 'deposit from other entities',
       data: {},
       headers: {

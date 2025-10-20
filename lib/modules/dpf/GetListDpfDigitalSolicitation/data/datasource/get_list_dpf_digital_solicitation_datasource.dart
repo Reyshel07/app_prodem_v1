@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/dpf/GetListDpfDigitalSolicitation/data/models/get_list_dpf_digital_solicitation_model.dart';
 
@@ -12,7 +13,7 @@ class GetListDpfDigitalSolicitationDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetListDpfDigitalSolicitation',
+      AppStrings.getListDpfDigitalSolicitation,
       operationName: 'get the list of dpf',
       data: {"IdWebPerson": idWebPerson},
       headers: {

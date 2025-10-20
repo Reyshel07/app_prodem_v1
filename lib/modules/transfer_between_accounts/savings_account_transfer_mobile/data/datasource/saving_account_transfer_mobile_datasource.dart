@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/data/models/saving_account_transfer_mobile_model.dart';
 
@@ -34,7 +35,7 @@ class SavingAccountTransferMobileDatasource {
     String obfuscatedCode,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/SavingsAccountTransferMobile',
+      AppStrings.savingsAccountTransferMobile,
       operationName: 'transfer between accounts final process',
       data: {
         "CodeSavingAccountSource": codeSavingAccountSource,
