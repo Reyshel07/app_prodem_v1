@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/ATM/atm_transaction_qr_create/data/models/atm_transaction_qr_create_model.dart';
 
@@ -23,7 +24,7 @@ class AtmTransactionQrCreateDatasource {
     String? prodemKeyCode,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/AtmTransactionQrCreate',
+      AppStrings.atmTransactionQrCreate,
       operationName: 'service that records ATM withdrawals without a card',
       data: {
         "ATMTransactionCode": aTMTransactionCode,

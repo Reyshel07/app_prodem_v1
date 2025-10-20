@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
@@ -12,7 +13,7 @@ class ValidateQrFromProdemMovilDatasource {
     String qrCode,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/ValidateQRFromProdemMovil',
+      AppStrings.validateQRFromProdemMovil,
       operationName: 'service that validates the QR code provided by the ATM',
       data: {"IdWebClient": idWebClient, "QrCode": qrCode},
       headers: {

@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
@@ -11,7 +12,7 @@ class GetAccountEnabledToTransferDatsource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetAccountEnabledToTransfer',
+      AppStrings.getAccountEnabledToTransfer,
       operationName: 'phone settings for your account  allied ',
       data: {"idWebPersonClient": idWebPersonClient},
       headers: {
@@ -31,7 +32,7 @@ class GetAccountEnabledToTransferDatsource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/AccountEnabledToTransferSave',
+      AppStrings.accountEnabledToTransferSave,
       operationName: 'receive transfer by phone number final action',
       data: {
         "IdWebPersonClient": idWebPersonClient,

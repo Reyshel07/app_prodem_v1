@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/data/models/saving_account_transfer_mobile_model.dart';
 
@@ -33,7 +34,7 @@ class TransferAchFromMobileBankingDatasource {
     String reasonOriginPCC01,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/TransferAchFromMobileBanking',
+      AppStrings.transferAchFromMobileBanking,
       operationName: 'transfer to other banks final process',
       data: {
         "Beneficiary": beneficiary,

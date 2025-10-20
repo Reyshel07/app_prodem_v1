@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
@@ -11,7 +12,7 @@ class ListGetOtherAccountDepositDatasource {
     String idPerson,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/ListGetOtherAccountDeposit',
+      AppStrings.listGetOtherAccountDeposit,
       operationName: 'service that calls the list of requests in the tray ',
       data: {"IdPerson": idPerson},
       headers: {

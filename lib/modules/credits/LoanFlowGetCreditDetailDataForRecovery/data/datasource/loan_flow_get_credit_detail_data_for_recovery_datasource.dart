@@ -1,4 +1,4 @@
-
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/data/models/loan_flow_get_credit_detail_data_for_recovery_model.dart';
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/domain/entities/loan_flow_get_credit_detail_data_for_recovery_entity.dart';
@@ -16,7 +16,7 @@ class LoanFlowGetCreditDetailDataForRecoveryDatasource {
     String? idSavingAccount,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/LoanFlowGetCreditDetailDataForRecovery',
+      AppStrings.looanFlowGetCreditDetailDataForRecovery,
       data: {"IdLoanCredit": idLoanCredit, "IdSavingAccount": idSavingAccount},
       headers: {
         'Authorization': 'Bearer $vToken',
@@ -31,31 +31,31 @@ class LoanFlowGetCreditDetailDataForRecoveryDatasource {
 
   Future<SavingsAccountTransferMobileResponseEntity> loanFlowPayCredit(
     String? vToken,
-    int idLoanCredit,                           
-    double debitAmount,                         
-    double amountToPay,                         
-    double taxAmount,                           
-    int idLoanCurrency,                         
-    bool withInsuranceReturn,                 
-    int idSavingAccount,                        
-    String loanCreditCode,                    
-    int idCustomer,                             
-    String codeAuthentication,                
-    bool isNaturalCustomer,                   
-    String idPerson,                          
-    String idUser,                               
-    String imei,                              
-    String location,                          
-    String ipAddress,                         
-    bool isOwnCredit,                         
-    String customerId,                        
-    String customerName,                 
+    int idLoanCredit,
+    double debitAmount,
+    double amountToPay,
+    double taxAmount,
+    int idLoanCurrency,
+    bool withInsuranceReturn,
+    int idSavingAccount,
+    String loanCreditCode,
+    int idCustomer,
+    String codeAuthentication,
+    bool isNaturalCustomer,
+    String idPerson,
+    String idUser,
+    String imei,
+    String location,
+    String ipAddress,
+    bool isOwnCredit,
+    String customerId,
+    String customerName,
     //prodemkey
     String? idSMSOperation,
     String? prodemKeyCode,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/LoanFlowPaymentCredit',
+      AppStrings.loanFlowPaymentCredit,
       data: {
         "IdLoanCredit": idLoanCredit, //IdLoanCredit
         "DebitAmount": debitAmount, //TotalToDebit
@@ -65,7 +65,8 @@ class LoanFlowGetCreditDetailDataForRecoveryDatasource {
         "WithInsuranceReturn": withInsuranceReturn, //
         "IdSavingAccount": idSavingAccount, // selectedAccount IdOperationEntity
         "LoanCreditCode": loanCreditCode, //LoanCreditCode
-        "IdCustomer": idCustomer, //idperson val idPerson = if (objUserSession.IsPersonNatural) objUserSession.IdPerson else objUserSession.IdWebClient
+        "IdCustomer":
+            idCustomer, //idperson val idPerson = if (objUserSession.IsPersonNatural) objUserSession.IdPerson else objUserSession.IdWebClient
         "CodeAuthentication": codeAuthentication, //vacio
         "IsNaturalCustomer": isNaturalCustomer, //scar de la sesion
         "IdPerson": idPerson, //sacar ipperson sesion
@@ -85,8 +86,6 @@ class LoanFlowGetCreditDetailDataForRecoveryDatasource {
       },
       operationName: 'pay credit and obtein report',
     );
-    return SavingsAccountTransferMobileResponse.fromJson(
-      response,
-    );
+    return SavingsAccountTransferMobileResponse.fromJson(response);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/key_pr/data/models/key_pr_model.dart';
 
@@ -17,7 +18,7 @@ class KeyPrDatasource {
     String imei,
   ) async {
     final response = await _apiClient.post(
-      'ProdemKey/CreateProdemKey',
+      AppStrings.createProdemKey,
       operationName: 'key creation',
       data: {
         "idUser": idUser, //"350880",
@@ -42,7 +43,7 @@ class KeyPrDatasource {
     String location,
   ) async {
     final response = await _apiClient.post(
-      'ProdemKey/GetProdemKeyById',
+      AppStrings.getProdemKeyById,
       operationName: 'obtains the final key',
       data: {"Location": location, "IdSmsOperation": idSmsOperation},
       headers: {

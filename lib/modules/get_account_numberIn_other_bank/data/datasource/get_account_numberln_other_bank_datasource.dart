@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/get_account_numberIn_other_bank/data/models/get_account_numberln_other_bank_model.dart';
 
@@ -11,7 +12,7 @@ class GetAccountNumberlnOtherBankDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetAccountNumberInOtherBank',
+      AppStrings.getAccountNumberInOtherBank,
       operationName:
           'service provided by Unión Bank for deposits from other institutions',
       data: {},

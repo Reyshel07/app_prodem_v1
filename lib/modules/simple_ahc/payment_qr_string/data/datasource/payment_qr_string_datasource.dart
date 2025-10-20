@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/payment_qr_string/data/models/payment_qr_string_model.dart';
 import '../../domain/entities/entity.dart';
@@ -31,7 +32,7 @@ class PaymentQrStringDatasource {
     String prodemKeyCode,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/PaymentQrString',
+      AppStrings.paymentQrString,
       operationName: 'payment confirmation via QR code',
       data: {
         "CodeQr": codeQr,

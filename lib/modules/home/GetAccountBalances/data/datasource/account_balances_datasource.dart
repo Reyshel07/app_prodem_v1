@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import '../../domain/entities/entity.dart';
 import '../models/model.dart';
@@ -12,10 +13,11 @@ class AccountBalancesDatasource {
     String idUsert,
     String? vToken,
     String location,
-    String ip, String imei
+    String ip,
+    String imei,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetAccountBalances',
+      AppStrings.getAccountBalances,
       data: {
         "CodeSavingsAccount": codeSavingsAccount,
         "IdPerson": idPErson,

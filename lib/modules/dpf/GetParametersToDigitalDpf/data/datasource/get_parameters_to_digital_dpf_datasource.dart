@@ -1,3 +1,4 @@
+import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/data/models/get_parameters_to_digital_dpf_model.dart';
 
@@ -13,7 +14,7 @@ class GetParametersToDigitalDpfDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetParametersToDigitalDpf',
+      AppStrings.getParametersToDigitalDpf,
       operationName: 'DPF request',
       data: {"idFather": idFather, "isEmployee": isEmployee},
       headers: {
@@ -29,7 +30,7 @@ class GetParametersToDigitalDpfDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetOfficeListByIdGeographicLocation',
+      AppStrings.getOfficeListByIdGeographicLocation,
       operationName:
           'obtains the DPF incorporation agencies from the departments',
       data: {"IdGeographicLocation": operationName},
@@ -47,7 +48,7 @@ class GetParametersToDigitalDpfDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      'Mobile/GetDateEstimate',
+      AppStrings.getDateEstimate,
       operationName: 'shows the estimated time from start to finish',
       data: {"term": term, "idOffice": idOffice},
       headers: {
