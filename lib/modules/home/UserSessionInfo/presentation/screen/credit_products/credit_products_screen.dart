@@ -1,6 +1,7 @@
 import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/presentation/bloc/get_loan_flow_annuities_detail_data_for_credit_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/savings_products/savings_products_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,139 +21,165 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
     final double smallSpacing = screenSize.height * 0.02;
     final double letterSize = screenSize.height;
     final double topPadding = screenSize.height * 0.2;
-    return Scaffold(
-      body: Builder(
-        builder: (context) {
-           final sessionBloc = context.read<SessionInfoBloc>();
-          return ListView(
-            children: [
-              Column(
-                children: [
-                  ListTitlePrueba(
-                    topPadding: topPadding,
-                    smallSpacing: smallSpacing,
-                    letterSize: letterSize,
-                    title: 'Créditos',
-                    icon: Icons.broadcast_on_home,
-                    column: Column(
-                      children: [
-                        Gesture(
-                          onTap: () {
-                            InjectorContainer.getIt<AppRouter>().push(LoanFlowAnnuitiesDetailDataForCreditRoute(sessionBloc: sessionBloc));
-                          },
-                          topPadding: topPadding,
-                          letterSize: letterSize,
-                          small: smallSpacing,
-                          icon: Icons.abc_outlined,
-                          title: 'Consulta de Créditos',
-                        ),
-                        SizedBox(height: smallSpacing * 1),
-                        Gesture(
-                          onTap: () {
-                            InjectorContainer.getIt<AppRouter>().push(LoanFlowGetCreditDetailDataForRecoveryRoute(sessionBloc: sessionBloc));
-                          },
-                          topPadding: topPadding,
-                          letterSize: letterSize,
-                          small: smallSpacing,
-                          icon: Icons.abc_outlined,
-                          title: 'Pago de Crédito',
-                        ),
-                        SizedBox(height: smallSpacing * 1),
-                        Gesture(
-                          onTap: () {
-                            InjectorContainer.getIt<AppRouter>().push(LoanFlowGetCreditDetailDataForRecoveryByCodeRoute(sessionBloc: sessionBloc));
-                          },
-                          topPadding: topPadding,
-                          letterSize: letterSize,
-                          small: smallSpacing,
-                          icon: Icons.abc_outlined,
-                          title: 'Pago de Crédito de Terceros',
-                        ),
-                        SizedBox(height: smallSpacing * 1),
-                      ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<
+                GetLoanFlowAnnuitiesDetailDataForCreditBloc
+              >(),
+        ),
+      ],
+      child: Scaffold(
+        body: Builder(
+          builder: (newContext) {
+            final sessionBloc = context.read<SessionInfoBloc>();
+            return ListView(
+              children: [
+                Column(
+                  children: [
+                    ListTitlePrueba(
+                      topPadding: topPadding,
+                      smallSpacing: smallSpacing,
+                      letterSize: letterSize,
+                      title: 'Créditos',
+                      icon: Icons.broadcast_on_home,
+                      column: Column(
+                        children: [
+                          Gesture(
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                LoanFlowAnnuitiesDetailDataForCreditRoute(
+                                  sessionBloc: sessionBloc,
+                                  bloc: newContext
+                                      .read<
+                                        GetLoanFlowAnnuitiesDetailDataForCreditBloc
+                                      >(),
+                                ),
+                              );
+                            },
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Consulta de Créditos',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                LoanFlowGetCreditDetailDataForRecoveryRoute(
+                                  sessionBloc: sessionBloc,
+                                ),
+                              );
+                            },
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Pago de Crédito',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                LoanFlowGetCreditDetailDataForRecoveryByCodeRoute(
+                                  sessionBloc: sessionBloc,
+                                ),
+                              );
+                            },
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Pago de Crédito de Terceros',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                        ],
+                      ),
                     ),
-                  ),
-                  ListTitlePrueba(
-                    topPadding: topPadding,
-                    smallSpacing: smallSpacing,
-                    letterSize: letterSize,
-                    title: 'Targetas de crédito',
-                    icon: Icons.broadcast_on_home,
-                    column: Column(
-                      children: [
-                        Gesture(
-                          onTap: () {},
-                          topPadding: topPadding,
-                          letterSize: letterSize,
-                          small: smallSpacing,
-                          icon: Icons.abc_outlined,
-                          title: 'Consulta de Targeta de crédito',
-                        ),
-                        SizedBox(height: smallSpacing * 1),
-                        Gesture(
-                          onTap: () {},
-                          topPadding: topPadding,
-                          letterSize: letterSize,
-                          small: smallSpacing,
-                          icon: Icons.abc_outlined,
-                          title: 'Pago de Targeta de crédito',
-                        ),
-                        SizedBox(height: smallSpacing * 1),
-                        Gesture(
-                          onTap: () {},
-                          topPadding: topPadding,
-                          letterSize: letterSize,
-                          small: smallSpacing,
-                          icon: Icons.abc_outlined,
-                          title: 'PAgo de targeta de crédito de terceros',
-                        ),
-                        SizedBox(height: smallSpacing * 1),
-                      ],
+                    ListTitlePrueba(
+                      topPadding: topPadding,
+                      smallSpacing: smallSpacing,
+                      letterSize: letterSize,
+                      title: 'Targetas de crédito',
+                      icon: Icons.broadcast_on_home,
+                      column: Column(
+                        children: [
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Consulta de Targeta de crédito',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Pago de Targeta de crédito',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'PAgo de targeta de crédito de terceros',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                        ],
+                      ),
                     ),
-                  ),
-                  ListTitlePrueba(
-                    topPadding: topPadding,
-                    smallSpacing: smallSpacing,
-                    letterSize: letterSize,
-                    title: 'finanzas Bancarias',
-                    icon: Icons.broadcast_on_home,
-                    column: Column(
-                      children: [
-                        Gesture(
-                          onTap: () {},
-                          topPadding: topPadding,
-                          letterSize: letterSize,
-                          small: smallSpacing,
-                          icon: Icons.abc_outlined,
-                          title: 'Solicitud Fianzas Bancarias',
-                        ),
-                        SizedBox(height: smallSpacing * 1),
-                        Gesture(
-                          onTap: () {},
-                          topPadding: topPadding,
-                          letterSize: letterSize,
-                          small: smallSpacing,
-                          icon: Icons.abc_outlined,
-                          title: 'Detalle fianzas Bancarias',
-                        ),
-                        SizedBox(height: smallSpacing * 1),
-                        Gesture(
-                          onTap: () {},
-                          topPadding: topPadding,
-                          letterSize: letterSize,
-                          small: smallSpacing,
-                          icon: Icons.abc_outlined,
-                          title: 'Fianzas Bancarias Aprobadas',
-                        ),
-                        SizedBox(height: smallSpacing * 1),
-                      ],
+                    ListTitlePrueba(
+                      topPadding: topPadding,
+                      smallSpacing: smallSpacing,
+                      letterSize: letterSize,
+                      title: 'finanzas Bancarias',
+                      icon: Icons.broadcast_on_home,
+                      column: Column(
+                        children: [
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Solicitud Fianzas Bancarias',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Detalle fianzas Bancarias',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                          Gesture(
+                            onTap: () {},
+                            topPadding: topPadding,
+                            letterSize: letterSize,
+                            small: smallSpacing,
+                            icon: Icons.abc_outlined,
+                            title: 'Fianzas Bancarias Aprobadas',
+                          ),
+                          SizedBox(height: smallSpacing * 1),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          );
-        },
+                  ],
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

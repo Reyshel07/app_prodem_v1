@@ -1,19 +1,21 @@
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
-import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/presentation/bloc/get_loan_flow_annuities_detail_data_for_credit_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
+import 'package:app_prodem_v1/utils/time.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class LoanFlowAnnuitiesDetailDataForCreditScreen extends StatefulWidget {
   final SessionInfoBloc sessionBloc;
+  final GetLoanFlowAnnuitiesDetailDataForCreditBloc bloc;
   const LoanFlowAnnuitiesDetailDataForCreditScreen({
     super.key,
     required this.sessionBloc,
+    required this.bloc,
   });
 
   @override
@@ -34,26 +36,21 @@ class _LoanFlowAnnuitiesDetailDataForCreditScreenState
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) =>
-              InjectorContainer.getIt<
-                GetLoanFlowAnnuitiesDetailDataForCreditBloc
-              >(),
-        ),
+        BlocProvider.value(value: widget.bloc),
         BlocProvider.value(value: widget.sessionBloc),
       ],
-      child: Builder(
-        builder: (context) => Scaffold(
-          appBar: AppBar(
-            foregroundColor: Theme.of(context).colorScheme.white,
-            backgroundColor: Theme.of(context).colorScheme.green,
-            title: Text(
-              'Consulta de Créditos',
-              style: AppTextStyles.mainStyleWhite18Bold(context),
-            ),
+      child: Scaffold(
+        appBar: AppBar(
+          foregroundColor: Theme.of(context).colorScheme.white,
+          backgroundColor: Theme.of(context).colorScheme.green,
+          title: Text(
+            'Consulta de Créditos',
+            style: AppTextStyles.mainStyleWhite18Bold(context),
           ),
-          body: Padding(
-            padding: EdgeInsets.all(topPadding * 0.05),
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(topPadding * 0.05),
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Text(
@@ -69,7 +66,6 @@ class _LoanFlowAnnuitiesDetailDataForCreditScreenState
                     if (state is SessionInfoSuccess) {
                       final listCredits =
                           state.userInfoResponseEnttity.listCodeLoanFlowCredit;
-
                       return Card(
                         elevation: smallSpacing * 0.5,
                         child: Padding(
@@ -112,7 +108,6 @@ class _LoanFlowAnnuitiesDetailDataForCreditScreenState
                     return const SizedBox();
                   },
                 ),
-
                 SizedBox(height: smallSpacing * 1.5),
 
                 /// BOTÓN CONSULTAR
@@ -128,21 +123,18 @@ class _LoanFlowAnnuitiesDetailDataForCreditScreenState
                       return;
                     }
 
-                    context
-                        .read<GetLoanFlowAnnuitiesDetailDataForCreditBloc>()
-                        .add(
-                          GetLoanFlowAnnuDetDataForCreditEvent(
-                            idLoanCredit: idLoan,
-                          ),
-                        );
+                    widget.bloc.add(
+                      GetLoanFlowAnnuDetDataForCreditEvent(
+                        idLoanCredit: idLoan,
+                      ),
+                    );
                   },
                   lblTextField: 'CONSULTAR',
                 ),
-                BlocConsumer<
+                BlocBuilder<
                   GetLoanFlowAnnuitiesDetailDataForCreditBloc,
                   GetLoanFlowAnnuitiesDetailDataForCreditState
                 >(
-                  listener: (context, state) {},
                   builder: (context, state) {
                     if (state
                         is GetLoanFlowAnnuitiesDetailDataForCreditSuccess) {
@@ -183,59 +175,84 @@ class _LoanFlowAnnuitiesDetailDataForCreditScreenState
                             children: [
                               Text(
                                 "Nro. Cuota",
-                                style: AppTextStyles.mainStyleGreen14Bold(
+                                style: AppTextStyles.mainStyleGreen10Bold(
                                   context,
                                 ),
                               ),
                               Text(
                                 "Fecha Vencimiento",
-                                style: AppTextStyles.mainStyleGreen14Bold(
+                                style: AppTextStyles.mainStyleGreen10Bold(
                                   context,
                                 ),
                               ),
                               Text(
                                 "Monto Cuota",
-                                style: AppTextStyles.mainStyleGreen14Bold(
+                                style: AppTextStyles.mainStyleGreen10Bold(
                                   context,
                                 ),
                               ),
                               Text(
                                 "Pagado",
-                                style: AppTextStyles.mainStyleGreen14Bold(
+                                style: AppTextStyles.mainStyleGreen10Bold(
                                   context,
                                 ),
                               ),
                             ],
                           ),
                           Divider(),
-                          SizedBox(
-                            height: screenSize.height * 0.5,
-                            child: ListView.builder(
-                              itemCount: res.colAnnuitiesDetail.length,
-                              itemBuilder: (context, index) {
-                                final data = res.colAnnuitiesDetail[index];
-                                return Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(data.annuityNumber),
-                                        Text(data.annuityEndDate.toString()),
-                                        Text(data.annuityBalance.toString()),
-                                        Text(data.isPaid == true ? "SI" : "NO"),
-                                      ],
-                                    ),
-                                    Divider(),
-                                  ],
-                                );
-                              },
-                            ),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: res.colAnnuitiesDetail.length,
+                            itemBuilder: (context, index) {
+                              final data = res.colAnnuitiesDetail[index];
+                              return Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        data.annuityNumber,
+                                        style: AppTextStyles.mainStyleGreen10(
+                                          context,
+                                        ),
+                                      ),
+                                      Text(
+                                        DateFormatter.formatDateTime(
+                                          data.annuityEndDate,
+                                        ),
+                                        style: AppTextStyles.mainStyleGreen10(
+                                          context,
+                                        ),
+                                      ),
+                                      Text(
+                                        data.annuityBalance.toString(),
+                                        style: AppTextStyles.mainStyleGreen10(
+                                          context,
+                                        ),
+                                      ),
+                                      Text(
+                                        data.isPaid == true ? "SI" : "NO",
+                                        style: AppTextStyles.mainStyleGreen10(
+                                          context,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Divider(),
+                                ],
+                              );
+                            },
                           ),
                         ],
                       );
                     }
-                    return CircularProgressIndicator();
+                    if (state
+                        is GetLoanFlowAnnuitiesDetailDataForCreditLoading) {
+                      return CircularProgressIndicator();
+                    }
+                    return SizedBox();
                   },
                 ),
               ],

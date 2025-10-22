@@ -72,6 +72,11 @@ class AppTextStyles {
         fontSize: 10,
         fontWeight: FontWeight.bold,
       );
+  static TextStyle mainStyleGreen10(BuildContext context) => GoogleFonts.exo(
+    color: Theme.of(context).colorScheme.green,
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+  );
   static TextStyle mainStyleGreen16Bold(BuildContext context) =>
       GoogleFonts.exo(
         color: Theme.of(context).colorScheme.green,

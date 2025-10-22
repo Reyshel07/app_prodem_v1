@@ -156,7 +156,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     screenSize: screenSize,
                                     lblTextField: 'Retiro QR ATM',
                                     icon: Icons.qr_code,
-                                    onTap: () {},
+                                    onTap: () {
+                                      InjectorContainer.getIt<AppRouter>().push(
+                                        ValidateQrFromProdemMovilRoute(
+                                          sessionBloc: context
+                                              .read<SessionInfoBloc>(),
+                                        ),
+                                      );
+                                    },
                                   ),
                                   Container1(
                                     smallSpacing: smallSpacing,
