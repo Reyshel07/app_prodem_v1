@@ -11,11 +11,13 @@
 import 'package:app_prodem_v1/modules/ATM/atm_transaction_qr_create/presentation/screen/validate_qr_from_prodem_movil_screen.dart'
     as _i34;
 import 'package:app_prodem_v1/modules/ATM/validate_qr_from_prodem_movil/domain/entities/validate_qr_from_prodem_entity.dart'
-    as _i50;
+    as _i51;
 import 'package:app_prodem_v1/modules/ATM/validate_qr_from_prodem_movil/presentation/screen/validate_decrypt_qr_screen.dart'
     as _i35;
 import 'package:app_prodem_v1/modules/auth/sign_in/presentation/screens/login_screen1.dart'
     as _i24;
+import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/presentation/bloc/get_loan_flow_annuities_detail_data_for_credit_bloc.dart'
+    as _i47;
 import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/presentation/screen/get_loan_flow_annuities_detail_data_for_credit_screen.dart'
     as _i21;
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/presentation/screen/loan_flow_get_credit_detail_data_for_recovery_screen.dart'
@@ -25,7 +27,7 @@ import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForReco
 import 'package:app_prodem_v1/modules/dpf/GetListDpfDigitalSolicitation/presentation/screen/get_list_dpf_digital_solicitation_screen.dart'
     as _i17;
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation/bloc/get_parameters_to_digital_dpf_bloc.dart'
-    as _i47;
+    as _i48;
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation/screen/get_parameters_to_digital_dpf_screen.dart'
     as _i25;
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/presentation/screen/administracion_screen.dart'
@@ -45,7 +47,7 @@ import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/screen/account_balances_screen.dart'
     as _i1;
 import 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/presentation/bloc/saving_account_extrac_bloc.dart'
-    as _i48;
+    as _i49;
 import 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/presentation/screen/saving_account_extrac_data_tran_screen.dart'
     as _i29;
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/presentation/screen/get_account_enabled_to_transfer_screen.dart'
@@ -93,7 +95,7 @@ import 'package:app_prodem_v1/modules/simple_ahc/get_report_movements_by_person_
 import 'package:app_prodem_v1/modules/simple_ahc/payment_qr_string/presentation/screen/decrypt_qr_details_screen.dart'
     as _i7;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/presentation/bloc/saving_account_data_bloc.dart'
-    as _i49;
+    as _i50;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/presentation/screen/saving_account_data_screen.dart'
     as _i33;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/presentation/screen/saving_account_transfer_mobile_screen.dart'
@@ -1218,12 +1220,14 @@ class LoanFlowAnnuitiesDetailDataForCreditRoute
   LoanFlowAnnuitiesDetailDataForCreditRoute({
     _i37.Key? key,
     required _i39.SessionInfoBloc sessionBloc,
+    required _i47.GetLoanFlowAnnuitiesDetailDataForCreditBloc bloc,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           LoanFlowAnnuitiesDetailDataForCreditRoute.name,
           args: LoanFlowAnnuitiesDetailDataForCreditRouteArgs(
             key: key,
             sessionBloc: sessionBloc,
+            bloc: bloc,
           ),
           initialChildren: children,
         );
@@ -1237,6 +1241,7 @@ class LoanFlowAnnuitiesDetailDataForCreditRoute
       return _i21.LoanFlowAnnuitiesDetailDataForCreditScreen(
         key: args.key,
         sessionBloc: args.sessionBloc,
+        bloc: args.bloc,
       );
     },
   );
@@ -1246,15 +1251,18 @@ class LoanFlowAnnuitiesDetailDataForCreditRouteArgs {
   const LoanFlowAnnuitiesDetailDataForCreditRouteArgs({
     this.key,
     required this.sessionBloc,
+    required this.bloc,
   });
 
   final _i37.Key? key;
 
   final _i39.SessionInfoBloc sessionBloc;
 
+  final _i47.GetLoanFlowAnnuitiesDetailDataForCreditBloc bloc;
+
   @override
   String toString() {
-    return 'LoanFlowAnnuitiesDetailDataForCreditRouteArgs{key: $key, sessionBloc: $sessionBloc}';
+    return 'LoanFlowAnnuitiesDetailDataForCreditRouteArgs{key: $key, sessionBloc: $sessionBloc, bloc: $bloc}';
   }
 }
 
@@ -1381,7 +1389,7 @@ class ParametersToDigitalDpfRoute
   ParametersToDigitalDpfRoute({
     _i37.Key? key,
     required _i46.SessionInfoBloc sessioninfo,
-    required _i47.GetParametersToDigitalDpfBloc bloc,
+    required _i48.GetParametersToDigitalDpfBloc bloc,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           ParametersToDigitalDpfRoute.name,
@@ -1419,7 +1427,7 @@ class ParametersToDigitalDpfRouteArgs {
 
   final _i46.SessionInfoBloc sessioninfo;
 
-  final _i47.GetParametersToDigitalDpfBloc bloc;
+  final _i48.GetParametersToDigitalDpfBloc bloc;
 
   @override
   String toString() {
@@ -1519,7 +1527,7 @@ class SavingAccountExtractDataTranSacreen
     extends _i36.PageRouteInfo<SavingAccountExtractDataTranSacreenArgs> {
   SavingAccountExtractDataTranSacreen({
     _i37.Key? key,
-    required _i48.SavingAccountExtracBloc bloc,
+    required _i49.SavingAccountExtracBloc bloc,
     required _i46.SessionInfoBloc sessionBloc,
     List<_i36.PageRouteInfo>? children,
   }) : super(
@@ -1556,7 +1564,7 @@ class SavingAccountExtractDataTranSacreenArgs {
 
   final _i37.Key? key;
 
-  final _i48.SavingAccountExtracBloc bloc;
+  final _i49.SavingAccountExtracBloc bloc;
 
   final _i46.SessionInfoBloc sessionBloc;
 
@@ -1708,7 +1716,7 @@ class TransferFeesTwoRouteArgs {
 class TransferRoute extends _i36.PageRouteInfo<TransferRouteArgs> {
   TransferRoute({
     _i37.Key? key,
-    required _i49.SavingAccountDataBloc bloc,
+    required _i50.SavingAccountDataBloc bloc,
     required _i46.SessionInfoBloc sessionBloc,
     required _i33.TransferType transferType,
     List<_i36.PageRouteInfo>? children,
@@ -1749,7 +1757,7 @@ class TransferRouteArgs {
 
   final _i37.Key? key;
 
-  final _i49.SavingAccountDataBloc bloc;
+  final _i50.SavingAccountDataBloc bloc;
 
   final _i46.SessionInfoBloc sessionBloc;
 
@@ -1768,7 +1776,7 @@ class ValidateQRfromProdemMovilTwoRoute
   ValidateQRfromProdemMovilTwoRoute({
     _i37.Key? key,
     required _i39.SessionInfoBloc sessionBloc,
-    required _i50.ValidateQrFromProdemMovilResponseEntity res,
+    required _i51.ValidateQrFromProdemMovilResponseEntity res,
     required String qRGenerated,
     List<_i36.PageRouteInfo>? children,
   }) : super(
@@ -1810,7 +1818,7 @@ class ValidateQRfromProdemMovilTwoRouteArgs {
 
   final _i39.SessionInfoBloc sessionBloc;
 
-  final _i50.ValidateQrFromProdemMovilResponseEntity res;
+  final _i51.ValidateQrFromProdemMovilResponseEntity res;
 
   final String qRGenerated;
 
