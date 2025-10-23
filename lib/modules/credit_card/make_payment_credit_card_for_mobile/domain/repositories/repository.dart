@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/credit_card/make_payment_credit_card_for_mobile/domain/repositories/make_payment_credit_card_for_mobile_repository.dart';

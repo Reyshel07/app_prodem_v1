@@ -42,5 +42,9 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ExpressDataTwoRoute.page),
     AutoRoute(page: ValidateQrFromProdemMovilRoute.page),
     AutoRoute(page: ValidateQRfromProdemMovilTwoRoute.page),
+    AutoRoute(page: CreditCardDataQueryRoute.page),
+    AutoRoute(page: CreditCardDataForRecoveryRoute.page),
+    AutoRoute(page: MakePaymentCreditCardForMobileRoute.page),
+    AutoRoute(page: InitialChargeBankGuaranteRoute.page),
   ];
 }

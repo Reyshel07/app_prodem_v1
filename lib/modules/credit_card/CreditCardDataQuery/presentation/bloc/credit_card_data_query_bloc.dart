@@ -37,7 +37,7 @@ class CreditCardDataQueryBloc
         idUser,
         imei,
         location,
-        ipAddress
+        ipAddress,
       );
 
       emit(CreditCardDataQuerySuccess(response.data));

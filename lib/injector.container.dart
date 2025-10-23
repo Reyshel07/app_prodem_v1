@@ -1,6 +1,10 @@
 import 'package:app_prodem_v1/modules/ATM/atm_transaction_qr_create/atm.transaction.qr.create.container.dart';
 import 'package:app_prodem_v1/modules/ATM/validate_qr_from_prodem_movil/validate.qr.from.prodem.movil.container.dart';
+import 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/initial.charge.bank.guarantee.container.dart';
+import 'package:app_prodem_v1/modules/credit_card/CreditCardDataQuery/credit.card.data.quert.container.dart';
 import 'package:app_prodem_v1/modules/auth/auth.container.dart';
+import 'package:app_prodem_v1/modules/credit_card/credit_card_data_for_recovery/credit.card.data.for.recovery.container.dart';
+import 'package:app_prodem_v1/modules/credit_card/make_payment_credit_card_for_mobile/make.payment.credit.card.for.mobile.container.dart';
 import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/get_loan_flow_annuities_detail_data_for_credit_injector.container.dart';
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/loan_flow_get_credit_detail_data_for_recovery_injector.container.dart';
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecoveryByCode/loan_flow_get_credit_detail_data_for_recovery_by_code_injector.dart';
@@ -77,5 +81,9 @@ class InjectorContainer {
     initPaymentQrString(getIt);
     initVAlidateQrFromPRodemMovil(getIt);
     initAtmTransactionQrCreate(getIt);
+    initCreditCardDataQuery(getIt);
+    initCreditCardDataForRecovery(getIt);
+    initMakePaymentCreditCardForMobile(getIt);
+    initInitialChargeBankGuarante(getIt);
   }
 }

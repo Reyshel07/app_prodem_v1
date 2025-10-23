@@ -11,18 +11,18 @@ class CreditCardDataQueryResponseEntity {
 }
 
 class CreditCardDataQueryEntity {
-  final int idCreditLineSolicitation; // long → int
+  final double idCreditLineSolicitation;
   final String accountNumber;
   final String clientName;
-  final double creditLineAmount; 
-  final double balanceAmount; 
-  final double balanceAvailable; 
-  final double minimumPayment; 
+  final double creditLineAmount;
+  final double balanceAmount;
+  final double balanceAvailable;
+  final double minimumPayment;
   final String loanCurrencyName;
   final DateTime processDate;
-  final double principalBalance; 
+  final double principalBalance;
   final double principalBalanceAtc;
-  final List<ColMovementsDetail> colMovementsDetails;
+  final List<ColMovementsDetailEntity> colMovementsDetails;
 
   CreditCardDataQueryEntity({
     required this.idCreditLineSolicitation,
@@ -40,14 +40,14 @@ class CreditCardDataQueryEntity {
   });
 }
 
-class ColMovementsDetail {
+class ColMovementsDetailEntity {
   final String loanCurrencyName;
   final DateTime transactionDate;
-  final double transactionAmount; // decimal → double
+  final double transactionAmount;
   final String operationDescription;
   final String operationKind;
 
-  ColMovementsDetail({
+  ColMovementsDetailEntity({
     required this.loanCurrencyName,
     required this.transactionDate,
     required this.transactionAmount,

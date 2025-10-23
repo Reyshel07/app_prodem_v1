@@ -60,4 +60,11 @@ class AppStrings {
   static const String getValidAccount = 'website/GetValidAccount';
   static const String transferAchFromMobileBanking =
       'website/TransferAchFromMobileBanking';
+  static const String creditCardDataQuery = 'website/CreditCardDataQuery';
+  static const String creditCardDataForRecovery =
+      'WebSite/CreditCardDataForRecovery';
+  static const String makePaymentCreditCardForMobile =
+      'WebSite/MakePaymentCreditCardForMobile';
+  static const String initialChargeBankGuarantee =
+      'WebSite/InitialChargeBankGuarantee';
 }
