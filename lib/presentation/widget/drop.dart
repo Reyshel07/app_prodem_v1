@@ -82,7 +82,8 @@ class _AccountDropdownState extends State<AccountDropdown> {
 
                       widget.onAccountSelected(
                         AccountSelection(
-                          idOperationEntity: selectedAccount.idOperationEntity,
+                          idOperationEntity: selectedAccount.idOperationEntity
+                              .toString(),
                           idMoney: selectedAccount.idMoney.toString(),
                           operationCode: selectedAccount.operationCode
                               .toString(),

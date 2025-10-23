@@ -1,22 +1,26 @@
 import 'dart:convert';
-import 'package:app_prodem_v1/modules/credit_card/CreditCardDataQuery/domain/entities/credit_card_data_query_entity.dart';
+import '../../domain/entities/entity.dart';
 
-CreditCardDataQueryResponseModel creditCardDataQueryFromJson(String str) =>
-    CreditCardDataQueryResponseModel.fromJson(json.decode(str));
+CreditCardDataQueryResponseModel creditCardDataQueryResponseFromJson(
+  String str,
+) => CreditCardDataQueryResponseModel.fromJson(json.decode(str));
 
-class CreditCardDataQueryResponseModel extends CreditCardDataQueryResponseEntity {
+///ejemplo de respuestas complicadas
+class CreditCardDataQueryResponseModel
+    extends CreditCardDataQueryResponseEntity {
   CreditCardDataQueryResponseModel({
     required super.data,
     required super.state,
     required super.message,
   });
 
-  factory CreditCardDataQueryResponseModel.fromJson(Map<String, dynamic> json) =>
-      CreditCardDataQueryResponseModel(
-        data: CreditCardDataQueryModel.fromJson(json["data"]),
-        state: json["state"],
-        message: json["message"],
-      );
+  factory CreditCardDataQueryResponseModel.fromJson(
+    Map<String, dynamic> json,
+  ) => CreditCardDataQueryResponseModel(
+    data: CreditCardDataQueryModel.fromJson(json["data"]),
+    state: json["state"],
+    message: json["message"],
+  );
 }
 
 class CreditCardDataQueryModel extends CreditCardDataQueryEntity {
@@ -37,24 +41,26 @@ class CreditCardDataQueryModel extends CreditCardDataQueryEntity {
 
   factory CreditCardDataQueryModel.fromJson(Map<String, dynamic> json) =>
       CreditCardDataQueryModel(
-        idCreditLineSolicitation: json["idCreditLineSolicitation"], // int
+        idCreditLineSolicitation: json["idCreditLineSolicitation"].toDouble(),
         accountNumber: json["accountNumber"],
         clientName: json["clientName"],
-        creditLineAmount: (json["creditLineAmount"] ?? 0).toDouble(),
-        balanceAmount: (json["balanceAmount"] ?? 0).toDouble(),
-        balanceAvailable: (json["balanceAvailable"] ?? 0).toDouble(),
-        minimumPayment: (json["minimumPayment"] ?? 0).toDouble(),
+        creditLineAmount: json["creditLineAmount"],
+        balanceAmount: json["balanceAmount"].toDouble(),
+        balanceAvailable: json["balanceAvailable"].toDouble(),
+        minimumPayment: json["minimumPayment"].toDouble(),
         loanCurrencyName: json["loanCurrencyName"],
         processDate: DateTime.parse(json["processDate"]),
-        principalBalance: (json["principalBalance"] ?? 0).toDouble(),
-        principalBalanceAtc: (json["principalBalanceATC"] ?? 0).toDouble(),
-        colMovementsDetails: (json["colMovementsDetails"] as List)
-            .map((x) => ColMovementsDetailModel.fromJson(x))
-            .toList(),
+        principalBalance: json["principalBalance"].toDouble(),
+        principalBalanceAtc: json["principalBalanceATC"],
+        colMovementsDetails: List<ColMovementsDetailModel>.from(
+          json["colMovementsDetails"].map(
+            (x) => ColMovementsDetailModel.fromJson(x),
+          ),
+        ),
       );
 }
 
-class ColMovementsDetailModel extends ColMovementsDetail {
+class ColMovementsDetailModel extends ColMovementsDetailEntity {
   ColMovementsDetailModel({
     required super.loanCurrencyName,
     required super.transactionDate,
@@ -67,7 +73,7 @@ class ColMovementsDetailModel extends ColMovementsDetail {
       ColMovementsDetailModel(
         loanCurrencyName: json["loanCurrencyName"],
         transactionDate: DateTime.parse(json["transactionDate"]),
-        transactionAmount: (json["transactionAmount"] ?? 0).toDouble(),
+        transactionAmount: json["transactionAmount"].toDouble(),
         operationDescription: json["operationDescription"],
         operationKind: json["operationKind"],
       );

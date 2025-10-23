@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/credit_card/credit_card_data_for_recovery/data/models/credit_car_data_for_recovery_model.dart';

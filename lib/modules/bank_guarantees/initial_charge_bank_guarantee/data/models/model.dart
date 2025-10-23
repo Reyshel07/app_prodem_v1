@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/data/models/initial_charge_bank_guarante_model.dart';

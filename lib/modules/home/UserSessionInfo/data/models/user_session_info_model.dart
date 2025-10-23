@@ -185,7 +185,7 @@ class ListCodeCreditLineElementModel extends ListCodeCreditLineElementEntity {
       ListCodeCreditLineElementModel(
         idMoney: json["idMoney"],
         codMoney: json["codMoney"],
-        idOperationEntity: json["idOperationEntity"].toString(),
+        idOperationEntity: json["idOperationEntity"],
         operationCode: json["operationCode"],
         availableAmount: json["availableAmount"].toDouble(),
         idOffice: json["idOffice"],

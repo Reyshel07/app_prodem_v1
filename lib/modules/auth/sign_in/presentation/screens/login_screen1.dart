@@ -42,7 +42,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final TextEditingController userController = TextEditingController(
-    text: 'testeo001',
+    text: 'quique',
   );
 
   FocusNode passWordFocus = FocusNode();
@@ -132,7 +132,7 @@ class _BodyState extends State<Body> {
                 Butoon1(
                   onTap: () {
                     String username = userController.text;
-                    String password = 'Prodem123';
+                    String password = 'Prodem*123';
                     int chanel = 1;
                     List<AditionalItemEntity> aditionalItems = [
                       AditionalItemEntity(key: 'IP', value: '192.168.162.12'),

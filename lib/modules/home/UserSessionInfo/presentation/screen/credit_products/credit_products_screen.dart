@@ -1,6 +1,9 @@
 import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/presentation/bloc/initial_charge_bank_guarantee_bloc.dart';
+import 'package:app_prodem_v1/modules/credit_card/CreditCardDataQuery/presentation/bloc/credit_card_data_query_bloc.dart';
+import 'package:app_prodem_v1/modules/credit_card/credit_card_data_for_recovery/presentation/screen/credit_car_data_for_recovery_screen.dart';
 import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/presentation/bloc/get_loan_flow_annuities_detail_data_for_credit_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/savings_products/savings_products_screen.dart';
@@ -28,6 +31,14 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
               InjectorContainer.getIt<
                 GetLoanFlowAnnuitiesDetailDataForCreditBloc
               >(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<CreditCardDataQueryBloc>(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<InitialChargeBankGuaranteeBloc>(),
         ),
       ],
       child: Scaffold(
@@ -107,7 +118,15 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
                       column: Column(
                         children: [
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                CreditCardDataQueryRoute(
+                                  bloc: newContext
+                                      .read<CreditCardDataQueryBloc>(),
+                                  sessionBloc: sessionBloc,
+                                ),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,
@@ -116,7 +135,14 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
                           ),
                           SizedBox(height: smallSpacing * 1),
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                CreditCardDataForRecoveryRoute(
+                                  sessionBloc: sessionBloc,
+                                  creditType: CreditType.ownAccounts,
+                                ),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,
@@ -125,12 +151,19 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
                           ),
                           SizedBox(height: smallSpacing * 1),
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                CreditCardDataForRecoveryRoute(
+                                  sessionBloc: sessionBloc,
+                                  creditType: CreditType.thirdParty,
+                                ),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,
                             icon: Icons.abc_outlined,
-                            title: 'PAgo de targeta de crédito de terceros',
+                            title: 'Pago de targeta de crédito de terceros',
                           ),
                           SizedBox(height: smallSpacing * 1),
                         ],
@@ -144,13 +177,33 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
                       icon: Icons.broadcast_on_home,
                       column: Column(
                         children: [
-                          Gesture(
-                            onTap: () {},
-                            topPadding: topPadding,
-                            letterSize: letterSize,
-                            small: smallSpacing,
-                            icon: Icons.abc_outlined,
-                            title: 'Solicitud Fianzas Bancarias',
+                          BlocBuilder<
+                            InitialChargeBankGuaranteeBloc,
+                            InitialChargeBankGuaranteeState
+                          >(
+                            builder: (context, state) {
+                              if (state is InitialChargeBankGuaranteeSuccess) {
+                                InjectorContainer.getIt<AppRouter>().push(
+                                  InitialChargeBankGuaranteRoute(
+                                    bloc: newContext
+                                        .read<InitialChargeBankGuaranteeBloc>(),
+                                    sessionBloc: sessionBloc,
+                                  ),
+                                );
+                              }
+                              return Gesture(
+                                onTap: () {
+                                  context
+                                      .read<InitialChargeBankGuaranteeBloc>()
+                                      .add(InitialChargeBankGuarEvent());
+                                },
+                                topPadding: topPadding,
+                                letterSize: letterSize,
+                                small: smallSpacing,
+                                icon: Icons.abc_outlined,
+                                title: 'Solicitud Fianzas Bancarias',
+                              );
+                            },
                           ),
                           SizedBox(height: smallSpacing * 1),
                           Gesture(
