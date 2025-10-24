@@ -207,7 +207,11 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
                           ),
                           SizedBox(height: smallSpacing * 1),
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                WebBankGuaranteeSoliRoute(filterType: '9537'),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,
@@ -216,7 +220,11 @@ class _CreditProductsScreenState extends State<CreditProductsScreen> {
                           ),
                           SizedBox(height: smallSpacing * 1),
                           Gesture(
-                            onTap: () {},
+                            onTap: () {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                WebBankGuaranteeSoliRoute(filterType: '9538'),
+                              );
+                            },
                             topPadding: topPadding,
                             letterSize: letterSize,
                             small: smallSpacing,

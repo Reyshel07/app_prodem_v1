@@ -67,4 +67,6 @@ class AppStrings {
       'WebSite/MakePaymentCreditCardForMobile';
   static const String initialChargeBankGuarantee =
       'WebSite/InitialChargeBankGuarantee';
+  static const String getWebBankGuaranteeSolicitationData =
+      'WebSite/GetWebBankGuaranteeSolicitationData';
 }

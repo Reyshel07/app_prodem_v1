@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/bank_guarantees/get_web_bank_guarantee_solicitation_data/domain/repositories/get_web_bank_guarantee_solicitation_data_repository.dart';

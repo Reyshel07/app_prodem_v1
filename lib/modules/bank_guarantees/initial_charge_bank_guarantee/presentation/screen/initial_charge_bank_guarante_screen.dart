@@ -2,6 +2,7 @@ import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension_theme.dart';
 import 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/presentation/bloc/initial_charge_bank_guarantee_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
+import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/presentation/widget/text_from_fiel.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
@@ -29,12 +30,16 @@ class _InitialChargeBankGuaranteScreenState
   final TextEditingController beneficiarioController = TextEditingController();
   final TextEditingController amountSoliciController = TextEditingController();
   final TextEditingController dayController = TextEditingController();
+  final TextEditingController cuceController = TextEditingController();
+  final TextEditingController propositoController = TextEditingController();
 
   String? _selectedAccount;
   String? _selectedFianzaValue;
   String? _selectedBeneficiarioValue;
   String? _selectedOjeFianzaValue;
   String? _selectedMonedaValue;
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -78,7 +83,7 @@ class _InitialChargeBankGuaranteScreenState
 
                   return Padding(
                     padding: EdgeInsets.all(topPadding * 0.05),
-                    child: Column(
+                    child: ListView(
                       children: [
                         Text(
                           'Nueva solicitud',
@@ -170,6 +175,36 @@ class _InitialChargeBankGuaranteScreenState
                           },
                           smallSpacing: smallSpacing,
                         ),
+                        TextFromFiel02(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: cuceController,
+                          lbText:
+                              'Cuce (Numero de la publicación de la fianza):',
+                        ),
+                        TextFromFiel02(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: propositoController,
+                          lbText: 'Propósito:',
+                        ),
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: isChecked,
+                              onChanged: (value) {
+                                setState(() => isChecked = value ?? false);
+                              },
+                            ),
+                            Text(
+                              'Términos y condiciones',
+                              style: AppTextStyles.mainStyleGreen14Bold(
+                                context,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Butoon1(onTap: () {}, lblTextField: 'CANCELAR'),
                       ],
                     ),
                   );

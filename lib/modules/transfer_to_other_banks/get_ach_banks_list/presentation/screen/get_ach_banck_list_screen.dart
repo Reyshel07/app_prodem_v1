@@ -128,7 +128,6 @@ class _GetAchBanckListScreenState extends State<GetAchBanckListScreen> {
                             ),
                           ],
                         ),
-
                         Row(
                           children: [
                             Checkbox(

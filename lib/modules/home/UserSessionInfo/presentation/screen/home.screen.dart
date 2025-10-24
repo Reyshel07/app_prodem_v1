@@ -171,7 +171,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     screenSize: screenSize,
                                     lblTextField: 'Pago de Servicios',
                                     icon: Icons.receipt_long,
-                                    onTap: () {},
+                                    onTap: () {
+                                      InjectorContainer.getIt<AppRouter>().push(
+                                        PaymentForServicesRoute(),
+                                      );
+                                    },
                                   ),
                                 ],
                               ),
