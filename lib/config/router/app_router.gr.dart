@@ -9,29 +9,31 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:app_prodem_v1/modules/ATM/atm_transaction_qr_create/presentation/screen/validate_qr_from_prodem_movil_screen.dart'
-    as _i38;
-import 'package:app_prodem_v1/modules/ATM/validate_qr_from_prodem_movil/domain/entities/validate_qr_from_prodem_entity.dart'
-    as _i58;
-import 'package:app_prodem_v1/modules/ATM/validate_qr_from_prodem_movil/presentation/screen/validate_decrypt_qr_screen.dart'
     as _i39;
+import 'package:app_prodem_v1/modules/ATM/validate_qr_from_prodem_movil/domain/entities/validate_qr_from_prodem_entity.dart'
+    as _i60;
+import 'package:app_prodem_v1/modules/ATM/validate_qr_from_prodem_movil/presentation/screen/validate_decrypt_qr_screen.dart'
+    as _i40;
 import 'package:app_prodem_v1/modules/auth/sign_in/presentation/screens/login_screen1.dart'
     as _i27;
+import 'package:app_prodem_v1/modules/bank_guarantees/get_web_bank_guarantee_solicitation_data/presentation/screen/get_web_bank_guarantee_solicitation_data_screen.dart'
+    as _i41;
 import 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/presentation/bloc/initial_charge_bank_guarantee_bloc.dart'
-    as _i52;
+    as _i54;
 import 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/presentation/screen/initial_charge_bank_guarante_screen.dart'
     as _i22;
 import 'package:app_prodem_v1/modules/credit_card/credit_card_data_for_recovery/domain/entities/entity.dart'
-    as _i54;
+    as _i56;
 import 'package:app_prodem_v1/modules/credit_card/credit_card_data_for_recovery/presentation/screen/credit_car_data_for_recovery_screen.dart'
     as _i4;
 import 'package:app_prodem_v1/modules/credit_card/CreditCardDataQuery/presentation/bloc/credit_card_data_query_bloc.dart'
-    as _i44;
+    as _i46;
 import 'package:app_prodem_v1/modules/credit_card/CreditCardDataQuery/presentation/screen/credit_card_data_query_screen.dart'
     as _i5;
 import 'package:app_prodem_v1/modules/credit_card/make_payment_credit_card_for_mobile/presentation/screen/make_payment_credit_card_for_mobile_screen.dart'
     as _i28;
 import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/presentation/bloc/get_loan_flow_annuities_detail_data_for_credit_bloc.dart'
-    as _i53;
+    as _i55;
 import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/presentation/screen/get_loan_flow_annuities_detail_data_for_credit_screen.dart'
     as _i24;
 import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForRecovery/presentation/screen/loan_flow_get_credit_detail_data_for_recovery_screen.dart'
@@ -41,7 +43,7 @@ import 'package:app_prodem_v1/modules/credits/LoanFlowGetCreditDetailDataForReco
 import 'package:app_prodem_v1/modules/dpf/GetListDpfDigitalSolicitation/presentation/screen/get_list_dpf_digital_solicitation_screen.dart'
     as _i19;
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation/bloc/get_parameters_to_digital_dpf_bloc.dart'
-    as _i55;
+    as _i57;
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation/screen/get_parameters_to_digital_dpf_screen.dart'
     as _i29;
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/presentation/screen/administracion_screen.dart'
@@ -57,80 +59,82 @@ import 'package:app_prodem_v1/modules/get_current_qr_by_type/presentation/screen
 import 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_client/presentation/screen/get_external_payment_generate_file_web_client_screen.dart'
     as _i15;
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/bloc/bloc.dart'
-    as _i42;
+    as _i44;
 import 'package:app_prodem_v1/modules/home/GetAccountBalances/presentation/screen/account_balances_screen.dart'
     as _i1;
 import 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/presentation/bloc/saving_account_extrac_bloc.dart'
-    as _i56;
+    as _i58;
 import 'package:app_prodem_v1/modules/home/savingsAccountExtractDataTransactionable/presentation/screen/saving_account_extrac_data_tran_screen.dart'
-    as _i33;
+    as _i34;
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/presentation/screen/get_account_enabled_to_transfer_screen.dart'
-    as _i31;
+    as _i32;
 import 'package:app_prodem_v1/modules/home/settings_screen/settings_screen.dart'
-    as _i35;
+    as _i36;
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/bloc.dart'
-    as _i51;
+    as _i53;
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart'
-    as _i43;
+    as _i45;
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/home.screen.dart'
     as _i20;
 import 'package:app_prodem_v1/modules/key_pr/presentation/screen/saving_account_data_key_screen.dart'
-    as _i36;
+    as _i37;
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/domain/entities/express_data_entity.dart'
-    as _i49;
+    as _i51;
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/presentation/bloc/express_data_bloc.dart'
-    as _i48;
+    as _i50;
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/presentation/screen/express_data_screen.dart'
     as _i13;
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/presentation/screen/pr_express_solicitation_web_sceen.dart'
-    as _i30;
+    as _i31;
 import 'package:app_prodem_v1/modules/lightning_turn/prodem_express_save_solicitation/presentation/screen/prodem_expres_save_solicitation_screen.dart'
     as _i14;
 import 'package:app_prodem_v1/modules/list_get_other_account_deposit/presentation/screen/list_get_other_account_deposit_screen.dart'
     as _i23;
+import 'package:app_prodem_v1/modules/payment%20for%20services/payment_for_services_screen.dart'
+    as _i30;
 import 'package:app_prodem_v1/modules/save_online_third_deposit/presentation/screen/save_online_third_deposit_screen.dart'
     as _i7;
 import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/domain/entities/decrypt_qr_string_entity.dart'
-    as _i45;
+    as _i47;
 import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/domain/entities/entity.dart'
-    as _i46;
+    as _i48;
 import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/presentation/screen/decrypt_qr_screen.dart'
     as _i10;
 import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/presentation/screen/decrypt_qr_string_screen.dart'
     as _i11;
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/domain/entities/entity.dart'
-    as _i47;
+    as _i49;
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/presentation/screen/encripted_qr_screen.dart'
     as _i12;
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/presentation/screen/get_encripted_qr_string_screen.dart'
     as _i18;
 import 'package:app_prodem_v1/modules/simple_ahc/get_report_movements_by_person_and_dates/presentation/screen/report_movement_by_person_and_date_screen.dart'
-    as _i32;
+    as _i33;
 import 'package:app_prodem_v1/modules/simple_ahc/payment_qr_string/presentation/screen/decrypt_qr_details_screen.dart'
     as _i9;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/presentation/bloc/saving_account_data_bloc.dart'
-    as _i57;
+    as _i59;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/GetSavingAccountData/presentation/screen/saving_account_data_screen.dart'
-    as _i37;
+    as _i38;
 import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_transfer_mobile/presentation/screen/saving_account_transfer_mobile_screen.dart'
-    as _i34;
+    as _i35;
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/presentation/bloc/get_ach_banck_bloc.dart'
-    as _i50;
+    as _i52;
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_banks_list/presentation/screen/get_ach_banck_list_screen.dart'
     as _i16;
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_data/presentation/screen/get_ach_data_screen.dart'
     as _i17;
-import 'package:auto_route/auto_route.dart' as _i40;
-import 'package:flutter/material.dart' as _i41;
+import 'package:auto_route/auto_route.dart' as _i42;
+import 'package:flutter/material.dart' as _i43;
 
 /// generated route for
 /// [_i1.AccountInquiryScreen]
-class AccountInquiryRoute extends _i40.PageRouteInfo<AccountInquiryRouteArgs> {
+class AccountInquiryRoute extends _i42.PageRouteInfo<AccountInquiryRouteArgs> {
   AccountInquiryRoute({
-    _i41.Key? key,
-    required _i42.AccountBalanceBloc bloc,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i44.AccountBalanceBloc bloc,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           AccountInquiryRoute.name,
           args: AccountInquiryRouteArgs(
@@ -143,7 +147,7 @@ class AccountInquiryRoute extends _i40.PageRouteInfo<AccountInquiryRouteArgs> {
 
   static const String name = 'AccountInquiryRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AccountInquiryRouteArgs>();
@@ -163,11 +167,11 @@ class AccountInquiryRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i42.AccountBalanceBloc bloc;
+  final _i44.AccountBalanceBloc bloc;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -178,11 +182,11 @@ class AccountInquiryRouteArgs {
 /// generated route for
 /// [_i2.AccountNumberlnOtherBankScreen]
 class AccountNumberlnOtherBankRoute
-    extends _i40.PageRouteInfo<AccountNumberlnOtherBankRouteArgs> {
+    extends _i42.PageRouteInfo<AccountNumberlnOtherBankRouteArgs> {
   AccountNumberlnOtherBankRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           AccountNumberlnOtherBankRoute.name,
           args: AccountNumberlnOtherBankRouteArgs(
@@ -194,7 +198,7 @@ class AccountNumberlnOtherBankRoute
 
   static const String name = 'AccountNumberlnOtherBankRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AccountNumberlnOtherBankRouteArgs>();
@@ -212,9 +216,9 @@ class AccountNumberlnOtherBankRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -224,8 +228,8 @@ class AccountNumberlnOtherBankRouteArgs {
 
 /// generated route for
 /// [_i3.AdministracionScreen]
-class AdministracionRoute extends _i40.PageRouteInfo<void> {
-  const AdministracionRoute({List<_i40.PageRouteInfo>? children})
+class AdministracionRoute extends _i42.PageRouteInfo<void> {
+  const AdministracionRoute({List<_i42.PageRouteInfo>? children})
       : super(
           AdministracionRoute.name,
           initialChildren: children,
@@ -233,7 +237,7 @@ class AdministracionRoute extends _i40.PageRouteInfo<void> {
 
   static const String name = 'AdministracionRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       return const _i3.AdministracionScreen();
@@ -244,12 +248,12 @@ class AdministracionRoute extends _i40.PageRouteInfo<void> {
 /// generated route for
 /// [_i4.CreditCardDataForRecoveryScreen]
 class CreditCardDataForRecoveryRoute
-    extends _i40.PageRouteInfo<CreditCardDataForRecoveryRouteArgs> {
+    extends _i42.PageRouteInfo<CreditCardDataForRecoveryRouteArgs> {
   CreditCardDataForRecoveryRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
     required _i4.CreditType creditType,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           CreditCardDataForRecoveryRoute.name,
           args: CreditCardDataForRecoveryRouteArgs(
@@ -262,7 +266,7 @@ class CreditCardDataForRecoveryRoute
 
   static const String name = 'CreditCardDataForRecoveryRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreditCardDataForRecoveryRouteArgs>();
@@ -282,9 +286,9 @@ class CreditCardDataForRecoveryRouteArgs {
     required this.creditType,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   final _i4.CreditType creditType;
 
@@ -297,12 +301,12 @@ class CreditCardDataForRecoveryRouteArgs {
 /// generated route for
 /// [_i5.CreditCardDataQueryScreen]
 class CreditCardDataQueryRoute
-    extends _i40.PageRouteInfo<CreditCardDataQueryRouteArgs> {
+    extends _i42.PageRouteInfo<CreditCardDataQueryRouteArgs> {
   CreditCardDataQueryRoute({
-    _i41.Key? key,
-    required _i44.CreditCardDataQueryBloc bloc,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i46.CreditCardDataQueryBloc bloc,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           CreditCardDataQueryRoute.name,
           args: CreditCardDataQueryRouteArgs(
@@ -315,7 +319,7 @@ class CreditCardDataQueryRoute
 
   static const String name = 'CreditCardDataQueryRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreditCardDataQueryRouteArgs>();
@@ -335,11 +339,11 @@ class CreditCardDataQueryRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i44.CreditCardDataQueryBloc bloc;
+  final _i46.CreditCardDataQueryBloc bloc;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -350,11 +354,11 @@ class CreditCardDataQueryRouteArgs {
 /// generated route for
 /// [_i6.CurrentQrByTypeScreen]
 class CurrentQrByTypeRoute
-    extends _i40.PageRouteInfo<CurrentQrByTypeRouteArgs> {
+    extends _i42.PageRouteInfo<CurrentQrByTypeRouteArgs> {
   CurrentQrByTypeRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           CurrentQrByTypeRoute.name,
           args: CurrentQrByTypeRouteArgs(
@@ -366,7 +370,7 @@ class CurrentQrByTypeRoute
 
   static const String name = 'CurrentQrByTypeRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CurrentQrByTypeRouteArgs>();
@@ -384,9 +388,9 @@ class CurrentQrByTypeRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -397,9 +401,9 @@ class CurrentQrByTypeRouteArgs {
 /// generated route for
 /// [_i7.CurrentQrByTypeTreeScreen]
 class CurrentQrByTypeTreeRoute
-    extends _i40.PageRouteInfo<CurrentQrByTypeTreeRouteArgs> {
+    extends _i42.PageRouteInfo<CurrentQrByTypeTreeRouteArgs> {
   CurrentQrByTypeTreeRoute({
-    _i41.Key? key,
+    _i43.Key? key,
     required String bancoOri,
     required String cuenta,
     required String cuentaOri,
@@ -410,7 +414,7 @@ class CurrentQrByTypeTreeRoute
     required String monto,
     required String nameDepo,
     required String oriFon,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           CurrentQrByTypeTreeRoute.name,
           args: CurrentQrByTypeTreeRouteArgs(
@@ -431,7 +435,7 @@ class CurrentQrByTypeTreeRoute
 
   static const String name = 'CurrentQrByTypeTreeRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CurrentQrByTypeTreeRouteArgs>();
@@ -467,7 +471,7 @@ class CurrentQrByTypeTreeRouteArgs {
     required this.oriFon,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
   final String bancoOri;
 
@@ -498,9 +502,9 @@ class CurrentQrByTypeTreeRouteArgs {
 /// generated route for
 /// [_i8.CurrentQrByTypeTwoScreen]
 class CurrentQrByTypeTwoRoute
-    extends _i40.PageRouteInfo<CurrentQrByTypeTwoRouteArgs> {
+    extends _i42.PageRouteInfo<CurrentQrByTypeTwoRouteArgs> {
   CurrentQrByTypeTwoRoute({
-    _i41.Key? key,
+    _i43.Key? key,
     required String bancoOri,
     required String cuenta,
     required String cuentaOri,
@@ -511,7 +515,7 @@ class CurrentQrByTypeTwoRoute
     required String monto,
     required String nameDepo,
     required String oriFon,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           CurrentQrByTypeTwoRoute.name,
           args: CurrentQrByTypeTwoRouteArgs(
@@ -532,7 +536,7 @@ class CurrentQrByTypeTwoRoute
 
   static const String name = 'CurrentQrByTypeTwoRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CurrentQrByTypeTwoRouteArgs>();
@@ -568,7 +572,7 @@ class CurrentQrByTypeTwoRouteArgs {
     required this.oriFon,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
   final String bancoOri;
 
@@ -599,16 +603,16 @@ class CurrentQrByTypeTwoRouteArgs {
 /// generated route for
 /// [_i9.DecryptQrDetailsScreen]
 class DecryptQrDetailsRoute
-    extends _i40.PageRouteInfo<DecryptQrDetailsRouteArgs> {
+    extends _i42.PageRouteInfo<DecryptQrDetailsRouteArgs> {
   DecryptQrDetailsRoute({
-    _i41.Key? key,
+    _i43.Key? key,
     required String cuenta,
     required String saldo,
     required String monto,
     required String cambioMoneda,
-    required _i45.DecryptQrStringEntity decryptQrStringEntity,
+    required _i47.DecryptQrStringEntity decryptQrStringEntity,
     required String stringQr,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           DecryptQrDetailsRoute.name,
           args: DecryptQrDetailsRouteArgs(
@@ -625,7 +629,7 @@ class DecryptQrDetailsRoute
 
   static const String name = 'DecryptQrDetailsRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<DecryptQrDetailsRouteArgs>();
@@ -653,7 +657,7 @@ class DecryptQrDetailsRouteArgs {
     required this.stringQr,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
   final String cuenta;
 
@@ -663,7 +667,7 @@ class DecryptQrDetailsRouteArgs {
 
   final String cambioMoneda;
 
-  final _i45.DecryptQrStringEntity decryptQrStringEntity;
+  final _i47.DecryptQrStringEntity decryptQrStringEntity;
 
   final String stringQr;
 
@@ -675,13 +679,13 @@ class DecryptQrDetailsRouteArgs {
 
 /// generated route for
 /// [_i10.DecryptQrScreen]
-class DecryptQrRoute extends _i40.PageRouteInfo<DecryptQrRouteArgs> {
+class DecryptQrRoute extends _i42.PageRouteInfo<DecryptQrRouteArgs> {
   DecryptQrRoute({
-    _i41.Key? key,
-    required _i46.DecryptQrStringEntity decryptQrStringEntity,
-    required _i43.SessionInfoBloc sessionBloc,
+    _i43.Key? key,
+    required _i48.DecryptQrStringEntity decryptQrStringEntity,
+    required _i45.SessionInfoBloc sessionBloc,
     required String stringQr,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           DecryptQrRoute.name,
           args: DecryptQrRouteArgs(
@@ -695,7 +699,7 @@ class DecryptQrRoute extends _i40.PageRouteInfo<DecryptQrRouteArgs> {
 
   static const String name = 'DecryptQrRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<DecryptQrRouteArgs>();
@@ -717,11 +721,11 @@ class DecryptQrRouteArgs {
     required this.stringQr,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i46.DecryptQrStringEntity decryptQrStringEntity;
+  final _i48.DecryptQrStringEntity decryptQrStringEntity;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   final String stringQr;
 
@@ -734,11 +738,11 @@ class DecryptQrRouteArgs {
 /// generated route for
 /// [_i11.DecryptQrStringScreen]
 class DecryptQrStringRoute
-    extends _i40.PageRouteInfo<DecryptQrStringRouteArgs> {
+    extends _i42.PageRouteInfo<DecryptQrStringRouteArgs> {
   DecryptQrStringRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           DecryptQrStringRoute.name,
           args: DecryptQrStringRouteArgs(
@@ -750,7 +754,7 @@ class DecryptQrStringRoute
 
   static const String name = 'DecryptQrStringRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<DecryptQrStringRouteArgs>();
@@ -768,9 +772,9 @@ class DecryptQrStringRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -780,17 +784,17 @@ class DecryptQrStringRouteArgs {
 
 /// generated route for
 /// [_i12.EncriptedQRScreen]
-class EncriptedQRRoute extends _i40.PageRouteInfo<EncriptedQRRouteArgs> {
+class EncriptedQRRoute extends _i42.PageRouteInfo<EncriptedQRRouteArgs> {
   EncriptedQRRoute({
-    _i41.Key? key,
-    required _i47.GetEncryptedQrStringEntity getEncryptedQrStringEntity,
+    _i43.Key? key,
+    required _i49.GetEncryptedQrStringEntity getEncryptedQrStringEntity,
     required String moneda,
     required String monto,
     required String referencia,
     required String cuenta,
     required String? nombre,
     required String valido,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           EncriptedQRRoute.name,
           args: EncriptedQRRouteArgs(
@@ -808,7 +812,7 @@ class EncriptedQRRoute extends _i40.PageRouteInfo<EncriptedQRRouteArgs> {
 
   static const String name = 'EncriptedQRRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<EncriptedQRRouteArgs>();
@@ -838,9 +842,9 @@ class EncriptedQRRouteArgs {
     required this.valido,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i47.GetEncryptedQrStringEntity getEncryptedQrStringEntity;
+  final _i49.GetEncryptedQrStringEntity getEncryptedQrStringEntity;
 
   final String moneda;
 
@@ -862,12 +866,12 @@ class EncriptedQRRouteArgs {
 
 /// generated route for
 /// [_i13.ExpressDataScreen]
-class ExpressDataRoute extends _i40.PageRouteInfo<ExpressDataRouteArgs> {
+class ExpressDataRoute extends _i42.PageRouteInfo<ExpressDataRouteArgs> {
   ExpressDataRoute({
-    _i41.Key? key,
-    required _i48.ExpressDataBloc bloc,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i50.ExpressDataBloc bloc,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           ExpressDataRoute.name,
           args: ExpressDataRouteArgs(
@@ -880,7 +884,7 @@ class ExpressDataRoute extends _i40.PageRouteInfo<ExpressDataRouteArgs> {
 
   static const String name = 'ExpressDataRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ExpressDataRouteArgs>();
@@ -900,11 +904,11 @@ class ExpressDataRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i48.ExpressDataBloc bloc;
+  final _i50.ExpressDataBloc bloc;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -914,10 +918,10 @@ class ExpressDataRouteArgs {
 
 /// generated route for
 /// [_i14.ExpressDataTwoScreen]
-class ExpressDataTwoRoute extends _i40.PageRouteInfo<ExpressDataTwoRouteArgs> {
+class ExpressDataTwoRoute extends _i42.PageRouteInfo<ExpressDataTwoRouteArgs> {
   ExpressDataTwoRoute({
-    _i41.Key? key,
-    required _i49.GetProdemExpressDataResponseEntity res,
+    _i43.Key? key,
+    required _i51.GetProdemExpressDataResponseEntity res,
     required String cambioMo,
     required String celDesti,
     required String ciDesti,
@@ -926,7 +930,7 @@ class ExpressDataTwoRoute extends _i40.PageRouteInfo<ExpressDataTwoRouteArgs> {
     required String montoDebi,
     required String montoImp,
     required String montoTotalDebi,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           ExpressDataTwoRoute.name,
           args: ExpressDataTwoRouteArgs(
@@ -946,7 +950,7 @@ class ExpressDataTwoRoute extends _i40.PageRouteInfo<ExpressDataTwoRouteArgs> {
 
   static const String name = 'ExpressDataTwoRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ExpressDataTwoRouteArgs>();
@@ -980,9 +984,9 @@ class ExpressDataTwoRouteArgs {
     required this.montoTotalDebi,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i49.GetProdemExpressDataResponseEntity res;
+  final _i51.GetProdemExpressDataResponseEntity res;
 
   final String cambioMo;
 
@@ -1009,9 +1013,9 @@ class ExpressDataTwoRouteArgs {
 /// generated route for
 /// [_i15.ExternalPaymentGenerateFileWebClientScreen]
 class ExternalPaymentGenerateFileWebClientRoute
-    extends _i40.PageRouteInfo<void> {
+    extends _i42.PageRouteInfo<void> {
   const ExternalPaymentGenerateFileWebClientRoute(
-      {List<_i40.PageRouteInfo>? children})
+      {List<_i42.PageRouteInfo>? children})
       : super(
           ExternalPaymentGenerateFileWebClientRoute.name,
           initialChildren: children,
@@ -1019,7 +1023,7 @@ class ExternalPaymentGenerateFileWebClientRoute
 
   static const String name = 'ExternalPaymentGenerateFileWebClientRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       return const _i15.ExternalPaymentGenerateFileWebClientScreen();
@@ -1030,12 +1034,12 @@ class ExternalPaymentGenerateFileWebClientRoute
 /// generated route for
 /// [_i16.GetAchBanckListScreen]
 class GetAchBanckListRoute
-    extends _i40.PageRouteInfo<GetAchBanckListRouteArgs> {
+    extends _i42.PageRouteInfo<GetAchBanckListRouteArgs> {
   GetAchBanckListRoute({
-    _i41.Key? key,
-    required _i50.GetAchBanckBloc bloc,
-    required _i51.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i52.GetAchBanckBloc bloc,
+    required _i53.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           GetAchBanckListRoute.name,
           args: GetAchBanckListRouteArgs(
@@ -1048,7 +1052,7 @@ class GetAchBanckListRoute
 
   static const String name = 'GetAchBanckListRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<GetAchBanckListRouteArgs>();
@@ -1068,11 +1072,11 @@ class GetAchBanckListRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i50.GetAchBanckBloc bloc;
+  final _i52.GetAchBanckBloc bloc;
 
-  final _i51.SessionInfoBloc sessionBloc;
+  final _i53.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -1082,9 +1086,9 @@ class GetAchBanckListRouteArgs {
 
 /// generated route for
 /// [_i17.GetAchDataScreen]
-class GetAchDataRoute extends _i40.PageRouteInfo<GetAchDataRouteArgs> {
+class GetAchDataRoute extends _i42.PageRouteInfo<GetAchDataRouteArgs> {
   GetAchDataRoute({
-    _i41.Key? key,
+    _i43.Key? key,
     required String bancoDes,
     required String cambioM,
     required String cuentaDes,
@@ -1100,7 +1104,7 @@ class GetAchDataRoute extends _i40.PageRouteInfo<GetAchDataRouteArgs> {
     required String idBankDestiny,
     required String saldoDispo,
     required String idCuentaEnvio,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           GetAchDataRoute.name,
           args: GetAchDataRouteArgs(
@@ -1126,7 +1130,7 @@ class GetAchDataRoute extends _i40.PageRouteInfo<GetAchDataRouteArgs> {
 
   static const String name = 'GetAchDataRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<GetAchDataRouteArgs>();
@@ -1172,7 +1176,7 @@ class GetAchDataRouteArgs {
     required this.idCuentaEnvio,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
   final String bancoDes;
 
@@ -1213,11 +1217,11 @@ class GetAchDataRouteArgs {
 /// generated route for
 /// [_i18.GetEncriptedQrStringScreen]
 class GetEncriptedQrStringRoute
-    extends _i40.PageRouteInfo<GetEncriptedQrStringRouteArgs> {
+    extends _i42.PageRouteInfo<GetEncriptedQrStringRouteArgs> {
   GetEncriptedQrStringRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           GetEncriptedQrStringRoute.name,
           args: GetEncriptedQrStringRouteArgs(
@@ -1229,7 +1233,7 @@ class GetEncriptedQrStringRoute
 
   static const String name = 'GetEncriptedQrStringRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<GetEncriptedQrStringRouteArgs>();
@@ -1247,9 +1251,9 @@ class GetEncriptedQrStringRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -1259,8 +1263,8 @@ class GetEncriptedQrStringRouteArgs {
 
 /// generated route for
 /// [_i19.GetListDpfDigitalSolicitationScreen]
-class GetListDpfDigitalSolicitationRoute extends _i40.PageRouteInfo<void> {
-  const GetListDpfDigitalSolicitationRoute({List<_i40.PageRouteInfo>? children})
+class GetListDpfDigitalSolicitationRoute extends _i42.PageRouteInfo<void> {
+  const GetListDpfDigitalSolicitationRoute({List<_i42.PageRouteInfo>? children})
       : super(
           GetListDpfDigitalSolicitationRoute.name,
           initialChildren: children,
@@ -1268,7 +1272,7 @@ class GetListDpfDigitalSolicitationRoute extends _i40.PageRouteInfo<void> {
 
   static const String name = 'GetListDpfDigitalSolicitationRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       return const _i19.GetListDpfDigitalSolicitationScreen();
@@ -1278,8 +1282,8 @@ class GetListDpfDigitalSolicitationRoute extends _i40.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i20.HomeScreen]
-class HomeRoute extends _i40.PageRouteInfo<void> {
-  const HomeRoute({List<_i40.PageRouteInfo>? children})
+class HomeRoute extends _i42.PageRouteInfo<void> {
+  const HomeRoute({List<_i42.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -1287,7 +1291,7 @@ class HomeRoute extends _i40.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       return const _i20.HomeScreen();
@@ -1297,8 +1301,8 @@ class HomeRoute extends _i40.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i21.InforAccionesScreen]
-class InforAccionesRoute extends _i40.PageRouteInfo<void> {
-  const InforAccionesRoute({List<_i40.PageRouteInfo>? children})
+class InforAccionesRoute extends _i42.PageRouteInfo<void> {
+  const InforAccionesRoute({List<_i42.PageRouteInfo>? children})
       : super(
           InforAccionesRoute.name,
           initialChildren: children,
@@ -1306,7 +1310,7 @@ class InforAccionesRoute extends _i40.PageRouteInfo<void> {
 
   static const String name = 'InforAccionesRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       return const _i21.InforAccionesScreen();
@@ -1317,12 +1321,12 @@ class InforAccionesRoute extends _i40.PageRouteInfo<void> {
 /// generated route for
 /// [_i22.InitialChargeBankGuaranteScreen]
 class InitialChargeBankGuaranteRoute
-    extends _i40.PageRouteInfo<InitialChargeBankGuaranteRouteArgs> {
+    extends _i42.PageRouteInfo<InitialChargeBankGuaranteRouteArgs> {
   InitialChargeBankGuaranteRoute({
-    _i41.Key? key,
-    required _i52.InitialChargeBankGuaranteeBloc bloc,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i54.InitialChargeBankGuaranteeBloc bloc,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           InitialChargeBankGuaranteRoute.name,
           args: InitialChargeBankGuaranteRouteArgs(
@@ -1335,7 +1339,7 @@ class InitialChargeBankGuaranteRoute
 
   static const String name = 'InitialChargeBankGuaranteRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<InitialChargeBankGuaranteRouteArgs>();
@@ -1355,11 +1359,11 @@ class InitialChargeBankGuaranteRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i52.InitialChargeBankGuaranteeBloc bloc;
+  final _i54.InitialChargeBankGuaranteeBloc bloc;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -1369,8 +1373,8 @@ class InitialChargeBankGuaranteRouteArgs {
 
 /// generated route for
 /// [_i23.ListGetOtherAccountDepositScreen]
-class ListGetOtherAccountDepositRoute extends _i40.PageRouteInfo<void> {
-  const ListGetOtherAccountDepositRoute({List<_i40.PageRouteInfo>? children})
+class ListGetOtherAccountDepositRoute extends _i42.PageRouteInfo<void> {
+  const ListGetOtherAccountDepositRoute({List<_i42.PageRouteInfo>? children})
       : super(
           ListGetOtherAccountDepositRoute.name,
           initialChildren: children,
@@ -1378,7 +1382,7 @@ class ListGetOtherAccountDepositRoute extends _i40.PageRouteInfo<void> {
 
   static const String name = 'ListGetOtherAccountDepositRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       return const _i23.ListGetOtherAccountDepositScreen();
@@ -1389,12 +1393,12 @@ class ListGetOtherAccountDepositRoute extends _i40.PageRouteInfo<void> {
 /// generated route for
 /// [_i24.LoanFlowAnnuitiesDetailDataForCreditScreen]
 class LoanFlowAnnuitiesDetailDataForCreditRoute
-    extends _i40.PageRouteInfo<LoanFlowAnnuitiesDetailDataForCreditRouteArgs> {
+    extends _i42.PageRouteInfo<LoanFlowAnnuitiesDetailDataForCreditRouteArgs> {
   LoanFlowAnnuitiesDetailDataForCreditRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
-    required _i53.GetLoanFlowAnnuitiesDetailDataForCreditBloc bloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
+    required _i55.GetLoanFlowAnnuitiesDetailDataForCreditBloc bloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           LoanFlowAnnuitiesDetailDataForCreditRoute.name,
           args: LoanFlowAnnuitiesDetailDataForCreditRouteArgs(
@@ -1407,7 +1411,7 @@ class LoanFlowAnnuitiesDetailDataForCreditRoute
 
   static const String name = 'LoanFlowAnnuitiesDetailDataForCreditRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<LoanFlowAnnuitiesDetailDataForCreditRouteArgs>();
@@ -1427,11 +1431,11 @@ class LoanFlowAnnuitiesDetailDataForCreditRouteArgs {
     required this.bloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
-  final _i53.GetLoanFlowAnnuitiesDetailDataForCreditBloc bloc;
+  final _i55.GetLoanFlowAnnuitiesDetailDataForCreditBloc bloc;
 
   @override
   String toString() {
@@ -1441,12 +1445,12 @@ class LoanFlowAnnuitiesDetailDataForCreditRouteArgs {
 
 /// generated route for
 /// [_i25.LoanFlowGetCreditDetailDataForRecoveryByCodeScreen]
-class LoanFlowGetCreditDetailDataForRecoveryByCodeRoute extends _i40
+class LoanFlowGetCreditDetailDataForRecoveryByCodeRoute extends _i42
     .PageRouteInfo<LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs> {
   LoanFlowGetCreditDetailDataForRecoveryByCodeRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           LoanFlowGetCreditDetailDataForRecoveryByCodeRoute.name,
           args: LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs(
@@ -1459,7 +1463,7 @@ class LoanFlowGetCreditDetailDataForRecoveryByCodeRoute extends _i40
   static const String name =
       'LoanFlowGetCreditDetailDataForRecoveryByCodeRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args =
@@ -1478,9 +1482,9 @@ class LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -1490,12 +1494,12 @@ class LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs {
 
 /// generated route for
 /// [_i26.LoanFlowGetCreditDetailDataForRecoveryScreen]
-class LoanFlowGetCreditDetailDataForRecoveryRoute extends _i40
+class LoanFlowGetCreditDetailDataForRecoveryRoute extends _i42
     .PageRouteInfo<LoanFlowGetCreditDetailDataForRecoveryRouteArgs> {
   LoanFlowGetCreditDetailDataForRecoveryRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           LoanFlowGetCreditDetailDataForRecoveryRoute.name,
           args: LoanFlowGetCreditDetailDataForRecoveryRouteArgs(
@@ -1507,7 +1511,7 @@ class LoanFlowGetCreditDetailDataForRecoveryRoute extends _i40
 
   static const String name = 'LoanFlowGetCreditDetailDataForRecoveryRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args =
@@ -1526,9 +1530,9 @@ class LoanFlowGetCreditDetailDataForRecoveryRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -1538,8 +1542,8 @@ class LoanFlowGetCreditDetailDataForRecoveryRouteArgs {
 
 /// generated route for
 /// [_i27.LoginScreen1]
-class LoginRoute1 extends _i40.PageRouteInfo<void> {
-  const LoginRoute1({List<_i40.PageRouteInfo>? children})
+class LoginRoute1 extends _i42.PageRouteInfo<void> {
+  const LoginRoute1({List<_i42.PageRouteInfo>? children})
       : super(
           LoginRoute1.name,
           initialChildren: children,
@@ -1547,7 +1551,7 @@ class LoginRoute1 extends _i40.PageRouteInfo<void> {
 
   static const String name = 'LoginRoute1';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       return const _i27.LoginScreen1();
@@ -1558,15 +1562,15 @@ class LoginRoute1 extends _i40.PageRouteInfo<void> {
 /// generated route for
 /// [_i28.MakePaymentCreditCardForMobileScreen]
 class MakePaymentCreditCardForMobileRoute
-    extends _i40.PageRouteInfo<MakePaymentCreditCardForMobileRouteArgs> {
+    extends _i42.PageRouteInfo<MakePaymentCreditCardForMobileRouteArgs> {
   MakePaymentCreditCardForMobileRoute({
-    _i41.Key? key,
+    _i43.Key? key,
     required String cuentaOri,
-    required _i54.CreditCardDataForRecoveryResponseEntity res,
+    required _i56.CreditCardDataForRecoveryResponseEntity res,
     required String monotPagar,
     required String idCreditLineInstance,
     required String idSavingAccount,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           MakePaymentCreditCardForMobileRoute.name,
           args: MakePaymentCreditCardForMobileRouteArgs(
@@ -1582,7 +1586,7 @@ class MakePaymentCreditCardForMobileRoute
 
   static const String name = 'MakePaymentCreditCardForMobileRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<MakePaymentCreditCardForMobileRouteArgs>();
@@ -1608,11 +1612,11 @@ class MakePaymentCreditCardForMobileRouteArgs {
     required this.idSavingAccount,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
   final String cuentaOri;
 
-  final _i54.CreditCardDataForRecoveryResponseEntity res;
+  final _i56.CreditCardDataForRecoveryResponseEntity res;
 
   final String monotPagar;
 
@@ -1629,12 +1633,12 @@ class MakePaymentCreditCardForMobileRouteArgs {
 /// generated route for
 /// [_i29.ParametersToDigitalDpfScreen]
 class ParametersToDigitalDpfRoute
-    extends _i40.PageRouteInfo<ParametersToDigitalDpfRouteArgs> {
+    extends _i42.PageRouteInfo<ParametersToDigitalDpfRouteArgs> {
   ParametersToDigitalDpfRoute({
-    _i41.Key? key,
-    required _i51.SessionInfoBloc sessioninfo,
-    required _i55.GetParametersToDigitalDpfBloc bloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i53.SessionInfoBloc sessioninfo,
+    required _i57.GetParametersToDigitalDpfBloc bloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           ParametersToDigitalDpfRoute.name,
           args: ParametersToDigitalDpfRouteArgs(
@@ -1647,7 +1651,7 @@ class ParametersToDigitalDpfRoute
 
   static const String name = 'ParametersToDigitalDpfRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ParametersToDigitalDpfRouteArgs>();
@@ -1667,11 +1671,11 @@ class ParametersToDigitalDpfRouteArgs {
     required this.bloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i51.SessionInfoBloc sessioninfo;
+  final _i53.SessionInfoBloc sessioninfo;
 
-  final _i55.GetParametersToDigitalDpfBloc bloc;
+  final _i57.GetParametersToDigitalDpfBloc bloc;
 
   @override
   String toString() {
@@ -1680,13 +1684,32 @@ class ParametersToDigitalDpfRouteArgs {
 }
 
 /// generated route for
-/// [_i30.PrExpressSolicitationWebScreen]
+/// [_i30.PaymentForServicesScreen]
+class PaymentForServicesRoute extends _i42.PageRouteInfo<void> {
+  const PaymentForServicesRoute({List<_i42.PageRouteInfo>? children})
+      : super(
+          PaymentForServicesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PaymentForServicesRoute';
+
+  static _i42.PageInfo page = _i42.PageInfo(
+    name,
+    builder: (data) {
+      return const _i30.PaymentForServicesScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i31.PrExpressSolicitationWebScreen]
 class PrExpressSolicitationWebRoute
-    extends _i40.PageRouteInfo<PrExpressSolicitationWebRouteArgs> {
+    extends _i42.PageRouteInfo<PrExpressSolicitationWebRouteArgs> {
   PrExpressSolicitationWebRoute({
-    _i41.Key? key,
+    _i43.Key? key,
     required List<String> listCodeSavingsAccount,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           PrExpressSolicitationWebRoute.name,
           args: PrExpressSolicitationWebRouteArgs(
@@ -1698,11 +1721,11 @@ class PrExpressSolicitationWebRoute
 
   static const String name = 'PrExpressSolicitationWebRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<PrExpressSolicitationWebRouteArgs>();
-      return _i30.PrExpressSolicitationWebScreen(
+      return _i31.PrExpressSolicitationWebScreen(
         key: args.key,
         listCodeSavingsAccount: args.listCodeSavingsAccount,
       );
@@ -1716,7 +1739,7 @@ class PrExpressSolicitationWebRouteArgs {
     required this.listCodeSavingsAccount,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
   final List<String> listCodeSavingsAccount;
 
@@ -1727,10 +1750,10 @@ class PrExpressSolicitationWebRouteArgs {
 }
 
 /// generated route for
-/// [_i31.ReceiveTransfersByCellPhoneNumberScreen]
-class ReceiveTransfersByCellPhoneNumberRoute extends _i40.PageRouteInfo<void> {
+/// [_i32.ReceiveTransfersByCellPhoneNumberScreen]
+class ReceiveTransfersByCellPhoneNumberRoute extends _i42.PageRouteInfo<void> {
   const ReceiveTransfersByCellPhoneNumberRoute(
-      {List<_i40.PageRouteInfo>? children})
+      {List<_i42.PageRouteInfo>? children})
       : super(
           ReceiveTransfersByCellPhoneNumberRoute.name,
           initialChildren: children,
@@ -1738,18 +1761,18 @@ class ReceiveTransfersByCellPhoneNumberRoute extends _i40.PageRouteInfo<void> {
 
   static const String name = 'ReceiveTransfersByCellPhoneNumberRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
-      return const _i31.ReceiveTransfersByCellPhoneNumberScreen();
+      return const _i32.ReceiveTransfersByCellPhoneNumberScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i32.ReportMovementByPErsonAndDateScreen]
-class ReportMovementByPErsonAndDateRoute extends _i40.PageRouteInfo<void> {
-  const ReportMovementByPErsonAndDateRoute({List<_i40.PageRouteInfo>? children})
+/// [_i33.ReportMovementByPErsonAndDateScreen]
+class ReportMovementByPErsonAndDateRoute extends _i42.PageRouteInfo<void> {
+  const ReportMovementByPErsonAndDateRoute({List<_i42.PageRouteInfo>? children})
       : super(
           ReportMovementByPErsonAndDateRoute.name,
           initialChildren: children,
@@ -1757,23 +1780,23 @@ class ReportMovementByPErsonAndDateRoute extends _i40.PageRouteInfo<void> {
 
   static const String name = 'ReportMovementByPErsonAndDateRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
-      return const _i32.ReportMovementByPErsonAndDateScreen();
+      return const _i33.ReportMovementByPErsonAndDateScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i33.SavingAccountExtractDataTranSacreen]
+/// [_i34.SavingAccountExtractDataTranSacreen]
 class SavingAccountExtractDataTranSacreen
-    extends _i40.PageRouteInfo<SavingAccountExtractDataTranSacreenArgs> {
+    extends _i42.PageRouteInfo<SavingAccountExtractDataTranSacreenArgs> {
   SavingAccountExtractDataTranSacreen({
-    _i41.Key? key,
-    required _i56.SavingAccountExtracBloc bloc,
-    required _i51.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i58.SavingAccountExtracBloc bloc,
+    required _i53.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           SavingAccountExtractDataTranSacreen.name,
           args: SavingAccountExtractDataTranSacreenArgs(
@@ -1786,11 +1809,11 @@ class SavingAccountExtractDataTranSacreen
 
   static const String name = 'SavingAccountExtractDataTranSacreen';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SavingAccountExtractDataTranSacreenArgs>();
-      return _i33.SavingAccountExtractDataTranSacreen(
+      return _i34.SavingAccountExtractDataTranSacreen(
         key: args.key,
         bloc: args.bloc,
         sessionBloc: args.sessionBloc,
@@ -1806,11 +1829,11 @@ class SavingAccountExtractDataTranSacreenArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i56.SavingAccountExtracBloc bloc;
+  final _i58.SavingAccountExtracBloc bloc;
 
-  final _i51.SessionInfoBloc sessionBloc;
+  final _i53.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
@@ -1819,13 +1842,13 @@ class SavingAccountExtractDataTranSacreenArgs {
 }
 
 /// generated route for
-/// [_i34.SavingAccountTransMobileEndScreen]
+/// [_i35.SavingAccountTransMobileEndScreen]
 class SavingAccountTransMobileEndRoute
-    extends _i40.PageRouteInfo<SavingAccountTransMobileEndRouteArgs> {
+    extends _i42.PageRouteInfo<SavingAccountTransMobileEndRouteArgs> {
   SavingAccountTransMobileEndRoute({
-    _i41.Key? key,
+    _i43.Key? key,
     required String response,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           SavingAccountTransMobileEndRoute.name,
           args: SavingAccountTransMobileEndRouteArgs(
@@ -1837,11 +1860,11 @@ class SavingAccountTransMobileEndRoute
 
   static const String name = 'SavingAccountTransMobileEndRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SavingAccountTransMobileEndRouteArgs>();
-      return _i34.SavingAccountTransMobileEndScreen(
+      return _i35.SavingAccountTransMobileEndScreen(
         key: args.key,
         response: args.response,
       );
@@ -1855,7 +1878,7 @@ class SavingAccountTransMobileEndRouteArgs {
     required this.response,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
   final String response;
 
@@ -1866,9 +1889,9 @@ class SavingAccountTransMobileEndRouteArgs {
 }
 
 /// generated route for
-/// [_i35.SettingsScreen]
-class SettingsRoute extends _i40.PageRouteInfo<void> {
-  const SettingsRoute({List<_i40.PageRouteInfo>? children})
+/// [_i36.SettingsScreen]
+class SettingsRoute extends _i42.PageRouteInfo<void> {
+  const SettingsRoute({List<_i42.PageRouteInfo>? children})
       : super(
           SettingsRoute.name,
           initialChildren: children,
@@ -1876,26 +1899,26 @@ class SettingsRoute extends _i40.PageRouteInfo<void> {
 
   static const String name = 'SettingsRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
-      return const _i35.SettingsScreen();
+      return const _i36.SettingsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i36.TransferFeesTwoScreen]
+/// [_i37.TransferFeesTwoScreen]
 class TransferFeesTwoRoute
-    extends _i40.PageRouteInfo<TransferFeesTwoRouteArgs> {
+    extends _i42.PageRouteInfo<TransferFeesTwoRouteArgs> {
   TransferFeesTwoRoute({
-    _i41.Key? key,
+    _i43.Key? key,
     required String? cuentaO,
     required String? cuentaD,
     required String? monto,
     required String? saldo,
     required List<String>? titulares,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           TransferFeesTwoRoute.name,
           args: TransferFeesTwoRouteArgs(
@@ -1911,11 +1934,11 @@ class TransferFeesTwoRoute
 
   static const String name = 'TransferFeesTwoRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<TransferFeesTwoRouteArgs>();
-      return _i36.TransferFeesTwoScreen(
+      return _i37.TransferFeesTwoScreen(
         key: args.key,
         cuentaO: args.cuentaO,
         cuentaD: args.cuentaD,
@@ -1937,7 +1960,7 @@ class TransferFeesTwoRouteArgs {
     required this.titulares,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
   final String? cuentaO;
 
@@ -1956,14 +1979,14 @@ class TransferFeesTwoRouteArgs {
 }
 
 /// generated route for
-/// [_i37.TransferScreen]
-class TransferRoute extends _i40.PageRouteInfo<TransferRouteArgs> {
+/// [_i38.TransferScreen]
+class TransferRoute extends _i42.PageRouteInfo<TransferRouteArgs> {
   TransferRoute({
-    _i41.Key? key,
-    required _i57.SavingAccountDataBloc bloc,
-    required _i51.SessionInfoBloc sessionBloc,
-    required _i37.TransferType transferType,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i59.SavingAccountDataBloc bloc,
+    required _i53.SessionInfoBloc sessionBloc,
+    required _i38.TransferType transferType,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           TransferRoute.name,
           args: TransferRouteArgs(
@@ -1977,11 +2000,11 @@ class TransferRoute extends _i40.PageRouteInfo<TransferRouteArgs> {
 
   static const String name = 'TransferRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<TransferRouteArgs>();
-      return _i37.TransferScreen(
+      return _i38.TransferScreen(
         key: args.key,
         bloc: args.bloc,
         sessionBloc: args.sessionBloc,
@@ -1999,13 +2022,13 @@ class TransferRouteArgs {
     required this.transferType,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i57.SavingAccountDataBloc bloc;
+  final _i59.SavingAccountDataBloc bloc;
 
-  final _i51.SessionInfoBloc sessionBloc;
+  final _i53.SessionInfoBloc sessionBloc;
 
-  final _i37.TransferType transferType;
+  final _i38.TransferType transferType;
 
   @override
   String toString() {
@@ -2014,15 +2037,15 @@ class TransferRouteArgs {
 }
 
 /// generated route for
-/// [_i38.ValidateQRfromProdemMovilTwoScreen]
+/// [_i39.ValidateQRfromProdemMovilTwoScreen]
 class ValidateQRfromProdemMovilTwoRoute
-    extends _i40.PageRouteInfo<ValidateQRfromProdemMovilTwoRouteArgs> {
+    extends _i42.PageRouteInfo<ValidateQRfromProdemMovilTwoRouteArgs> {
   ValidateQRfromProdemMovilTwoRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
-    required _i58.ValidateQrFromProdemMovilResponseEntity res,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
+    required _i60.ValidateQrFromProdemMovilResponseEntity res,
     required String qRGenerated,
-    List<_i40.PageRouteInfo>? children,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           ValidateQRfromProdemMovilTwoRoute.name,
           args: ValidateQRfromProdemMovilTwoRouteArgs(
@@ -2036,11 +2059,11 @@ class ValidateQRfromProdemMovilTwoRoute
 
   static const String name = 'ValidateQRfromProdemMovilTwoRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ValidateQRfromProdemMovilTwoRouteArgs>();
-      return _i38.ValidateQRfromProdemMovilTwoScreen(
+      return _i39.ValidateQRfromProdemMovilTwoScreen(
         key: args.key,
         sessionBloc: args.sessionBloc,
         res: args.res,
@@ -2058,11 +2081,11 @@ class ValidateQRfromProdemMovilTwoRouteArgs {
     required this.qRGenerated,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
-  final _i58.ValidateQrFromProdemMovilResponseEntity res;
+  final _i60.ValidateQrFromProdemMovilResponseEntity res;
 
   final String qRGenerated;
 
@@ -2073,13 +2096,13 @@ class ValidateQRfromProdemMovilTwoRouteArgs {
 }
 
 /// generated route for
-/// [_i39.ValidateQrFromProdemMovilScreen]
+/// [_i40.ValidateQrFromProdemMovilScreen]
 class ValidateQrFromProdemMovilRoute
-    extends _i40.PageRouteInfo<ValidateQrFromProdemMovilRouteArgs> {
+    extends _i42.PageRouteInfo<ValidateQrFromProdemMovilRouteArgs> {
   ValidateQrFromProdemMovilRoute({
-    _i41.Key? key,
-    required _i43.SessionInfoBloc sessionBloc,
-    List<_i40.PageRouteInfo>? children,
+    _i43.Key? key,
+    required _i45.SessionInfoBloc sessionBloc,
+    List<_i42.PageRouteInfo>? children,
   }) : super(
           ValidateQrFromProdemMovilRoute.name,
           args: ValidateQrFromProdemMovilRouteArgs(
@@ -2091,11 +2114,11 @@ class ValidateQrFromProdemMovilRoute
 
   static const String name = 'ValidateQrFromProdemMovilRoute';
 
-  static _i40.PageInfo page = _i40.PageInfo(
+  static _i42.PageInfo page = _i42.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ValidateQrFromProdemMovilRouteArgs>();
-      return _i39.ValidateQrFromProdemMovilScreen(
+      return _i40.ValidateQrFromProdemMovilScreen(
         key: args.key,
         sessionBloc: args.sessionBloc,
       );
@@ -2109,12 +2132,59 @@ class ValidateQrFromProdemMovilRouteArgs {
     required this.sessionBloc,
   });
 
-  final _i41.Key? key;
+  final _i43.Key? key;
 
-  final _i43.SessionInfoBloc sessionBloc;
+  final _i45.SessionInfoBloc sessionBloc;
 
   @override
   String toString() {
     return 'ValidateQrFromProdemMovilRouteArgs{key: $key, sessionBloc: $sessionBloc}';
+  }
+}
+
+/// generated route for
+/// [_i41.WebBankGuaranteeSoliScreen]
+class WebBankGuaranteeSoliRoute
+    extends _i42.PageRouteInfo<WebBankGuaranteeSoliRouteArgs> {
+  WebBankGuaranteeSoliRoute({
+    _i43.Key? key,
+    required String filterType,
+    List<_i42.PageRouteInfo>? children,
+  }) : super(
+          WebBankGuaranteeSoliRoute.name,
+          args: WebBankGuaranteeSoliRouteArgs(
+            key: key,
+            filterType: filterType,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'WebBankGuaranteeSoliRoute';
+
+  static _i42.PageInfo page = _i42.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<WebBankGuaranteeSoliRouteArgs>();
+      return _i41.WebBankGuaranteeSoliScreen(
+        key: args.key,
+        filterType: args.filterType,
+      );
+    },
+  );
+}
+
+class WebBankGuaranteeSoliRouteArgs {
+  const WebBankGuaranteeSoliRouteArgs({
+    this.key,
+    required this.filterType,
+  });
+
+  final _i43.Key? key;
+
+  final String filterType;
+
+  @override
+  String toString() {
+    return 'WebBankGuaranteeSoliRouteArgs{key: $key, filterType: $filterType}';
   }
 }

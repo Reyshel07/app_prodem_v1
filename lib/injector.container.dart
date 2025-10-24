@@ -1,5 +1,6 @@
 import 'package:app_prodem_v1/modules/ATM/atm_transaction_qr_create/atm.transaction.qr.create.container.dart';
 import 'package:app_prodem_v1/modules/ATM/validate_qr_from_prodem_movil/validate.qr.from.prodem.movil.container.dart';
+import 'package:app_prodem_v1/modules/bank_guarantees/get_web_bank_guarantee_solicitation_data/get.web.bank.guarantee.solicitation.data.container.dart';
 import 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/initial.charge.bank.guarantee.container.dart';
 import 'package:app_prodem_v1/modules/credit_card/CreditCardDataQuery/credit.card.data.quert.container.dart';
 import 'package:app_prodem_v1/modules/auth/auth.container.dart';
@@ -85,5 +86,6 @@ class InjectorContainer {
     initCreditCardDataForRecovery(getIt);
     initMakePaymentCreditCardForMobile(getIt);
     initInitialChargeBankGuarante(getIt);
+    initGetWebBankGuaranteeSolicitationData(getIt);
   }
 }
