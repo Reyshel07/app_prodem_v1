@@ -21,6 +21,7 @@ import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitatio
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/prodem_express_save_solicitation/prodem.expres.save.solitation.container.dart';
 import 'package:app_prodem_v1/modules/list_get_other_account_deposit/list.get.other.account.deposit.container.dart';
+import 'package:app_prodem_v1/modules/payment_for_services/sintesis_get_search_parameters_by_module/sintesis.get.search.parameters_by.module.container.dart';
 import 'package:app_prodem_v1/modules/save_online_third_deposit/save.online.third.deposit.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/decrypt.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/get.encripted.qr.string.container.dart';
@@ -87,5 +88,6 @@ class InjectorContainer {
     initMakePaymentCreditCardForMobile(getIt);
     initInitialChargeBankGuarante(getIt);
     initGetWebBankGuaranteeSolicitationData(getIt);
+    initSintesisGetSechrParametersByModule(getIt);
   }
 }
