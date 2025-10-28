@@ -1920,6 +1920,7 @@ class SintesisGetSearchParametersByModuleRoute
     required List<_i60.SintesisGetSearchParametersByModuleEntity> data,
     required String name,
     required String description,
+    required List<String> moduleName,
     List<_i43.PageRouteInfo>? children,
   }) : super(
           SintesisGetSearchParametersByModuleRoute.name,
@@ -1928,6 +1929,7 @@ class SintesisGetSearchParametersByModuleRoute
             data: data,
             name: name,
             description: description,
+            moduleName: moduleName,
           ),
           initialChildren: children,
         );
@@ -1943,6 +1945,7 @@ class SintesisGetSearchParametersByModuleRoute
         data: args.data,
         name: args.name,
         description: args.description,
+        moduleName: args.moduleName,
       );
     },
   );
@@ -1954,6 +1957,7 @@ class SintesisGetSearchParametersByModuleRouteArgs {
     required this.data,
     required this.name,
     required this.description,
+    required this.moduleName,
   });
 
   final _i44.Key? key;
@@ -1964,9 +1968,11 @@ class SintesisGetSearchParametersByModuleRouteArgs {
 
   final String description;
 
+  final List<String> moduleName;
+
   @override
   String toString() {
-    return 'SintesisGetSearchParametersByModuleRouteArgs{key: $key, data: $data, name: $name, description: $description}';
+    return 'SintesisGetSearchParametersByModuleRouteArgs{key: $key, data: $data, name: $name, description: $description, moduleName: $moduleName}';
   }
 }
 

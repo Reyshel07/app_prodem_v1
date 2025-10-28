@@ -43,6 +43,11 @@ class _PaymentForServicesScreenState extends State<PaymentForServicesScreen> {
             >(
               builder: (context, state) {
                 if (state is SintesisGetSearchParametersByModuleSuccess) {
+                  final res =
+                      state.sintesisGetSearchParametersByModuleResponseEntity;
+                  final moduleName = res.data
+                      .map((account) => account.moduleName)
+                      .toList();
                   InjectorContainer.getIt<AppRouter>().push(
                     SintesisGetSearchParametersByModuleRoute(
                       name: state.name ?? '',
@@ -50,6 +55,7 @@ class _PaymentForServicesScreenState extends State<PaymentForServicesScreen> {
                       data: state
                           .sintesisGetSearchParametersByModuleResponseEntity
                           .data,
+                      moduleName: moduleName,
                     ),
                   );
                 }
@@ -477,7 +483,7 @@ class _PaymentForServicesScreenState extends State<PaymentForServicesScreen> {
                                       >()
                                       .add(
                                         SintesisGetSearchParametersByMoEvent(
-                                          externalModule: 'YPFB = 8888,',
+                                          externalModule: '8888',
                                           name: 'YPFB',
                                           description:
                                               'Seleccione el critrerio por el que desea realizar la búsqueda',
