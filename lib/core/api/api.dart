@@ -69,4 +69,6 @@ class AppStrings {
       'WebSite/InitialChargeBankGuarantee';
   static const String getWebBankGuaranteeSolicitationData =
       'WebSite/GetWebBankGuaranteeSolicitationData';
+  static const String sintesisGetSearchParametersByModule =
+      'WebSite/SintesisGetSearchParametersByModule';
 }

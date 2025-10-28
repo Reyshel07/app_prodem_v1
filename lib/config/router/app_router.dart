@@ -48,5 +48,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: InitialChargeBankGuaranteRoute.page),
     AutoRoute(page: WebBankGuaranteeSoliRoute.page),
     AutoRoute(page: PaymentForServicesRoute.page),
+    AutoRoute(page: SintesisGetSearchParametersByModuleRoute.page),
   ];
 }
