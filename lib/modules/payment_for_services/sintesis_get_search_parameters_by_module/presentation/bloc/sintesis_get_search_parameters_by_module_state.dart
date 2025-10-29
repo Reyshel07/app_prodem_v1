@@ -20,9 +20,11 @@ final class SintesisGetSearchParametersByModuleSuccess
   sintesisGetSearchParametersByModuleResponseEntity;
   final String? name;
   final String? description;
+  final String externalModule;
   SintesisGetSearchParametersByModuleSuccess(
     this.sintesisGetSearchParametersByModuleResponseEntity,
     this.name,
     this.description,
+    this.externalModule,
   );
 }

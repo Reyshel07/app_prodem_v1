@@ -45,17 +45,13 @@ class _PaymentForServicesScreenState extends State<PaymentForServicesScreen> {
                 if (state is SintesisGetSearchParametersByModuleSuccess) {
                   final res =
                       state.sintesisGetSearchParametersByModuleResponseEntity;
-                  final moduleName = res.data
-                      .map((account) => account.moduleName)
-                      .toList();
+                  final moduleList = res.data;
                   InjectorContainer.getIt<AppRouter>().push(
                     SintesisGetSearchParametersByModuleRoute(
+                      externalModule: state.externalModule,
                       name: state.name ?? '',
                       description: state.description ?? '',
-                      data: state
-                          .sintesisGetSearchParametersByModuleResponseEntity
-                          .data,
-                      moduleName: moduleName,
+                      res: moduleList,
                     ),
                   );
                 }
@@ -283,7 +279,7 @@ class _PaymentForServicesScreenState extends State<PaymentForServicesScreen> {
                                       >()
                                       .add(
                                         SintesisGetSearchParametersByMoEvent(
-                                          externalModule: '2222',
+                                          externalModule: '48',
                                           name: 'EPSAS',
                                           description:
                                               'Seleccione el critrerio por el que desea realizar la búsqueda',

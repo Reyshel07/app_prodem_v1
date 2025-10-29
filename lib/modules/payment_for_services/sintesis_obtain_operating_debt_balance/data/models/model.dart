@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/payment_for_services/sintesis_obtain_operating_debt_balance/data/models/sintesis_obtain_operating_debt_balance_model.dart';

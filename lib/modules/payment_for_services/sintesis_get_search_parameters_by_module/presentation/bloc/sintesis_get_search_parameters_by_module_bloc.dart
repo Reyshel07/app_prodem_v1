@@ -60,6 +60,7 @@ class SintesisGetSearchParametersByModuleBloc
           response,
           event.name,
           event.description,
+          event.externalModule,
         ),
       );
     } on BaseApiException catch (error) {
