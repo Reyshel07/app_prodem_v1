@@ -71,4 +71,6 @@ class AppStrings {
       'WebSite/GetWebBankGuaranteeSolicitationData';
   static const String sintesisGetSearchParametersByModule =
       'WebSite/SintesisGetSearchParametersByModule';
+  static const String sintesisObtainOperatingDebtBalance =
+      'WebSite/SintesisObtainOperatingDebtBalance';
 }

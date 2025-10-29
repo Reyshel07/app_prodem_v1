@@ -1,23 +1,27 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_get_search_parameters_by_module/domain/entities/sintesis_get_search_parameters_by_module_entity.dart';
+import 'package:app_prodem_v1/modules/payment_for_services/sintesis_obtain_operating_debt_balance/presentation/bloc/sintesis_obtain_operating_debt_balance_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/text_from_fiel.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class SintesisGetSearchParametersByModuleScreen extends StatefulWidget {
   final String name;
   final String description;
-  final List<String> moduleName;
-  final List<SintesisGetSearchParametersByModuleEntity> data;
+  final String externalModule;
+  final List<SintesisGetSearchParametersByModuleEntity> res;
   const SintesisGetSearchParametersByModuleScreen({
     super.key,
-    required this.data,
     required this.name,
     required this.description,
-    required this.moduleName,
+    required this.externalModule,
+    required this.res,
   });
 
   @override
@@ -27,8 +31,14 @@ class SintesisGetSearchParametersByModuleScreen extends StatefulWidget {
 
 class _SintesisGetSearchParametersByModuleScreenState
     extends State<SintesisGetSearchParametersByModuleScreen> {
-  String? _selectedValueMoney;
-  final TextEditingController amountToSendController = TextEditingController();
+  String? _selectedValue;
+  String? codeModule;
+  String? moduleName;
+  SintesisGetSearchParametersByModuleEntity? _selectedItem;
+  final TextEditingController firstController = TextEditingController();
+  final TextEditingController secondController = TextEditingController();
+  final TextEditingController thirdController = TextEditingController();
+
   bool isChecked = false;
   final List<String> _noDropdownModules = [
     'DELAPAZ',
@@ -210,93 +220,189 @@ class _SintesisGetSearchParametersByModuleScreenState
     final String? dropLabel = getLabeldropByModule();
     final String? textLabel = getLabeTextpByModule();
 
-    return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Theme.of(context).colorScheme.white,
-        backgroundColor: Theme.of(context).colorScheme.green,
-        title: Text(
-          widget.name,
-          style: AppTextStyles.mainStyleWhite18Bold(context),
+    return BlocProvider(
+      create: (context) =>
+          InjectorContainer.getIt<SintesisObtainOperatingDebtBalanceBloc>(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          foregroundColor: Theme.of(context).colorScheme.white,
+          backgroundColor: Theme.of(context).colorScheme.green,
+          title: Text(
+            widget.name,
+            style: AppTextStyles.mainStyleWhite18Bold(context),
+          ),
+        ),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(topPadding * 0.05),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.description,
+                style: AppTextStyles.mainStyleGreen14Bold(context),
+              ),
+              if (textLabel != null)
+                Text(
+                  textLabel,
+                  style: AppTextStyles.mainStyleGreen14Bold(context),
+                ),
+              if (showDropdown)
+                _buildDropdown1(
+                  title: 'Tipo de búsqueda',
+                  items: widget.res,
+                  value: _selectedItem,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _selectedItem = newValue;
+                    });
+                  },
+                  smallSpacing: smallSpacing,
+                  top: topPadding,
+                ),
+              if (showText)
+                Text(
+                  'Datos de búsqueda:',
+                  style: AppTextStyles.mainStyleGreen14Bold(context),
+                ),
+              TextFromFiel02(
+                screenSize: screenSize,
+                smallSpacing: smallSpacing,
+                userController: firstController,
+                lbText: getLabelTextByModule(),
+              ),
+              if (secondLabel != null)
+                TextFromFiel02(
+                  screenSize: screenSize,
+                  smallSpacing: smallSpacing,
+                  userController: secondController,
+                  lbText: secondLabel,
+                ),
+              if (threeLabel != null)
+                TextFromFiel02(
+                  screenSize: screenSize,
+                  smallSpacing: smallSpacing,
+                  userController: thirdController,
+                  lbText: threeLabel,
+                ),
+              if (dropLabel != null)
+                _buildDropdown(
+                  title: dropLabel,
+                  items: [],
+                  value: _selectedValue,
+                  onChanged: (newValue) {
+                    setState(() => _selectedValue = newValue);
+                  },
+                  smallSpacing: smallSpacing,
+                  top: topPadding,
+                ),
+
+              if (showFavorites)
+                Row(
+                  children: [
+                    Checkbox(
+                      value: isChecked,
+                      onChanged: (value) {
+                        setState(() => isChecked = value ?? false);
+                      },
+                    ),
+                    Text(
+                      'Agregar a favoritos',
+                      style: AppTextStyles.mainStyleGreen14Bold(context),
+                    ),
+                  ],
+                ),
+              BlocBuilder<
+                SintesisObtainOperatingDebtBalanceBloc,
+                SintesisObtainOperatingDebtBalanceState
+              >(
+                builder: (context, state) {
+                  if (state is SintesisObtainOperatingDebtBalanceSuccess) {
+                    InjectorContainer.getIt<AppRouter>().push(
+                      SintesisObtainOperatingDebtBalanceRoute(
+                        name: widget.name,
+                        colAccount: state
+                            .sintesisObtainOperatingDebtBalance
+                            .colAccounts,
+                      ),
+                    );
+                  }
+                  return Center(
+                    child: Butoon1(
+                      onTap: () {
+                        List<String> params = [];
+                        params.add(firstController.text);
+                        if (secondLabel != null &&
+                            secondController.text.isNotEmpty) {
+                          params.add(secondController.text);
+                        }
+                        if (threeLabel != null &&
+                            thirdController.text.isNotEmpty) {
+                          params.add(thirdController.text);
+                        }
+                        context
+                            .read<SintesisObtainOperatingDebtBalanceBloc>()
+                            .add(
+                              SintesisObtainOperatingDebtBalanEvent(
+                                externalModule: '8', //widget.externalModule,
+                                searchCriteria: '3',
+                                //_selectedItem?.codeModule.toString() ?? '',
+                                searchParameter: ['71299631'], //params,
+                                externalModuleReference:
+                                    _selectedItem?.moduleName ?? '',
+                                favoriteName: '',
+                                idCAI: '0',
+                                idOffice: '0',
+                                isFavorite: false,
+                                isMobileAPP: true,
+                                originType: '0',
+                              ),
+                            );
+                      },
+                      lblTextField: 'CONTINUAR',
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(topPadding * 0.05),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.description,
+    );
+  }
+
+  Widget _buildDropdown1({
+    required String title,
+    required List<SintesisGetSearchParametersByModuleEntity> items,
+    required SintesisGetSearchParametersByModuleEntity? value,
+    required Function(SintesisGetSearchParametersByModuleEntity) onChanged,
+    double? smallSpacing,
+    double? top,
+  }) {
+    return Card(
+      elevation: smallSpacing! * 0.5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: Theme.of(context).colorScheme.green),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: top! * 0.05),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<SintesisGetSearchParametersByModuleEntity>(
+            isExpanded: true,
+            hint: Text(
+              title,
               style: AppTextStyles.mainStyleGreen14Bold(context),
             ),
-            if (textLabel != null)
-              Text(
-                textLabel,
-                style: AppTextStyles.mainStyleGreen14Bold(context),
-              ),
-            if (showDropdown)
-              _buildDropdown(
-                title: 'Tipo de búsqueda',
-                items: widget.moduleName,
-                value: _selectedValueMoney,
-                onChanged: (newValue) {
-                  setState(() => _selectedValueMoney = newValue);
-                },
-                smallSpacing: smallSpacing,
-                top: topPadding,
-              ),
-            if (showText)
-              Text(
-                'Datos de búsqueda:',
-                style: AppTextStyles.mainStyleGreen14Bold(context),
-              ),
-            TextFromFiel02(
-              screenSize: screenSize,
-              smallSpacing: smallSpacing,
-              userController: amountToSendController,
-              lbText: getLabelTextByModule(),
-            ),
-            if (secondLabel != null)
-              TextFromFiel02(
-                screenSize: screenSize,
-                smallSpacing: smallSpacing,
-                userController: amountToSendController,
-                lbText: secondLabel,
-              ),
-            if (threeLabel != null)
-              TextFromFiel02(
-                screenSize: screenSize,
-                smallSpacing: smallSpacing,
-                userController: amountToSendController,
-                lbText: threeLabel,
-              ),
-            if (dropLabel != null)
-              _buildDropdown(
-                title: dropLabel,
-                items: [],
-                value: _selectedValueMoney,
-                onChanged: (newValue) {
-                  setState(() => _selectedValueMoney = newValue);
-                },
-                smallSpacing: smallSpacing,
-                top: topPadding,
-              ),
-            if (showFavorites)
-              Row(
-                children: [
-                  Checkbox(
-                    value: isChecked,
-                    onChanged: (value) {
-                      setState(() => isChecked = value ?? false);
-                    },
-                  ),
-                  Text(
-                    'Agregar a favoritos',
-                    style: AppTextStyles.mainStyleGreen14Bold(context),
-                  ),
-                ],
-              ),
-            Butoon1(onTap: () {}, lblTextField: 'CONTINUAR'),
-          ],
+            value: value,
+            items: items.map((item) {
+              return DropdownMenuItem(
+                value: item,
+                child: Text(item.moduleName),
+              );
+            }).toList(),
+            onChanged: (selected) => onChanged(selected!),
+          ),
         ),
       ),
     );
