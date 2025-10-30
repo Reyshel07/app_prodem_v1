@@ -110,6 +110,7 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
                         child: Padding(
                           padding: EdgeInsets.all(topPadding * 0.05),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,17 +130,6 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
                                             ),
                                       ),
                                       SizedBox(width: smallSpacing * 0.5),
-                                      /*SizedBox(
-                                        width: screenSize.width * 0.5,
-                                        child: Text(
-                                          '${res.itemAmount}\n'
-                                          '${res.itemNumberCode}\n'
-                                          '${res.itemDescription}',
-                                          style: AppTextStyles.mainStyleGreen14(
-                                            context,
-                                          ),
-                                        ),
-                                      ),*/
                                       SizedBox(
                                         width: screenSize.width * 0.5,
                                         child: Column(
@@ -195,7 +185,13 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
                                                 ),
                                               ),
                                             )
-                                          : Text('${res.itemAmount}'),
+                                          : Text(
+                                              '${res.itemAmount}',
+                                              style:
+                                                  AppTextStyles.mainStyleGreen14(
+                                                    context,
+                                                  ),
+                                            ),
                                     ],
                                   ),
                                 ],
@@ -211,15 +207,6 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
                                   });
                                 },
                               ),
-                              /*Checkbox(
-                                activeColor: Theme.of(
-                                  context,
-                                ).colorScheme.green,
-                                value: isChecked,
-                                onChanged: (value) {
-                                  setState(() => isChecked = value ?? false);
-                                },
-                              ),*/
                             ],
                           ),
                         ),

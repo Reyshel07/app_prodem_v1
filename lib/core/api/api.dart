@@ -73,4 +73,7 @@ class AppStrings {
       'WebSite/SintesisGetSearchParametersByModule';
   static const String sintesisObtainOperatingDebtBalance =
       'WebSite/SintesisObtainOperatingDebtBalance';
+  static const String getFavoritesByWebClient =
+      'WebSite/GetFavoritesByWebClient';
+  static const String updateDeleteFavorite = 'WebSite/UpdateDeleteFavorite';
 }

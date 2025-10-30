@@ -1,7 +1,6 @@
 import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/save_online_third_deposit/data/models/save_online_third_deposit_model.dart';
-
 import '../../domain/entities/entity.dart';
 
 class SaveOnlineThirdDepositDatasource {

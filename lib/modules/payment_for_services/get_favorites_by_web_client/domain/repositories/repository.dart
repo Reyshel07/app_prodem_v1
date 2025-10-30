@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/payment_for_services/get_favorites_by_web_client/domain/repositories/get_favorites_by_web_client_repository.dart';
