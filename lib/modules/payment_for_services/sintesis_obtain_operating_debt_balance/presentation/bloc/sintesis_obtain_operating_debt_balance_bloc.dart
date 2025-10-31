@@ -1,7 +1,6 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../domain/entities/entity.dart';
 import '../../domain/repositories/repository.dart';
 part 'sintesis_obtain_operating_debt_balance_event.dart';

@@ -51,5 +51,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: SintesisGetSearchParametersByModuleRoute.page),
     AutoRoute(page: SintesisObtainOperatingDebtBalanceRoute.page),
     AutoRoute(page: SintesisObtainOperatingDebtBalanceTwoRoute.page),
+    AutoRoute(page: GetFavoritesByWebClientRoute.page),
+    AutoRoute(page: SintesisPaymentProcessRoute.page),
   ];
 }

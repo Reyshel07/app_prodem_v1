@@ -3,6 +3,7 @@ import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/savings_products/savings_products_screen.dart';
+import 'package:app_prodem_v1/modules/payment_for_services/get_favorites_by_web_client/presentation/bloc/get_favorites_by_web_client_bloc.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_get_search_parameters_by_module/presentation/bloc/sintesis_get_search_parameters_by_module_bloc.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +25,19 @@ class _PaymentForServicesScreenState extends State<PaymentForServicesScreen> {
     final double smallSpacing = screenSize.height * 0.02;
     final double letterSize = screenSize.height;
     final double topPadding = screenSize.height * 0.2;
-    return BlocProvider(
-      create: (context) =>
-          InjectorContainer.getIt<SintesisGetSearchParametersByModuleBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<
+                SintesisGetSearchParametersByModuleBloc
+              >(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<GetFavoritesByWebClientBloc>(),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           foregroundColor: Theme.of(context).colorScheme.white,
@@ -59,28 +70,54 @@ class _PaymentForServicesScreenState extends State<PaymentForServicesScreen> {
                   children: [
                     Column(
                       children: [
-                        Card(
-                          elevation: smallSpacing * 0.5,
-                          child: Container(
-                            height: screenSize.height * 0.065,
-                            width: screenSize.width * 0.95,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Theme.of(context).colorScheme.green,
-                              ),
-                              borderRadius: BorderRadius.circular(13),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(topPadding * 0.08),
-                              child: Text(
-                                'Mis Favoritos',
-                                textAlign: TextAlign.start,
-                                style: AppTextStyles.mainStyleGreen16Bold(
-                                  context,
+                        BlocConsumer<
+                          GetFavoritesByWebClientBloc,
+                          GetFavoritesByWebClientState
+                        >(
+                          listener: (context, state) {
+                            if (state is GetFavoritesByWebClientSuccess) {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                GetFavoritesByWebClientRoute(
+                                  data: state
+                                      .getFavoritesByWebClientResponseEntity,
+                                ),
+                              );
+                            }
+                          },
+                          builder: (context, state) {
+                            return GestureDetector(
+                              onTap: () {
+                                context.read<GetFavoritesByWebClientBloc>().add(
+                                  GetFavoritesByWebCliEvent(),
+                                );
+                              },
+                              child: Card(
+                                elevation: smallSpacing * 0.5,
+                                child: Container(
+                                  height: screenSize.height * 0.065,
+                                  width: screenSize.width * 0.95,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.green,
+                                    ),
+                                    borderRadius: BorderRadius.circular(13),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(topPadding * 0.08),
+                                    child: Text(
+                                      'Mis Favoritos',
+                                      textAlign: TextAlign.start,
+                                      style: AppTextStyles.mainStyleGreen16Bold(
+                                        context,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
+                            );
+                          },
                         ),
                         ListTitlePrueba(
                           topPadding: topPadding,

@@ -19,3 +19,18 @@ final class InitialChargeBankGuaranteeSuccess
   final InitialChargeBankGuaranteeResponseEntity data;
   InitialChargeBankGuaranteeSuccess(this.data);
 }
+
+///Money
+final class GetMoneyByAccountInitial extends InitialChargeBankGuaranteeState {}
+
+final class GetMoneyByAccountLoading extends InitialChargeBankGuaranteeState {}
+
+final class GetMoneyByAccountError extends InitialChargeBankGuaranteeState {
+  final String message;
+  GetMoneyByAccountError(this.message);
+}
+
+final class GetMoneyByAccountSuccess extends InitialChargeBankGuaranteeState {
+  GetMoneyByAccountResponseEntity getMoneyByAccountResponseEntity;
+  GetMoneyByAccountSuccess(this.getMoneyByAccountResponseEntity);
+}

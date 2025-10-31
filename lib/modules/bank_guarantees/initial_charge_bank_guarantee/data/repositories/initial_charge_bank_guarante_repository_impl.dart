@@ -13,4 +13,12 @@ class InitialChargeBankGuaranteRepositoryImpl
   ) async {
     return await datasource.initialChargeBankGuarantee(vToken);
   }
+
+  @override
+  Future<GetMoneyByAccountResponseEntity> getMoneyByAccount(
+    String codeAccount,
+    String? vToken,
+  ) async {
+    return await datasource.getMoneyByAccount(vToken, codeAccount);
+  }
 }

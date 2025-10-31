@@ -1,5 +1,7 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/utils/text.dart';
 import 'package:flutter/material.dart';
@@ -110,6 +112,7 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
                         child: Padding(
                           padding: EdgeInsets.all(topPadding * 0.05),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,17 +132,6 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
                                             ),
                                       ),
                                       SizedBox(width: smallSpacing * 0.5),
-                                      /*SizedBox(
-                                        width: screenSize.width * 0.5,
-                                        child: Text(
-                                          '${res.itemAmount}\n'
-                                          '${res.itemNumberCode}\n'
-                                          '${res.itemDescription}',
-                                          style: AppTextStyles.mainStyleGreen14(
-                                            context,
-                                          ),
-                                        ),
-                                      ),*/
                                       SizedBox(
                                         width: screenSize.width * 0.5,
                                         child: Column(
@@ -195,7 +187,13 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
                                                 ),
                                               ),
                                             )
-                                          : Text('${res.itemAmount}'),
+                                          : Text(
+                                              '${res.itemAmount}',
+                                              style:
+                                                  AppTextStyles.mainStyleGreen14(
+                                                    context,
+                                                  ),
+                                            ),
                                     ],
                                   ),
                                 ],
@@ -211,15 +209,6 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
                                   });
                                 },
                               ),
-                              /*Checkbox(
-                                activeColor: Theme.of(
-                                  context,
-                                ).colorScheme.green,
-                                value: isChecked,
-                                onChanged: (value) {
-                                  setState(() => isChecked = value ?? false);
-                                },
-                              ),*/
                             ],
                           ),
                         ),
@@ -232,7 +221,14 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
             Spacer(),
             Row(children: [Text('Total a pagar:'), Text('451')]),
             Center(
-              child: Butoon1(onTap: () {}, lblTextField: 'CONTINUAR'),
+              child: Butoon1(
+                onTap: () {
+                  InjectorContainer.getIt<AppRouter>().push(
+                    SintesisPaymentProcessRoute(name: widget.name),
+                  );
+                },
+                lblTextField: 'CONTINUAR',
+              ),
             ),
           ],
         ),
