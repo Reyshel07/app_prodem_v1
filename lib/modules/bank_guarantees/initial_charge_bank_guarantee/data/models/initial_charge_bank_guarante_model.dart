@@ -56,3 +56,38 @@ class ColBModel extends ColBEntity {
     codigo: json["codigo"] ?? '',
   );
 }
+
+///Money
+GetMoneyByAccountResponseModel getMoneyByAccountResponseFromJson(String str) =>
+    GetMoneyByAccountResponseModel.fromJson(json.decode(str));
+
+class GetMoneyByAccountResponseModel extends GetMoneyByAccountResponseEntity {
+  GetMoneyByAccountResponseModel({
+    required super.data,
+    required super.state,
+    required super.message,
+  });
+  factory GetMoneyByAccountResponseModel.fromJson(Map<String, dynamic> json) =>
+      GetMoneyByAccountResponseModel(
+        data: List<GetMoneyByAccountModel>.from(
+          json["data"].map((x) => GetMoneyByAccountModel.fromJson(x)),
+        ),
+        state: json["state"],
+        message: json["message"],
+      );
+}
+
+class GetMoneyByAccountModel extends GetMoneyByAccountEntity {
+  GetMoneyByAccountModel({
+    required super.idClasificador,
+    required super.code,
+    required super.nombre,
+  });
+
+  factory GetMoneyByAccountModel.fromJson(Map<String, dynamic> json) =>
+      GetMoneyByAccountModel(
+        idClasificador: json["idClasificador"],
+        code: json["code"],
+        nombre: json["nombre"],
+      );
+}

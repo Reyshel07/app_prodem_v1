@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/payment_for_services/sintesis_payment_process/domain/entities/sintesis_payment_process_entity.dart';

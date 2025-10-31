@@ -1,5 +1,7 @@
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/utils/text.dart';
 import 'package:flutter/material.dart';
@@ -219,7 +221,14 @@ class _SintesisObtainOperatingDebtBalanceTwoScreenState
             Spacer(),
             Row(children: [Text('Total a pagar:'), Text('451')]),
             Center(
-              child: Butoon1(onTap: () {}, lblTextField: 'CONTINUAR'),
+              child: Butoon1(
+                onTap: () {
+                  InjectorContainer.getIt<AppRouter>().push(
+                    SintesisPaymentProcessRoute(name: widget.name),
+                  );
+                },
+                lblTextField: 'CONTINUAR',
+              ),
             ),
           ],
         ),

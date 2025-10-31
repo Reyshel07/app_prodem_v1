@@ -4,4 +4,8 @@ abstract class InitialChargeBankGuaranteRepository {
   Future<InitialChargeBankGuaranteeResponseEntity> initialChargeBankGuarantee(
     String? vToken,
   );
+  Future<GetMoneyByAccountResponseEntity> getMoneyByAccount(
+    String codeAccount,
+    String? vToken,
+  );
 }

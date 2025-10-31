@@ -76,4 +76,9 @@ class AppStrings {
   static const String getFavoritesByWebClient =
       'WebSite/GetFavoritesByWebClient';
   static const String updateDeleteFavorite = 'WebSite/UpdateDeleteFavorite';
+  static const String sintesisPaymentProcess = 'website/SintesisPaymentProcess';
+  static const String getMoneyByAccount = 'WebSite/GetMoneyByAccount';
+  static const String getListDepartments = 'WebSite/GetListDepartments';
+  static const String getListLocationDepartments =
+      'WebSite/GetListLocationDepartments';
 }

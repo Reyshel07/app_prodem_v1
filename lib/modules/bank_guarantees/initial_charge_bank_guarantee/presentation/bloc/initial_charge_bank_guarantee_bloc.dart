@@ -39,4 +39,26 @@ class InitialChargeBankGuaranteeBloc
       }
     }
   }
+
+  Future<void> getMoneyByAccountBloc(
+    GetMoneyByAccountEvent event,
+    Emitter<InitialChargeBankGuaranteeState> emit,
+  ) async {
+    emit(GetMoneyByAccountLoading());
+    try {
+      final token = SecureHive.readToken();
+      final response = await repository.getMoneyByAccount(
+        event.codeAccount,
+        token,
+      );
+      emit(GetMoneyByAccountSuccess(response));
+    } on BaseApiException catch (error) {
+      switch (error.key) {
+        case "api_logic_error":
+          emit(GetMoneyByAccountError(error.message));
+        case "dio_unexpected":
+          emit(GetMoneyByAccountError("Ocurrio un error, no tiene internet"));
+      }
+    }
+  }
 }

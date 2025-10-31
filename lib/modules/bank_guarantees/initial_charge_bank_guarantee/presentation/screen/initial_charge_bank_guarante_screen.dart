@@ -1,6 +1,8 @@
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension_theme.dart';
+import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/presentation/bloc/initial_charge_bank_guarantee_bloc.dart';
+import 'package:app_prodem_v1/modules/get_list_departments/presentation/bloc/get_list_departments_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/drop.dart';
@@ -34,6 +36,7 @@ class _InitialChargeBankGuaranteScreenState
   final TextEditingController propositoController = TextEditingController();
 
   String? _selectedAccount;
+  String? _selectedDepartamento;
   String? _selectedFianzaValue;
   String? _selectedBeneficiarioValue;
   String? _selectedOjeFianzaValue;
@@ -49,6 +52,11 @@ class _InitialChargeBankGuaranteScreenState
       providers: [
         BlocProvider.value(value: widget.sessionBloc),
         BlocProvider.value(value: widget.bloc),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<GetListDepartmentsBloc>()
+                ..add(GetListDepaEvent()),
+        ),
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -85,6 +93,164 @@ class _InitialChargeBankGuaranteScreenState
                     padding: EdgeInsets.all(topPadding * 0.05),
                     child: ListView(
                       children: [
+                        Text(
+                          'Nueva Solicitud',
+                          style: AppTextStyles.mainStyleGreen16Bold(context),
+                        ),
+                        Text(
+                          'Datos',
+                          style: AppTextStyles.mainStyleGreen14Bold(context),
+                        ),
+                        /*BlocConsumer<
+                          GetListDepartmentsBloc,
+                          GetListDepartmentsState
+                        >(
+                          listener: (context, state) {},
+                          builder: (context, state) {
+                            if (state is GetListDepartmentsSuccess) {
+                              final res =
+                                  state.getListDepartmentsResponseEntity.data;
+                              final nameClassifierEntity = res
+                                  .map((name) => name.nameClassifierEntity)
+                                  .toList();
+                              return Column(
+                                children: [
+                                  _buildDropdown(
+                                    title: 'Departamento:',
+                                    items: nameClassifierEntity,
+                                    value: _selectedDepartamento,
+                                    onChanged: (newValue) {
+                                      setState(
+                                        () => _selectedDepartamento = newValue,
+                                      );
+                                    },
+                                    smallSpacing: smallSpacing,
+                                  ),
+                                  _buildDropdown(
+                                    title: 'Beneficiario',
+                                    items: beneficiario,
+                                    value: _selectedBeneficiarioValue,
+                                    onChanged: (newValue) {
+                                      setState(
+                                        () => _selectedBeneficiarioValue =
+                                            newValue,
+                                      );
+                                    },
+                                    smallSpacing: smallSpacing,
+                                  ),
+                                ],
+                              );
+                            }
+                            return SizedBox();
+                          },
+                        ),*/
+                        BlocConsumer<
+                          GetListDepartmentsBloc,
+                          GetListDepartmentsState
+                        >(
+                          listener: (context, state) {},
+                          builder: (context, state) {
+                            if (state is GetListDepartmentsSuccess) {
+                              final res =
+                                  state.getListDepartmentsResponseEntity.data;
+
+                              return Column(
+                                children: [
+                                  _buildDropdown1(
+                                    title: 'Departamento:',
+                                    items: res
+                                        .map((e) => e.nameClassifierEntity)
+                                        .toList(),
+                                    value: _selectedDepartamento,
+                                    onChanged: (newValue) {
+                                      setState(
+                                        () => _selectedDepartamento = newValue,
+                                      );
+
+                                      // ✅ Buscar el objeto completo por nombre
+                                      final selected = res.firstWhere(
+                                        (e) =>
+                                            e.nameClassifierEntity == newValue,
+                                      );
+
+                                      // ✅ Aquí obtienes el ID correctamente
+                                      final int id =
+                                          selected.idClassifierEntity!;
+
+                                      // ✅ Ejecutar segundo servicio pasándole el ID
+                                      context
+                                          .read<GetListDepartmentsBloc>()
+                                          .add(
+                                            GetListLocationDepartmentsEvent(
+                                              idDepartment: id.toString(),
+                                            ),
+                                          );
+                                    },
+                                    smallSpacing: smallSpacing,
+                                  ),
+                                  BlocBuilder<
+                                    GetListDepartmentsBloc,
+                                    GetListDepartmentsState
+                                  >(
+                                    builder: (context, state) {
+                                      if (state
+                                          is GetListLocationDepartmentsSuccess) {
+                                        return _buildDropdown1(
+                                          title: 'Beneficiario',
+                                          items: state
+                                              .getListLocationDepartmentsResponseEntity
+                                              .data
+                                              .map(
+                                                (res) =>
+                                                    res.nameClassifierEntity,
+                                              )
+                                              .toList(),
+                                          value: _selectedBeneficiarioValue,
+                                          onChanged: (newValue) {
+                                            setState(
+                                              () => _selectedBeneficiarioValue =
+                                                  newValue,
+                                            );
+                                          },
+                                          smallSpacing: smallSpacing,
+                                        );
+                                      }
+
+                                      if (state is GetMoneyByAccountLoading) {
+                                        return const CircularProgressIndicator();
+                                      }
+
+                                      return const SizedBox();
+                                    },
+                                  ),
+                                ],
+                              );
+                            }
+
+                            if (state is GetListDepartmentsLoading) {
+                              return const CircularProgressIndicator();
+                            }
+
+                            return const SizedBox();
+                          },
+                        ),
+
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: isChecked,
+                              onChanged: (value) {
+                                setState(() => isChecked = value ?? false);
+                              },
+                            ),
+                            Text(
+                              '¿La fianza es para una entidad pública?',
+                              style: AppTextStyles.mainStyleGreen14Bold(
+                                context,
+                              ),
+                            ),
+                          ],
+                        ),
                         Text(
                           'Nueva solicitud',
                           style: AppTextStyles.mainStyleGreen16Bold(context),
@@ -204,7 +370,12 @@ class _InitialChargeBankGuaranteScreenState
                             ),
                           ],
                         ),
-                        Butoon1(onTap: () {}, lblTextField: 'CANCELAR'),
+                        Row(
+                          children: [
+                            Butoon1(onTap: () {}, lblTextField: 'CONTINUAR'),
+                            Butoon1(onTap: () {}, lblTextField: 'CANCELAR'),
+                          ],
+                        ),
                       ],
                     ),
                   );
@@ -249,6 +420,29 @@ class _InitialChargeBankGuaranteScreenState
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildDropdown1({
+    required String title,
+    required List<String> items,
+    required String? value,
+    required Function(String?) onChanged,
+    required double smallSpacing,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title),
+        SizedBox(height: smallSpacing),
+        DropdownButtonFormField<String>(
+          value: value,
+          items: items
+              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              .toList(),
+          onChanged: onChanged,
+        ),
+      ],
     );
   }
 }

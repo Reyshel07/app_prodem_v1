@@ -22,4 +22,20 @@ class InitialChargeBankGuaranteDatasource {
     );
     return InitialChargeBankGuaranteeResponseModel.fromJson(response);
   }
+
+  Future<GetMoneyByAccountResponseEntity> getMoneyByAccount(
+    String? vToken,
+    String codeAccount,
+  ) async {
+    final response = await _apiClient.post(
+      AppStrings.getMoneyByAccount,
+      operationName: 'service that obtains bail money',
+      data: {"CodeAccount": codeAccount},
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+    );
+    return GetMoneyByAccountResponseModel.fromJson(response);
+  }
 }

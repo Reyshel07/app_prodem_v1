@@ -33,3 +33,28 @@ class ColBEntity {
     required this.codigo,
   });
 }
+
+///Money
+class GetMoneyByAccountResponseEntity {
+  final List<GetMoneyByAccountEntity> data;
+  final int state;
+  final String message;
+
+  GetMoneyByAccountResponseEntity({
+    required this.data,
+    required this.state,
+    required this.message,
+  });
+}
+
+class GetMoneyByAccountEntity {
+  final int idClasificador;
+  final dynamic code;
+  final String nombre;
+
+  GetMoneyByAccountEntity({
+    required this.idClasificador,
+    required this.code,
+    required this.nombre,
+  });
+}
