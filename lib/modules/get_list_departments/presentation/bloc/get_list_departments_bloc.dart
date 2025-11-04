@@ -13,7 +13,6 @@ class GetListDepartmentsBloc
   GetListDepartmentsRepository repository;
   GetListDepartmentsBloc(this.repository) : super(GetListDepartmentsInitial()) {
     on<GetListDepaEvent>(getListDepartmentsBloc);
-    on<GetListLocationDepartmentsEvent>(getListLocationDepartmentsBloc);
   }
 
   Future<void> getListDepartmentsBloc(
@@ -32,32 +31,6 @@ class GetListDepartmentsBloc
           emit(GetListDepartmentsError(error.message));
         case "dio_unexpected":
           emit(GetListDepartmentsError("Ocurrio un error, no tiene internet"));
-      }
-    }
-  }
-
-  Future<void> getListLocationDepartmentsBloc(
-    GetListLocationDepartmentsEvent event,
-    Emitter<GetListDepartmentsState> emit,
-  ) async {
-    emit(GetListLocationDepartmentsLoading());
-    try {
-      final token = SecureHive.readToken();
-      final response = await repository.getListLocationDepartments(
-        event.idDepartment,
-        token,
-      );
-      emit(GetListLocationDepartmentsSuccess(response));
-    } on BaseApiException catch (error) {
-      switch (error.key) {
-        case "api_logic_error":
-          emit(GetListLocationDepartmentsError(error.message));
-        case "dio_unexpected":
-          emit(
-            GetListLocationDepartmentsError(
-              "Ocurrio un error, no tiene internet",
-            ),
-          );
       }
     }
   }

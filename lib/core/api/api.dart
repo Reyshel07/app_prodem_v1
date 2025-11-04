@@ -81,4 +81,8 @@ class AppStrings {
   static const String getListDepartments = 'WebSite/GetListDepartments';
   static const String getListLocationDepartments =
       'WebSite/GetListLocationDepartments';
+  static const String bankSecuritySolicitationInformation =
+      'WebSite/BankSecuritySolicitationInformation';
+  static const String bankSecuritySolicitationResult =
+      'WebSite/BankSecuritySolicitationResult';
 }

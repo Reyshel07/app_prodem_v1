@@ -1,0 +1,106 @@
+import 'package:app_prodem_v1/core/api/api.dart';
+import 'package:app_prodem_v1/core/networking/http_services.dart';
+import '../../domain/entities/entity.dart';
+import '../models/model.dart';
+
+class BankSecuritySolicitationResultDatasource {
+  final ApiClient _apiClient;
+  BankSecuritySolicitationResultDatasource(this._apiClient);
+
+  Future<BankSecuritySolicitationResultResponseEntity>
+  bankSecuritySolicitationResult(
+    String activocirculante,
+    String activofijo,
+    String beneficiario,
+    String codeSavingsAccountOrigin,
+    String costodeVentas,
+    String cUCE,
+    String fechaInicioString,
+    String gastosfamiliares,
+    String gastosOperativos,
+    String idBankGuaranteeClass,
+    String idBankGuaranteeProduct,
+    String idMoneda,
+    String idMonedaCuenta,
+    String idOfficeTarget,
+    String idPerson,
+    String idSavingAccount,
+    String idWebClient,
+    String identityCardNumber,
+    String iMEI,
+    String ipAddress,
+    String location,
+    String moneda,
+    String monedaCuenta,
+    String montoSolicitado,
+    String nroEmpleados,
+    String objetoBoleta,
+    String otrosactivos,
+    String otrosIngresos,
+    String pagopasivos,
+    String pasivos,
+    String personName,
+    String plazo,
+    String proposito,
+    String tipoBoleta,
+    String ventasMensualesBrutas,
+    String codeOffice,
+    String officeName,
+    String siregarName,
+    String departamento,
+    String idClasificador,
+    String code,
+    String nombre,
+    String? vToken,
+    String? idSMSOperation,
+    String? prodemKeyCode,
+  ) async {
+    final response = await _apiClient.post(
+      AppStrings.bankSecuritySolicitationResult,
+      operationName: 'operationName',
+      data: {
+        "FechaInicioString": fechaInicioString,
+        "Gastosfamiliares": gastosfamiliares,
+        "GastosOperativos": gastosOperativos,
+        "IdBankGuaranteeClass": idBankGuaranteeClass,
+        "IdBankGuaranteeProduct": idBankGuaranteeProduct,
+        "IdMoneda": idMoneda,
+        "IdMonedaCuenta": idMonedaCuenta,
+        "IdOfficeTarget": idOfficeTarget,
+        "IdPerson": idPerson,
+        "IdSavingAccount": idSavingAccount,
+        "IdWebClient": idWebClient,
+        "IdentityCardNumber": identityCardNumber,
+        "IMEI": iMEI,
+        "IpAddress": ipAddress,
+        "location": location,
+        "Moneda": moneda,
+        "MonedaCuenta": monedaCuenta,
+        "MontoSolicitado": montoSolicitado,
+        "NroEmpleados": nroEmpleados,
+        "ObjetoBoleta": objetoBoleta,
+        "Otrosactivos": otrosactivos,
+        "OtrosIngresos": otrosIngresos,
+        "Pagopasivos": pagopasivos,
+        "Pasivos": pagopasivos,
+        "PersonName": personName,
+        "Plazo": plazo,
+        "Proposito": proposito,
+        "TipoBoleta": tipoBoleta,
+        "VentasMensualesBrutas": ventasMensualesBrutas,
+        "CodeOffice": codeOffice,
+        "OfficeName": officeName,
+        "SiregarName": siregarName,
+        "Departamento": departamento,
+        "ColMonedasCuenta": [
+          {"idClasificador": idClasificador, "code": code, "nombre": nombre},
+        ],
+      },
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+    );
+    return BankSecuritySolicitationResultResponseModel.fromJson(response);
+  }
+}

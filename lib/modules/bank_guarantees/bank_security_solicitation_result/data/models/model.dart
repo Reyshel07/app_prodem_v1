@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/bank_guarantees/bank_security_solicitation_result/data/models/bank_security_solicitation_result_model.dart';

@@ -1,7 +1,6 @@
 import 'package:app_prodem_v1/core/api/api.dart';
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/get_list_departments/data/models/get_list_departments_model.dart';
-
 import '../../domain/entities/entity.dart';
 
 class GetListDepartmentsDatasource {
