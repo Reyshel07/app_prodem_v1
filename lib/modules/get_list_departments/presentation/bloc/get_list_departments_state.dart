@@ -15,20 +15,3 @@ final class GetListDepartmentsSuccess extends GetListDepartmentsState {
   GetListDepartmentsResponseEntity getListDepartmentsResponseEntity;
   GetListDepartmentsSuccess(this.getListDepartmentsResponseEntity);
 }
-
-final class GetListLocationDepartmentsInitial extends GetListDepartmentsState {}
-
-final class GetListLocationDepartmentsLoading extends GetListDepartmentsState {}
-
-final class GetListLocationDepartmentsError extends GetListDepartmentsState {
-  final String message;
-  GetListLocationDepartmentsError(this.message);
-}
-
-final class GetListLocationDepartmentsSuccess extends GetListDepartmentsState {
-  GetListLocationDepartmentsResponseEntity
-  getListLocationDepartmentsResponseEntity;
-  GetListLocationDepartmentsSuccess(
-    this.getListLocationDepartmentsResponseEntity,
-  );
-}

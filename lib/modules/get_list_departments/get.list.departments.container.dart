@@ -3,6 +3,7 @@ import 'package:app_prodem_v1/modules/get_list_departments/data/datasource/get_l
 import 'package:app_prodem_v1/modules/get_list_departments/data/repositories/get_list_departments_repository_impl.dart';
 import 'package:app_prodem_v1/modules/get_list_departments/domain/repositories/get_list_departments_repository.dart';
 import 'package:app_prodem_v1/modules/get_list_departments/presentation/bloc/get_list_departments_bloc.dart';
+import 'package:app_prodem_v1/modules/get_list_departments/presentation/bloc/get_list_location_departments_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 void initGetListDepartments(GetIt getIt) {
@@ -13,5 +14,8 @@ void initGetListDepartments(GetIt getIt) {
   );
   getIt.registerFactory<GetListDepartmentsBloc>(
     () => GetListDepartmentsBloc(getIt()),
+  );
+  getIt.registerFactory<GetListLocationDepartmentsBloc>(
+    () => GetListLocationDepartmentsBloc(getIt()),
   );
 }
