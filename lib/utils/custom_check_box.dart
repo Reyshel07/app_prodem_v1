@@ -1,5 +1,4 @@
 import 'package:app_prodem_v1/config/theme/extension.dart';
-import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 
 class CustomCheckBox extends StatelessWidget {
@@ -27,7 +26,7 @@ class CustomCheckBox extends StatelessWidget {
           activeColor: Theme.of(context).colorScheme.green,
           side: BorderSide(color: Theme.of(context).colorScheme.green),
         ),
-        Text(label, style: AppTextStyles.mainStyleGreen14Bold(context)),
+        Text(label, style: styText),
       ],
     );
   }

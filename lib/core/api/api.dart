@@ -19,7 +19,7 @@ class AppStrings {
   static const String getOfficeListByIdGeographicLocation =
       'website/GetOfficeListByIdGeographicLocation';
   static const String getDateEstimate = 'website/GetDateEstimate';
-  static const String inforAcciones = 'Mobiwebsitele/InforAcciones';
+  static const String inforAcciones = 'website/InforAcciones';
   static const String getAccountNumberInOtherBank =
       'website/GetAccountNumberInOtherBank';
   static const String getCurrentQrByType = 'website/GetCurrentQrByType';
@@ -85,4 +85,5 @@ class AppStrings {
       'WebSite/BankSecuritySolicitationInformation';
   static const String bankSecuritySolicitationResult =
       'WebSite/BankSecuritySolicitationResult';
+  static const String getPafDataForMobileApp = 'WebSite/GetPafDataForMobileApp';
 }

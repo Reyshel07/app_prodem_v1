@@ -404,7 +404,7 @@ class _InitialChargeBankGuaranteScreenState
                   CustomCheckBox(
                     value: internalChecked,
                     label: 'ACEPTO LOS TERMINOS Y CONDICIONES',
-                    styText: AppTextStyles.mainStyleGreen12Bold(context),
+                    styText: AppTextStyles.mainStyleGreen10Bold(context),
                     onChanged: (value) {
                       setState(() => internalChecked = value ?? false);
                     },

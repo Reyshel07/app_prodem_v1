@@ -169,6 +169,9 @@ class _BankSecuritySolicitationResulScreenState
                                       activocirculante: '200.0',
                                       activofijo: "200.0",
                                       beneficiario: "AASANA",
+                                      codeSavingsAccountOrigin:
+                                          "117-2-1-17506-8",
+                                      costodeVentas: "10.0",
                                       cUCE: "",
                                       fechaInicioString: "24-10-2025",
                                       gastosfamiliares: "10.0",
@@ -203,8 +206,6 @@ class _BankSecuritySolicitationResulScreenState
                                       idClasificador: "1",
                                       code: "",
                                       nombre: "BS",
-                                      codeSavingsAccountOrigin: "",
-                                      costodeVentas: "",
                                       idSMSOperation: "",
                                       prodemKeyCode: "",
                                     ),
