@@ -20,7 +20,7 @@ class BankSecuritySolicitationResultEntity {
   final String beneficiario;
   final String solicitante;
   final String documentoOrdenante;
-  final int comisionFianzaBancaria;
+  final double comisionFianzaBancaria;
 
   BankSecuritySolicitationResultEntity({
     required this.codigoSolicitud,

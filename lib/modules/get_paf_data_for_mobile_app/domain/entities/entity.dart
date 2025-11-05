@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/get_paf_data_for_mobile_app/domain/entities/get_paf_data_for_mobile_app_entity.dart';

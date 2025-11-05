@@ -18,6 +18,7 @@ import 'package:app_prodem_v1/modules/get_account_numberIn_other_bank/account.nu
 import 'package:app_prodem_v1/modules/get_current_qr_by_type/get.current.qr.by.type.container.dart';
 import 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_client/get.external.payment.generate.file.web.client.container.dart';
 import 'package:app_prodem_v1/modules/get_list_departments/get.list.departments.container.dart';
+import 'package:app_prodem_v1/modules/get_paf_data_for_mobile_app/get.paf.data.for.mobile.app.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/express.data.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
@@ -99,5 +100,6 @@ class InjectorContainer {
     initSintesisPaymentProcess(getIt);
     initGetListDepartments(getIt);
     initBankSecuritySolicitationResult(getIt);
+    initGetPafDataForMobileApp(getIt);
   }
 }

@@ -28,7 +28,7 @@ class BankSecuritySolicitationResultBloc
     try {
       ///completo
       final token = SecureHive.readToken();
-      //final idUser = SecureHive.readIdUser();
+      final idUser = SecureHive.readIdUser();
       String idWebClient = SecureHive.readIdWebPerson();
       final idPerson = SecureHive.readIdPerson();
       final ip = await IpHelper.getDeviceIp();
@@ -51,6 +51,7 @@ class BankSecuritySolicitationResultBloc
         event.idOfficeTarget,
         idPerson,
         event.idSavingAccount,
+        idUser,
         idWebClient,
         event.identityCardNumber,
         imei,

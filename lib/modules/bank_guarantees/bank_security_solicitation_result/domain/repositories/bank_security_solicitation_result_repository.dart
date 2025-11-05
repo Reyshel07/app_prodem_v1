@@ -19,6 +19,7 @@ abstract class BankSecuritySolicitationResultRepository {
     String idOfficeTarget,
     String idPerson,
     String idSavingAccount,
+    String idUser,
     String idWebClient,
     String identityCardNumber,
     String iMEI,
