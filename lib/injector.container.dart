@@ -14,6 +14,7 @@ import 'package:app_prodem_v1/modules/dpf/GetListDpfDigitalSolicitation/get.list
 import 'package:app_prodem_v1/modules/dpf/CreateDPFSolicitationInternal/create.dpf.solicitation.intenal.container.dart';
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/get.parameters.to.digital.dpf.container.dart';
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/infor.acciones.container.dart';
+import 'package:app_prodem_v1/modules/dpf/infor_acciones_two/infor.acciones.two.container.dart';
 import 'package:app_prodem_v1/modules/get_account_numberIn_other_bank/account.numberln.other.bank.container.dart';
 import 'package:app_prodem_v1/modules/get_current_qr_by_type/get.current.qr.by.type.container.dart';
 import 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_client/get.external.payment.generate.file.web.client.container.dart';
@@ -101,5 +102,6 @@ class InjectorContainer {
     initGetListDepartments(getIt);
     initBankSecuritySolicitationResult(getIt);
     initGetPafDataForMobileApp(getIt);
+    initInfAccionesTwo(getIt);
   }
 }

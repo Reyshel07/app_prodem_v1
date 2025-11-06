@@ -96,3 +96,22 @@ class DpfExpiracionModel extends DpfExpiracionEntity {
         rateTxt: json["rateTxt"],
       );
 }
+
+///CheckOwnershipEdv
+CheckOwnershipEdvResponseModel checkOwnershipEdvResponseFromJson(String str) =>
+    CheckOwnershipEdvResponseModel.fromJson(json.decode(str));
+
+class CheckOwnershipEdvResponseModel extends CheckOwnershipEdvResponseEntity {
+  CheckOwnershipEdvResponseModel({
+    required super.data,
+    required super.state,
+    required super.message,
+  });
+
+  factory CheckOwnershipEdvResponseModel.fromJson(Map<String, dynamic> json) =>
+      CheckOwnershipEdvResponseModel(
+        data: json["data"],
+        state: json["state"],
+        message: json["message"],
+      );
+}
