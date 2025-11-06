@@ -86,4 +86,6 @@ class AppStrings {
   static const String bankSecuritySolicitationResult =
       'WebSite/BankSecuritySolicitationResult';
   static const String getPafDataForMobileApp = 'WebSite/GetPafDataForMobileApp';
+
+  static const String checkOwnershipEdv = 'WebSite/CheckOwnershipEdv';
 }

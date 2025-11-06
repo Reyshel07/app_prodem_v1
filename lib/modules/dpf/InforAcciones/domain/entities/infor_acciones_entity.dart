@@ -77,3 +77,16 @@ class DpfExpiracionEntity {
     required this.rateTxt,
   });
 }
+
+///CheckOwnershipEdv
+class CheckOwnershipEdvResponseEntity {
+  final bool data;
+  final int state;
+  final String message;
+
+  CheckOwnershipEdvResponseEntity({
+    required this.data,
+    required this.state,
+    required this.message,
+  });
+}

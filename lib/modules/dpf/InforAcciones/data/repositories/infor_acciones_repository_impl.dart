@@ -20,4 +20,12 @@ class InforAccionesRepositoryImpl extends InforAccionesRepository {
       vToken,
     );
   }
+
+  @override
+  Future<CheckOwnershipEdvResponseEntity> checkOwnershipEdv(
+    String idFixedAcount,
+    String? vToken,
+  ) async {
+    return await datasource.checkOwnershipEdv(idFixedAcount, vToken);
+  }
 }

@@ -29,4 +29,20 @@ class InforAccionesDatasource {
     );
     return InforAccionesResponse.fromJson(response);
   }
+
+  Future<CheckOwnershipEdvResponseEntity> checkOwnershipEdv(
+    String idFixedAcount,
+    String? vToken,
+  ) async {
+    final response = await _apiClient.post(
+      AppStrings.checkOwnershipEdv,
+      operationName: 'service to verify DPFs before cancellation',
+      data: {"IdFixedAcount": idFixedAcount},
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+    );
+    return CheckOwnershipEdvResponseModel.fromJson(response);
+  }
 }

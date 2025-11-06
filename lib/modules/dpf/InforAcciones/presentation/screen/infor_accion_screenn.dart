@@ -1,6 +1,9 @@
+import 'package:app_prodem_v1/config/router/app_router.dart';
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/presentation/bloc/infor_acciones_bloc.dart';
+import 'package:app_prodem_v1/modules/dpf/infor_acciones_two/presentation/bloc/infor_acciones_two_bloc.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class InforAccionesScreen extends StatelessWidget {
-  const InforAccionesScreen({super.key});
+  final String tipo;
+  const InforAccionesScreen({super.key, required this.tipo});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +20,18 @@ class InforAccionesScreen extends StatelessWidget {
     final double smallSpacing = screenSize.height * 0.02;
     //final double letterSize = screenSize.height;
     final double topPadding = screenSize.height * 0.2;
-    return BlocProvider(
-      create: (context) =>
-          InjectorContainer.getIt<InforAccionesBloc>()..add(InfAccionEvent()),
+
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<InforAccionesBloc>()
+                ..add(InfAccionEvent()),
+        ),
+        BlocProvider(
+          create: (context) => InjectorContainer.getIt<InforAccionesTwoBloc>(),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           foregroundColor: Theme.of(context).colorScheme.white,
@@ -47,59 +60,101 @@ class InforAccionesScreen extends StatelessWidget {
                         'Seleccione un DPF:',
                         style: AppTextStyles.mainStyleGreen14Bold(context),
                       ),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: data1?.length,
-                        itemBuilder: (context, index) {
-                          final data = data1?[index];
-                          return Card(
-                            elevation: smallSpacing * 0.5,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Theme.of(context).colorScheme.green,
+                      BlocConsumer<InforAccionesTwoBloc, InforAccionesTwoState>(
+                        listener: (context, state) {
+                          if (state is InforAccionesTwoSuccess) {
+                            if (tipo == "Renovación") {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                InforAccionesTwoRoute(
+                                  tipo: "Renovación",
+                                  data: state.inforAccionesEntity,
                                 ),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(topPadding * 0.05),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Departamento:\n'
-                                      'Código DPF:\n'
-                                      'Capital Bs:\n'
-                                      'Interes:\n'
-                                      'Monto total al cierre:\n'
-                                      'Tipo Moneda:\n'
-                                      'Detalle:',
-                                      style: AppTextStyles.mainStyleGreen12Bold(
-                                        context,
-                                      ),
+                              );
+                            } else {
+                              InjectorContainer.getIt<AppRouter>().push(
+                                InforAccionesTwoRoute(
+                                  tipo: "Cancelación",
+                                  data: state.inforAccionesEntity,
+                                ),
+                              );
+                            }
+                          }
+                        },
+                        builder: (context, state) {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: data1?.length,
+                            itemBuilder: (context, index) {
+                              final data = data1?[index];
+                              return GestureDetector(
+                                onTap: () {
+                                  context.read<InforAccionesTwoBloc>().add(
+                                    InfAccionesTwo(
+                                      idDpfMfInitial:
+                                          data?.idFixedTermDepositAccount ??
+                                          ''.toString(),
+                                      idcInfoType: '1',
                                     ),
-                                    SizedBox(width: smallSpacing * 0.5),
-                                    SizedBox(
-                                      width: screenSize.width * 0.53,
-                                      child: Text(
-                                        '${data?.departamento}\n'
-                                        '${data?.codigoDpf}\n'
-                                        '${data?.monto}\n'
-                                        '${data?.interes}\n'
-                                        '${data?.capitalARenovar}\n'
-                                        '${data?.moneda}\n'
-                                        '${data?.depositProduct}',
-                                        textAlign: TextAlign.justify,
-                                        style: AppTextStyles.mainStyleGreen12(
+                                  );
+                                },
+                                child: Card(
+                                  elevation: smallSpacing * 0.5,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Theme.of(
                                           context,
-                                        ),
+                                        ).colorScheme.green,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                        topPadding * 0.05,
+                                      ),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Departamento:\n'
+                                            'Código DPF:\n'
+                                            'Capital Bs:\n'
+                                            'Interes:\n'
+                                            'Monto total al cierre:\n'
+                                            'Tipo Moneda:\n'
+                                            'Detalle:',
+                                            style:
+                                                AppTextStyles.mainStyleGreen12Bold(
+                                                  context,
+                                                ),
+                                          ),
+                                          SizedBox(width: smallSpacing * 0.5),
+                                          SizedBox(
+                                            width: screenSize.width * 0.53,
+                                            child: Text(
+                                              '${data?.departamento}\n'
+                                              '${data?.codigoDpf}\n'
+                                              '${data?.monto}\n'
+                                              '${data?.interes}\n'
+                                              '${data?.capitalARenovar}\n'
+                                              '${data?.moneda}\n'
+                                              '${data?.depositProduct}',
+                                              textAlign: TextAlign.justify,
+                                              style:
+                                                  AppTextStyles.mainStyleGreen12(
+                                                    context,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           );
                         },
                       ),

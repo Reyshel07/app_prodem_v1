@@ -15,7 +15,6 @@ class AdministracionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final double smallSpacing = screenSize.height * 0.02;
-    //final double letterSize = screenSize.height;
     final double topPadding = screenSize.height * 0.2;
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +38,9 @@ class AdministracionScreen extends StatelessWidget {
             SizedBox(height: smallSpacing * 0.5),
             GestureDetector(
               onTap: () {
-                InjectorContainer.getIt<AppRouter>().push(InforAccionesRoute());
+                InjectorContainer.getIt<AppRouter>().push(
+                  InforAccionesRoute(tipo: "Renovación"),
+                );
               },
               child: Card(
                 elevation: smallSpacing * 0.5,
@@ -74,7 +75,9 @@ class AdministracionScreen extends StatelessWidget {
             SizedBox(height: smallSpacing * 0.5),
             GestureDetector(
               onTap: () {
-                InjectorContainer.getIt<AppRouter>().push(InforAccionesRoute());
+                InjectorContainer.getIt<AppRouter>().push(
+                  InforAccionesRoute(tipo: "Cancelación"),
+                );
               },
               child: Card(
                 elevation: smallSpacing * 0.5,
