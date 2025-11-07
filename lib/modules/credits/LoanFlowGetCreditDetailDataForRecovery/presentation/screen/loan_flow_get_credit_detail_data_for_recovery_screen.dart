@@ -254,98 +254,85 @@ class _LoanFlowGetCreditDetailDataForRecoveryScreenState
                                             if (createState
                                                     is CreatePrKeySuccess &&
                                                 getState is GetPrKeyByIdSuccess)
-                                              SizedBox(
-                                                width: screenSize.width * 0.3,
-                                                child: Card(
-                                                  elevation: smallSpacing * 0.5,
-                                                  child:
-                                                      BlocConsumer<
-                                                        LoanFlowPaymentCreditBloc,
-                                                        LoanFlowPaymentCreditState
-                                                      >(
-                                                        listener: (context, state) {
-                                                          if (state
-                                                              is LoanFlowPaymentCreditSuccess) {
-                                                            InjectorContainer.getIt<
-                                                                  AppRouter
-                                                                >()
-                                                                .push(
-                                                                  SavingAccountTransMobileEndRoute(
-                                                                    response: state
-                                                                        .savingsAccountTransferMobileResponseEntity
-                                                                        .toString(),
-                                                                  ),
-                                                                );
-                                                          }
-                                                          if (state
-                                                              is LoanFlowPaymentCreditError) {
-                                                            ScaffoldMessenger.of(
-                                                              context,
-                                                            ).showSnackBar(
-                                                              SnackBar(
-                                                                content: Text(
-                                                                  state.message,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                        },
-                                                        builder: (context, state) {
-                                                          return Butoon1(
-                                                            onTap: () {
-                                                              context
-                                                                  .read<
-                                                                    LoanFlowPaymentCreditBloc
-                                                                  >()
-                                                                  .add(
-                                                                    LoanFlowPaymentCreditE(
-                                                                      idLoanCredit:
-                                                                          entity
-                                                                              .idLoanCredit,
-                                                                      debitAmount:
-                                                                          entity
-                                                                              .totalToDebit,
-                                                                      amountToPay:
-                                                                          entity
-                                                                              .totalAmountToPay,
-                                                                      taxAmount:
-                                                                          entity
-                                                                              .totalTax,
-                                                                      idLoanCurrency:
-                                                                          entity
-                                                                              .idLoanCurrency,
-                                                                      withInsuranceReturn:
-                                                                          entity
-                                                                              .withInsuranceReturn,
-                                                                      idSavingAccount:
-                                                                          _selectedAccountId!
-                                                                              .toInt(),
-                                                                      loanCreditCode:
-                                                                          entity
-                                                                              .loanCreditCode,
-                                                                      isOwnCredit:
-                                                                          true,
-                                                                      idSMSOperation: createState
-                                                                          .createProdemKeyResponseEntity
-                                                                          .data
-                                                                          .toString(),
-                                                                      prodemKeyCode:
-                                                                          getState
-                                                                              .getProdemKeyByIdResponseEntity
-                                                                              ?.data ??
-                                                                          '',
-                                                                    ),
-                                                                  );
-                                                            },
-                                                            lblTextField:
-                                                                state
-                                                                    is LoanFlowPaymentCreditLoading
-                                                                ? 'Procesando...'
-                                                                : 'CONFIRMAR',
-                                                          );
-                                                        },
+                                              BlocConsumer<
+                                                LoanFlowPaymentCreditBloc,
+                                                LoanFlowPaymentCreditState
+                                              >(
+                                                listener: (context, state) {
+                                                  if (state
+                                                      is LoanFlowPaymentCreditSuccess) {
+                                                    InjectorContainer.getIt<
+                                                          AppRouter
+                                                        >()
+                                                        .push(
+                                                          SavingAccountTransMobileEndRoute(
+                                                            response: state
+                                                                .savingsAccountTransferMobileResponseEntity
+                                                                .toString(),
+                                                          ),
+                                                        );
+                                                  }
+                                                  if (state
+                                                      is LoanFlowPaymentCreditError) {
+                                                    ScaffoldMessenger.of(
+                                                      context,
+                                                    ).showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          state.message,
+                                                        ),
                                                       ),
-                                                ),
+                                                    );
+                                                  }
+                                                },
+                                                builder: (context, state) {
+                                                  return Butoon1(
+                                                    onTap: () {
+                                                      context
+                                                          .read<
+                                                            LoanFlowPaymentCreditBloc
+                                                          >()
+                                                          .add(
+                                                            LoanFlowPaymentCreditE(
+                                                              idLoanCredit: entity
+                                                                  .idLoanCredit,
+                                                              debitAmount: entity
+                                                                  .totalToDebit,
+                                                              amountToPay: entity
+                                                                  .totalAmountToPay,
+                                                              taxAmount: entity
+                                                                  .totalTax,
+                                                              idLoanCurrency: entity
+                                                                  .idLoanCurrency,
+                                                              withInsuranceReturn:
+                                                                  entity
+                                                                      .withInsuranceReturn,
+                                                              idSavingAccount:
+                                                                  _selectedAccountId!
+                                                                      .toInt(),
+                                                              loanCreditCode: entity
+                                                                  .loanCreditCode,
+                                                              isOwnCredit: true,
+                                                              idSMSOperation:
+                                                                  createState
+                                                                      .createProdemKeyResponseEntity
+                                                                      .data
+                                                                      .toString(),
+                                                              prodemKeyCode:
+                                                                  getState
+                                                                      .getProdemKeyByIdResponseEntity
+                                                                      ?.data ??
+                                                                  '',
+                                                            ),
+                                                          );
+                                                    },
+                                                    lblTextField:
+                                                        state
+                                                            is LoanFlowPaymentCreditLoading
+                                                        ? 'Procesando...'
+                                                        : 'CONFIRMAR',
+                                                  );
+                                                },
                                               ),
 
                                             Butoon1(

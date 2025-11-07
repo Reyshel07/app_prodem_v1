@@ -399,7 +399,7 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           Gesture(
                             onTap: () {
                               InjectorContainer.getIt<AppRouter>().push(
-                                AdministracionRoute(),
+                                AdministracionRoute(sessionBloc: sessionBloc),
                               );
                             },
                             topPadding: topPadding,

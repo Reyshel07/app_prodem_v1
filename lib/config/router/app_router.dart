@@ -56,5 +56,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: BankSecuritySolicitationResulRoute.page),
     AutoRoute(page: GetPafSataForMobileAppRoute.page),
     AutoRoute(page: InforAccionesTwoRoute.page),
+    AutoRoute(page: VerificaPlazoRenovacionRoute.page),
   ];
 }
