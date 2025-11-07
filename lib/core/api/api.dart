@@ -88,4 +88,6 @@ class AppStrings {
   static const String getPafDataForMobileApp = 'WebSite/GetPafDataForMobileApp';
 
   static const String checkOwnershipEdv = 'WebSite/CheckOwnershipEdv';
+  static const String verificaPlazoRenovacion =
+      'WebSite/VerificaPlazoRenovacion';
 }

@@ -29,7 +29,6 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final double smallSpacing = screenSize.height * 0.02;
-    //final double letterSize = screenSize.height;
     final double topPadding = screenSize.height * 0.2;
     return MultiBlocProvider(
       providers: [
@@ -66,11 +65,8 @@ class _AccountInquiryScreenState extends State<AccountInquiryScreen> {
               ),
               Butoon1(
                 onTap: () {
-                  // String codeSavingsAccount1 = '117-2-1-17515-8';
                   widget.bloc.add(
-                    AccountBalEvent(
-                      codeSavingsAccount: _selectedAccount ?? '117-2-1-17515-8',
-                    ),
+                    AccountBalEvent(codeSavingsAccount: _selectedAccount ?? ''),
                   );
                 },
                 lblTextField: 'CONSULTAR',
