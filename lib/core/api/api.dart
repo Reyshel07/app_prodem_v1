@@ -90,4 +90,7 @@ class AppStrings {
   static const String checkOwnershipEdv = 'WebSite/CheckOwnershipEdv';
   static const String verificaPlazoRenovacion =
       'WebSite/VerificaPlazoRenovacion';
+  static const String verifyRedeem = 'WebSite/VerifyRedeem';
+  static const String validateAndSaveRenovationDpf =
+      'WebSite/ValidateAndSaveRenovationDpf';
 }

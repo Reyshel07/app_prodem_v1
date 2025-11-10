@@ -1,5 +1,7 @@
 import 'package:app_prodem_v1/core/networking/http_services.dart';
 import 'package:app_prodem_v1/modules/dpf/verifica_plazo_renovacion/data/repositories/verifica_plazo_renovacion_repository_impl.dart';
+import 'package:app_prodem_v1/modules/dpf/verifica_plazo_renovacion/presentation/bloc/bloc/validate_and_save_renovation_dpf_bloc.dart';
+import 'package:app_prodem_v1/modules/dpf/verifica_plazo_renovacion/presentation/bloc/bloc/verify_redeem_bloc.dart';
 import 'package:app_prodem_v1/modules/dpf/verifica_plazo_renovacion/presentation/bloc/verifica_plazo_renovacion_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,5 +18,9 @@ void initVerificaPlazoRenovacion(GetIt getIt) {
   );
   getIt.registerFactory<VerificaPlazoRenovacionBloc>(
     () => VerificaPlazoRenovacionBloc(getIt()),
+  );
+  getIt.registerFactory<VerifyRedeemBloc>(() => VerifyRedeemBloc(getIt()));
+  getIt.registerFactory<ValidateAndSaveRenovationDpfBloc>(
+    () => ValidateAndSaveRenovationDpfBloc(getIt()),
   );
 }

@@ -69,12 +69,13 @@ class InforAccionesScreen extends StatelessWidget {
             BlocListener<CheckOwnershipEdvBloc, CheckOwnershipEdvState>(
               listener: (context, state) {
                 if (state is CheckOwnershipEdvSuccess) {
-                  /*InjectorContainer.getIt<AppRouter>().push(
+                  InjectorContainer.getIt<AppRouter>().push(
                     VerificaPlazoRenovacionRoute(
                       text: 'Cancelación',
                       sessionBloc: sessionBloc,
+                      data: state.data1,
                     ),
-                  );*/
+                  );
                 }
               },
             ),
@@ -118,16 +119,14 @@ class InforAccionesScreen extends StatelessWidget {
                                     ),
                                   );
                                 } else if (tipo == "Cancelación") {
-                                  /*context.read<CheckOwnershipEdvBloc>().add(
+                                  context.read<CheckOwnershipEdvBloc>().add(
                                     CheckOwnershipEdvEv(
                                       idFixedAcount:
                                           data?.idFixedTermDepositAccount ??
                                           ''.toString(),
-                                      codDpfExpidado: data?.codigoDpf??'',
-                                      capital: 
+                                      data: data,
                                     ),
                                   );
-                                */
                                 }
                               },
                               child: Card(
