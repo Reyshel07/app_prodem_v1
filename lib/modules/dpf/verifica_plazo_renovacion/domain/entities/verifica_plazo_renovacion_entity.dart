@@ -19,3 +19,37 @@ class VerificaPlazoRenovacionEntity {
     required this.termInDays,
   });
 }
+
+///VerifyRedeemResponse
+
+class VerifyRedeemResponseEntity {
+  final VerifyRedeemEntity data;
+  final int state;
+  final String message;
+
+  VerifyRedeemResponseEntity({
+    required this.data,
+    required this.state,
+    required this.message,
+  });
+}
+
+class VerifyRedeemEntity {
+  final int tipo;
+  final String info;
+
+  VerifyRedeemEntity({required this.tipo, required this.info});
+}
+
+//// ValidateAndSaveRenovationDpfResponse
+class ValidateAndSaveRenovationDpfResponseEntity {
+  final String data;
+  final int state;
+  final String message;
+
+  ValidateAndSaveRenovationDpfResponseEntity({
+    required this.data,
+    required this.state,
+    required this.message,
+  });
+}

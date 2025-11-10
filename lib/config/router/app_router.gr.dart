@@ -52,6 +52,8 @@ import 'package:app_prodem_v1/modules/dpf/infor_acciones_two/domain/entities/ent
     as _i64;
 import 'package:app_prodem_v1/modules/dpf/infor_acciones_two/presentation/screen/inf_acciones_two_screen.dart'
     as _i25;
+import 'package:app_prodem_v1/modules/dpf/InforAcciones/domain/entities/entity.dart'
+    as _i74;
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/presentation/screen/administracion_screen.dart'
     as _i3;
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/presentation/screen/infor_accion_screenn.dart'
@@ -2611,14 +2613,7 @@ class VerificaPlazoRenovacionRoute
     _i52.Key? key,
     required String text,
     required _i54.SessionInfoBloc sessionBloc,
-    required String codDpfExpidado,
-    required String capital,
-    required String interes,
-    required String impuestoDeCierre,
-    required String montoTotalCierre,
-    required String plazo,
-    required String fechaVencimiento,
-    required String tasa,
+    required _i74.DpfExpiracionEntity? data,
     List<_i51.PageRouteInfo>? children,
   }) : super(
           VerificaPlazoRenovacionRoute.name,
@@ -2626,14 +2621,7 @@ class VerificaPlazoRenovacionRoute
             key: key,
             text: text,
             sessionBloc: sessionBloc,
-            codDpfExpidado: codDpfExpidado,
-            capital: capital,
-            interes: interes,
-            impuestoDeCierre: impuestoDeCierre,
-            montoTotalCierre: montoTotalCierre,
-            plazo: plazo,
-            fechaVencimiento: fechaVencimiento,
-            tasa: tasa,
+            data: data,
           ),
           initialChildren: children,
         );
@@ -2648,14 +2636,7 @@ class VerificaPlazoRenovacionRoute
         key: args.key,
         text: args.text,
         sessionBloc: args.sessionBloc,
-        codDpfExpidado: args.codDpfExpidado,
-        capital: args.capital,
-        interes: args.interes,
-        impuestoDeCierre: args.impuestoDeCierre,
-        montoTotalCierre: args.montoTotalCierre,
-        plazo: args.plazo,
-        fechaVencimiento: args.fechaVencimiento,
-        tasa: args.tasa,
+        data: args.data,
       );
     },
   );
@@ -2666,14 +2647,7 @@ class VerificaPlazoRenovacionRouteArgs {
     this.key,
     required this.text,
     required this.sessionBloc,
-    required this.codDpfExpidado,
-    required this.capital,
-    required this.interes,
-    required this.impuestoDeCierre,
-    required this.montoTotalCierre,
-    required this.plazo,
-    required this.fechaVencimiento,
-    required this.tasa,
+    required this.data,
   });
 
   final _i52.Key? key;
@@ -2682,25 +2656,11 @@ class VerificaPlazoRenovacionRouteArgs {
 
   final _i54.SessionInfoBloc sessionBloc;
 
-  final String codDpfExpidado;
-
-  final String capital;
-
-  final String interes;
-
-  final String impuestoDeCierre;
-
-  final String montoTotalCierre;
-
-  final String plazo;
-
-  final String fechaVencimiento;
-
-  final String tasa;
+  final _i74.DpfExpiracionEntity? data;
 
   @override
   String toString() {
-    return 'VerificaPlazoRenovacionRouteArgs{key: $key, text: $text, sessionBloc: $sessionBloc, codDpfExpidado: $codDpfExpidado, capital: $capital, interes: $interes, impuestoDeCierre: $impuestoDeCierre, montoTotalCierre: $montoTotalCierre, plazo: $plazo, fechaVencimiento: $fechaVencimiento, tasa: $tasa}';
+    return 'VerificaPlazoRenovacionRouteArgs{key: $key, text: $text, sessionBloc: $sessionBloc, data: $data}';
   }
 }
 

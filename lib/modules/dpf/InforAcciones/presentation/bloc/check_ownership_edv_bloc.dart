@@ -1,8 +1,9 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
-import 'package:app_prodem_v1/modules/dpf/InforAcciones/domain/entities/infor_acciones_entity.dart';
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/domain/repositories/infor_acciones_repository.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../domain/entities/entity.dart';
 
 part 'check_ownership_edv_event.dart';
 part 'check_ownership_edv_state.dart';
@@ -25,19 +26,7 @@ class CheckOwnershipEdvBloc
         event.idFixedAcount,
         token,
       );
-      emit(
-        CheckOwnershipEdvSuccess(
-          response.data,
-          event.capital,
-          event.codDpfExpidado,
-          event.interes,
-          event.impuestoDeCierre,
-          event.montoTotalCierre,
-          event.plazo,
-          event.fechaVencimiento,
-          event.tasa,
-        ),
-      );
+      emit(CheckOwnershipEdvSuccess(response.data, event.data));
     } on BaseApiException catch (error) {
       switch (error.message) {
         case "api_logic_error":
