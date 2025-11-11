@@ -54,3 +54,63 @@ class SintesisPaymentProcessModel extends SintesisPaymentProcessEntity {
         fileName: json["fileName"],
       );
 }
+
+///GetSavingAccountVerficationMessagesResponse
+GetSavingAccountVerficationMessagesResponseModel
+getSavingAccountVerficationMessagesResponseFromJson(String str) =>
+    GetSavingAccountVerficationMessagesResponseModel.fromJson(json.decode(str));
+
+class GetSavingAccountVerficationMessagesResponseModel
+    extends GetSavingAccountVerficationMessagesResponseEntity {
+  GetSavingAccountVerficationMessagesResponseModel({
+    required super.data,
+    required super.state,
+    required super.message,
+  });
+
+  factory GetSavingAccountVerficationMessagesResponseModel.fromJson(
+    Map<String, dynamic> json,
+  ) => GetSavingAccountVerficationMessagesResponseModel(
+    data: GetSavingAccountVerficationMessagesModel.fromJson(json["data"]),
+    state: json["state"],
+    message: json["message"],
+  );
+}
+
+class GetSavingAccountVerficationMessagesModel
+    extends GetSavingAccountVerficationMessagesEntity {
+  GetSavingAccountVerficationMessagesModel({
+    required super.message,
+    required super.isValid,
+    required super.idSavingAccount,
+    required super.savingBalance,
+    required super.applyGenerateConfidentialInformationForm,
+    required super.isCloseExecuted,
+    required super.reportString,
+    required super.codeSavingAccount,
+    required super.codeMoney,
+    required super.conditionNumberWithdrawalApply,
+    required super.messageConditionNumberWithdrawal,
+    required super.conditionMinimumBalanceApply,
+    required super.messageConditionMinimumBalance,
+  });
+
+  factory GetSavingAccountVerficationMessagesModel.fromJson(
+    Map<String, dynamic> json,
+  ) => GetSavingAccountVerficationMessagesModel(
+    message: json["message"],
+    isValid: json["isValid"],
+    idSavingAccount: json["idSavingAccount"],
+    savingBalance: json["savingBalance"],
+    applyGenerateConfidentialInformationForm:
+        json["applyGenerateConfidentialInformationForm"],
+    isCloseExecuted: json["isCloseExecuted"],
+    reportString: json["reportString"],
+    codeSavingAccount: json["codeSavingAccount"],
+    codeMoney: json["codeMoney"],
+    conditionNumberWithdrawalApply: json["conditionNumberWithdrawalApply"],
+    messageConditionNumberWithdrawal: json["messageConditionNumberWithdrawal"],
+    conditionMinimumBalanceApply: json["conditionMinimumBalanceApply"],
+    messageConditionMinimumBalance: json["messageConditionMinimumBalance"],
+  );
+}

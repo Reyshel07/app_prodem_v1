@@ -135,3 +135,16 @@ class ListCodeCreditLineElementEntity {
     required this.balance,
   });
 }
+
+///GetDesmaterializationRerportToWebResponse
+class GetDesmaterializationRerportToWebResponseEntity {
+  final String data;
+  final int state;
+  final String message;
+
+  GetDesmaterializationRerportToWebResponseEntity({
+    required this.data,
+    required this.state,
+    required this.message,
+  });
+}

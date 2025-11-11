@@ -26,4 +26,21 @@ class GetAchBanckDatasource {
     );
     return GetAchBanksListResponse.fromJson(response);
   }
+
+  Future<GetValidAccountResponseEntity> getValidAccount(
+    String idbank,
+    String accountNumber,
+    String? vToken,
+  ) async {
+    final response = await _apiClient.post(
+      AppStrings.getAchBanksList,
+      operationName: 'obtains the list of banks',
+      data: {"Idbank": idbank, "AccountNumber": accountNumber},
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+    );
+    return GetValidAccountResponseModel.fromJson(response);
+  }
 }

@@ -95,4 +95,12 @@ class AppStrings {
       'WebSite/ValidateAndSaveRenovationDpf';
   static const String getFavoritesOtherDeposits =
       'WebSite/GetFavoritesOtherDeposits';
+  static const String getSavingAccountVerficationMessages =
+      'WebSite/GetSavingAccountVerficationMessages';
+  static const String getDesmaterializationRerportToWeb =
+      'WebSite/GetDesmaterializationRerportToWeb';
+  static const String getTicketsInformationMobile =
+      'WebSite/GetTicketsInformationMobile';
+  static const String getDataAccountForMobilesByCodeAccountAll =
+      'WebSite/GetDataAccountForMobilesByCodeAccountAll';
 }

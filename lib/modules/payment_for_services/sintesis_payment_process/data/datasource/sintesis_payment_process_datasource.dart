@@ -140,4 +140,29 @@ class SintesisPaymentProcessDatasource {
 
     return SintesisPaymentProcessResponseModel.fromJson(response);
   }
+
+  Future<GetSavingAccountVerficationMessagesResponseEntity>
+  getSavingAccountVerficationMessages(
+    String idSavingAccount,
+    String idMoney,
+    String transactionAmount,
+    String savingOperation,
+    String? vToken,
+  ) async {
+    final response = await _apiClient.post(
+      AppStrings.getSavingAccountVerficationMessages,
+      operationName: 'service that confirms payment validation for services',
+      data: {
+        "IdSavingAccount": idSavingAccount,
+        "IdMoney": idMoney,
+        "TransactionAmount": transactionAmount,
+        "SavingOperation": savingOperation, //quemar
+      },
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+    );
+    return GetSavingAccountVerficationMessagesResponseModel.fromJson(response);
+  }
 }

@@ -5,4 +5,6 @@ abstract class UserSessionInfoRepository {
     String? vIdWebClient,
     String? vToken,
   );
+  Future<GetDesmaterializationRerportToWebResponseEntity>
+  getDesmaterializationRerportToWeb(String codeOperation, String? vToken);
 }

@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/get_tickets_information_mobile/domain/repositories/get_tickets_information_mobile_repository.dart';

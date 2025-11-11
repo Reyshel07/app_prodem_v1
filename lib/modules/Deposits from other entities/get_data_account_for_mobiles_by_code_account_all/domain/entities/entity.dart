@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_data_account_for_mobiles_by_code_account_all/domain/entities/data_account_for_mobiles_by_code_account_all_entity.dart';

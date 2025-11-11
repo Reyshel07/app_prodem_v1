@@ -25,4 +25,21 @@ class UserSessionInfoDataSouce {
     );
     return UserSessionInfoResponseModel.fromJson(response);
   }
+
+  Future<GetDesmaterializationRerportToWebResponseEntity>
+  getDesmaterializationRerportToWeb(
+    String codeOperation,
+    String? vToken,
+  ) async {
+    final response = await _apiClient.post(
+      AppStrings.getDesmaterializationRerportToWeb,
+      data: {"codeOperation": codeOperation},
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+      operationName: 'service that brings card reports',
+    );
+    return GetDesmaterializationRerportToWebResponse.fromJson(response);
+  }
 }
