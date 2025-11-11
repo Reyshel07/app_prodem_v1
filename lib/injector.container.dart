@@ -16,8 +16,8 @@ import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/get.paramete
 import 'package:app_prodem_v1/modules/dpf/InforAcciones/infor.acciones.container.dart';
 import 'package:app_prodem_v1/modules/dpf/infor_acciones_two/infor.acciones.two.container.dart';
 import 'package:app_prodem_v1/modules/dpf/verifica_plazo_renovacion/verifica.plazo.renovacion.container.dart';
-import 'package:app_prodem_v1/modules/get_account_numberIn_other_bank/account.numberln.other.bank.container.dart';
-import 'package:app_prodem_v1/modules/get_current_qr_by_type/get.current.qr.by.type.container.dart';
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_account_numberIn_other_bank/account.numberln.other.bank.container.dart';
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_current_qr_by_type/get.current.qr.by.type.container.dart';
 import 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_client/get.external.payment.generate.file.web.client.container.dart';
 import 'package:app_prodem_v1/modules/get_list_departments/get.list.departments.container.dart';
 import 'package:app_prodem_v1/modules/get_paf_data_for_mobile_app/get.paf.data.for.mobile.app.container.dart';
@@ -25,12 +25,12 @@ import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/expres
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/prodem_express_save_solicitation/prodem.expres.save.solitation.container.dart';
-import 'package:app_prodem_v1/modules/list_get_other_account_deposit/list.get.other.account.deposit.container.dart';
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/list_get_other_account_deposit/list.get.other.account.deposit.container.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/get_favorites_by_web_client/get.favorites.by.web.client.container.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_get_search_parameters_by_module/sintesis.get.search.parameters_by.module.container.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_obtain_operating_debt_balance/sintesis.obtain.operating.debt.balance.container.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_payment_process/sintesis.payment.process.container.dart';
-import 'package:app_prodem_v1/modules/save_online_third_deposit/save.online.third.deposit.container.dart';
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/save_online_third_deposit/save.online.third.deposit.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/decrypt.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/get.encripted.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_report_movements_by_person_and_dates/get.report.movements.by.pewrson.and.date.container.dart';

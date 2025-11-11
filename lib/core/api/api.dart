@@ -93,4 +93,6 @@ class AppStrings {
   static const String verifyRedeem = 'WebSite/VerifyRedeem';
   static const String validateAndSaveRenovationDpf =
       'WebSite/ValidateAndSaveRenovationDpf';
+  static const String getFavoritesOtherDeposits =
+      'WebSite/GetFavoritesOtherDeposits';
 }
