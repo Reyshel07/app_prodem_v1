@@ -60,11 +60,11 @@ import 'package:app_prodem_v1/modules/dpf/InforAcciones/presentation/screen/info
     as _i24;
 import 'package:app_prodem_v1/modules/dpf/verifica_plazo_renovacion/presentation/screen/verifica_plazo_renovacion_screen.dart'
     as _i49;
-import 'package:app_prodem_v1/modules/get_account_numberIn_other_bank/presentation/screen/get_account_numberln_other_bank_screen.dart'
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_account_numberIn_other_bank/presentation/screen/get_account_numberln_other_bank_screen.dart'
     as _i2;
-import 'package:app_prodem_v1/modules/get_current_qr_by_type/presentation/screen/get_current_qr_by_type_screen.dart'
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_current_qr_by_type/presentation/screen/get_current_qr_by_type_screen.dart'
     as _i7;
-import 'package:app_prodem_v1/modules/get_current_qr_by_type/presentation/screen/get_current_qr_by_type_two_screen.dart'
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_current_qr_by_type/presentation/screen/get_current_qr_by_type_two_screen.dart'
     as _i9;
 import 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_client/presentation/screen/get_external_payment_generate_file_web_client_screen.dart'
     as _i16;
@@ -100,7 +100,7 @@ import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitatio
     as _i35;
 import 'package:app_prodem_v1/modules/lightning_turn/prodem_express_save_solicitation/presentation/screen/prodem_expres_save_solicitation_screen.dart'
     as _i15;
-import 'package:app_prodem_v1/modules/list_get_other_account_deposit/presentation/screen/list_get_other_account_deposit_screen.dart'
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/list_get_other_account_deposit/presentation/screen/list_get_other_account_deposit_screen.dart'
     as _i27;
 import 'package:app_prodem_v1/modules/payment_for_services/get_favorites_by_web_client/domain/entities/entity.dart'
     as _i63;
@@ -120,7 +120,7 @@ import 'package:app_prodem_v1/modules/payment_for_services/sintesis_obtain_opera
     as _i43;
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_payment_process/presentation/screen/sintesis_payment_process_screen.dart'
     as _i44;
-import 'package:app_prodem_v1/modules/save_online_third_deposit/presentation/screen/save_online_third_deposit_screen.dart'
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/save_online_third_deposit/presentation/screen/save_online_third_deposit_screen.dart'
     as _i8;
 import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/domain/entities/decrypt_qr_string_entity.dart'
     as _i56;
@@ -164,14 +164,14 @@ class AccountInquiryRoute extends _i51.PageRouteInfo<AccountInquiryRouteArgs> {
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          AccountInquiryRoute.name,
-          args: AccountInquiryRouteArgs(
-            key: key,
-            bloc: bloc,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         AccountInquiryRoute.name,
+         args: AccountInquiryRouteArgs(
+           key: key,
+           bloc: bloc,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'AccountInquiryRoute';
 
@@ -216,13 +216,13 @@ class AccountNumberlnOtherBankRoute
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          AccountNumberlnOtherBankRoute.name,
-          args: AccountNumberlnOtherBankRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         AccountNumberlnOtherBankRoute.name,
+         args: AccountNumberlnOtherBankRouteArgs(
+           key: key,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'AccountNumberlnOtherBankRoute';
 
@@ -262,13 +262,10 @@ class AdministracionRoute extends _i51.PageRouteInfo<AdministracionRouteArgs> {
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          AdministracionRoute.name,
-          args: AdministracionRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         AdministracionRoute.name,
+         args: AdministracionRouteArgs(key: key, sessionBloc: sessionBloc),
+         initialChildren: children,
+       );
 
   static const String name = 'AdministracionRoute';
 
@@ -285,10 +282,7 @@ class AdministracionRoute extends _i51.PageRouteInfo<AdministracionRouteArgs> {
 }
 
 class AdministracionRouteArgs {
-  const AdministracionRouteArgs({
-    this.key,
-    required this.sessionBloc,
-  });
+  const AdministracionRouteArgs({this.key, required this.sessionBloc});
 
   final _i52.Key? key;
 
@@ -304,10 +298,7 @@ class AdministracionRouteArgs {
 /// [_i4.BankSecuritySolicitationResulScreen]
 class BankSecuritySolicitationResulRoute extends _i51.PageRouteInfo<void> {
   const BankSecuritySolicitationResulRoute({List<_i51.PageRouteInfo>? children})
-      : super(
-          BankSecuritySolicitationResulRoute.name,
-          initialChildren: children,
-        );
+    : super(BankSecuritySolicitationResulRoute.name, initialChildren: children);
 
   static const String name = 'BankSecuritySolicitationResulRoute';
 
@@ -329,14 +320,14 @@ class CreditCardDataForRecoveryRoute
     required _i5.CreditType creditType,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          CreditCardDataForRecoveryRoute.name,
-          args: CreditCardDataForRecoveryRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-            creditType: creditType,
-          ),
-          initialChildren: children,
-        );
+         CreditCardDataForRecoveryRoute.name,
+         args: CreditCardDataForRecoveryRouteArgs(
+           key: key,
+           sessionBloc: sessionBloc,
+           creditType: creditType,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'CreditCardDataForRecoveryRoute';
 
@@ -382,14 +373,14 @@ class CreditCardDataQueryRoute
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          CreditCardDataQueryRoute.name,
-          args: CreditCardDataQueryRouteArgs(
-            key: key,
-            bloc: bloc,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         CreditCardDataQueryRoute.name,
+         args: CreditCardDataQueryRouteArgs(
+           key: key,
+           bloc: bloc,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'CreditCardDataQueryRoute';
 
@@ -434,13 +425,10 @@ class CurrentQrByTypeRoute
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          CurrentQrByTypeRoute.name,
-          args: CurrentQrByTypeRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         CurrentQrByTypeRoute.name,
+         args: CurrentQrByTypeRouteArgs(key: key, sessionBloc: sessionBloc),
+         initialChildren: children,
+       );
 
   static const String name = 'CurrentQrByTypeRoute';
 
@@ -457,10 +445,7 @@ class CurrentQrByTypeRoute
 }
 
 class CurrentQrByTypeRouteArgs {
-  const CurrentQrByTypeRouteArgs({
-    this.key,
-    required this.sessionBloc,
-  });
+  const CurrentQrByTypeRouteArgs({this.key, required this.sessionBloc});
 
   final _i52.Key? key;
 
@@ -490,22 +475,22 @@ class CurrentQrByTypeTreeRoute
     required String oriFon,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          CurrentQrByTypeTreeRoute.name,
-          args: CurrentQrByTypeTreeRouteArgs(
-            key: key,
-            bancoOri: bancoOri,
-            cuenta: cuenta,
-            cuentaOri: cuentaOri,
-            cuentaPro: cuentaPro,
-            desFon: desFon,
-            fechaDepo: fechaDepo,
-            moneda: moneda,
-            monto: monto,
-            nameDepo: nameDepo,
-            oriFon: oriFon,
-          ),
-          initialChildren: children,
-        );
+         CurrentQrByTypeTreeRoute.name,
+         args: CurrentQrByTypeTreeRouteArgs(
+           key: key,
+           bancoOri: bancoOri,
+           cuenta: cuenta,
+           cuentaOri: cuentaOri,
+           cuentaPro: cuentaPro,
+           desFon: desFon,
+           fechaDepo: fechaDepo,
+           moneda: moneda,
+           monto: monto,
+           nameDepo: nameDepo,
+           oriFon: oriFon,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'CurrentQrByTypeTreeRoute';
 
@@ -591,22 +576,22 @@ class CurrentQrByTypeTwoRoute
     required String oriFon,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          CurrentQrByTypeTwoRoute.name,
-          args: CurrentQrByTypeTwoRouteArgs(
-            key: key,
-            bancoOri: bancoOri,
-            cuenta: cuenta,
-            cuentaOri: cuentaOri,
-            cuentaPro: cuentaPro,
-            desFon: desFon,
-            fechaDepo: fechaDepo,
-            moneda: moneda,
-            monto: monto,
-            nameDepo: nameDepo,
-            oriFon: oriFon,
-          ),
-          initialChildren: children,
-        );
+         CurrentQrByTypeTwoRoute.name,
+         args: CurrentQrByTypeTwoRouteArgs(
+           key: key,
+           bancoOri: bancoOri,
+           cuenta: cuenta,
+           cuentaOri: cuentaOri,
+           cuentaPro: cuentaPro,
+           desFon: desFon,
+           fechaDepo: fechaDepo,
+           moneda: moneda,
+           monto: monto,
+           nameDepo: nameDepo,
+           oriFon: oriFon,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'CurrentQrByTypeTwoRoute';
 
@@ -688,18 +673,18 @@ class DecryptQrDetailsRoute
     required String stringQr,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          DecryptQrDetailsRoute.name,
-          args: DecryptQrDetailsRouteArgs(
-            key: key,
-            cuenta: cuenta,
-            saldo: saldo,
-            monto: monto,
-            cambioMoneda: cambioMoneda,
-            decryptQrStringEntity: decryptQrStringEntity,
-            stringQr: stringQr,
-          ),
-          initialChildren: children,
-        );
+         DecryptQrDetailsRoute.name,
+         args: DecryptQrDetailsRouteArgs(
+           key: key,
+           cuenta: cuenta,
+           saldo: saldo,
+           monto: monto,
+           cambioMoneda: cambioMoneda,
+           decryptQrStringEntity: decryptQrStringEntity,
+           stringQr: stringQr,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'DecryptQrDetailsRoute';
 
@@ -761,15 +746,15 @@ class DecryptQrRoute extends _i51.PageRouteInfo<DecryptQrRouteArgs> {
     required String stringQr,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          DecryptQrRoute.name,
-          args: DecryptQrRouteArgs(
-            key: key,
-            decryptQrStringEntity: decryptQrStringEntity,
-            sessionBloc: sessionBloc,
-            stringQr: stringQr,
-          ),
-          initialChildren: children,
-        );
+         DecryptQrRoute.name,
+         args: DecryptQrRouteArgs(
+           key: key,
+           decryptQrStringEntity: decryptQrStringEntity,
+           sessionBloc: sessionBloc,
+           stringQr: stringQr,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'DecryptQrRoute';
 
@@ -818,13 +803,10 @@ class DecryptQrStringRoute
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          DecryptQrStringRoute.name,
-          args: DecryptQrStringRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         DecryptQrStringRoute.name,
+         args: DecryptQrStringRouteArgs(key: key, sessionBloc: sessionBloc),
+         initialChildren: children,
+       );
 
   static const String name = 'DecryptQrStringRoute';
 
@@ -841,10 +823,7 @@ class DecryptQrStringRoute
 }
 
 class DecryptQrStringRouteArgs {
-  const DecryptQrStringRouteArgs({
-    this.key,
-    required this.sessionBloc,
-  });
+  const DecryptQrStringRouteArgs({this.key, required this.sessionBloc});
 
   final _i52.Key? key;
 
@@ -870,19 +849,19 @@ class EncriptedQRRoute extends _i51.PageRouteInfo<EncriptedQRRouteArgs> {
     required String valido,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          EncriptedQRRoute.name,
-          args: EncriptedQRRouteArgs(
-            key: key,
-            getEncryptedQrStringEntity: getEncryptedQrStringEntity,
-            moneda: moneda,
-            monto: monto,
-            referencia: referencia,
-            cuenta: cuenta,
-            nombre: nombre,
-            valido: valido,
-          ),
-          initialChildren: children,
-        );
+         EncriptedQRRoute.name,
+         args: EncriptedQRRouteArgs(
+           key: key,
+           getEncryptedQrStringEntity: getEncryptedQrStringEntity,
+           moneda: moneda,
+           monto: monto,
+           referencia: referencia,
+           cuenta: cuenta,
+           nombre: nombre,
+           valido: valido,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'EncriptedQRRoute';
 
@@ -947,14 +926,14 @@ class ExpressDataRoute extends _i51.PageRouteInfo<ExpressDataRouteArgs> {
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          ExpressDataRoute.name,
-          args: ExpressDataRouteArgs(
-            key: key,
-            bloc: bloc,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         ExpressDataRoute.name,
+         args: ExpressDataRouteArgs(
+           key: key,
+           bloc: bloc,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ExpressDataRoute';
 
@@ -1006,21 +985,21 @@ class ExpressDataTwoRoute extends _i51.PageRouteInfo<ExpressDataTwoRouteArgs> {
     required String montoTotalDebi,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          ExpressDataTwoRoute.name,
-          args: ExpressDataTwoRouteArgs(
-            key: key,
-            res: res,
-            cambioMo: cambioMo,
-            celDesti: celDesti,
-            ciDesti: ciDesti,
-            cuentaOri: cuentaOri,
-            desti: desti,
-            montoDebi: montoDebi,
-            montoImp: montoImp,
-            montoTotalDebi: montoTotalDebi,
-          ),
-          initialChildren: children,
-        );
+         ExpressDataTwoRoute.name,
+         args: ExpressDataTwoRouteArgs(
+           key: key,
+           res: res,
+           cambioMo: cambioMo,
+           celDesti: celDesti,
+           ciDesti: ciDesti,
+           cuentaOri: cuentaOri,
+           desti: desti,
+           montoDebi: montoDebi,
+           montoImp: montoImp,
+           montoTotalDebi: montoTotalDebi,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ExpressDataTwoRoute';
 
@@ -1088,12 +1067,12 @@ class ExpressDataTwoRouteArgs {
 /// [_i16.ExternalPaymentGenerateFileWebClientScreen]
 class ExternalPaymentGenerateFileWebClientRoute
     extends _i51.PageRouteInfo<void> {
-  const ExternalPaymentGenerateFileWebClientRoute(
-      {List<_i51.PageRouteInfo>? children})
-      : super(
-          ExternalPaymentGenerateFileWebClientRoute.name,
-          initialChildren: children,
-        );
+  const ExternalPaymentGenerateFileWebClientRoute({
+    List<_i51.PageRouteInfo>? children,
+  }) : super(
+         ExternalPaymentGenerateFileWebClientRoute.name,
+         initialChildren: children,
+       );
 
   static const String name = 'ExternalPaymentGenerateFileWebClientRoute';
 
@@ -1115,14 +1094,14 @@ class GetAchBanckListRoute
     required _i62.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          GetAchBanckListRoute.name,
-          args: GetAchBanckListRouteArgs(
-            key: key,
-            bloc: bloc,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         GetAchBanckListRoute.name,
+         args: GetAchBanckListRouteArgs(
+           key: key,
+           bloc: bloc,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GetAchBanckListRoute';
 
@@ -1180,27 +1159,27 @@ class GetAchDataRoute extends _i51.PageRouteInfo<GetAchDataRouteArgs> {
     required String idCuentaEnvio,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          GetAchDataRoute.name,
-          args: GetAchDataRouteArgs(
-            key: key,
-            bancoDes: bancoDes,
-            cambioM: cambioM,
-            cuentaDes: cuentaDes,
-            cuentaO: cuentaO,
-            mComision: mComision,
-            montoDev: montoDev,
-            montoEn: montoEn,
-            montoIm: montoIm,
-            montoTotal: montoTotal,
-            motivoEn: motivoEn,
-            nit: nit,
-            nombreDes: nombreDes,
-            idBankDestiny: idBankDestiny,
-            saldoDispo: saldoDispo,
-            idCuentaEnvio: idCuentaEnvio,
-          ),
-          initialChildren: children,
-        );
+         GetAchDataRoute.name,
+         args: GetAchDataRouteArgs(
+           key: key,
+           bancoDes: bancoDes,
+           cambioM: cambioM,
+           cuentaDes: cuentaDes,
+           cuentaO: cuentaO,
+           mComision: mComision,
+           montoDev: montoDev,
+           montoEn: montoEn,
+           montoIm: montoIm,
+           montoTotal: montoTotal,
+           motivoEn: motivoEn,
+           nit: nit,
+           nombreDes: nombreDes,
+           idBankDestiny: idBankDestiny,
+           saldoDispo: saldoDispo,
+           idCuentaEnvio: idCuentaEnvio,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GetAchDataRoute';
 
@@ -1297,13 +1276,13 @@ class GetEncriptedQrStringRoute
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          GetEncriptedQrStringRoute.name,
-          args: GetEncriptedQrStringRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         GetEncriptedQrStringRoute.name,
+         args: GetEncriptedQrStringRouteArgs(
+           key: key,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GetEncriptedQrStringRoute';
 
@@ -1320,10 +1299,7 @@ class GetEncriptedQrStringRoute
 }
 
 class GetEncriptedQrStringRouteArgs {
-  const GetEncriptedQrStringRouteArgs({
-    this.key,
-    required this.sessionBloc,
-  });
+  const GetEncriptedQrStringRouteArgs({this.key, required this.sessionBloc});
 
   final _i52.Key? key;
 
@@ -1344,13 +1320,10 @@ class GetFavoritesByWebClientRoute
     required _i63.GetFavoritesByWebClientResponseEntity data,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          GetFavoritesByWebClientRoute.name,
-          args: GetFavoritesByWebClientRouteArgs(
-            key: key,
-            data: data,
-          ),
-          initialChildren: children,
-        );
+         GetFavoritesByWebClientRoute.name,
+         args: GetFavoritesByWebClientRouteArgs(key: key, data: data),
+         initialChildren: children,
+       );
 
   static const String name = 'GetFavoritesByWebClientRoute';
 
@@ -1358,19 +1331,13 @@ class GetFavoritesByWebClientRoute
     name,
     builder: (data) {
       final args = data.argsAs<GetFavoritesByWebClientRouteArgs>();
-      return _i20.GetFavoritesByWebClientScreen(
-        key: args.key,
-        data: args.data,
-      );
+      return _i20.GetFavoritesByWebClientScreen(key: args.key, data: args.data);
     },
   );
 }
 
 class GetFavoritesByWebClientRouteArgs {
-  const GetFavoritesByWebClientRouteArgs({
-    this.key,
-    required this.data,
-  });
+  const GetFavoritesByWebClientRouteArgs({this.key, required this.data});
 
   final _i52.Key? key;
 
@@ -1386,10 +1353,7 @@ class GetFavoritesByWebClientRouteArgs {
 /// [_i21.GetListDpfDigitalSolicitationScreen]
 class GetListDpfDigitalSolicitationRoute extends _i51.PageRouteInfo<void> {
   const GetListDpfDigitalSolicitationRoute({List<_i51.PageRouteInfo>? children})
-      : super(
-          GetListDpfDigitalSolicitationRoute.name,
-          initialChildren: children,
-        );
+    : super(GetListDpfDigitalSolicitationRoute.name, initialChildren: children);
 
   static const String name = 'GetListDpfDigitalSolicitationRoute';
 
@@ -1405,10 +1369,7 @@ class GetListDpfDigitalSolicitationRoute extends _i51.PageRouteInfo<void> {
 /// [_i22.GetPafSataForMobileAppScreen]
 class GetPafSataForMobileAppRoute extends _i51.PageRouteInfo<void> {
   const GetPafSataForMobileAppRoute({List<_i51.PageRouteInfo>? children})
-      : super(
-          GetPafSataForMobileAppRoute.name,
-          initialChildren: children,
-        );
+    : super(GetPafSataForMobileAppRoute.name, initialChildren: children);
 
   static const String name = 'GetPafSataForMobileAppRoute';
 
@@ -1424,10 +1385,7 @@ class GetPafSataForMobileAppRoute extends _i51.PageRouteInfo<void> {
 /// [_i23.HomeScreen]
 class HomeRoute extends _i51.PageRouteInfo<void> {
   const HomeRoute({List<_i51.PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
+    : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
@@ -1448,14 +1406,14 @@ class InforAccionesRoute extends _i51.PageRouteInfo<InforAccionesRouteArgs> {
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          InforAccionesRoute.name,
-          args: InforAccionesRouteArgs(
-            key: key,
-            tipo: tipo,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         InforAccionesRoute.name,
+         args: InforAccionesRouteArgs(
+           key: key,
+           tipo: tipo,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'InforAccionesRoute';
 
@@ -1501,14 +1459,10 @@ class InforAccionesTwoRoute
     required String tipo,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          InforAccionesTwoRoute.name,
-          args: InforAccionesTwoRouteArgs(
-            key: key,
-            data: data,
-            tipo: tipo,
-          ),
-          initialChildren: children,
-        );
+         InforAccionesTwoRoute.name,
+         args: InforAccionesTwoRouteArgs(key: key, data: data, tipo: tipo),
+         initialChildren: children,
+       );
 
   static const String name = 'InforAccionesTwoRoute';
 
@@ -1554,14 +1508,14 @@ class InitialChargeBankGuaranteRoute
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          InitialChargeBankGuaranteRoute.name,
-          args: InitialChargeBankGuaranteRouteArgs(
-            key: key,
-            bloc: bloc,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         InitialChargeBankGuaranteRoute.name,
+         args: InitialChargeBankGuaranteRouteArgs(
+           key: key,
+           bloc: bloc,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'InitialChargeBankGuaranteRoute';
 
@@ -1601,10 +1555,7 @@ class InitialChargeBankGuaranteRouteArgs {
 /// [_i27.ListGetOtherAccountDepositScreen]
 class ListGetOtherAccountDepositRoute extends _i51.PageRouteInfo<void> {
   const ListGetOtherAccountDepositRoute({List<_i51.PageRouteInfo>? children})
-      : super(
-          ListGetOtherAccountDepositRoute.name,
-          initialChildren: children,
-        );
+    : super(ListGetOtherAccountDepositRoute.name, initialChildren: children);
 
   static const String name = 'ListGetOtherAccountDepositRoute';
 
@@ -1626,14 +1577,14 @@ class LoanFlowAnnuitiesDetailDataForCreditRoute
     required _i66.GetLoanFlowAnnuitiesDetailDataForCreditBloc bloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          LoanFlowAnnuitiesDetailDataForCreditRoute.name,
-          args: LoanFlowAnnuitiesDetailDataForCreditRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-            bloc: bloc,
-          ),
-          initialChildren: children,
-        );
+         LoanFlowAnnuitiesDetailDataForCreditRoute.name,
+         args: LoanFlowAnnuitiesDetailDataForCreditRouteArgs(
+           key: key,
+           sessionBloc: sessionBloc,
+           bloc: bloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'LoanFlowAnnuitiesDetailDataForCreditRoute';
 
@@ -1671,20 +1622,23 @@ class LoanFlowAnnuitiesDetailDataForCreditRouteArgs {
 
 /// generated route for
 /// [_i29.LoanFlowGetCreditDetailDataForRecoveryByCodeScreen]
-class LoanFlowGetCreditDetailDataForRecoveryByCodeRoute extends _i51
-    .PageRouteInfo<LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs> {
+class LoanFlowGetCreditDetailDataForRecoveryByCodeRoute
+    extends
+        _i51.PageRouteInfo<
+          LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs
+        > {
   LoanFlowGetCreditDetailDataForRecoveryByCodeRoute({
     _i52.Key? key,
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          LoanFlowGetCreditDetailDataForRecoveryByCodeRoute.name,
-          args: LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         LoanFlowGetCreditDetailDataForRecoveryByCodeRoute.name,
+         args: LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs(
+           key: key,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name =
       'LoanFlowGetCreditDetailDataForRecoveryByCodeRoute';
@@ -1692,8 +1646,8 @@ class LoanFlowGetCreditDetailDataForRecoveryByCodeRoute extends _i51
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs>();
+      final args = data
+          .argsAs<LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs>();
       return _i29.LoanFlowGetCreditDetailDataForRecoveryByCodeScreen(
         key: args.key,
         sessionBloc: args.sessionBloc,
@@ -1720,28 +1674,29 @@ class LoanFlowGetCreditDetailDataForRecoveryByCodeRouteArgs {
 
 /// generated route for
 /// [_i30.LoanFlowGetCreditDetailDataForRecoveryScreen]
-class LoanFlowGetCreditDetailDataForRecoveryRoute extends _i51
-    .PageRouteInfo<LoanFlowGetCreditDetailDataForRecoveryRouteArgs> {
+class LoanFlowGetCreditDetailDataForRecoveryRoute
+    extends
+        _i51.PageRouteInfo<LoanFlowGetCreditDetailDataForRecoveryRouteArgs> {
   LoanFlowGetCreditDetailDataForRecoveryRoute({
     _i52.Key? key,
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          LoanFlowGetCreditDetailDataForRecoveryRoute.name,
-          args: LoanFlowGetCreditDetailDataForRecoveryRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         LoanFlowGetCreditDetailDataForRecoveryRoute.name,
+         args: LoanFlowGetCreditDetailDataForRecoveryRouteArgs(
+           key: key,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'LoanFlowGetCreditDetailDataForRecoveryRoute';
 
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<LoanFlowGetCreditDetailDataForRecoveryRouteArgs>();
+      final args = data
+          .argsAs<LoanFlowGetCreditDetailDataForRecoveryRouteArgs>();
       return _i30.LoanFlowGetCreditDetailDataForRecoveryScreen(
         key: args.key,
         sessionBloc: args.sessionBloc,
@@ -1770,10 +1725,7 @@ class LoanFlowGetCreditDetailDataForRecoveryRouteArgs {
 /// [_i31.LoginScreen1]
 class LoginRoute1 extends _i51.PageRouteInfo<void> {
   const LoginRoute1({List<_i51.PageRouteInfo>? children})
-      : super(
-          LoginRoute1.name,
-          initialChildren: children,
-        );
+    : super(LoginRoute1.name, initialChildren: children);
 
   static const String name = 'LoginRoute1';
 
@@ -1798,17 +1750,17 @@ class MakePaymentCreditCardForMobileRoute
     required String idSavingAccount,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          MakePaymentCreditCardForMobileRoute.name,
-          args: MakePaymentCreditCardForMobileRouteArgs(
-            key: key,
-            cuentaOri: cuentaOri,
-            res: res,
-            monotPagar: monotPagar,
-            idCreditLineInstance: idCreditLineInstance,
-            idSavingAccount: idSavingAccount,
-          ),
-          initialChildren: children,
-        );
+         MakePaymentCreditCardForMobileRoute.name,
+         args: MakePaymentCreditCardForMobileRouteArgs(
+           key: key,
+           cuentaOri: cuentaOri,
+           res: res,
+           monotPagar: monotPagar,
+           idCreditLineInstance: idCreditLineInstance,
+           idSavingAccount: idSavingAccount,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'MakePaymentCreditCardForMobileRoute';
 
@@ -1866,14 +1818,14 @@ class ParametersToDigitalDpfRoute
     required _i68.GetParametersToDigitalDpfBloc bloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          ParametersToDigitalDpfRoute.name,
-          args: ParametersToDigitalDpfRouteArgs(
-            key: key,
-            sessioninfo: sessioninfo,
-            bloc: bloc,
-          ),
-          initialChildren: children,
-        );
+         ParametersToDigitalDpfRoute.name,
+         args: ParametersToDigitalDpfRouteArgs(
+           key: key,
+           sessioninfo: sessioninfo,
+           bloc: bloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ParametersToDigitalDpfRoute';
 
@@ -1913,10 +1865,7 @@ class ParametersToDigitalDpfRouteArgs {
 /// [_i34.PaymentForServicesScreen]
 class PaymentForServicesRoute extends _i51.PageRouteInfo<void> {
   const PaymentForServicesRoute({List<_i51.PageRouteInfo>? children})
-      : super(
-          PaymentForServicesRoute.name,
-          initialChildren: children,
-        );
+    : super(PaymentForServicesRoute.name, initialChildren: children);
 
   static const String name = 'PaymentForServicesRoute';
 
@@ -1937,13 +1886,13 @@ class PrExpressSolicitationWebRoute
     required List<String> listCodeSavingsAccount,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          PrExpressSolicitationWebRoute.name,
-          args: PrExpressSolicitationWebRouteArgs(
-            key: key,
-            listCodeSavingsAccount: listCodeSavingsAccount,
-          ),
-          initialChildren: children,
-        );
+         PrExpressSolicitationWebRoute.name,
+         args: PrExpressSolicitationWebRouteArgs(
+           key: key,
+           listCodeSavingsAccount: listCodeSavingsAccount,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'PrExpressSolicitationWebRoute';
 
@@ -1978,12 +1927,12 @@ class PrExpressSolicitationWebRouteArgs {
 /// generated route for
 /// [_i36.ReceiveTransfersByCellPhoneNumberScreen]
 class ReceiveTransfersByCellPhoneNumberRoute extends _i51.PageRouteInfo<void> {
-  const ReceiveTransfersByCellPhoneNumberRoute(
-      {List<_i51.PageRouteInfo>? children})
-      : super(
-          ReceiveTransfersByCellPhoneNumberRoute.name,
-          initialChildren: children,
-        );
+  const ReceiveTransfersByCellPhoneNumberRoute({
+    List<_i51.PageRouteInfo>? children,
+  }) : super(
+         ReceiveTransfersByCellPhoneNumberRoute.name,
+         initialChildren: children,
+       );
 
   static const String name = 'ReceiveTransfersByCellPhoneNumberRoute';
 
@@ -1999,10 +1948,7 @@ class ReceiveTransfersByCellPhoneNumberRoute extends _i51.PageRouteInfo<void> {
 /// [_i37.ReportMovementByPErsonAndDateScreen]
 class ReportMovementByPErsonAndDateRoute extends _i51.PageRouteInfo<void> {
   const ReportMovementByPErsonAndDateRoute({List<_i51.PageRouteInfo>? children})
-      : super(
-          ReportMovementByPErsonAndDateRoute.name,
-          initialChildren: children,
-        );
+    : super(ReportMovementByPErsonAndDateRoute.name, initialChildren: children);
 
   static const String name = 'ReportMovementByPErsonAndDateRoute';
 
@@ -2024,14 +1970,14 @@ class SavingAccountExtractDataTranSacreen
     required _i62.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          SavingAccountExtractDataTranSacreen.name,
-          args: SavingAccountExtractDataTranSacreenArgs(
-            key: key,
-            bloc: bloc,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         SavingAccountExtractDataTranSacreen.name,
+         args: SavingAccountExtractDataTranSacreenArgs(
+           key: key,
+           bloc: bloc,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'SavingAccountExtractDataTranSacreen';
 
@@ -2076,13 +2022,13 @@ class SavingAccountTransMobileEndRoute
     required String response,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          SavingAccountTransMobileEndRoute.name,
-          args: SavingAccountTransMobileEndRouteArgs(
-            key: key,
-            response: response,
-          ),
-          initialChildren: children,
-        );
+         SavingAccountTransMobileEndRoute.name,
+         args: SavingAccountTransMobileEndRouteArgs(
+           key: key,
+           response: response,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'SavingAccountTransMobileEndRoute';
 
@@ -2118,10 +2064,7 @@ class SavingAccountTransMobileEndRouteArgs {
 /// [_i40.SettingsScreen]
 class SettingsRoute extends _i51.PageRouteInfo<void> {
   const SettingsRoute({List<_i51.PageRouteInfo>? children})
-      : super(
-          SettingsRoute.name,
-          initialChildren: children,
-        );
+    : super(SettingsRoute.name, initialChildren: children);
 
   static const String name = 'SettingsRoute';
 
@@ -2145,16 +2088,16 @@ class SintesisGetSearchParametersByModuleRoute
     required List<_i70.SintesisGetSearchParametersByModuleEntity> res,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          SintesisGetSearchParametersByModuleRoute.name,
-          args: SintesisGetSearchParametersByModuleRouteArgs(
-            key: key,
-            name: name,
-            description: description,
-            externalModule: externalModule,
-            res: res,
-          ),
-          initialChildren: children,
-        );
+         SintesisGetSearchParametersByModuleRoute.name,
+         args: SintesisGetSearchParametersByModuleRouteArgs(
+           key: key,
+           name: name,
+           description: description,
+           externalModule: externalModule,
+           res: res,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'SintesisGetSearchParametersByModuleRoute';
 
@@ -2208,14 +2151,14 @@ class SintesisObtainOperatingDebtBalanceRoute
     required List<_i71.ColAccountEntity> colAccount,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          SintesisObtainOperatingDebtBalanceRoute.name,
-          args: SintesisObtainOperatingDebtBalanceRouteArgs(
-            key: key,
-            name: name,
-            colAccount: colAccount,
-          ),
-          initialChildren: children,
-        );
+         SintesisObtainOperatingDebtBalanceRoute.name,
+         args: SintesisObtainOperatingDebtBalanceRouteArgs(
+           key: key,
+           name: name,
+           colAccount: colAccount,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'SintesisObtainOperatingDebtBalanceRoute';
 
@@ -2264,25 +2207,25 @@ class SintesisObtainOperatingDebtBalanceTwoRoute
     required String name,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          SintesisObtainOperatingDebtBalanceTwoRoute.name,
-          args: SintesisObtainOperatingDebtBalanceTwoRouteArgs(
-            key: key,
-            colAccountItemDetail: colAccountItemDetail,
-            codigoCuenta: codigoCuenta,
-            nombre: nombre,
-            saldo: saldo,
-            name: name,
-          ),
-          initialChildren: children,
-        );
+         SintesisObtainOperatingDebtBalanceTwoRoute.name,
+         args: SintesisObtainOperatingDebtBalanceTwoRouteArgs(
+           key: key,
+           colAccountItemDetail: colAccountItemDetail,
+           codigoCuenta: codigoCuenta,
+           nombre: nombre,
+           saldo: saldo,
+           name: name,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'SintesisObtainOperatingDebtBalanceTwoRoute';
 
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<SintesisObtainOperatingDebtBalanceTwoRouteArgs>();
+      final args = data
+          .argsAs<SintesisObtainOperatingDebtBalanceTwoRouteArgs>();
       return _i43.SintesisObtainOperatingDebtBalanceTwoScreen(
         key: args.key,
         colAccountItemDetail: args.colAccountItemDetail,
@@ -2332,13 +2275,10 @@ class SintesisPaymentProcessRoute
     required String name,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          SintesisPaymentProcessRoute.name,
-          args: SintesisPaymentProcessRouteArgs(
-            key: key,
-            name: name,
-          ),
-          initialChildren: children,
-        );
+         SintesisPaymentProcessRoute.name,
+         args: SintesisPaymentProcessRouteArgs(key: key, name: name),
+         initialChildren: children,
+       );
 
   static const String name = 'SintesisPaymentProcessRoute';
 
@@ -2346,19 +2286,13 @@ class SintesisPaymentProcessRoute
     name,
     builder: (data) {
       final args = data.argsAs<SintesisPaymentProcessRouteArgs>();
-      return _i44.SintesisPaymentProcessScreen(
-        key: args.key,
-        name: args.name,
-      );
+      return _i44.SintesisPaymentProcessScreen(key: args.key, name: args.name);
     },
   );
 }
 
 class SintesisPaymentProcessRouteArgs {
-  const SintesisPaymentProcessRouteArgs({
-    this.key,
-    required this.name,
-  });
+  const SintesisPaymentProcessRouteArgs({this.key, required this.name});
 
   final _i52.Key? key;
 
@@ -2383,17 +2317,17 @@ class TransferFeesTwoRoute
     required List<String>? titulares,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          TransferFeesTwoRoute.name,
-          args: TransferFeesTwoRouteArgs(
-            key: key,
-            cuentaO: cuentaO,
-            cuentaD: cuentaD,
-            monto: monto,
-            saldo: saldo,
-            titulares: titulares,
-          ),
-          initialChildren: children,
-        );
+         TransferFeesTwoRoute.name,
+         args: TransferFeesTwoRouteArgs(
+           key: key,
+           cuentaO: cuentaO,
+           cuentaD: cuentaD,
+           monto: monto,
+           saldo: saldo,
+           titulares: titulares,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'TransferFeesTwoRoute';
 
@@ -2451,15 +2385,15 @@ class TransferRoute extends _i51.PageRouteInfo<TransferRouteArgs> {
     required _i46.TransferType transferType,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          TransferRoute.name,
-          args: TransferRouteArgs(
-            key: key,
-            bloc: bloc,
-            sessionBloc: sessionBloc,
-            transferType: transferType,
-          ),
-          initialChildren: children,
-        );
+         TransferRoute.name,
+         args: TransferRouteArgs(
+           key: key,
+           bloc: bloc,
+           sessionBloc: sessionBloc,
+           transferType: transferType,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'TransferRoute';
 
@@ -2510,15 +2444,15 @@ class ValidateQRfromProdemMovilTwoRoute
     required String qRGenerated,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          ValidateQRfromProdemMovilTwoRoute.name,
-          args: ValidateQRfromProdemMovilTwoRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-            res: res,
-            qRGenerated: qRGenerated,
-          ),
-          initialChildren: children,
-        );
+         ValidateQRfromProdemMovilTwoRoute.name,
+         args: ValidateQRfromProdemMovilTwoRouteArgs(
+           key: key,
+           sessionBloc: sessionBloc,
+           res: res,
+           qRGenerated: qRGenerated,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ValidateQRfromProdemMovilTwoRoute';
 
@@ -2567,13 +2501,13 @@ class ValidateQrFromProdemMovilRoute
     required _i54.SessionInfoBloc sessionBloc,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          ValidateQrFromProdemMovilRoute.name,
-          args: ValidateQrFromProdemMovilRouteArgs(
-            key: key,
-            sessionBloc: sessionBloc,
-          ),
-          initialChildren: children,
-        );
+         ValidateQrFromProdemMovilRoute.name,
+         args: ValidateQrFromProdemMovilRouteArgs(
+           key: key,
+           sessionBloc: sessionBloc,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ValidateQrFromProdemMovilRoute';
 
@@ -2616,15 +2550,15 @@ class VerificaPlazoRenovacionRoute
     required _i74.DpfExpiracionEntity? data,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          VerificaPlazoRenovacionRoute.name,
-          args: VerificaPlazoRenovacionRouteArgs(
-            key: key,
-            text: text,
-            sessionBloc: sessionBloc,
-            data: data,
-          ),
-          initialChildren: children,
-        );
+         VerificaPlazoRenovacionRoute.name,
+         args: VerificaPlazoRenovacionRouteArgs(
+           key: key,
+           text: text,
+           sessionBloc: sessionBloc,
+           data: data,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'VerificaPlazoRenovacionRoute';
 
@@ -2673,13 +2607,10 @@ class WebBankGuaranteeSoliRoute
     required String filterType,
     List<_i51.PageRouteInfo>? children,
   }) : super(
-          WebBankGuaranteeSoliRoute.name,
-          args: WebBankGuaranteeSoliRouteArgs(
-            key: key,
-            filterType: filterType,
-          ),
-          initialChildren: children,
-        );
+         WebBankGuaranteeSoliRoute.name,
+         args: WebBankGuaranteeSoliRouteArgs(key: key, filterType: filterType),
+         initialChildren: children,
+       );
 
   static const String name = 'WebBankGuaranteeSoliRoute';
 
@@ -2696,10 +2627,7 @@ class WebBankGuaranteeSoliRoute
 }
 
 class WebBankGuaranteeSoliRouteArgs {
-  const WebBankGuaranteeSoliRouteArgs({
-    this.key,
-    required this.filterType,
-  });
+  const WebBankGuaranteeSoliRouteArgs({this.key, required this.filterType});
 
   final _i52.Key? key;
 

@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/list_get_other_account_deposit/data/models/list_get_other_account_deposit_model.dart';

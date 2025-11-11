@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_account_numberIn_other_bank/domain/entities/get_account_numberln_other_bank_entity.dart';
