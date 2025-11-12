@@ -13,4 +13,16 @@ class UserSessionInfoRepositoryImpl extends UserSessionInfoRepository {
   ) async {
     return await dataSouce.userSession(vIdWebClient, vToken);
   }
+
+  @override
+  Future<GetDesmaterializationRerportToWebResponseEntity>
+  getDesmaterializationRerportToWeb(
+    String codeOperation,
+    String? vToken,
+  ) async {
+    return await dataSouce.getDesmaterializationRerportToWeb(
+      codeOperation,
+      vToken,
+    );
+  }
 }

@@ -55,4 +55,12 @@ abstract class SintesisPaymentProcessRepository {
     String? idSMSOperation,
     String? prodemKeyCode,
   );
+  Future<GetSavingAccountVerficationMessagesResponseEntity>
+  getSavingAccountVerficationMessages(
+    String idSavingAccount,
+    String idMoney,
+    String transactionAmount,
+    String savingOperation,
+    String? vToken,
+  );
 }

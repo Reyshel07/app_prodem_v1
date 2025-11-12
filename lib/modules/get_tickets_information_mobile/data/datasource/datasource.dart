@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/get_tickets_information_mobile/data/datasource/get_tickets_information_mobile_datasource.dart';

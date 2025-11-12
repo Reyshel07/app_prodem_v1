@@ -6,4 +6,9 @@ abstract class GetAchBanckRepository {
     String accountType,
     String? vToken,
   );
+  Future<GetValidAccountResponseEntity> getValidAccount(
+    String idbank,
+    String accountNumber,
+    String? vToken,
+  );
 }

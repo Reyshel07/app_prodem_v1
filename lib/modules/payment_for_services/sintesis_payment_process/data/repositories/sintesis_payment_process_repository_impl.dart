@@ -118,4 +118,22 @@ class SintesisPaymentProcessRepositoryImpl
       prodemKeyCode,
     );
   }
+
+  @override
+  Future<GetSavingAccountVerficationMessagesResponseEntity>
+  getSavingAccountVerficationMessages(
+    String idSavingAccount,
+    String idMoney,
+    String transactionAmount,
+    String savingOperation,
+    String? vToken,
+  ) async {
+    return await datasource.getSavingAccountVerficationMessages(
+      idSavingAccount,
+      idMoney,
+      transactionAmount,
+      savingOperation,
+      vToken,
+    );
+  }
 }

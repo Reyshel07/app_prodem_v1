@@ -194,3 +194,26 @@ class ListCodeCreditLineElementModel extends ListCodeCreditLineElementEntity {
         balance: json["balance"],
       );
 }
+
+///GetDesmaterializationRerportToWebResponse
+
+GetDesmaterializationRerportToWebResponse
+getDesmaterializationRerportToWebResponseFromJson(String str) =>
+    GetDesmaterializationRerportToWebResponse.fromJson(json.decode(str));
+
+class GetDesmaterializationRerportToWebResponse
+    extends GetDesmaterializationRerportToWebResponseEntity {
+  GetDesmaterializationRerportToWebResponse({
+    required super.data,
+    required super.state,
+    required super.message,
+  });
+
+  factory GetDesmaterializationRerportToWebResponse.fromJson(
+    Map<String, dynamic> json,
+  ) => GetDesmaterializationRerportToWebResponse(
+    data: json["data"],
+    state: json["state"],
+    message: json["message"],
+  );
+}

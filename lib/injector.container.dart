@@ -21,6 +21,7 @@ import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_cur
 import 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_client/get.external.payment.generate.file.web.client.container.dart';
 import 'package:app_prodem_v1/modules/get_list_departments/get.list.departments.container.dart';
 import 'package:app_prodem_v1/modules/get_paf_data_for_mobile_app/get.paf.data.for.mobile.app.container.dart';
+import 'package:app_prodem_v1/modules/get_tickets_information_mobile/get.tickets.information.mobile.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/express.data.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
@@ -105,5 +106,6 @@ class InjectorContainer {
     initGetPafDataForMobileApp(getIt);
     initInfAccionesTwo(getIt);
     initVerificaPlazoRenovacion(getIt);
+    initGetTicketsInformationMobile(getIt);
   }
 }

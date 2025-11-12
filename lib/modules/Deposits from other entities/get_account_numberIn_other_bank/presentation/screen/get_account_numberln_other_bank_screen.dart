@@ -2,6 +2,7 @@ import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_account_numberIn_other_bank/presentation/bloc/bloc/get_favorites_other_deposits_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/drop.dart';
@@ -34,6 +35,7 @@ class _AccountNumberlnOtherBankScreenState
   );
 
   bool isChecked = false;
+  String? _selectedValue;
   String? _selectedValue1;
   String? _selectedValue2;
   String? _selectedValue3;
@@ -66,7 +68,13 @@ class _AccountNumberlnOtherBankScreenState
         : 'dd/mm/aaaa';
 
     return MultiBlocProvider(
-      providers: [BlocProvider.value(value: widget.sessionBloc)],
+      providers: [
+        BlocProvider.value(value: widget.sessionBloc),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<GetFavoritesOtherDepositsBloc>(),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           foregroundColor: Theme.of(context).colorScheme.white,
@@ -105,14 +113,45 @@ class _AccountNumberlnOtherBankScreenState
                       children: [
                         Checkbox(
                           value: isChecked,
-                          onChanged: (value) =>
-                              setState(() => isChecked = value ?? false),
+                          onChanged: (value) {
+                            setState(() => isChecked = value ?? false);
+
+                            if (value == true) {
+                              context.read<GetFavoritesOtherDepositsBloc>().add(
+                                GetFavoritesOtherDepEvent(),
+                              );
+                            }
+                          },
                         ),
+
                         Text(
                           'Elegir de mis cuentas favoritas',
                           style: AppTextStyles.mainStyleGreen14Bold(context),
                         ),
                       ],
+                    ),
+                    BlocConsumer<
+                      GetFavoritesOtherDepositsBloc,
+                      GetFavoritesOtherDepositsState
+                    >(
+                      listener: (context, state) {},
+                      builder: (context, state) {
+                        if (state is GetFavoritesOtherDepositsSuccess) {
+                          final res = state
+                              .getFavoritesOtherDepositsResponseEntity
+                              .data;
+                          return _buildDropdown(
+                            title: 'Cuenta origen:',
+                            items: cuentaOri,
+                            value: _selectedValue,
+                            onChanged: (newValue) {
+                              setState(() => _selectedValue = newValue);
+                            },
+                            smallSpacing: smallSpacing,
+                          );
+                        }
+                        return CircularProgressIndicator();
+                      },
                     ),
                     TextFromFiel02(
                       screenSize: screenSize,

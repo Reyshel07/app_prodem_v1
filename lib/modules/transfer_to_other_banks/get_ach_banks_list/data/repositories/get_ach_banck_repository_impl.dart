@@ -14,4 +14,13 @@ class GetAchBanckRepositoryImpl extends GetAchBanckRepository {
   ) async {
     return await datasource.getAchBanckList(idUser, accountType, vToken);
   }
+
+  @override
+  Future<GetValidAccountResponseEntity> getValidAccount(
+    String idbank,
+    String accountNumber,
+    String? vToken,
+  ) async {
+    return await datasource.getValidAccount(idbank, accountNumber, vToken);
+  }
 }
