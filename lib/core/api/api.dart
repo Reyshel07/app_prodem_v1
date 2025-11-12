@@ -103,4 +103,7 @@ class AppStrings {
       'WebSite/GetTicketsInformationMobile';
   static const String getDataAccountForMobilesByCodeAccountAll =
       'WebSite/GetDataAccountForMobilesByCodeAccountAll';
+  static const String getFavorites = 'WebSite/GetFavorites';
+  static const String chargeReferences = 'WebSite/ChargeReferences';
+  static const String insertWebReferences = 'WebSite/InsertWebReferences';
 }

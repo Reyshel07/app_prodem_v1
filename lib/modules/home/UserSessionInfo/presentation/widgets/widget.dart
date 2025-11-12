@@ -133,13 +133,13 @@ class ListCards extends StatelessWidget {
                                   Text(
                                     'SALDO',
                                     textAlign: TextAlign.start,
-                                    style: AppTextStyles.mainStyleWhite14(
+                                    style: AppTextStyles.mainStyleWhite12(
                                       context,
                                     ),
                                   ),
                                   Text(
                                     data1.balance,
-                                    style: AppTextStyles.mainStyleWhite25Bold(
+                                    style: AppTextStyles.mainStyleWhite20Bold(
                                       context,
                                     ),
                                   ),
@@ -167,13 +167,13 @@ class ListCards extends StatelessWidget {
                               Text(
                                 '$estado\n'
                                 '$nombre',
-                                style: AppTextStyles.mainStyleWhite14(context),
+                                style: AppTextStyles.mainStyleWhite12(context),
                                 textAlign: TextAlign.start,
                               ),
                               Text(
                                 '${data1.stateOperation}\n'
                                 '${data1.operationCode}',
-                                style: AppTextStyles.mainStyleWhite14(context),
+                                style: AppTextStyles.mainStyleWhite12(context),
                                 textAlign: TextAlign.start,
                               ),
                             ],

@@ -33,7 +33,7 @@ class GetAchBanckDatasource {
     String? vToken,
   ) async {
     final response = await _apiClient.post(
-      AppStrings.getAchBanksList,
+      AppStrings.getValidAccount,
       operationName: 'obtains the list of banks',
       data: {"Idbank": idbank, "AccountNumber": accountNumber},
       headers: {
