@@ -57,5 +57,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: GetPafSataForMobileAppRoute.page),
     AutoRoute(page: InforAccionesTwoRoute.page),
     AutoRoute(page: VerificaPlazoRenovacionRoute.page),
+    AutoRoute(page: ChargeReferencesRoute.page),
+    AutoRoute(page: InsertWebReferencesRoute.page),
   ];
 }

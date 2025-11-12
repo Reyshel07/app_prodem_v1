@@ -121,6 +121,17 @@ class SettingsScreen extends StatelessWidget {
             letterSize: letterSize,
             smallSpacing: smallSpacing,
             onTap1: () {
+              InjectorContainer.getIt<AppRouter>().push(
+                ChargeReferencesRoute(),
+              );
+            },
+            lblTextField: 'Referenciados',
+            icon: Icons.settings,
+          ),
+          ListTitle1(
+            letterSize: letterSize,
+            smallSpacing: smallSpacing,
+            onTap1: () {
               // themeProvider.changeTheme();
             },
             lblTextField: 'Cambiar tema',

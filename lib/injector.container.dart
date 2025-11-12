@@ -32,6 +32,8 @@ import 'package:app_prodem_v1/modules/payment_for_services/sintesis_get_search_p
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_obtain_operating_debt_balance/sintesis.obtain.operating.debt.balance.container.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_payment_process/sintesis.payment.process.container.dart';
 import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/save_online_third_deposit/save.online.third.deposit.container.dart';
+import 'package:app_prodem_v1/modules/referenced/charge_references/charge.references.container.dart';
+import 'package:app_prodem_v1/modules/referenced/insert_web_references/insert.web.references.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/decrypt_qr_string/decrypt.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_encrypted_qr_string/get.encripted.qr.string.container.dart';
 import 'package:app_prodem_v1/modules/simple_ahc/get_report_movements_by_person_and_dates/get.report.movements.by.pewrson.and.date.container.dart';
@@ -107,5 +109,7 @@ class InjectorContainer {
     initInfAccionesTwo(getIt);
     initVerificaPlazoRenovacion(getIt);
     initGetTicketsInformationMobile(getIt);
+    initChargeReferences(getIt);
+    initInsertWebReferences(getIt);
   }
 }

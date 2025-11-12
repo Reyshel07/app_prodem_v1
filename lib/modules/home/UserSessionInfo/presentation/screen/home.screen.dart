@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               SizedBox(height: smallSpacing * 0.5),
                               SizedBox(
-                                height: screenSize.height * 0.45,
+                                height: screenSize.height * 0.43,
                                 width: screenSize.width,
                                 child: Stack(
                                   children: [
@@ -227,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.all(
-                                                          radiusCircular(25),
+                                                          radiusCircular(16),
                                                         ),
                                                   ),
                                                 ),
