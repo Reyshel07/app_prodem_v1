@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/microinsurance/insurance_get_list/domain/repositories/insurance_get_list_repository.dart';

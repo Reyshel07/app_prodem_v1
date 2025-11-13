@@ -106,4 +106,7 @@ class AppStrings {
   static const String getFavorites = 'WebSite/GetFavorites';
   static const String chargeReferences = 'WebSite/ChargeReferences';
   static const String insertWebReferences = 'WebSite/InsertWebReferences';
+  static const String insuranceGetList = 'WebSite/InsuranceGetList';
+  static const String paymentInsuranceAnnuity =
+      'WebSite/PaymentInsuranceAnnuity';
 }

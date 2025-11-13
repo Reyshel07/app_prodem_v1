@@ -13,8 +13,7 @@ class InsertWebRefereEvent extends InsertWebReferencesEvent {
   final String idMoney;
   final String shortName;
   final String ammount;
-  final String processDate;
-  final String isActive;
+  final bool isActive;
   InsertWebRefereEvent({
     required this.idWebReferences,
     required this.fullName,
@@ -26,7 +25,6 @@ class InsertWebRefereEvent extends InsertWebReferencesEvent {
     required this.idMoney,
     required this.shortName,
     required this.ammount,
-    required this.processDate,
     required this.isActive,
   });
 }

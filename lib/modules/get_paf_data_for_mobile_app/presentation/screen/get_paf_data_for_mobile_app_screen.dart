@@ -7,20 +7,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class GetPafSataForMobileAppScreen extends StatelessWidget {
-  const GetPafSataForMobileAppScreen({super.key});
+class GetPafDataForMobileAppScreen extends StatelessWidget {
+  const GetPafDataForMobileAppScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          InjectorContainer.getIt<GetPafDataForMobileAppBloc>(),
+          InjectorContainer.getIt<GetPafDataForMobileAppBloc>()
+            ..add(GetPafDataForMobileApEvent()),
       child: Scaffold(
         appBar: AppBar(
           foregroundColor: Theme.of(context).colorScheme.white,
           backgroundColor: Theme.of(context).colorScheme.green,
           title: Text(
-            'Solicitud de fianzas Bancarias',
+            'Puntos de Atencion',
             style: AppTextStyles.mainStyleWhite18Bold(context),
           ),
         ),
@@ -30,10 +31,18 @@ class GetPafSataForMobileAppScreen extends StatelessWidget {
               GetPafDataForMobileAppState
             >(
               builder: (context, state) {
-                return Column(children: [
-            
-                    ],
-                  );
+                if (state is GetPafDataForMobileAppLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (state is GetPafDataForMobileAppError) {
+                  return Center(child: Text('Error: ${state.message}'));
+                }
+                /* if (state is GetPafDataForMobileAppSuccess) {
+                  final List<GetPafDataForMobileAppEntity> points =
+                      state.getPafDataForMobileAppResponseEntity.data;
+                  return Expanded(child: MapProviderWidget(points: points));
+                }*/
+                return const SizedBox.shrink();
               },
             ),
       ),

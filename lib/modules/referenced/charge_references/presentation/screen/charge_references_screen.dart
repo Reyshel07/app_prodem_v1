@@ -31,46 +31,48 @@ class ChargeReferencesScreen extends StatelessWidget {
           ),
         ),
         body: Builder(
-          builder: (nexContext) {
+          builder: (newContext) {
+            final chargeReferencesBloc = newContext
+                .read<ChargeReferencesBloc>();
             return Padding(
               padding: EdgeInsets.all(topPadding * 0.05),
-              child: Column(
-                children: [
-                  Center(
-                    child: Butoon1(
-                      onTap: () {
-                        InjectorContainer.getIt<AppRouter>().push(
-                          InsertWebReferencesRoute(
-                            chargeReferencesBloc: context
-                                .read<ChargeReferencesBloc>(),
-                          ),
-                        );
-                      },
-                      lblTextField: 'REGISTRAR NUEVO',
-                    ),
-                  ),
-                  SizedBox(height: smallSpacing * 0.5),
-                  BlocConsumer<ChargeReferencesBloc, ChargeReferencesState>(
-                    listener: (context, state) {},
-                    builder: (context, state) {
-                      if (state is ChargeReferencesSuccess) {
-                        final res = state
-                            .chargeReferencesResponseEntity
-                            .data
-                            .colReferences;
-                        return Column(
-                          children: [
-                            Text(
-                              'Detalle Referenciados',
-                              style: AppTextStyles.mainStyleGreen16Bold(
-                                context,
-                              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Center(
+                      child: Butoon1(
+                        onTap: () {
+                          InjectorContainer.getIt<AppRouter>().push(
+                            InsertWebReferencesRoute(
+                              chargeReferencesBloc: chargeReferencesBloc,
                             ),
-                            SizedBox(height: smallSpacing * 0.5),
-                            SizedBox(
-                              child: ListView.builder(
+                          );
+                        },
+                        lblTextField: 'REGISTRAR NUEVO',
+                      ),
+                    ),
+                    SizedBox(height: smallSpacing * 0.5),
+                    BlocConsumer<ChargeReferencesBloc, ChargeReferencesState>(
+                      listener: (context, state) {},
+                      builder: (context, state) {
+                        if (state is ChargeReferencesSuccess) {
+                          final res = state
+                              .chargeReferencesResponseEntity
+                              .data
+                              .colReferences;
+                          return Column(
+                            children: [
+                              Text(
+                                'Detalle Referenciados',
+                                style: AppTextStyles.mainStyleGreen16Bold(
+                                  context,
+                                ),
+                              ),
+                              SizedBox(height: smallSpacing * 0.5),
+                              ListView.builder(
                                 itemCount: res.length,
                                 shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   final data = res[index];
                                   return Card(
@@ -90,25 +92,28 @@ class ChargeReferencesScreen extends StatelessWidget {
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              'Nombre:\n'
-                                              'Identificación:\n'
-                                              'Télefono:\n'
-                                              'Producto:\n'
-                                              'Parentesco:\n'
-                                              'Monto:',
-                                              style:
-                                                  AppTextStyles.mainStyleGreen14Bold(
-                                                    context,
-                                                  ),
+                                            SizedBox(
+                                              width: screenSize.width * 0.26,
+                                              child: Text(
+                                                'Nombre:\n'
+                                                'Identificación:\n'
+                                                'Télefono:\n'
+                                                'Producto:\n'
+                                                'Parentesco:\n'
+                                                'Monto:',
+                                                style:
+                                                    AppTextStyles.mainStyleGreen14Bold(
+                                                      context,
+                                                    ),
+                                              ),
                                             ),
                                             Text(
                                               '${data.fullName}\n'
-                                              '${data.idcProduct}\n'
+                                              '${data.identityCardNumber}\n'
                                               '${data.cellPhoneNumber}\n'
-                                              '${data.idcProduct}\n'
+                                              '${data.productName}\n'
                                               '${data.kinship}\n'
                                               '${data.ammount}',
                                               style:
@@ -123,14 +128,14 @@ class ChargeReferencesScreen extends StatelessWidget {
                                   );
                                 },
                               ),
-                            ),
-                          ],
-                        );
-                      }
-                      return CircularProgressIndicator();
-                    },
-                  ),
-                ],
+                            ],
+                          );
+                        }
+                        return Center(child: CircularProgressIndicator());
+                      },
+                    ),
+                  ],
+                ),
               ),
             );
           },

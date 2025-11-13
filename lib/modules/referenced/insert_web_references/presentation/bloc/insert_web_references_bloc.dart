@@ -1,4 +1,5 @@
 import 'package:app_prodem_v1/core/networking/base_api_exception.dart';
+import 'package:app_prodem_v1/utils/datetime_helper.dart';
 import 'package:app_prodem_v1/utils/secure_hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +22,7 @@ class InsertWebReferencesBloc
   ) async {
     emit(InsertWebReferencesLoading());
     try {
+      String processDate = DateTimeHelper.getCurrentTimestamp();
       final token = SecureHive.readToken();
       final idWebPersonClient = SecureHive.readIdWebPerson();
       final response = await repository.insertWebReferences(
@@ -34,10 +36,10 @@ class InsertWebReferencesBloc
         event.idMoney,
         event.shortName,
         event.ammount,
-        event.processDate,
-        event.isActive,
-        token ?? '',
         idWebPersonClient,
+        processDate,
+        event.isActive,
+        token,
       );
       emit(InsertWebReferencesSuccess(response));
     } on BaseApiException catch (error) {

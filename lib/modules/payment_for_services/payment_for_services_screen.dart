@@ -2,6 +2,7 @@ import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/savings_products/savings_products_screen.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/get_favorites_by_web_client/presentation/bloc/get_favorites_by_web_client_bloc.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_get_search_parameters_by_module/presentation/bloc/sintesis_get_search_parameters_by_module_bloc.dart';
@@ -849,18 +850,9 @@ class _PaymentForServicesScreenState extends State<PaymentForServicesScreen> {
                               ),
                               Gesture(
                                 onTap: () {
-                                  context
-                                      .read<
-                                        SintesisGetSearchParametersByModuleBloc
-                                      >()
-                                      .add(
-                                        SintesisGetSearchParametersByMoEvent(
-                                          externalModule: '66',
-                                          name: 'Pólizas de terceros',
-                                          description:
-                                              'Seleccione el critrerio por el que desea realizar la búsqueda',
-                                        ),
-                                      );
+                                  InjectorContainer.getIt<AppRouter>().push(
+                                    InsuranceGetListRoute(),
+                                  );
                                 },
                                 topPadding: topPadding,
                                 letterSize: letterSize,

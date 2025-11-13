@@ -27,6 +27,8 @@ import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitatio
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/prodem_express_save_solicitation/prodem.expres.save.solitation.container.dart';
 import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/list_get_other_account_deposit/list.get.other.account.deposit.container.dart';
+import 'package:app_prodem_v1/modules/microinsurance/insurance_get_list/insurance.get.list.container.dart';
+import 'package:app_prodem_v1/modules/microinsurance/payment_insurance_annuity/payment.insurance.annuity.container.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/get_favorites_by_web_client/get.favorites.by.web.client.container.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_get_search_parameters_by_module/sintesis.get.search.parameters_by.module.container.dart';
 import 'package:app_prodem_v1/modules/payment_for_services/sintesis_obtain_operating_debt_balance/sintesis.obtain.operating.debt.balance.container.dart';
@@ -111,5 +113,7 @@ class InjectorContainer {
     initGetTicketsInformationMobile(getIt);
     initChargeReferences(getIt);
     initInsertWebReferences(getIt);
+    initInsuranceGetList(getIt);
+    initPaymentInsuranceAnnuity(getIt);
   }
 }

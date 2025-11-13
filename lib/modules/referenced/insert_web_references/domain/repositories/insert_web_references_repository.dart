@@ -14,7 +14,7 @@ abstract class InsertWebReferencesRepository {
     String ammount,
     String idWebPersonClientRegister,
     String processDate,
-    String isActive,
+    bool isActive,
     String? vToken,
   );
 }
