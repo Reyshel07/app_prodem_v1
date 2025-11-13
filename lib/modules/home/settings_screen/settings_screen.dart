@@ -99,7 +99,11 @@ class SettingsScreen extends StatelessWidget {
           ListTitle1(
             letterSize: letterSize,
             smallSpacing: smallSpacing,
-            onTap1: () {},
+            onTap1: () {
+              InjectorContainer.getIt<AppRouter>().push(
+                GetPafDataForMobileAppRoute(),
+              );
+            },
             lblTextField: 'Puntos de Atencion',
             icon: Icons.location_on,
           ),
@@ -107,9 +111,6 @@ class SettingsScreen extends StatelessWidget {
             letterSize: letterSize,
             smallSpacing: smallSpacing,
             onTap1: () {
-              /*context.read<GetAccountEnableToTransferBloc>().add(
-                GEtAccountEnableToTransEvent(),
-              );*/
               InjectorContainer.getIt<AppRouter>().push(
                 ReceiveTransfersByCellPhoneNumberRoute(),
               );

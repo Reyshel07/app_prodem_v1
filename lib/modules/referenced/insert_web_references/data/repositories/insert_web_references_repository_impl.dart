@@ -20,7 +20,7 @@ class InsertWebReferencesRepositoryImpl extends InsertWebReferencesRepository {
     String ammount,
     String idWebPersonClientRegister,
     String processDate,
-    String isActive,
+    bool isActive,
     String? vToken,
   ) async {
     return await datasource.insertWebReferences(

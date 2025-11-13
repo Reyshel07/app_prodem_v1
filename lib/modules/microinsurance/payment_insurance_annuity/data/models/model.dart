@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/microinsurance/payment_insurance_annuity/data/models/payment_insurance_annuity_model.dart';

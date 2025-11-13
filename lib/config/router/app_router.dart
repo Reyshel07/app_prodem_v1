@@ -54,10 +54,12 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: GetFavoritesByWebClientRoute.page),
     AutoRoute(page: SintesisPaymentProcessRoute.page),
     AutoRoute(page: BankSecuritySolicitationResulRoute.page),
-    AutoRoute(page: GetPafSataForMobileAppRoute.page),
+    AutoRoute(page: GetPafDataForMobileAppRoute.page),
     AutoRoute(page: InforAccionesTwoRoute.page),
     AutoRoute(page: VerificaPlazoRenovacionRoute.page),
     AutoRoute(page: ChargeReferencesRoute.page),
     AutoRoute(page: InsertWebReferencesRoute.page),
+    AutoRoute(page: InsuranceGetListRoute.page),
+    AutoRoute(page: PaymentInsuranceAnnuityRoute.page),
   ];
 }

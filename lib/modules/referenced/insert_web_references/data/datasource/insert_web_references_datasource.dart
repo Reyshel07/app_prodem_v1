@@ -21,7 +21,7 @@ class InsertWebReferencesDatasource {
     String ammount,
     String idWebPersonClientRegister,
     String processDate,
-    String isActive,
+    bool isActive,
     String? vToken,
   ) async {
     final response = await _apiClient.post(
