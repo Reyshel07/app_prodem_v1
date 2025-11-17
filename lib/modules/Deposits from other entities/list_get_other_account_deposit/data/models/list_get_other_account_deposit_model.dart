@@ -50,7 +50,7 @@ class ListGetOtherAccountDepositModel extends ListGetOtherDccountDepositEntity {
         idcState: json["idcState"],
         state: json["state"],
         codMoney: json["codMoney"] ?? '',
-        monto: json["monto"],
+        monto: json["monto"].toDouble(),
         thirdAccount: json["thirdAccount"] ?? '',
         thirdName: json["thirdName"] ?? '',
         accountFunds: json["accountFunds"] ?? '',

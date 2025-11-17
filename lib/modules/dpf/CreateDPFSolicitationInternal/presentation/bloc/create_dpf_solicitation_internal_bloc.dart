@@ -27,13 +27,17 @@ class CreateDpfSolicitationInternalBloc
       final token = SecureHive.readToken();
       final idPerson = SecureHive.readIdPerson();
       final idUser = SecureHive.readIdUser();
+      final phoneNumber = SecureHive.readCellPhoneNumber();
       final idWebPerson = SecureHive.readIdWebPerson();
+      final names = SecureHive.readPersonName();
+      final isEmployee = SecureHive.readIsEmployee();
+      final identityCardNumber = SecureHive.readIdentityCardNumber();
       final location = GeolocationHelper.getLocationJson().toString();
       final response = await repository.createDpfSoliciInternal(
         token,
-        event.phoneNumber,
+        phoneNumber,
         event.contextData,
-        event.identityCardNumber,
+        identityCardNumber,
         location,
         event.interesUpdate,
         event.amount,
@@ -41,7 +45,7 @@ class CreateDpfSolicitationInternalBloc
         event.termUpdate,
         event.rateUpdate,
         event.email,
-        event.names,
+        names,
         event.term,
         event.idOfficeDPF,
         event.debitAccountCode,
@@ -50,7 +54,7 @@ class CreateDpfSolicitationInternalBloc
         event.idAccount,
         idUser,
         idWebPerson,
-        event.isEmployee,
+        isEmployee,
         event.idSMSOperation,
         event.prodemKeyCode,
       );

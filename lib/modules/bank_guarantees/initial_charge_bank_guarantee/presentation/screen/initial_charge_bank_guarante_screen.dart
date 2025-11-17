@@ -2,6 +2,7 @@ import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension_theme.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/presentation/bloc/bloc/get_bank_guarantee_class_bloc.dart';
 import 'package:app_prodem_v1/modules/bank_guarantees/initial_charge_bank_guarantee/presentation/bloc/initial_charge_bank_guarantee_bloc.dart';
 import 'package:app_prodem_v1/modules/get_list_departments/domain/entities/get_list_departments_entity.dart';
 import 'package:app_prodem_v1/modules/get_list_departments/presentation/bloc/get_list_departments_bloc.dart';
@@ -38,6 +39,8 @@ class _InitialChargeBankGuaranteScreenState
   final TextEditingController dayController = TextEditingController();
   final TextEditingController cuceController = TextEditingController();
   final TextEditingController propositoController = TextEditingController();
+  final TextEditingController startDateController = TextEditingController();
+  final TextEditingController endDateController = TextEditingController();
 
   String? _selectedAccount;
   //String? _selectedDepartamento;
@@ -74,6 +77,10 @@ class _InitialChargeBankGuaranteScreenState
           create: (context) =>
               InjectorContainer.getIt<GetListLocationDepartmentsBloc>(),
         ),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<GetBankGuaranteeClassBloc>(),
+        ),
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -84,297 +91,334 @@ class _InitialChargeBankGuaranteScreenState
             style: AppTextStyles.mainStyleWhite18Bold(context),
           ),
         ),
-        body: BlocConsumer<InitialChargeBankGuaranteeBloc, InitialChargeBankGuaranteeState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            if (state is InitialChargeBankGuaranteeSuccess) {
-              final colBankGuaranteeType = state.data.data.colBankGuaranteeType;
-              final tipoFianza = colBankGuaranteeType
-                  .map((account) => account.nombre)
-                  .toList();
-              final colBeneficiary = state.data.data.colBeneficiary;
-              final beneficiario = colBeneficiary
-                  .map((account) => account.nombre)
-                  .toList();
-              final colBankGuarantee = state.data.data.colBankGuarantee;
-              final objFianzaBank = colBankGuarantee
-                  .map((account) => account.nombre)
-                  .toList();
+        body:
+            BlocConsumer<
+              InitialChargeBankGuaranteeBloc,
+              InitialChargeBankGuaranteeState
+            >(
+              listener: (context, state) {},
+              builder: (context, state) {
+                if (state is InitialChargeBankGuaranteeSuccess) {
+                  final colBankGuaranteeType =
+                      state.data.data.colBankGuaranteeType;
+                  final tipoFianza = colBankGuaranteeType
+                      .map((account) => account.nombre)
+                      .toList();
+                  final colBeneficiary = state.data.data.colBeneficiary;
+                  final beneficiario = colBeneficiary
+                      .map((account) => account.nombre)
+                      .toList();
+                  final colBankGuarantee = state.data.data.colBankGuarantee;
+                  final objFianzaBank = colBankGuarantee
+                      .map((account) => account.nombre)
+                      .toList();
 
-              return Padding(
-                padding: EdgeInsets.all(topPadding * 0.05),
-                child: ListView(
-                  children: [
-                    Text(
-                      'Nueva Solicitud',
-                      style: AppTextStyles.mainStyleGreen16Bold(context),
-                    ),
-                    Text(
-                      'Datos',
-                      style: AppTextStyles.mainStyleGreen14Bold(context),
-                    ),
-                    BlocConsumer<
-                      GetListDepartmentsBloc,
-                      GetListDepartmentsState
-                    >(
-                      listener: (context, state) {},
-                      builder: (context, state) {
-                        if (state is GetListDepartmentsSuccess) {
-                          _departamentos =
-                              state.getListDepartmentsResponseEntity.data;
+                  return Padding(
+                    padding: EdgeInsets.all(topPadding * 0.05),
+                    child: ListView(
+                      children: [
+                        Text(
+                          'Nueva Solicitud',
+                          style: AppTextStyles.mainStyleGreen16Bold(context),
+                        ),
+                        Text(
+                          'Datos',
+                          style: AppTextStyles.mainStyleGreen14Bold(context),
+                        ),
+                        BlocConsumer<
+                          GetListDepartmentsBloc,
+                          GetListDepartmentsState
+                        >(
+                          listener: (context, state) {},
+                          builder: (context, state) {
+                            if (state is GetListDepartmentsSuccess) {
+                              _departamentos =
+                                  state.getListDepartmentsResponseEntity.data;
 
-                          final nombresDepartamentos = _departamentos
-                              .map((e) => e.nameClassifierEntity)
-                              .toList();
+                              final nombresDepartamentos = _departamentos
+                                  .map((e) => e.nameClassifierEntity)
+                                  .toList();
 
-                          return Column(
-                            children: [
-                              /// ✅ Siempre muestra el dropdown de departamentos
-                              _buildDropdown(
-                                title: 'Departamento:',
-                                items: nombresDepartamentos,
-                                value: _selectedDepartamento,
+                              return Column(
+                                children: [
+                                  _buildDropdown(
+                                    title: 'Departamento:',
+                                    items: nombresDepartamentos,
+                                    value: _selectedDepartamento,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        _selectedDepartamento = newValue;
+
+                                        final seleccionado = _departamentos
+                                            .firstWhere(
+                                              (e) =>
+                                                  e.nameClassifierEntity ==
+                                                  newValue,
+                                            );
+
+                                        _selectedDepartamentoId =
+                                            seleccionado.idClassifierEntity;
+
+                                        context
+                                            .read<
+                                              GetListLocationDepartmentsBloc
+                                            >()
+                                            .add(
+                                              GetListLocationDepartmenEvent(
+                                                idDepartment:
+                                                    _selectedDepartamentoId!
+                                                        .toString(),
+                                              ),
+                                            );
+                                      });
+                                    },
+                                    smallSpacing: smallSpacing,
+                                  ),
+
+                                  SizedBox(height: smallSpacing * 1.2),
+                                  BlocConsumer<
+                                    GetListLocationDepartmentsBloc,
+                                    GetListLocationDepartmentsState
+                                  >(
+                                    listener: (context, state) {},
+
+                                    builder: (context, state) {
+                                      if (state
+                                          is GetListLocationDepartmentsLoading) {
+                                        return CircularProgressIndicator();
+                                      }
+
+                                      if (state
+                                          is GetListLocationDepartmentsSuccess) {
+                                        _agencias = state
+                                            .getListLocationDepartmentsResponseEntity
+                                            .data;
+
+                                        final nombresAgencias = _agencias
+                                            .map((e) => e.nameClassifierEntity)
+                                            .toList();
+
+                                        return _buildDropdown(
+                                          title: 'Agencia:',
+                                          items: nombresAgencias,
+                                          value: _selectedAgencia,
+                                          onChanged: (newValue) {
+                                            setState(() {
+                                              _selectedAgencia = newValue;
+
+                                              final seleccionado = _agencias
+                                                  .firstWhere(
+                                                    (e) =>
+                                                        e.nameClassifierEntity ==
+                                                        newValue,
+                                                  );
+
+                                              _selectedAgenciaId = seleccionado
+                                                  .idClassifierEntity;
+                                            });
+                                          },
+                                          smallSpacing: smallSpacing,
+                                        );
+                                      }
+
+                                      return Container(
+                                        height: smallSpacing * 3,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Seleccione un departamento",
+                                          style:
+                                              AppTextStyles.mainStyleGreen14Bold(
+                                                context,
+                                              ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              );
+                            }
+
+                            return Center(child: CircularProgressIndicator());
+                          },
+                        ),
+                        CustomCheckBox(
+                          value: isChecked,
+                          label: '¿La fianza es para una entidad pública?',
+                          styText: AppTextStyles.mainStyleGreen14Bold(context),
+                          onChanged: (value) {
+                            final newValue = value ?? false;
+                            setState(() => isChecked = newValue);
+
+                            context.read<GetBankGuaranteeClassBloc>().add(
+                              GetBankGuarClassEvent(isPublic: newValue),
+                            );
+                          },
+                        ),
+                        Text(
+                          'Nueva solicitud',
+                          style: AppTextStyles.mainStyleGreen16Bold(context),
+                        ),
+                        _buildDropdown(
+                          title: 'Tipo de Fianza',
+                          items: tipoFianza,
+                          value: _selectedFianzaValue,
+                          onChanged: (newValue) {
+                            setState(() => _selectedFianzaValue = newValue);
+                          },
+                          smallSpacing: smallSpacing,
+                        ),
+                        isChecked == false
+                            ? TextFromFiel02(
+                                screenSize: screenSize,
+                                smallSpacing: smallSpacing,
+                                userController: beneficiarioController,
+                                lbText: 'Beneficiario',
+                              )
+                            : _buildDropdown(
+                                title: 'Beneficiario',
+                                items: beneficiario,
+                                value: _selectedBeneficiarioValue,
                                 onChanged: (newValue) {
-                                  setState(() {
-                                    _selectedDepartamento = newValue;
-
-                                    /// Buscar ID
-                                    final seleccionado = _departamentos
-                                        .firstWhere(
-                                          (e) =>
-                                              e.nameClassifierEntity ==
-                                              newValue,
-                                        );
-
-                                    _selectedDepartamentoId =
-                                        seleccionado.idClassifierEntity;
-
-                                    /// ✅ Lanza el evento para agencias
-                                    context
-                                        .read<GetListLocationDepartmentsBloc>()
-                                        .add(
-                                          GetListLocationDepartmenEvent(
-                                            idDepartment:
-                                                _selectedDepartamentoId!
-                                                    .toString(),
-                                          ),
-                                        );
-                                  });
+                                  setState(
+                                    () => _selectedBeneficiarioValue = newValue,
+                                  );
                                 },
                                 smallSpacing: smallSpacing,
                               ),
+                        AccountDropdown(
+                          selectedAccount: _selectedAccount,
+                          smallSpacing: smallSpacing,
+                          screenSize: screenSize,
+                          onAccountSelected: (account) {
+                            setState(() {
+                              _selectedAccount = account.operationCode;
+                            });
+                          },
+                        ),
+                        TextFromFiel02(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: amountSoliciController,
+                          lbText: 'Monto Solicitado:',
+                        ),
+                        _buildDropdown(
+                          title: 'Moneda',
+                          items: objFianzaBank,
+                          value: _selectedMonedaValue,
+                          onChanged: (newValue) {
+                            setState(() => _selectedMonedaValue = newValue);
+                          },
+                          smallSpacing: smallSpacing,
+                        ),
+                        Text(
+                          'El plazo no puede ser mayor a 10 años en dias',
+                          style: AppTextStyles.mainStyleGreen14Bold(context),
+                        ),
+                        TextFromFiel03(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: dayController,
+                          lbText: 'Plazo en días:',
+                          enabled: true,
+                          onChanged: updateDates,
+                        ),
 
-                              SizedBox(height: smallSpacing * 1.2),
-                              BlocConsumer<
-                                GetListLocationDepartmentsBloc,
-                                GetListLocationDepartmentsState
-                              >(
-                                listener: (context, state) {},
+                        TextFromFiel03(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: startDateController,
+                          lbText: 'Fecha de puesta en vigencia:',
+                          enabled: false,
+                        ),
 
-                                builder: (context, state) {
-                                  if (state
-                                      is GetListLocationDepartmentsLoading) {
-                                    return CircularProgressIndicator();
-                                  }
+                        TextFromFiel03(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: endDateController,
+                          lbText: 'Fecha de vencimiento:',
+                          enabled: false,
+                        ),
 
-                                  if (state
-                                      is GetListLocationDepartmentsSuccess) {
-                                    _agencias = state
-                                        .getListLocationDepartmentsResponseEntity
-                                        .data;
-
-                                    final nombresAgencias = _agencias
-                                        .map((e) => e.nameClassifierEntity)
-                                        .toList();
-
-                                    return _buildDropdown(
-                                      title: 'Agencia:',
-                                      items: nombresAgencias,
-                                      value: _selectedAgencia,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          _selectedAgencia = newValue;
-
-                                          final seleccionado = _agencias
-                                              .firstWhere(
-                                                (e) =>
-                                                    e.nameClassifierEntity ==
-                                                    newValue,
-                                              );
-
-                                          _selectedAgenciaId =
-                                              seleccionado.idClassifierEntity;
-                                        });
-                                      },
-                                      smallSpacing: smallSpacing,
-                                    );
-                                  }
-
-                                  return Container(
-                                    height: smallSpacing * 3,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "Seleccione un departamento",
-                                      style: AppTextStyles.mainStyleGreen14Bold(
-                                        context,
-                                      ),
-                                    ),
+                        Text(
+                          'Verifique e ingrese la informacion correcta',
+                          style: AppTextStyles.mainStyleGreen14Bold(context),
+                        ),
+                        BlocConsumer<
+                          GetBankGuaranteeClassBloc,
+                          GetBankGuaranteeClassState
+                        >(
+                          listener: (context, state) {},
+                          builder: (context, state) {
+                            if (state is GetBankGuaranteeClassSuccess) {
+                              final res = state
+                                  .getBankGuaranteeClassResponseEntity
+                                  .data;
+                              final nombre = res
+                                  .map((name) => name.nombre)
+                                  .toList();
+                              return _buildDropdown(
+                                title: 'Objeto de Fianza Bancaria',
+                                items: nombre,
+                                value: _selectedOjeFianzaValue,
+                                onChanged: (newValue) {
+                                  setState(
+                                    () => _selectedOjeFianzaValue = newValue,
                                   );
                                 },
+                                smallSpacing: smallSpacing,
+                              );
+                            }
+                            return CircularProgressIndicator();
+                          },
+                        ),
+                        TextFromFiel02(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: cuceController,
+                          lbText:
+                              'Cuce (Numero de la publicación de la fianza):',
+                        ),
+                        TextFromFiel02(
+                          screenSize: screenSize,
+                          smallSpacing: smallSpacing,
+                          userController: propositoController,
+                          lbText: 'Propósito:',
+                        ),
+                        CustomCheckBox(
+                          value: isChecked1,
+                          label: 'Términos y condiciones',
+                          styText: AppTextStyles.mainStyleGreen14Bold(context),
+                          onChanged: (value) {
+                            if (value == true) {
+                              _showTermsDialog();
+                            } else {
+                              setState(() => isChecked1 = false);
+                            }
+                          },
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (isChecked1)
+                              Butoon1(
+                                onTap: () {
+                                  InjectorContainer.getIt<AppRouter>().push(
+                                    BankSecuritySolicitationResulRoute(),
+                                  );
+                                },
+                                lblTextField: 'CONTINUAR',
                               ),
-                            ],
-                          );
-                        }
-
-                        return Center(child: CircularProgressIndicator());
-                      },
-                    ),
-                    CustomCheckBox(
-                      value: isChecked,
-                      label: '¿La fianza es para una entidad pública?',
-                      styText: AppTextStyles.mainStyleGreen14Bold(context),
-                      onChanged: (value) {
-                        setState(() => isChecked = value ?? false);
-                      },
-                    ),
-                    Text(
-                      'Nueva solicitud',
-                      style: AppTextStyles.mainStyleGreen16Bold(context),
-                    ),
-                    _buildDropdown(
-                      title: 'Tipo de Fianza',
-                      items: tipoFianza,
-                      value: _selectedFianzaValue,
-                      onChanged: (newValue) {
-                        setState(() => _selectedFianzaValue = newValue);
-                      },
-                      smallSpacing: smallSpacing,
-                    ),
-                    isChecked == false
-                        ? TextFromFiel02(
-                            screenSize: screenSize,
-                            smallSpacing: smallSpacing,
-                            userController: beneficiarioController,
-                            lbText: 'Beneficiario',
-                          )
-                        : _buildDropdown(
-                            title: 'Beneficiario',
-                            items: beneficiario,
-                            value: _selectedBeneficiarioValue,
-                            onChanged: (newValue) {
-                              setState(
-                                () => _selectedBeneficiarioValue = newValue,
-                              );
-                            },
-                            smallSpacing: smallSpacing,
-                          ),
-                    AccountDropdown(
-                      selectedAccount: _selectedAccount,
-                      smallSpacing: smallSpacing,
-                      screenSize: screenSize,
-                      onAccountSelected: (account) {
-                        setState(() {
-                          _selectedAccount = account.operationCode;
-                        });
-                      },
-                    ),
-                    TextFromFiel02(
-                      screenSize: screenSize,
-                      smallSpacing: smallSpacing,
-                      userController: amountSoliciController,
-                      lbText: 'Monto Solicitadeo:',
-                    ),
-                    _buildDropdown(
-                      title: 'Moneda',
-                      items: objFianzaBank,
-                      value: _selectedMonedaValue,
-                      onChanged: (newValue) {
-                        setState(() => _selectedMonedaValue = newValue);
-                      },
-                      smallSpacing: smallSpacing,
-                    ),
-                    Text(
-                      'El plazo no puede ser mayor a 10 años en dias',
-                      style: AppTextStyles.mainStyleGreen14Bold(context),
-                    ),
-                    TextFromFiel02(
-                      screenSize: screenSize,
-                      smallSpacing: smallSpacing,
-                      userController: dayController,
-                      lbText: 'Plazo en dias:',
-                    ),
-                    TextFromFiel02(
-                      screenSize: screenSize,
-                      smallSpacing: smallSpacing,
-                      userController: dayController,
-                      lbText: 'Fecha de puesta en vigencia:',
-                    ),
-                    TextFromFiel02(
-                      screenSize: screenSize,
-                      smallSpacing: smallSpacing,
-                      userController: dayController,
-                      lbText: 'Fecha de vencimiento:',
-                    ),
-                    Text(
-                      'Verifique e ingrese la informacion correcta',
-                      style: AppTextStyles.mainStyleGreen14Bold(context),
-                    ),
-                    _buildDropdown(
-                      title: 'Objeto de Fianza Bancaria',
-                      items: objFianzaBank,
-                      value: _selectedOjeFianzaValue,
-                      onChanged: (newValue) {
-                        setState(() => _selectedOjeFianzaValue = newValue);
-                      },
-                      smallSpacing: smallSpacing,
-                    ),
-                    TextFromFiel02(
-                      screenSize: screenSize,
-                      smallSpacing: smallSpacing,
-                      userController: cuceController,
-                      lbText: 'Cuce (Numero de la publicación de la fianza):',
-                    ),
-                    TextFromFiel02(
-                      screenSize: screenSize,
-                      smallSpacing: smallSpacing,
-                      userController: propositoController,
-                      lbText: 'Propósito:',
-                    ),
-                    CustomCheckBox(
-                      value: isChecked1,
-                      label: 'Términos y condiciones',
-                      styText: AppTextStyles.mainStyleGreen14Bold(context),
-                      onChanged: (value) {
-                        if (value == true) {
-                          _showTermsDialog();
-                        } else {
-                          setState(() => isChecked1 = false);
-                        }
-                      },
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (isChecked1)
-                          Butoon1(
-                            onTap: () {
-                              InjectorContainer.getIt<AppRouter>().push(
-                                BankSecuritySolicitationResulRoute(),
-                              );
-                            },
-                            lblTextField: 'CONTINUAR',
-                          ),
-                        Butoon1(onTap: () {}, lblTextField: 'CANCELAR'),
+                            Butoon1(onTap: () {}, lblTextField: 'CANCELAR'),
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
-              );
-            }
-            return SizedBox();
-          },
-        ),
+                  );
+                }
+                return SizedBox();
+              },
+            ),
       ),
     );
   }
@@ -439,6 +483,23 @@ class _InitialChargeBankGuaranteScreenState
         );
       },
     );
+  }
+
+  void updateDates(String value) {
+    if (value.isEmpty) {
+      startDateController.text = "";
+      endDateController.text = "";
+      return;
+    }
+
+    final int? days = int.tryParse(value);
+    if (days == null) return;
+
+    final DateTime now = DateTime.now();
+    final DateTime endDate = now.add(Duration(days: days));
+
+    startDateController.text = "${now.day}/${now.month}/${now.year}";
+    endDateController.text = "${endDate.day}/${endDate.month}/${endDate.year}";
   }
 
   Widget _buildDropdown({

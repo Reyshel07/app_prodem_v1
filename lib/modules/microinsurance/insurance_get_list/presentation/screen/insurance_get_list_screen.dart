@@ -2,7 +2,6 @@ import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
-import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/bloc.dart';
 import 'package:app_prodem_v1/modules/microinsurance/insurance_get_list/presentation/bloc/insurance_get_list_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/text_from_fiel.dart';
@@ -20,9 +19,7 @@ class InsuranceGetListScreen extends StatefulWidget {
 }
 
 class _InsuranceGetListScreenState extends State<InsuranceGetListScreen> {
-  final TextEditingController documentController = TextEditingController(
-    text: '6753896',
-  );
+  final TextEditingController documentController = TextEditingController();
 
   @override
   void dispose() {
@@ -73,7 +70,6 @@ class _InsuranceGetListScreenState extends State<InsuranceGetListScreen> {
                   const SizedBox(height: 10),
                   Butoon1(
                     onTap: () {
-                      // ✅ Ahora este context sí tiene acceso al BlocProvider
                       context.read<InsuranceGetListBloc>().add(
                         InsurGetListEvent(
                           identityCardNumber: documentController.text,

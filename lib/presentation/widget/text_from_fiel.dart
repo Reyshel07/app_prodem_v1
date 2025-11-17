@@ -128,3 +128,68 @@ class TextFromFiel02 extends StatelessWidget {
     );
   }
 }
+
+///text editor containing onChanged and enabled
+class TextFromFiel03 extends StatelessWidget {
+  final TextEditingController userController;
+  final String lbText;
+  final void Function(String)? onChanged;
+  final Size screenSize;
+  final double smallSpacing;
+  final bool enabled;
+
+  const TextFromFiel03({
+    super.key,
+    required this.userController,
+    required this.lbText,
+    this.onChanged,
+    required this.screenSize,
+    required this.smallSpacing,
+    required this.enabled,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        child: Card(
+          elevation: smallSpacing * 0.5,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Theme.of(context).colorScheme.green),
+              borderRadius: BorderRadius.all(radiusCircular(11)),
+            ),
+            child: TextField(
+              keyboardType: TextInputType.text,
+              controller: userController,
+              onChanged: onChanged,
+              enabled: enabled,
+              style: AppTextStyles.mainStyleGreen14Bold(context),
+              textAlign: TextAlign.start,
+              maxLines: 1,
+              decoration: InputDecoration(
+                disabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                  borderSide: BorderSide(color: Colors.transparent, width: 1),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                  borderSide: BorderSide(color: Colors.transparent, width: 1),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                  borderSide: BorderSide(color: Colors.transparent, width: 1),
+                ),
+                hintText: lbText,
+                hintStyle: AppTextStyles.mainStyleGreen14(context),
+                filled: false,
+                isDense: false,
+                contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

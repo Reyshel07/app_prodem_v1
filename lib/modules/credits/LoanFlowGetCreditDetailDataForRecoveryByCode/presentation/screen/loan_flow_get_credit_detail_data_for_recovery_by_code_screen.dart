@@ -8,6 +8,7 @@ import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/ses
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/create_pr_key_bloc.dart';
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/get_pr_key_by_id_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
+import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -431,51 +432,14 @@ class _LoanFlowGetCreditDetailDataForRecoveryByCodeScreenState
   }
 
   Widget _buildAccountsDropdown(Size screenSize, double smallSpacing) {
-    return BlocConsumer<SessionInfoBloc, SessionInfoState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        if (state is SessionInfoSuccess) {
-          final listAccounts =
-              state.userInfoResponseEnttity.listCodeSavingsAccount;
-
-          return Card(
-            elevation: smallSpacing * 0.5,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: screenSize.width * 0.05,
-                vertical: smallSpacing * 0.5,
-              ),
-              child: DropdownButton<String>(
-                isExpanded: true,
-                hint: const Text("Seleccione una cuenta de la lista:"),
-                value: _selectedAccount,
-                items: listAccounts.map((account) {
-                  return DropdownMenuItem<String>(
-                    value: account.operationCode.toString(),
-                    child: Text(
-                      '${account.operationCode} - ${account.availableAmount} ${account.codMoney}',
-                      style: AppTextStyles.mainStyleGreen14Bold(context),
-                    ),
-                  );
-                }).toList(),
-                onChanged: (newValue) {
-                  setState(() {
-                    _selectedAccount = newValue;
-
-                    final selectedAccount = listAccounts.firstWhere(
-                      (c) => c.operationCode == newValue,
-                    );
-                    _selectedAccountId = selectedAccount.idOperationEntity
-                        .toString();
-                    _selectedAccountMoneyId = selectedAccount.idMoney
-                        .toString();
-                  });
-                },
-              ),
-            ),
-          );
-        }
-        return const SizedBox();
+    return AccountDropdown(
+      selectedAccount: _selectedAccount,
+      smallSpacing: smallSpacing,
+      screenSize: screenSize,
+      onAccountSelected: (account) {
+        setState(() {
+          _selectedAccount = account.operationCode;
+        });
       },
     );
   }

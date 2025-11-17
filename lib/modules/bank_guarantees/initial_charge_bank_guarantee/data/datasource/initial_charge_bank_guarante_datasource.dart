@@ -38,4 +38,21 @@ class InitialChargeBankGuaranteDatasource {
     );
     return GetMoneyByAccountResponseModel.fromJson(response);
   }
+
+  Future<GetBankGuaranteeClassResponseEntity> getBankGuaranteeClass(
+    String? vToken,
+    bool isPublic,
+  ) async {
+    final response = await _apiClient.post(
+      AppStrings.getBankGuaranteeClass,
+      operationName:
+          'The service verifies whether the bond is for a public entity or not. ',
+      data: {"isPublic": isPublic},
+      headers: {
+        'Authorization': 'Bearer $vToken',
+        'Content-Type': 'application/json',
+      },
+    );
+    return GetBankGuaranteeClassResponseModel.fromJson(response);
+  }
 }

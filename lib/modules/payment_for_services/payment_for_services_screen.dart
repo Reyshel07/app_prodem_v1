@@ -38,6 +38,9 @@ class _PaymentForServicesScreenState extends State<PaymentForServicesScreen> {
           create: (context) =>
               InjectorContainer.getIt<GetFavoritesByWebClientBloc>(),
         ),
+        BlocProvider(
+          create: (context) => InjectorContainer.getIt<SessionInfoBloc>(),
+        ),
       ],
       child: Scaffold(
         appBar: AppBar(

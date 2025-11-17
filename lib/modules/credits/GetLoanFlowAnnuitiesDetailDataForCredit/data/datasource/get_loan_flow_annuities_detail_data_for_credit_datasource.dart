@@ -23,9 +23,9 @@ class GetLoanFlowAnnuitiesDetailDataForCreditDatasource {
         "IdLoanCredit": idLoanCredit,
         "IdPerson": idPerson,
         "IdUser": idUser,
-        "IMEI": "abc123",
-        "location": "",
-        "IpAddress": "",
+        "IMEI": iMEI,
+        "location": location,
+        "IpAddress": ipAddress,
       },
       headers: {
         'Authorization': 'Bearer $vToken',

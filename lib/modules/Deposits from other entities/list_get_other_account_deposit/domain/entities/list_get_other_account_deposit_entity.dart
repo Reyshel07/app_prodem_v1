@@ -17,7 +17,7 @@ class ListGetOtherDccountDepositEntity {
   final int idcState;
   final String state;
   final String codMoney;
-  final int monto;
+  final double monto;
   final String thirdAccount;
   final String thirdName;
   final String accountFunds;

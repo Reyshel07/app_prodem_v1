@@ -109,4 +109,5 @@ class AppStrings {
   static const String insuranceGetList = 'WebSite/InsuranceGetList';
   static const String paymentInsuranceAnnuity =
       'WebSite/PaymentInsuranceAnnuity';
+  static const String getBankGuaranteeClass = 'WebSite/GetBankGuaranteeClass';
 }

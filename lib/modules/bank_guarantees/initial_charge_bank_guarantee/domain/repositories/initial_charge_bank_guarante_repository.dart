@@ -8,4 +8,8 @@ abstract class InitialChargeBankGuaranteRepository {
     String codeAccount,
     String? vToken,
   );
+  Future<GetBankGuaranteeClassResponseEntity> getBankGuaranteeClass(
+    String? vToken,
+    bool isPublic,
+  );
 }

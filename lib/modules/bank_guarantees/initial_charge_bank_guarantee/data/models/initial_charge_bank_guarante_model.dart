@@ -91,3 +91,42 @@ class GetMoneyByAccountModel extends GetMoneyByAccountEntity {
         nombre: json["nombre"],
       );
 }
+
+//GetBankGuaranteeClass
+GetBankGuaranteeClassResponseModel getBankGuaranteeClassResponseFromJson(
+  String str,
+) => GetBankGuaranteeClassResponseModel.fromJson(json.decode(str));
+
+class GetBankGuaranteeClassResponseModel
+    extends GetBankGuaranteeClassResponseEntity {
+  GetBankGuaranteeClassResponseModel({
+    required super.data,
+    required super.state,
+    required super.message,
+  });
+
+  factory GetBankGuaranteeClassResponseModel.fromJson(
+    Map<String, dynamic> json,
+  ) => GetBankGuaranteeClassResponseModel(
+    data: List<GetBankGuaranteeClassModel>.from(
+      json["data"].map((x) => GetBankGuaranteeClassModel.fromJson(x)),
+    ),
+    state: json["state"],
+    message: json["message"],
+  );
+}
+
+class GetBankGuaranteeClassModel extends GetBankGuaranteeClassEntity {
+  GetBankGuaranteeClassModel({
+    required super.idClasificador,
+    required super.nombre,
+    required super.codigo,
+  });
+
+  factory GetBankGuaranteeClassModel.fromJson(Map<String, dynamic> json) =>
+      GetBankGuaranteeClassModel(
+        idClasificador: json["idClasificador"],
+        nombre: json["nombre"],
+        codigo: json["codigo"],
+      );
+}
