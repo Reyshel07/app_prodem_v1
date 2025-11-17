@@ -99,4 +99,70 @@ class SecureHive {
     final b = box();
     await b.delete('IsPersonNatural');
   }
+
+  //IdentityCardNumber
+  static Future<void> writeIdentityCardNumber(
+    String pIdentityCardNumber,
+  ) async {
+    final b = box();
+    await b.put('IdentityCardNumber', pIdentityCardNumber);
+  }
+
+  static String readIdentityCardNumber() {
+    final b = box();
+    return b.get('IdentityCardNumber') as String;
+  }
+
+  static Future<void> deleteIdentityCardNumber() async {
+    final b = box();
+    await b.delete('IdentityCardNumber');
+  }
+
+  //CellPhoneNumber
+  static Future<void> writeCellPhoneNumber(String pCellPhoneNumber) async {
+    final b = box();
+    await b.put('CellPhoneNumber', pCellPhoneNumber);
+  }
+
+  static String readCellPhoneNumber() {
+    final b = box();
+    return b.get('CellPhoneNumber') as String;
+  }
+
+  static Future<void> deleteCellPhoneNumber() async {
+    final b = box();
+    await b.delete('CellPhoneNumber');
+  }
+
+  //IsEmployee
+  static Future<void> writeIsEmployee(bool pIsEmployee) async {
+    final b = box();
+    await b.put('IsEmployee', pIsEmployee);
+  }
+
+  static bool readIsEmployee() {
+    final b = box();
+    return b.get('IsEmployee') as bool;
+  }
+
+  static Future<void> deleteIsEmployee() async {
+    final b = box();
+    await b.delete('IsEmployee');
+  }
+
+  //PersonName
+  static Future<void> writePersonName(String pPersonName) async {
+    final b = box();
+    await b.put('PersonName', pPersonName);
+  }
+
+  static String readPersonName() {
+    final b = box();
+    return b.get('PersonName') as String;
+  }
+
+  static Future<void> deletePersonName() async {
+    final b = box();
+    await b.delete('PersonName');
+  }
 }

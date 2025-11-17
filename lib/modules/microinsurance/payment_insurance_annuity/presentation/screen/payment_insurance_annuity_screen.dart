@@ -2,6 +2,7 @@ import 'package:app_prodem_v1/config/router/app_router.dart';
 import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/create_pr_key_bloc.dart';
 import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/get_pr_key_by_id_bloc.dart';
 import 'package:app_prodem_v1/modules/microinsurance/insurance_get_list/domain/entities/insurance_get_list_entity.dart';
@@ -43,6 +44,9 @@ class _PaymentInsuranceAnnuityScreenState
         BlocProvider(
           create: (contex) => InjectorContainer.getIt<GetPrKeyByIdBloc>(),
         ),
+        BlocProvider(
+          create: (contex) => InjectorContainer.getIt<SessionInfoBloc>(),
+        ),
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -61,6 +65,7 @@ class _PaymentInsuranceAnnuityScreenState
                 'PAGO DE SEGURO DE TERCEROS:',
                 style: AppTextStyles.mainStyleGreen14Bold(context),
               ),
+              //help
               AccountDropdown(
                 selectedAccount: _selectedAccount,
                 smallSpacing: smallSpacing,
@@ -72,19 +77,27 @@ class _PaymentInsuranceAnnuityScreenState
                 },
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Asegurado:\n'
                     'Número de Póliza:\n'
-                    'Monto:',
+                    'Monto:\n'
+                    'Asegurado:',
+                    style: AppTextStyles.mainStyleGreen14Bold(context),
                   ),
-                  Text(
-                    '${widget.data.asegurado}\n'
-                    'Número de Póliza:\n'
-                    'Monto:',
+                  SizedBox(width: smallSpacing * 0.5),
+                  SizedBox(
+                    width: screenSize.width * 0.6,
+                    child: Text(
+                      '${widget.data.nroCertificado}\n'
+                      '${widget.data.montoTransaccion}\n'
+                      '${widget.data.asegurado}',
+                      style: AppTextStyles.mainStyleGreen14(context),
+                    ),
                   ),
                 ],
               ),
+              SizedBox(height: smallSpacing * 0.5),
               BlocConsumer<
                 PaymentInsuranceAnnuityBloc,
                 PaymentInsuranceAnnuityState

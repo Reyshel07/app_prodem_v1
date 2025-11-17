@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_prodem_v1/utils/text.dart';
 
 class ProdemKeySection extends StatelessWidget {
-  final VoidCallback onConfirm; // 👈 se pasa desde afuera
+  final VoidCallback onConfirm;
   final double smallSpacing;
   final Size screenSize;
 

@@ -1,11 +1,17 @@
+import 'package:app_prodem_v1/config/router/app_router.dart';
+import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/theme/extension_theme.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/dpf/CreateDPFSolicitationInternal/presentation/bloc/create_dpf_solicitation_internal_bloc.dart';
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation/bloc/get_office_list_by_id_geo_bloc.dart';
 import 'package:app_prodem_v1/modules/dpf/GetParametersToDigitalDpf/presentation/bloc/get_parameters_to_digital_dpf_bloc.dart'
     hide GetOfficeListByIdGeoSuccess;
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/bloc.dart';
+import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/create_pr_key_bloc.dart';
+import 'package:app_prodem_v1/modules/key_pr/presentation/bloc/get_pr_key_by_id_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/drop.dart';
+import 'package:app_prodem_v1/presentation/widget/prodem_key.dart';
 import 'package:app_prodem_v1/presentation/widget/text_from_fiel.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:auto_route/auto_route.dart';
@@ -48,7 +54,9 @@ class _ParametersToDigitalDpfScreenState
   //String? _selectedDepartValue;
   String? _selectedAgenciaValue;
   int? _selectedDepartamentoId;
+  String? _idAccount;
   bool isChecked = false;
+  bool isLocked = false;
 
   String? _selectedAccount;
 
@@ -65,6 +73,16 @@ class _ParametersToDigitalDpfScreenState
         BlocProvider(
           create: (context) =>
               InjectorContainer.getIt<GetOfficeListByIdGeoBloc>(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              InjectorContainer.getIt<CreateDpfSolicitationInternalBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => InjectorContainer.getIt<GetPrKeyByIdBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => InjectorContainer.getIt<CreatePrKeyBloc>(),
         ),
       ],
       child: Scaffold(
@@ -114,6 +132,7 @@ class _ParametersToDigitalDpfScreenState
                       onAccountSelected: (account) {
                         setState(() {
                           _selectedAccount = account.operationCode;
+                          _idAccount = account.idOperationEntity;
                         });
                       },
                     ),
@@ -447,12 +466,6 @@ class _ParametersToDigitalDpfScreenState
                         ),
                       ),
                     ),
-                    /*TextFromFiel02(
-                      screenSize: screenSize,
-                      smallSpacing: smallSpacing,
-                      userController: interestEarnedController,
-                      lbText: 'Interéz ganado',
-                    ),*/
                     TextFromFiel02(
                       screenSize: screenSize,
                       smallSpacing: smallSpacing,
@@ -464,106 +477,20 @@ class _ParametersToDigitalDpfScreenState
                         Checkbox(
                           activeColor: Theme.of(context).colorScheme.green,
                           value: isChecked,
-                          onChanged: (value) {
-                            setState(() => isChecked = value ?? false);
+                          onChanged: (value) async {
                             if (value == true) {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    //title: const Text("Confirmación"),
-                                    content: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        SizedBox(
-                                          height: screenSize.height * 0.5,
-                                          width: double.maxFinite,
-                                          child: ListView(
-                                            children: [
-                                              Html(
-                                                data: res.termAndConditions,
-                                                style: {
-                                                  "p": Style(
-                                                    fontSize: FontSize(14.0),
-                                                    textAlign:
-                                                        TextAlign.justify,
-                                                  ),
-                                                  "h6": Style(
-                                                    fontSize: FontSize(18.0),
-                                                    color: Theme.of(
-                                                      context,
-                                                    ).colorScheme.green,
-                                                    fontWeight: FontWeight.bold,
-                                                    textAlign:
-                                                        TextAlign.justify,
-                                                  ),
-                                                  "li": Style(
-                                                    padding:
-                                                        HtmlPaddings.symmetric(
-                                                          vertical: 4,
-                                                        ),
-                                                    fontSize: FontSize(14.0),
-                                                    textAlign:
-                                                        TextAlign.justify,
-                                                  ),
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Divider(),
-                                        Row(
-                                          children: [
-                                            Checkbox(
-                                              activeColor: Theme.of(
-                                                context,
-                                              ).colorScheme.green,
-                                              value: value,
-                                              onChanged: (value) {
-                                                setState(
-                                                  () => isChecked =
-                                                      value ?? false,
-                                                );
-                                              },
-                                            ),
-                                            Text(
-                                              'ACEPTO LOS TERMINOS Y CONDICIONES.',
-                                              style:
-                                                  AppTextStyles.mainStyleGreen10Bold(
-                                                    context,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(),
-                                        child: Text(
-                                          "Cancelar",
-                                          style:
-                                              AppTextStyles.mainStyleGreen14Bold(
-                                                context,
-                                              ),
-                                        ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(),
-                                        child: Text(
-                                          "Continuar",
-                                          style:
-                                              AppTextStyles.mainStyleGreen14Bold(
-                                                context,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                },
+                              final accepted = await showTermsDialog(
+                                context,
+                                res.termAndConditions,
                               );
+
+                              if (accepted == true) {
+                                setState(() => isChecked = true);
+                              } else {
+                                setState(() => isChecked = false);
+                              }
+                            } else {
+                              setState(() => isChecked = false);
                             }
                           },
                         ),
@@ -573,14 +500,95 @@ class _ParametersToDigitalDpfScreenState
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Butoon1(onTap: () {}, lblTextField: 'Continuar'),
-                        Butoon1(onTap: () {}, lblTextField: 'Tarifario'),
-                        Butoon1(onTap: () {}, lblTextField: 'Cancelar'),
-                      ],
-                    ),
+                    if (!isLocked)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          if (isChecked)
+                            Butoon1(
+                              onTap: () {
+                                setState(() {
+                                  isLocked = true;
+                                });
+                              },
+                              lblTextField: 'Continuar',
+                            ),
+                          Butoon1(onTap: () {}, lblTextField: 'Tarifario'),
+                          Butoon1(onTap: () {}, lblTextField: 'Cancelar'),
+                        ],
+                      ),
+                    if (isLocked)
+                      BlocConsumer<
+                        CreateDpfSolicitationInternalBloc,
+                        CreateDpfSolicitationInternalState
+                      >(
+                        listener: (context, state) {
+                          if (state is CreateDpfSolicitationInternalSuccess) {
+                            InjectorContainer.getIt<AppRouter>().push(
+                              SavingAccountTransMobileEndRoute(
+                                response: state
+                                    .createDpfSolicitationInternalEntity
+                                    .reportString,
+                              ),
+                            );
+                          }
+                        },
+                        builder: (context, state) {
+                          return ProdemKeySection(
+                            smallSpacing: smallSpacing,
+                            screenSize: screenSize,
+                            onConfirm: () {
+                              final createState = context
+                                  .read<CreatePrKeyBloc>()
+                                  .state;
+
+                              if (createState is CreatePrKeySuccess) {
+                                final idSms = createState
+                                    .createProdemKeyResponseEntity
+                                    .data
+                                    .toString();
+                                //quemado
+                                context
+                                    .read<CreateDpfSolicitationInternalBloc>()
+                                    .add(
+                                      CreateDpfSolicitInternalEvent(
+                                        contextData: '',
+                                        idAccount: _idAccount ?? '',
+                                        idOfficeDPF: '17',
+                                        interesUpdate: '0',
+                                        ipNumber: '',
+                                        amount: amountInBsController.text,
+                                        amountFinalUpdate:
+                                            mountDpfController.text,
+                                        email: emailController.text,
+                                        debitAccountCode:
+                                            _selectedAccount ?? '',
+                                        rateUpdate: '8.5',
+                                        term: deadlineInDaysController.text,
+                                        termUpdate: '367',
+                                        idSMSOperation: idSms,
+                                        prodemKeyCode:
+                                            context
+                                                    .read<GetPrKeyByIdBloc>()
+                                                    .state
+                                                is GetPrKeyByIdSuccess
+                                            ? (context
+                                                              .read<
+                                                                GetPrKeyByIdBloc
+                                                              >()
+                                                              .state
+                                                          as GetPrKeyByIdSuccess)
+                                                      .getProdemKeyByIdResponseEntity
+                                                      ?.data ??
+                                                  ''
+                                            : '',
+                                      ),
+                                    );
+                              }
+                            },
+                          );
+                        },
+                      ),
                   ],
                 ),
               );
@@ -589,6 +597,95 @@ class _ParametersToDigitalDpfScreenState
           },
         ),
       ),
+    );
+  }
+
+  Future<bool?> showTermsDialog(BuildContext context, String htmlText) {
+    bool internalChecked = false;
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              content: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.55,
+                width: double.maxFinite,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          Html(
+                            data: htmlText,
+                            style: {
+                              "p": Style(
+                                fontSize: FontSize(14),
+                                textAlign: TextAlign.justify,
+                              ),
+                              "h6": Style(
+                                fontSize: FontSize(18),
+                                color: Theme.of(context).colorScheme.green,
+                                fontWeight: FontWeight.bold,
+                                textAlign: TextAlign.justify,
+                              ),
+                              "li": Style(
+                                padding: HtmlPaddings.symmetric(vertical: 4),
+                                fontSize: FontSize(14),
+                                textAlign: TextAlign.justify,
+                              ),
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        Checkbox(
+                          activeColor: Theme.of(context).colorScheme.green,
+                          value: internalChecked,
+                          onChanged: (value) {
+                            setStateDialog(
+                              () => internalChecked = value ?? false,
+                            );
+                          },
+                        ),
+                        Expanded(
+                          child: Text(
+                            'ACEPTO LOS TÉRMINOS Y CONDICIONES.',
+                            style: AppTextStyles.mainStyleGreen10Bold(context),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: Text(
+                    "Cancelar",
+                    style: AppTextStyles.mainStyleGreen14Bold(context),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    if (internalChecked) {
+                      Navigator.pop(context, true);
+                    }
+                  },
+                  child: Text(
+                    "Continuar",
+                    style: AppTextStyles.mainStyleGreen14Bold(context),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 

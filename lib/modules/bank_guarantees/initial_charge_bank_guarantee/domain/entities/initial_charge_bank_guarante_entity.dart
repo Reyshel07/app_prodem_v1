@@ -58,3 +58,28 @@ class GetMoneyByAccountEntity {
     required this.nombre,
   });
 }
+
+//GetBankGuaranteeClass
+class GetBankGuaranteeClassResponseEntity {
+  final List<GetBankGuaranteeClassEntity> data;
+  final int state;
+  final String message;
+
+  GetBankGuaranteeClassResponseEntity({
+    required this.data,
+    required this.state,
+    required this.message,
+  });
+}
+
+class GetBankGuaranteeClassEntity {
+  final int idClasificador;
+  final String nombre;
+  final String codigo;
+
+  GetBankGuaranteeClassEntity({
+    required this.idClasificador,
+    required this.nombre,
+    required this.codigo,
+  });
+}

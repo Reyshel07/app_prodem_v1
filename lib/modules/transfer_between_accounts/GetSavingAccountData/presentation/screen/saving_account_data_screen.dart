@@ -246,16 +246,76 @@ class _TransferScreenState extends State<TransferScreen> {
                 builder: (context, state) {
                   return Butoon1(
                     onTap: () {
-                      widget.bloc.add(
-                        SavingAccountDEvent(
-                          codeSavingAccountSource: _selectedAccount ?? '',
-                          codeSavingAccount: isOwnAccounts
-                              ? _selectedAccount1 ?? ''
-                              : destinationAccountController.text,
-                          amountOperation: transactionAmountController.text,
-                          idMoneyOperation: 1,
-                        ),
-                      );
+                      isOwnAccounts
+                          ? widget.bloc.add(
+                              SavingAccountDEvent(
+                                codeSavingAccountSource: _selectedAccount ?? '',
+                                codeSavingAccount: isOwnAccounts
+                                    ? _selectedAccount1 ?? ''
+                                    : destinationAccountController.text,
+                                amountOperation:
+                                    transactionAmountController.text,
+                                idMoneyOperation: 1,
+                              ),
+                            )
+                          : showDialog(
+                              //quemado idMoney
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text(
+                                    'La transferencia de fonsods será abonada a la cuenta ${destinationAccountController.text} de BANCO PRODEM, del beneficiario que se registró. Una vez realizada, esta no podrá ser revertida.',
+                                    style: AppTextStyles.mainStyleGreen14(
+                                      context,
+                                    ),
+                                  ),
+                                  actions: [
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            'CANCELAR',
+                                            style:
+                                                AppTextStyles.mainStyleGreen14Bold(
+                                                  context,
+                                                ),
+                                          ),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            widget.bloc.add(
+                                              SavingAccountDEvent(
+                                                codeSavingAccountSource:
+                                                    _selectedAccount ?? '',
+                                                codeSavingAccount: isOwnAccounts
+                                                    ? _selectedAccount1 ?? ''
+                                                    : destinationAccountController
+                                                          .text,
+                                                amountOperation:
+                                                    transactionAmountController
+                                                        .text,
+                                                idMoneyOperation: 1,
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            'ACEPTAR',
+                                            style:
+                                                AppTextStyles.mainStyleGreen14Bold(
+                                                  context,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                     },
                     lblTextField: 'CONTINUAR',
                   );

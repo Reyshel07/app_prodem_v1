@@ -3,6 +3,7 @@ import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/modules/credits/GetLoanFlowAnnuitiesDetailDataForCredit/presentation/bloc/get_loan_flow_annuities_detail_data_for_credit_bloc.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/bloc/session_info_bloc.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
+import 'package:app_prodem_v1/presentation/widget/drop.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:app_prodem_v1/utils/time.dart';
 import 'package:flutter/material.dart';
@@ -58,56 +59,18 @@ class _LoanFlowAnnuitiesDetailDataForCreditScreenState
                   style: AppTextStyles.mainStyleGreen18Bold(context),
                 ),
                 SizedBox(height: smallSpacing * 0.5),
-
-                /// LISTA DE CRÉDITOS (Combo)
-                BlocConsumer<SessionInfoBloc, SessionInfoState>(
-                  listener: (context, state) {},
-                  builder: (context, state) {
-                    if (state is SessionInfoSuccess) {
-                      final listCredits =
-                          state.userInfoResponseEnttity.listCodeLoanFlowCredit;
-                      return Card(
-                        elevation: smallSpacing * 0.5,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: screenSize.width * 0.05,
-                            vertical: smallSpacing * 0.5,
-                          ),
-                          child: DropdownButton<String>(
-                            isExpanded: true,
-                            hint: const Text("Seleccione un crédito"),
-                            value: _selectedOperationCode,
-                            items: listCredits.map((credit) {
-                              return DropdownMenuItem<String>(
-                                value: credit.operationCode.toString(),
-                                child: Text(
-                                  credit.operationCode.toString(),
-                                  style: AppTextStyles.mainStyleGreen14Bold(
-                                    context,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (newValue) {
-                              setState(() {
-                                _selectedOperationCode = newValue;
-
-                                /// Guardamos el id del crédito seleccionado
-                                final selectedCredit = listCredits.firstWhere(
-                                  (c) => c.operationCode == newValue,
-                                );
-                                _selectedLoanId = selectedCredit
-                                    .idOperationEntity
-                                    .toString();
-                              });
-                            },
-                          ),
-                        ),
-                      );
-                    }
-                    return const SizedBox();
+                CreditDropdown(
+                  selectedOperationCode: _selectedOperationCode,
+                  screenSize: screenSize,
+                  smallSpacing: smallSpacing,
+                  onChanged: (data) {
+                    setState(() {
+                      _selectedOperationCode = data.operationCode;
+                      _selectedLoanId = data.idOperationEntity;
+                    });
                   },
                 ),
+
                 SizedBox(height: smallSpacing * 1.5),
 
                 /// BOTÓN CONSULTAR
