@@ -165,4 +165,17 @@ class SecureHive {
     final b = box();
     await b.delete('PersonName');
   }
+
+  //Theme
+  static const _themeKey = 'theme_mode';
+
+  static Future<void> writeTheme(String theme) async {
+    await box().put(_themeKey, theme);
+  }
+
+  static String? readTheme() => box().get(_themeKey) as String?;
+
+  static Future<void> deleteTheme() async {
+    await box().delete(_themeKey);
+  }
 }
