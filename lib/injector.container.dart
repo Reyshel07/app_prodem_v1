@@ -22,6 +22,7 @@ import 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_
 import 'package:app_prodem_v1/modules/get_list_departments/get.list.departments.container.dart';
 import 'package:app_prodem_v1/modules/get_paf_data_for_mobile_app/get.paf.data.for.mobile.app.container.dart';
 import 'package:app_prodem_v1/modules/get_tickets_information_mobile/get.tickets.information.mobile.container.dart';
+import 'package:app_prodem_v1/modules/home/settings_screen/theme_cubit.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressData/express.data.container.dart';
 import 'package:app_prodem_v1/modules/lightning_turn/GetProdemExpressSolicitationWeb/pr.express.soli.web.container.dart';
 import 'package:app_prodem_v1/modules/home/settings_screen/get_account_enabled_to_transfer/receive.transfer.by.to.transfer.container.dart';
@@ -115,5 +116,10 @@ class InjectorContainer {
     initInsertWebReferences(getIt);
     initInsuranceGetList(getIt);
     initPaymentInsuranceAnnuity(getIt);
+    initTheme(getIt);
   }
+}
+
+void initTheme(GetIt getIt) {
+  getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
 }

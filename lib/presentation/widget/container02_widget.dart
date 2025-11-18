@@ -34,6 +34,7 @@ class Container1 extends StatelessWidget {
         child: Card(
           color: isDark ? Colors.grey[900] : Colors.white,
           elevation: smallSpacing * 0.5,
+          //shadowColor: Theme.of(context).colorScheme.blue,
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(

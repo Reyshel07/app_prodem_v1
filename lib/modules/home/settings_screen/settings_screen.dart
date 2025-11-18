@@ -2,11 +2,13 @@ import 'package:app_prodem_v1/config/router/app_router.gr.dart';
 import 'package:app_prodem_v1/config/router/router.dart';
 import 'package:app_prodem_v1/config/theme/extension_theme.dart';
 import 'package:app_prodem_v1/injector.container.dart';
+import 'package:app_prodem_v1/modules/home/settings_screen/theme_cubit.dart';
 import 'package:app_prodem_v1/presentation/widget/butoons_widget.dart';
 import 'package:app_prodem_v1/presentation/widget/container02_widget.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:app_prodem_v1/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class SettingsScreen extends StatelessWidget {
@@ -19,134 +21,139 @@ class SettingsScreen extends StatelessWidget {
     final double smallSpacing = screenSize.height * 0.02;
     final double letterSize = screenSize.height;
     final double topPadding = screenSize.height * 0.2;
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(screenSize.height * 0.3),
-        child: AppBar(
-          foregroundColor: Theme.of(context).colorScheme.white,
-          flexibleSpace: Container(
-            height: screenSize.height * 0.4,
-            width: screenSize.width,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Theme.of(context).colorScheme.blue,
-                  Theme.of(context).colorScheme.green,
-                ],
-                stops: [0.00, 1.0],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+    return BlocProvider(
+      create: (_) => ThemeCubit(),
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(screenSize.height * 0.3),
+          child: AppBar(
+            foregroundColor: Theme.of(context).colorScheme.white,
+            flexibleSpace: Container(
+              height: screenSize.height * 0.4,
+              width: screenSize.width,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Theme.of(context).colorScheme.blue,
+                    Theme.of(context).colorScheme.green,
+                  ],
+                  stops: [0.00, 1.0],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
               ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Image.asset(
-                  AssetImageApp.getIsotipo,
-                  height: screenSize.height * 0.09,
-                ),
-                Text(
-                  'jade rashel piza quispe\n'
-                  'version: 17.4\n'
-                  'monto limite diarios',
-                  style: AppTextStyles.mainStyleWhite16(context),
-                  textAlign: TextAlign.start,
-                ),
-              ],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image.asset(
+                    AssetImageApp.getIsotipo,
+                    height: screenSize.height * 0.09,
+                  ),
+                  Text(
+                    'jade rashel piza quispe\n'
+                    'version: 17.4\n'
+                    'monto limite diarios',
+                    style: AppTextStyles.mainStyleWhite16(context),
+                    textAlign: TextAlign.start,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(topPadding * 0.09),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  'Ingresar con huella',
-                  style: AppTextStyles.mainStyleGreen14Bold(context),
-                ),
-                Spacer(),
-                Icon(Icons.fingerprint),
-              ],
+        body: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(topPadding * 0.09),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'Ingresar con huella',
+                    style: AppTextStyles.mainStyleGreen14Bold(context),
+                  ),
+                  Spacer(),
+                  Icon(Icons.fingerprint),
+                ],
+              ),
             ),
-          ),
-          ListTitle1(
-            letterSize: letterSize,
-            smallSpacing: smallSpacing,
-            onTap1: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: Text(
-                      'Tickets virtuales',
-                      style: AppTextStyles.mainStyleGreen18Bold(context),
-                    ),
-                    content: Butoon1(
-                      onTap: () {},
-                      lblTextField: 'Solicitar ticket',
-                    ),
-                  );
-                },
-              );
-            },
-            lblTextField: 'Ticket Virtual',
-            icon: Icons.confirmation_number,
-          ),
-          ListTitle1(
-            letterSize: letterSize,
-            smallSpacing: smallSpacing,
-            onTap1: () {
-              InjectorContainer.getIt<AppRouter>().push(
-                GetPafDataForMobileAppRoute(),
-              );
-            },
-            lblTextField: 'Puntos de Atencion',
-            icon: Icons.location_on,
-          ),
-          ListTitle1(
-            letterSize: letterSize,
-            smallSpacing: smallSpacing,
-            onTap1: () {
-              InjectorContainer.getIt<AppRouter>().push(
-                ReceiveTransfersByCellPhoneNumberRoute(),
-              );
-            },
-            lblTextField: 'Configuracion',
-            icon: Icons.settings,
-          ),
-          ListTitle1(
-            letterSize: letterSize,
-            smallSpacing: smallSpacing,
-            onTap1: () {
-              InjectorContainer.getIt<AppRouter>().push(
-                ChargeReferencesRoute(),
-              );
-            },
-            lblTextField: 'Referenciados',
-            icon: Icons.settings,
-          ),
-          ListTitle1(
-            letterSize: letterSize,
-            smallSpacing: smallSpacing,
-            onTap1: () {
-              // themeProvider.changeTheme();
-            },
-            lblTextField: 'Cambiar tema',
-            icon: Icons
-                .abc_outlined, //themeProvider.isDark ? Icons.light_mode : Icons.dark_mode,
-          ),
-          ListTitle1(
-            smallSpacing: smallSpacing,
-            letterSize: letterSize,
-            onTap1: () {},
-            lblTextField: 'Salir',
-            icon: Icons.power_settings_new,
-          ),
-        ],
+            ListTitle1(
+              letterSize: letterSize,
+              smallSpacing: smallSpacing,
+              onTap1: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text(
+                        'Tickets virtuales',
+                        style: AppTextStyles.mainStyleGreen18Bold(context),
+                      ),
+                      content: Butoon1(
+                        onTap: () {},
+                        lblTextField: 'Solicitar ticket',
+                      ),
+                    );
+                  },
+                );
+              },
+              lblTextField: 'Ticket Virtual',
+              icon: Icons.confirmation_number,
+            ),
+            ListTitle1(
+              letterSize: letterSize,
+              smallSpacing: smallSpacing,
+              onTap1: () {
+                InjectorContainer.getIt<AppRouter>().push(
+                  GetPafDataForMobileAppRoute(),
+                );
+              },
+              lblTextField: 'Puntos de Atencion',
+              icon: Icons.location_on,
+            ),
+            ListTitle1(
+              letterSize: letterSize,
+              smallSpacing: smallSpacing,
+              onTap1: () {
+                InjectorContainer.getIt<AppRouter>().push(
+                  ReceiveTransfersByCellPhoneNumberRoute(),
+                );
+              },
+              lblTextField: 'Configuracion',
+              icon: Icons.settings,
+            ),
+            ListTitle1(
+              letterSize: letterSize,
+              smallSpacing: smallSpacing,
+              onTap1: () {
+                InjectorContainer.getIt<AppRouter>().push(
+                  ChargeReferencesRoute(),
+                );
+              },
+              lblTextField: 'Referenciados',
+              icon: Icons.settings,
+            ),
+            ListTitle1(
+              smallSpacing: smallSpacing,
+              letterSize: letterSize,
+              onTap1: () {
+                context.read<ThemeCubit>().toggleTheme();
+              },
+              icon: context.watch<ThemeCubit>().state == ThemeMode.dark
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+              lblTextField: 'Cambiar tema',
+            ),
+
+            ListTitle1(
+              smallSpacing: smallSpacing,
+              letterSize: letterSize,
+              onTap1: () {},
+              lblTextField: 'Salir',
+              icon: Icons.power_settings_new,
+            ),
+          ],
+        ),
       ),
     );
   }

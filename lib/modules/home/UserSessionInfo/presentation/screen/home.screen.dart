@@ -7,6 +7,8 @@ import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/c
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/screen/savings_products/savings_products_screen.dart';
 import 'package:app_prodem_v1/modules/home/UserSessionInfo/presentation/widgets/widget.dart';
 import 'package:app_prodem_v1/presentation/widget/container02_widget.dart';
+import 'package:app_prodem_v1/presentation/widget/loading_widget.dart';
+import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,23 +24,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   late PageController pageController;
   int selectedIndex = 0;
-
-  int image = 4;
 
   @override
   void initState() {
     super.initState();
-    bottomIndex();
     pageController = PageController(initialPage: selectedIndex, keepPage: true);
   }
 
   void pageChanged(int index) {
-    setState(() {
-      selectedIndex = index;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        selectedIndex = index;
+      });
     });
+
     pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 300),
@@ -47,10 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   int bottomIndex() {
-    if (selectedIndex == 0) {
-      return 0;
-    }
-    return selectedIndex - 1;
+    return selectedIndex == 0 ? 0 : selectedIndex - 1;
   }
 
   @override
@@ -59,18 +58,21 @@ class _HomeScreenState extends State<HomeScreen> {
     final double smallSpacing = screenSize.height * 0.02;
     final double letterSize = screenSize.height;
     final double topPadding = screenSize.height * 0.2;
+
     return BlocProvider(
       create: (context) =>
           InjectorContainer.getIt<SessionInfoBloc>()..add(SessionInfEvent()),
       child: Scaffold(
         key: scaffoldKey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
+          preferredSize: const Size.fromHeight(kToolbarHeight),
           child: AppBarHome(),
         ),
         body: BlocBuilder<SessionInfoBloc, SessionInfoState>(
           builder: (context, state) {
-            if (state is SessionInfoSuccess) {
+            if (state is SessionInfoLoading) {
+              return Loading1(smallSpacing: smallSpacing);
+            } else if (state is SessionInfoSuccess) {
               final userSessionInfo = state.userInfoResponseEnttity;
 
               final listCodeSavingsAccount =
@@ -79,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final listCodeLoanFlowCredit =
                   userSessionInfo.listCodeLoanFlowCredit;
               final listFixedTermDeposit = userSessionInfo.listFixedTermDeposit;
+
               final todasList = [
                 ...listCodeSavingsAccount.map(
                   (c) => CuentaConTipo(tipo: "cuenta", data: c),
@@ -93,12 +96,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   (c) => CuentaConTipo(tipo: "targeta", data: c),
                 ),
               ];
+
               return PageView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: pageController,
                 onPageChanged: (index) {
-                  setState(() {
-                    selectedIndex = index;
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    setState(() => selectedIndex = index);
                   });
                 },
                 children: [
@@ -195,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           enlargeCenterPage: true,
                                           viewportFraction: 1.0,
                                         ),
-                                        items: (userSessionInfo.listAds).map((
+                                        items: userSessionInfo.listAds.map((
                                           ad,
                                         ) {
                                           return Builder(
@@ -211,8 +215,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       mode: LaunchMode
                                                           .externalApplication,
                                                     );
-                                                  } else {
-                                                    throw 'No se pudo abrir $url';
                                                   }
                                                 },
                                                 child: Container(
@@ -247,19 +249,44 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  SizedBox.expand(child: const SavingsProductsScreen()),
-                  SizedBox.expand(child: const CreditProductsScreen()),
+                  const SavingsProductsScreen(),
+                  const CreditProductsScreen(),
                 ],
               );
+            } else if (state is SessionInfoError) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text(
+                        'Mensaje',
+                        style: AppTextStyles.mainStyleGreen14Bold(context),
+                      ),
+                      content: Text(
+                        state.message,
+                        style: AppTextStyles.mainStyleGreen14(context),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: Text(
+                            'OK',
+                            style: AppTextStyles.mainStyleGreen14Bold(context),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              });
             }
-            return CircularProgressIndicator();
+            return Loading1(smallSpacing: smallSpacing);
           },
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: bottomIndex(),
-          onTap: (value) {
-            pageChanged(value + 1);
-          },
+          onTap: (value) => pageChanged(value + 1),
           type: BottomNavigationBarType.fixed,
           selectedItemColor: Theme.of(context).colorScheme.green,
           unselectedItemColor: Colors.grey,
@@ -286,9 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 4,
-          onPressed: () {
-            pageChanged(0);
-          },
+          onPressed: () => pageChanged(0),
           backgroundColor: selectedIndex == 0
               ? Theme.of(context).colorScheme.green
               : Colors.grey.shade400,
