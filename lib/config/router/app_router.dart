@@ -10,7 +10,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: LoginRoute1.page, initial: true),
     AutoRoute(page: HomeRoute.page),
     AutoRoute(page: AccountInquiryRoute.page),
-    AutoRoute(page: SavingAccountExtractDataTranSacreen.page),
+    AutoRoute(page: SavingAccountExtractDataTranRoute.page),
     AutoRoute(page: TransferFeesTwoRoute.page),
     AutoRoute(page: SavingAccountTransMobileEndRoute.page),
     AutoRoute(page: SettingsRoute.page),
@@ -61,5 +61,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: InsertWebReferencesRoute.page),
     AutoRoute(page: InsuranceGetListRoute.page),
     AutoRoute(page: PaymentInsuranceAnnuityRoute.page),
+    AutoRoute(page: GetCurrentSmsOperationRoute.page),
+    AutoRoute(page: WebPersonDeviceAuthenticatePrKeyRoute.page),
   ];
 }

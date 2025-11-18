@@ -14,7 +14,6 @@ dependencies:
   go_router: ^16.0.0
   google_fonts: ^6.2.1
   nb_utils: ^7.1.6
-  flutter_svg: ^2.2.0
   provider: ^6.1.4
   carousel_slider: ^5.1.1
   #screen
@@ -39,6 +38,8 @@ dependencies:
   connectivity_plus: ^6.1.5
   device_info_plus: ^12.1.0
   flutter_html: ^3.0.0
+  flutter_svg: ^2.2.2
+  timeline_tile: ^2.0.0
   
 
 

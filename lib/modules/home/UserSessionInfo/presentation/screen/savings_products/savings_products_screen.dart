@@ -97,7 +97,7 @@ class _SavingsProductsScreenState extends State<SavingsProductsScreen> {
                           Gesture(
                             onTap: () {
                               InjectorContainer.getIt<AppRouter>().push(
-                                SavingAccountExtractDataTranSacreen(
+                                SavingAccountExtractDataTranRoute(
                                   bloc: newContext
                                       .read<SavingAccountExtracBloc>(),
                                   sessionBloc: sessionBloc,

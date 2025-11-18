@@ -37,8 +37,8 @@ class MainApp extends StatelessWidget {
         return MaterialApp.router(
           title: 'Prodem',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
+          theme: ThemeData.dark(),
+          darkTheme: ThemeData.light(),
           themeMode: themeMode,
 
           /// Aquí agregamos las localizaciones

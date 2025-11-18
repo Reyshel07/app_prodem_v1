@@ -110,4 +110,8 @@ class AppStrings {
   static const String paymentInsuranceAnnuity =
       'WebSite/PaymentInsuranceAnnuity';
   static const String getBankGuaranteeClass = 'WebSite/GetBankGuaranteeClass';
+  static const String getCurrentSmsOperation =
+      'ProdemKey/GetCurrentSmsOperation';
+  static const String webPersonDeviceAuthenticateProdemKey =
+      'WebSite/WebPersonDeviceAuthenticateProdemKey';
 }

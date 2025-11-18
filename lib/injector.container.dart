@@ -18,6 +18,7 @@ import 'package:app_prodem_v1/modules/dpf/infor_acciones_two/infor.acciones.two.
 import 'package:app_prodem_v1/modules/dpf/verifica_plazo_renovacion/verifica.plazo.renovacion.container.dart';
 import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_account_numberIn_other_bank/account.numberln.other.bank.container.dart';
 import 'package:app_prodem_v1/modules/Deposits%20from%20other%20entities/get_current_qr_by_type/get.current.qr.by.type.container.dart';
+import 'package:app_prodem_v1/modules/get_current_sms_operation/get.current.sms.operation.container.dart';
 import 'package:app_prodem_v1/modules/get_external_payment_generate_file_by_web_client/get.external.payment.generate.file.web.client.container.dart';
 import 'package:app_prodem_v1/modules/get_list_departments/get.list.departments.container.dart';
 import 'package:app_prodem_v1/modules/get_paf_data_for_mobile_app/get.paf.data.for.mobile.app.container.dart';
@@ -51,6 +52,7 @@ import 'package:app_prodem_v1/modules/transfer_between_accounts/savings_account_
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_ach_data/get.ach.data.container.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/get_valid_account/get.valid.account.container.dart';
 import 'package:app_prodem_v1/modules/transfer_to_other_banks/transfer_ach_from_mobile_banking/transfer.ach.from.mobile.container.dart';
+import 'package:app_prodem_v1/modules/web_person_device_authenticate_pr_key/web.person.device.authenticate.pr.key.container.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'config/router/router.dart';
@@ -117,6 +119,8 @@ class InjectorContainer {
     initInsuranceGetList(getIt);
     initPaymentInsuranceAnnuity(getIt);
     initTheme(getIt);
+    initGetCurrentSmsOperation(getIt);
+    initWebPersonDeviceAuthenticatePrKey(getIt);
   }
 }
 
