@@ -4,6 +4,7 @@ import 'package:app_prodem_v1/config/theme/extension.dart';
 import 'package:app_prodem_v1/injector.container.dart';
 import 'package:app_prodem_v1/utils/text_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../domain/entities/entity.dart';
 
 class AppBarHome extends StatelessWidget {
@@ -37,7 +38,11 @@ class AppBarHome extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              InjectorContainer.getIt<AppRouter>().push(
+                WebPersonDeviceAuthenticatePrKeyRoute(),
+              );
+            },
             icon: Icon(
               Icons.qr_code_2_rounded,
               color: Theme.of(context).colorScheme.green,
@@ -84,27 +89,32 @@ class ListCards extends StatelessWidget {
           String nombre;
           String estado;
           String imagen;
+          String icon;
           switch (tipo) {
             case "cuenta":
               nombre = "CUENTA DE AHORRO:";
               estado = "ESTADO";
               imagen = "assets/img/fondoverde1.png";
+              icon = "assets/img/check_movements.svg";
               break;
             case "dpf":
               nombre = "DPF:";
               estado = "VENCIMIENTO";
               imagen = "assets/img/fondoazul1.png";
+              icon = "assets/img/check_movements.svg";
               break;
             case "credito":
               nombre = "CREDITO:";
               estado = "ESTADO";
               imagen = "assets/img/fondonegro1.png";
+              icon = "assets/img/payment_credit.svg";
               break;
             case "targeta":
             default:
               nombre = "TARGETA DE CREDITO:";
               estado = "ESTADO";
               imagen = "assets/img/fondonegro1.png";
+              icon = "assets/img/payment_creditcard.svg";
               break;
           }
           return SizedBox(
@@ -145,18 +155,47 @@ class ListCards extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Column(
-                                children: [
-                                  Icon(
-                                    Icons.sticky_note_2_outlined,
-                                    color: Theme.of(context).colorScheme.white,
+                              GestureDetector(
+                                onTap: () {
+                                  if (nombre == 'CUENTA DE AHORRO') {
+                                    /*InjectorContainer.getIt<AppRouter>().push(
+                                      SavingAccountExtractDataTranRoute(
+                                        sessionBloc: ,
+                                        bloc: 
+                                      ),
+                                    );*/
+                                  } else if (nombre == 'VENCIMIENTO') {
+                                    /*InjectorContainer.getIt<AppRouter>().push(
+                                      SavingAccountExtractDataTranRoute(
+                                        sessionBloc: ,
+                                        bloc: 
+                                      ),
+                                    );*/
+                                  } else if (nombre == 'CREDITO') {
+                                    /*InjectorContainer.getIt<AppRouter>().push(
+                                      SavingAccountExtractDataTranRoute(
+                                        sessionBloc: ,
+                                        bloc: 
+                                      ),
+                                    );*/
+                                  } else if (nombre == 'TARGETA DE CREDITO') {
+                                    /*InjectorContainer.getIt<AppRouter>().push(
+                                      SavingAccountExtractDataTranRoute(
+                                        sessionBloc: ,
+                                        bloc: 
+                                      ),
+                                    );*/
+                                  }
+                                },
+                                child: SvgPicture.asset(
+                                  icon,
+                                  fit: BoxFit.fill,
+                                  height: screenSize.height * 0.08,
+                                  colorFilter: ColorFilter.mode(
+                                    Theme.of(context).colorScheme.white,
+                                    BlendMode.srcIn,
                                   ),
-                                  SizedBox(height: smallSpacing * 0.8),
-                                  Icon(
-                                    Icons.remove_red_eye,
-                                    color: Theme.of(context).colorScheme.white,
-                                  ),
-                                ],
+                                ),
                               ),
                             ],
                           ),

@@ -10,22 +10,22 @@ import '../../../../../utils/text_util.dart';
 import '../../../UserSessionInfo/presentation/bloc/bloc.dart';
 
 @RoutePage()
-class SavingAccountExtractDataTranSacreen extends StatefulWidget {
+class SavingAccountExtractDataTranScreen extends StatefulWidget {
   final SavingAccountExtracBloc bloc;
   final SessionInfoBloc sessionBloc;
-  const SavingAccountExtractDataTranSacreen({
+  const SavingAccountExtractDataTranScreen({
     super.key,
     required this.bloc,
     required this.sessionBloc,
   });
 
   @override
-  State<SavingAccountExtractDataTranSacreen> createState() =>
-      _SavingAccountExtractDataTranSacreenState();
+  State<SavingAccountExtractDataTranScreen> createState() =>
+      _SavingAccountExtractDataTranScreenState();
 }
 
-class _SavingAccountExtractDataTranSacreenState
-    extends State<SavingAccountExtractDataTranSacreen> {
+class _SavingAccountExtractDataTranScreenState
+    extends State<SavingAccountExtractDataTranScreen> {
   String? _selectedAccount;
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class _SavingAccountExtractDataTranSacreenState
             child: Column(
               children: [
                 Text(
-                  'CONSULTA DE SALDOS DE CUENTAS DE AHORRO',
+                  'CONSULTA DE ULTIMOS MOVIMIENTOS:',
                   style: AppTextStyles.mainStyleGreen18Bold(context),
                 ),
                 SizedBox(height: smallSpacing * 0.5),

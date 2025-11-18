@@ -1,0 +1,1 @@
+export 'package:app_prodem_v1/modules/web_person_device_authenticate_pr_Key/domain/entities/web_person_device_authenticate_pr_ky_entity.dart';
