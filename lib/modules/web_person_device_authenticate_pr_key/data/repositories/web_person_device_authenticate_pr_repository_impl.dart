@@ -1,6 +1,6 @@
 import '../../domain/entities/entity.dart';
 import '../../domain/repositories/web_person_device_authenticate_pr_key_repository.dart';
-import '../datasource/datasource.dart';
+import '../datasource/web_person_device_authenticate_pr_ky_datasource.dart';
 
 class WebPersonDeviceAuthenticatePrRepositoryImpl
     extends WebPersonDeviceAuthenticatePrKeyRepository {
