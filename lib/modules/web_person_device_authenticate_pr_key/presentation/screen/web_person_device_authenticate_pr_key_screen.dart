@@ -48,15 +48,18 @@ class _WebPersonDeviceAuthenticatePrKeyScreenState
                 if (state is WebPersonDeviceAuthenticatePrKeySuccess) {
                   if (state.data.toInt() > 0) {
                     InjectorContainer.getIt<AppRouter>().push(
-                      WebPersonDeviceAuthenticatePrKeyRoute(),
+                      GetCurrentSmsOperationRoute(),
                     );
                   }
                 }
                 return Padding(
                   padding: EdgeInsets.all(topPadding * 0.05),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.fingerprint, size: screenSize.height * 0.05),
+                      Icon(Icons.fingerprint, size: screenSize.height * 0.08),
+                      SizedBox(height: screenSize.height * 0.08),
                       SizedBox(
                         width: screenSize.width * 0.8,
                         child: Card(
@@ -71,18 +74,34 @@ class _WebPersonDeviceAuthenticatePrKeyScreenState
                               ),
                             ),
                             child: TextField(
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               controller: userController,
                               obscureText: _esvisible,
                               textAlign: TextAlign.start,
+                              maxLength: 4, // ← evita más de 4 dígitos
                               maxLines: 1,
                               focusNode: passWordFocus,
+                              onChanged: (value) {
+                                if (value.length == 4) {
+                                  context
+                                      .read<
+                                        WebPersonDeviceAuthenticatePrKeyBloc
+                                      >()
+                                      .add(
+                                        WebPersonDeviceAuthenPrKeyEvent(
+                                          customerPIN: value,
+                                          verifyPIN: true,
+                                        ),
+                                      );
+                                }
+                              },
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 14,
                               ),
                               decoration: InputDecoration(
+                                counterText: "", // ← oculta el contador
                                 disabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(16.0),
                                   borderSide: BorderSide(
@@ -108,7 +127,6 @@ class _WebPersonDeviceAuthenticatePrKeyScreenState
                                 hintStyle: AppTextStyles.mainStyleGreen16(
                                   context,
                                 ),
-                                filled: true,
                                 isDense: false,
                                 contentPadding: EdgeInsets.fromLTRB(
                                   16,
@@ -135,9 +153,11 @@ class _WebPersonDeviceAuthenticatePrKeyScreenState
                           ),
                         ),
                       ),
+                      SizedBox(height: screenSize.height * 0.03),
                       Text(
                         'Si olvidó su PIN dirijase a cualquiera de nuestros Cajeros Automáticos ingresando a la opción PrNET.',
                         style: AppTextStyles.mainStyleGreen16Bold(context),
+                        textAlign: TextAlign.justify,
                       ),
                     ],
                   ),

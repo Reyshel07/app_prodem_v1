@@ -18,7 +18,7 @@ class WebPersonDeviceAuthenticateProdemKeyResponseModel
   factory WebPersonDeviceAuthenticateProdemKeyResponseModel.fromJson(
     Map<String, dynamic> json,
   ) => WebPersonDeviceAuthenticateProdemKeyResponseModel(
-    data: json["data"].toDouble(),
+    data: json["data"].toString(),
     state: json["state"],
     message: json["message"],
   );
